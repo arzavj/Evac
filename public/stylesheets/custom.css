@@ -6,19 +6,19 @@
 @font-face
 {
 	font-family: KristenITC;
-	src: url('/fonts/ITCKrist.ttf');
+	src: url('/public/fonts/ITCKrist.ttf');
 }
 
 @font-face
 {
 	font-family: HarlowSolidItalic;
-	src: url('/fonts/HARLOWSI.ttf');
+	src: url('/public/fonts/HARLOWSI.ttf');
 }
 
 @font-face
 {
 	font-family: Maiandra GD;
-	src: url('/fonts/Maiandra GD.ttf');
+	src: url('/public/fonts/Maiandra GD.ttf');
 }
 
 body {
