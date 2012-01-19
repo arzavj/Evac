@@ -1,0 +1,184 @@
+.container {
+  width: 1280px;
+  height: 1000px;
+}
+
+@font-face
+{
+	font-family: KristenITC;
+	src: url('/fonts/ITCKrist.ttf');
+}
+
+@font-face
+{
+	font-family: HarlowSolidItalic;
+	src: url('/fonts/HARLOWSI.ttf');
+}
+
+@font-face
+{
+	font-family: Maiandra GD;
+	src: url('/fonts/Maiandra GD.ttf');
+}
+
+body {
+  background: #ECEEF0 url(/images/bg_body.jpg);
+}
+
+header {
+	height: 92px;
+	background: #4A5C5C url(/images/bg_header.jpg) repeat-x 0px 30px;
+}
+
+header h1
+{
+	position:relative;
+    left:40px;
+	top:45px;
+	font-family:"HarlowSolidItalic",Hobo Std,Herculanum;
+	color:#FFFFFF;
+}
+
+section {
+  margin-top: 1em;
+  font-size: 120%;
+}
+
+section h1 {
+  font-size: 200%;
+  position:relative;
+  left:150px;
+  top:150px;
+  font-family: KristenITC;
+}
+
+/* Links */
+
+a {
+  color: #09c;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #069;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #069;
+}
+
+nav {
+  float: right;
+}
+
+nav {
+  padding: 0 0.7em;
+  white-space: nowrap;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+
+}
+
+nav ul li {
+  list-style-type: none;
+  display: inline-block;
+  padding: 0.2em 0;
+}
+
+nav ul li a {
+  padding: 0 5px;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+
+nav ul li a:visited {
+  color: #FFFFFF;
+  padding: 5px ;
+  background: #4A5C5C;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+  color:#F0E68C;
+  padding: 5px ;
+}
+
+.round {
+  -moz-border-radius:    10px;
+  -webkit-border-radius: 10px;
+  border-radius:         10px;
+  background: #4A5C5C;
+}
+
+footer {
+  margin-top: 430px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+footer .content{
+float: left;
+width: 30%;
+border:none;
+font-family:"HarlowSolidItalic",Hobo Std,Herculanum;
+font-size:170%;
+text-align:center;
+}
+
+footer .rightcontent{
+float: right;
+width: 30%;
+border:none;
+font-family:"HarlowSolidItalic",Hobo Std,Herculanum;
+font-size:170%;
+text-align:center;
+}
+
+footer .hspacer{
+width:5%;
+float:left;
+}
+
+footer .clear
+{
+clear:both;
+}
+
+footer .lcontent
+{
+float: left;
+width: 30%;
+border:none;
+font-family:"Maiandra GD",Hobo Std,Herculanum;
+font-size:120%;
+text-align:center;
+}
+
+footer .lrightcontent
+{
+float: right;
+width: 30%;
+border:none;
+font-family:"Maiandra GD",Hobo Std,Herculanum;
+font-size:120%;
+text-align:center;
+}
+
+.SmallFont
+{
+	position: relative;
+	left: 150px;
+	top: 170px;
+	font-family: KristenITC;
+}
+
+header .fb-like
+{
+	position: absolute;
+	right: 0px;
+	top: 4px;
+}
