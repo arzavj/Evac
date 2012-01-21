@@ -35,7 +35,9 @@ header h1
 	position:relative;
     left:40px;
 	top:45px;
-	font-family:"HarlowSolidItalic",Hobo Std,Herculanum;
+	font-family: 'Macondo Swash Caps', cursive;
+	font-weight: bold;
+	/*font-family:"HarlowSolidItalic",Hobo Std,Herculanum;*/
 	color:#FFFFFF;
 }
 
@@ -49,7 +51,8 @@ section h1 {
   position:relative;
   left:150px;
   top:150px;
-  font-family: KristenITC;
+  font-family: 'Miniver', cursive;
+  /*font-family: KristenITC;*/
 }
 
 /* Links */
@@ -124,7 +127,7 @@ footer .content{
 float: left;
 width: 30%;
 border:none;
-font-family:"HarlowSolidItalic",Hobo Std,Herculanum;
+font-family: 'Macondo Swash Caps', cursive;
 font-size:170%;
 text-align:center;
 }
@@ -133,7 +136,7 @@ footer .rightcontent{
 float: right;
 width: 30%;
 border:none;
-font-family:"HarlowSolidItalic",Hobo Std,Herculanum;
+font-family: 'Macondo Swash Caps', cursive;
 font-size:170%;
 text-align:center;
 }
@@ -153,7 +156,8 @@ footer .lcontent
 float: left;
 width: 30%;
 border:none;
-font-family:"Maiandra GD",Hobo Std,Herculanum;
+font-family: 'Oldenburg', cursive;
+/*font-family:"Maiandra GD",Hobo Std,Herculanum;*/
 font-size:120%;
 text-align:center;
 }
@@ -163,7 +167,7 @@ footer .lrightcontent
 float: right;
 width: 30%;
 border:none;
-font-family:"Maiandra GD",Hobo Std,Herculanum;
+font-family: 'Oldenburg', cursive;
 font-size:120%;
 text-align:center;
 }
@@ -173,7 +177,7 @@ text-align:center;
 	position: relative;
 	left: 150px;
 	top: 170px;
-	font-family: KristenITC;
+	font-family: 'Oldenburg', cursive;
 }
 
 header .fb-like
