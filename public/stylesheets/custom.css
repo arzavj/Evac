@@ -1,6 +1,6 @@
 .container {
-  width: 1280px;
-  height: 1000px;
+  width: 100%; /*1280px;*/
+  height: 100%;/*1000px;*/
 }
 
 @font-face
@@ -23,11 +23,15 @@
 
 body {
   background: #ECEEF0 url(/images/bg_body.jpg);
+	width: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
 }
 
 header {
 	height: 92px;
-	background: #4A5C5C url(/images/bg_header.jpg) repeat-x 0px 30px;
+	background: #4A5C5C 0px 30px repeat-x url(/images/bg_header.jpg);
 }
 
 header h1
@@ -180,6 +184,12 @@ text-align:center;
 	font-family: 'Oldenburg', cursive;
 }
 
+.fb-login-button
+{
+	position: relative;
+	left: 150px;
+	top: 190px;
+}
 header .fb-like
 {
 	position: absolute;
