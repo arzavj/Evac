@@ -3,7 +3,7 @@
   height: 100%;/*1000px;*/
 }
 
-@font-face
+/*@font-face
 {
 	font-family: KristenITC;
 	src: url('/stylesheets/ITCKrist.ttf');
@@ -19,7 +19,7 @@
 {
 	font-family: Maiandra GD;
 	src: url('/stylesheets/Maiandra GD.ttf');
-}
+}*/
 
 body {
   background: #ECEEF0 url(/images/bg_body.jpg);
@@ -27,6 +27,7 @@ body {
 		position: absolute;
 		top: 0;
 		left: 0;
+		margin: 0 auto;
 }
 
 header {
@@ -52,66 +53,85 @@ section {
 
 section h1 {
   font-size: 200%;
-  position:relative;
-  left:150px;
-  top:150px;
   font-family: 'Miniver', cursive;
-  /*font-family: KristenITC;*/
+}
+
+#lowHeaderPos
+{
+	position:relative;
+	left:150px;
+	top:150px;
+}
+
+#highHeaderPos
+{
+	position:relative;
+	left:150px;
+	top:80px;
 }
 
 /* Links */
 
 a {
-  color: #09c;
+  color: #09c;;
   text-decoration: none;
 }
 
 a:hover {
   color: #069;
-  text-decoration: underline;
 }
 
 a:visited {
   color: #069;
 }
 
-nav {
+header .h_navigation {
+  	position: absolute;
+		right: 0px;
+		top: 46px;
+		width: 760px;
+		height: 100px;
+		/*float: right;*/
+}
+
+header .h_navigation ul{
   float: right;
+  /*padding: 0 0.7em;*/
+  /*white-space: nowrap;*/
 }
 
-nav {
-  padding: 0 0.7em;
-  white-space: nowrap;
+header .h_navigation ul li {
+	float: left;
+	list-style-type: none;
+	/*list-style-type: none;
+	  display: inline-block;
+	  padding: 0.2em 0;*/
 }
 
-nav ul {
-  margin: 0;
-  padding: 0;
-
+header .h_navigation ul li a {
+  display: block;
+		padding: 8px 3px 8px 3px;
+		margin: 0 8px 0 8px;
+		color: #fff;
+		font-weight: normal;
+		line-height: 14px;
+		text-transform: uppercase;
+		text-decoration: none;
+		text-shadow: 0px -1px 3px #162F43;
+		text-align: center;
+		/*padding: 0 10px;
+  		font-weight: bold;
+  		color: #FFFFFF;*/
 }
 
-nav ul li {
-  list-style-type: none;
-  display: inline-block;
-  padding: 0.2em 0;
-}
-
-nav ul li a {
-  padding: 0 5px;
-  font-weight: bold;
-  color: #FFFFFF;
-}
-
-nav ul li a:visited {
+header .h_navigation ul li a:visited {
   color: #FFFFFF;
   padding: 5px ;
   background: #4A5C5C;
 }
 
-nav ul li a:hover {
-  text-decoration: underline;
+header .h_navigation ul li a:hover {
   color:#F0E68C;
-  padding: 5px ;
 }
 
 .round {
@@ -122,9 +142,10 @@ nav ul li a:hover {
 }
 
 footer {
-  margin-top: 430px;
+  margin-top: 190px;
   margin-left: auto;
   margin-right: auto;
+  background: #4A5C5C repeat-x url(/images/footer_strip.png);
 }
 
 footer .content{
@@ -134,6 +155,24 @@ border:none;
 font-family: 'Macondo Swash Caps', cursive;
 font-size:170%;
 text-align:center;
+}
+
+footer .content a
+{
+	color: #FFFFFF;
+}
+
+footer .content a:hover {
+  	color:#F0E68C;
+}
+
+footer .rightcontent a:hover {
+  	color:#F0E68C;
+}
+
+footer .rightcontent a
+{
+	color: #FFFFFF;
 }
 
 footer .rightcontent{
@@ -161,7 +200,6 @@ float: left;
 width: 30%;
 border:none;
 font-family: 'Oldenburg', cursive;
-/*font-family:"Maiandra GD",Hobo Std,Herculanum;*/
 font-size:120%;
 text-align:center;
 }
@@ -195,4 +233,28 @@ header .fb-like
 	position: absolute;
 	right: 0px;
 	top: 4px;
+}
+
+#video1
+{	
+	position: relative;
+	top: 120px;left: 90px;	
+}
+
+#video2
+{
+	position: relative;
+	top: 120px;left: 110px;
+}
+#video3
+{
+	position: relative;
+	top: 120px;left: 130px;
+}
+
+#homepic
+{
+	position: relative;
+	left: 700px;
+	top: 45px;
 }
