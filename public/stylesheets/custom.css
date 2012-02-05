@@ -37,9 +37,9 @@ header {
 
 header h1
 {
-	position:relative;
-    left:40px;
-	top:45px;
+	float: left;
+	margin-top: 1.2cm;
+	margin-left: 1cm;
 	font-family: 'Macondo Swash Caps', cursive;
 	font-weight: bold;
 	/*font-family:"HarlowSolidItalic",Hobo Std,Herculanum;*/
@@ -58,9 +58,10 @@ section h1 {
 
 #lowHeaderPos
 {
-	position:relative;
-	left:150px;
-	top:150px;
+	float: left;
+	margin-top: 3cm;
+	width: 40%;
+	margin-left: 4cm;
 }
 
 #highHeaderPos
@@ -142,7 +143,7 @@ header .h_navigation ul li a:hover {
 }
 
 footer {
-  margin-top: 190px;
+  margin-top: 490px;
   margin-left: auto;
   margin-right: auto;
   background: #4A5C5C repeat-x url(/images/footer_strip.png);
@@ -216,17 +217,17 @@ text-align:center;
 
 .SmallFont
 {
-	position: relative;
-	left: 150px;
-	top: 170px;
 	font-family: 'Oldenburg', cursive;
+	float: left;
+	width: 40%;
+	margin-left: 4cm;
 }
 
 .fb-login-button
 {
-	position: relative;
-	left: 150px;
-	top: 190px;
+	float: left;
+	width: 30%;
+	margin-left: 4cm;
 }
 header .fb-like
 {
@@ -254,7 +255,7 @@ header .fb-like
 
 #homepic
 {
-	position: relative;
-	left: 700px;
-	top: 45px;
+	float: right;
+	width: 40%;
+	margin-top: -1cm;
 }
