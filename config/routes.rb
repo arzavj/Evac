@@ -3,7 +3,7 @@ Vidactica::Application.routes.draw do
   match '/ask', :to => 'pages#ask'
   match '/give', :to => 'pages#give'
   match '/watch', :to => 'pages#watch'
-
+  
   root :to => 'pages#home'
 
   # The priority is based upon order of creation:

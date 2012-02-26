@@ -3,16 +3,20 @@
 <div class="post-questions">
 <div class="drop-down">
 Choose a category in Entrepreneurship:
-<select>
-  <option>Tactics for finding Investors</option>
-  <option>Negotiating with VCs</option>
-  <option>Venture Capital: To Raise or Not to Raise?</option>
-  <option>How to Finance a new Venture</option>
+<form name="input" action="pages/submitQuestion" method="post">
+<select name="category">
+  <option value="1">Tactics for finding Investors</option>
+  <option value="2">Negotiating with VCs</option>
+  <option value="3">Venture Capital: To Raise or Not to Raise?</option>
+  <option value="4">How to Finance a new Venture</option>
 </select>
-<input type="submit" value="Select" /><br />
-</div>
-
-Post a Question: <input type="text" name="question" /><br />
+<br>
+Post a Question: <input type="text" name="question" /><br>
 <input type="submit" value="Submit" />
+</form>
+
+<% if @saved%>
+	Question Saved
+<% end%>
 
 </div>
