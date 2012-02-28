@@ -29,9 +29,11 @@ class PagesController < ApplicationController
 
   def submitQuestion
 	q = Question.new
+	q.user_id = 1
 	q.question = params[:question]
 	q.category = Integer(params[:category])
-	Rails.cache.write("saved", q.save)
+	save = q.save
+	Rails.cache.write("saved", save)
 	redirect_to "/ask"
   end 
 
