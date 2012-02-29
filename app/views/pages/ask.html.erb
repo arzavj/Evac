@@ -3,7 +3,8 @@
 <div class="post-questions">
 <div class="drop-down">
 Choose a category in Entrepreneurship:
-<form name="input" action="pages/submitQuestion" method="post">
+
+<form name="input" action="/helper/submitQuestion?method=post"" method="post">
 <select name="category">
   <option value="1">Tactics for finding Investors</option>
   <option value="2">Negotiating with VCs</option>
@@ -17,6 +18,7 @@ Post a Question: <input type="text" name="question" /><br>
 
 <% if @saved%>
 	Question Saved
+	<% Rails.cache.write("saved", false) %>
 <% end%>
 
 </div>

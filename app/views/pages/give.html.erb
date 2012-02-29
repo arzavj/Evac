@@ -2,17 +2,30 @@
 
 <div class="drop-down">
 Choose a topic in Entrepreneurship:
-<select>
-  <option>Tactics for finding Investors</option>
-  <option>Negotiating with VCs</option>
-  <option>Venture Capital: To Raise or Not to Raise?</option>
-  <option>How to Finance a new Venture</option>
+<form name="input" action="/helper/getCategory?method=post"" method="post">
+<select name="category">
+  <option value="1">Tactics for finding Investors</option>
+  <option value="2">Negotiating with VCs</option>
+  <option value="3">Venture Capital: To Raise or Not to Raise?</option>
+  <option value="4">How to Finance a new Venture</option>
 </select>
 <input type="submit" value="Search" />
-</div>
+</form>
 
 <div class="questions">
 <br /><p><u><b>Recent Questions:</u></b></p>
+
+<%if @questions != nil || @cat == 0%>
+	<%length = @questions.length-1%>
+	<%for i in 0...5%>
+		<%if (length - i) >= 0%>
+			<p><b>User:</b> TanTan<br />
+			<%= @questions[length-i].question%> <input type="submit" value="Answer" /></p>
+			<br>
+		<%end%>
+	<%end%>	
+<%end%>
+<% Rails.cache.write("Category", 0)%>
 
 <div id="Q1">
 <p><b>User:</b> TanTan<br />
@@ -32,3 +45,5 @@ Product related to Q&A sector. Targeting people with knowledge in entrepreneursh
 	<input type="submit" value="Answer" /></p>
 	</div>
 </div>
+
+
