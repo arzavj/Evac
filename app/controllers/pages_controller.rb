@@ -30,12 +30,12 @@ class PagesController < ApplicationController
 		q.category = Integer(params[:category])
 		save = q.save
 		Rails.cache.write("saved", save)
-		redirect_to "/pages/ask"
+		redirect_to "/ask"
 	end
 
 	def getCategory
 		Rails.cache.write("Category", Integer(params[:category]))
-		redirect_to "/pages/give"
+		redirect_to "/give"
 	end
 
 end
