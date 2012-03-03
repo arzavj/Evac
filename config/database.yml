@@ -7,8 +7,8 @@ development:
   reconnect: false
   database: vidactica
   pool: 5
-  username: vidactica
-  password: business
+  username: 
+  password: 
   host: localhost
 
 # Warning: The database defined as "test" will be erased and

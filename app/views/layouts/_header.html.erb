@@ -1,10 +1,10 @@
 <header>
 	<div class="fb-like" data-href="http://vidactica.heroku.com/" data-send="true" data-width="450" data-show-faces="false"></div>
-  <h1> Vi∂açtiça </h1> 
+  <h1> Vidactica </h1> 
   <div class="h_navigation">
 	<ul>
-      <li class="round"><%= link_to "Home", '/' %></li>
-      <li><%= link_to "Profile", '/bio' %></li>
+      <li class="round"><abbr title="Home"><a class="home_icon" href="/"><%= image_tag("home_icon.png", :alt => "Home", :height => "20px", :width => "20px") %></a></abbr></li>
+      <li><abbr title="Profile"><a class="profile_icon" href="/bio"><%= image_tag("profile_icon.png", :alt => "Profile", :height => "20px", :width => "20px") %></a></abbr></li>
     </ul>
   </div>
 </header>

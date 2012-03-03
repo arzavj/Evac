@@ -12,12 +12,20 @@
 <body>
 		<%= render 'layouts/facebook' %>
 		<div class="container">
-	      <%= render 'layouts/header' %>
+	      <div class="row">
+				<div class="span12">
+				<%= render 'layouts/header' %>
+				</div>
+		  </div>
 	      <section>
 	        <%= yield %>
 	      </section>
-	      <%= render 'layouts/footer' %>
-		</div>
+		<div class="row">
+				<div class="span12">
+				<%= render 'layouts/footer' %>
+				</div>
+		  </div>      
+		</div>	
 		
 </body>
 </html>
