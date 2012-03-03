@@ -66,9 +66,9 @@ section h1 {
 
 #highHeaderPos
 {
-	position:relative;
-	left:150px;
-	top:80px;
+	float: left;
+	margin-left: 3cm;
+	margin-top: 1cm;
 }
 
 /* Links */
