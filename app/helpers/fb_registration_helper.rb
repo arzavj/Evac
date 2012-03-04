@@ -40,8 +40,5 @@ module FbRegistrationHelper
   end
 end
 
-facebook = FacebookRegistration::SignedRequest.new
-#parsed_params = facebook.call(params["signed_request"])
-#puts parsed_params.inspect
 
 
