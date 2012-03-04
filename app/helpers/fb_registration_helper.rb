@@ -1,5 +1,9 @@
-module PagesHelper
-<<<<<<< HEAD
+require 'rubygems'
+require 'openssl'
+require 'base64'
+require 'yajl'
+
+module FbRegistrationHelper
   class SignedRequest
     def initialize
     end
@@ -36,9 +40,5 @@ module PagesHelper
   end
 end
 
-facebook = FacebookRegistration::SignedRequest.new
-#parsed_params = facebook.call(params["signed_request"])
-#puts parsed_params.inspect
-=======
-end
->>>>>>> 98fd6c1a79ca511a9717ed728f77eedb7cdffad6
+
+

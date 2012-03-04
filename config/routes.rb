@@ -1,4 +1,8 @@
 Vidactica::Application.routes.draw do
+  get "fb_registration/FbLogin"
+
+  get "facebook_registration/FbLogin"
+
   get "pages/fb_login"
 
   match '/bio', :to => 'pages#bio'
