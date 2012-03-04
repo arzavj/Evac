@@ -43,10 +43,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.17.2)
     mysql (2.8.1)
-<<<<<<< HEAD
-=======
     mysql (2.8.1-x86-mingw32)
->>>>>>> 165a987031ecb559c9bdb45f70dd31dc7a4989cb
     pg (0.13.2)
     pg (0.13.2-x86-mingw32)
     polyglot (0.3.3)

@@ -30,7 +30,7 @@ body {
 		margin: 0 auto;
 }
 
-header {
+.row-fluid .span12 header {
 	/*height: 92px;*/
 	background: #4A5C5C 0px 30px repeat-x url(/images/bg_header.jpg);
 }
@@ -53,7 +53,7 @@ section {
 
 section h1 {
   font-size: 200%;
-  font-family: 'Macondo Swash Caps', cursive;
+  font-family: 'Leckerli One', cursive;
 }
 
 #lowHeaderPos
