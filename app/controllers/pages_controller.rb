@@ -41,7 +41,7 @@ class PagesController < ApplicationController
 	def RegisterUser
 		para = call(params)
 		u = User.new
-		u.name = para[:name]
+		u.name = para.parse(:name)
 		
 		redirect_to "/index"
 	end
