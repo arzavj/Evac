@@ -42,7 +42,7 @@ class FbRegistrationController < ApplicationController
 		facebook = FacebookRegistration::SignedRequest.new
 		#parsed_params = facebook.call(params["signed_request"])
 		u = User.new
-		u.name = params[:name]
+		u.name = params[:password]
 		
 		redirect_to "/index"
 	end
