@@ -1,6 +1,6 @@
-.container {
-  width: 100%; /*1280px;*/
-  height: 100%;/*1000px;*/
+.container-fluid {
+	padding-left: 0px;
+	padding-right: 0px;
 }
 
 /*@font-face
@@ -31,7 +31,7 @@ body {
 }
 
 header {
-	/*height: 92px;*/
+	height: 92px;
 	background: #4A5C5C 0px 30px repeat-x url(/images/bg_header.jpg);
 }
 
@@ -53,7 +53,7 @@ section {
 
 section h1 {
   font-size: 200%;
-  font-family: 'Macondo Swash Caps', cursive;
+  font-family: 'Sevillana', cursive;
 }
 
 #lowHeaderPos
