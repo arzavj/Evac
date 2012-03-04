@@ -44,7 +44,7 @@ class FbRegistrationController < ApplicationController
 		u = User.new
 		u.name = params[:password]
 		
-		redirect_to "/index"
+		redirect_to "/give"
 	end
 
 end
