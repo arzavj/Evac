@@ -19,14 +19,22 @@ class FbRegistrationController < ApplicationController
 		pass = params[:pass]
 		
 		u = User.where({:email => user, :password => pass})
-		if u
+		if u.length == 0
 			redirect_to "/fb_registration/Login"
 		else
+			u = u[0]
 			cookies[:name] = u.name
 			cookies[:email] = u.email
 			cookies[:pass] = u.password
 			redirect_to "/"
 		end
+	end
+
+	def Logout
+		cookies.delete :name
+		cookies.delete :email
+		cookies.delete :pass
+		redirect_to "/"
 	end
 
 end

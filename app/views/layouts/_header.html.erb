@@ -7,7 +7,7 @@
       <li><abbr title="Profile"><a class="profile_icon" href="/bio"><%= image_tag("profile_icon.png", :alt => "Profile", :height => "18px", :width => "18px") %> <b>Profile<b></a></abbr></li>
 	<li>
 		<%if cookies[:name]  %>
-			Welcome <%= cookies[:name] %>
+			Welcome <%= cookies[:name] %> <a href= "/fb_registration/Logout"> LOGOUT </a>
 		<%else%>
 			<a href="/fb_registration/Login">LOGIN</a>
 		<%end%>
