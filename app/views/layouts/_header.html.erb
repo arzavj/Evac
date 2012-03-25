@@ -5,6 +5,13 @@
 	<ul>
       <li class="round"><abbr title="Home"><a href="/"><%= image_tag("home_icon.png", :alt => "Home", :height => "15px", :width => "15px") %><b>Home</b></a></abbr></li>
       <li><abbr title="Profile"><a class="profile_icon" href="/bio"><%= image_tag("profile_icon.png", :alt => "Profile", :height => "18px", :width => "18px") %> <b>Profile<b></a></abbr></li>
+	<li>
+		<%if cookies[:name]  %>
+			Welcome <%= cookies[:name] %>
+		<%else%>
+			<a href="/fb_registration/Login">LOGIN</a>
+		<%end%>
+	</li>
     </ul>
   </div>
 </header>
