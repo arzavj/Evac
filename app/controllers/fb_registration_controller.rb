@@ -10,17 +10,12 @@ class FbRegistrationController < ApplicationController
 		u.name = params[:name]
 		u.email = params[:email]
 		u.password = params[:password]
-		if u.save
-			redirect_to "/"
-		else
-			redirect_to "fb_registration/FbLogin"
-		end
+		u.save
+		redirect_to "/"
 		
-		puts "DID REGISTER"
-		puts u.name
-		puts u.email
-		puts u.password
-		puts " "
+		facebook = FacebookRegistration::SignedRequest.new
+		parsed_params = facebook.call(params["signed_request"])
+		puts parsed_params.inspect
 	end
 
 	def Remember
