@@ -11,9 +11,9 @@ class FbRegistrationController < ApplicationController
 		fields = facebook["registration"]
 		puts fields
 		u = User.new
-		u.name = fields[:name]
-		u.email = fields[:email]
-		u.password = fields[:password]
+		u.name = fields["name"]
+		u.email = fields["email"]
+		u.password = fields["password"]
 		u.save
 		redirect_to "/"
 
