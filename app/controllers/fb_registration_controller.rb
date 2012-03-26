@@ -13,9 +13,8 @@ class FbRegistrationController < ApplicationController
 		u.save
 		redirect_to "/"
 		
-		facebook = FacebookRegistration::SignedRequest.new
-		parsed_params = facebook.parse(params["signed_request"])
-		puts parsed_params.inspect
+		facebook = FacebookRegistration::SignedRequest.parse(params["signed_request"])
+		puts facebook
 	end
 
 	def Remember
