@@ -13,7 +13,9 @@ class FbRegistrationController < ApplicationController
 		u.save
 		redirect_to "/"
 		
-		facebook = FacebookRegistration::SignedRequest.parse(params["signed_request"])
+		secret = "377aecb43717e1dc8bd78a803c1448a0";
+	
+		facebook = FacebookRegistration::SignedRequest.parse(params["signed_request"], secret)
 		puts facebook
 	end
 
