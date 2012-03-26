@@ -6,17 +6,16 @@ class FbRegistrationController < ApplicationController
   end
 
 	def RegisterUser
+		secret = "377aecb43717e1dc8bd78a803c1448a0"
+		facebook = FacebookRegistration::SignedRequest.parse(params["signed_request"], secret)
+		fields = facebook["registration"]
 		u = User.new
-		u.name = params[:name]
-		u.email = params[:email]
-		u.password = params[:password]
+		u.name = fields[:name]
+		u.email = fields[:email]
+		u.password = fields[:password]
 		u.save
 		redirect_to "/"
-		
-		secret = "377aecb43717e1dc8bd78a803c1448a0";
-	
-		facebook = FacebookRegistration::SignedRequest.parse(params["signed_request"], secret)
-		puts facebook
+
 	end
 
 	def Remember
