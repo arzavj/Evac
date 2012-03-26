@@ -1,0 +1,14 @@
+development:
+  app_id: 258011107615370
+  api_key: xxxxxxxxxxxxxxx 
+  secret_key: 377aecb43717e1dc8bd78a803c1448a0
+  
+production:
+  app_id: 258011107615370
+  api_key: xxxxxxxxxxxxxxx
+  secret_key: 377aecb43717e1dc8bd78a803c1448a0
+      
+test:
+  app_id: 258011107615370
+  api_key: xxxxxxxxxxxxxxx
+  secret_key: 377aecb43717e1dc8bd78a803c1448a0
