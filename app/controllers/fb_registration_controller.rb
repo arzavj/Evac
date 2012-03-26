@@ -15,6 +15,12 @@ class FbRegistrationController < ApplicationController
 		else
 			redirect_to "fb_registration/FbLogin"
 		end
+		
+		puts "DID REGISTER"
+		puts u.name
+		puts u.email
+		puts u.password
+		puts " "
 	end
 
 	def Remember
