@@ -9,6 +9,7 @@ class FbRegistrationController < ApplicationController
 		secret = "377aecb43717e1dc8bd78a803c1448a0"
 		facebook = FacebookRegistration::SignedRequest.parse(params["signed_request"], secret)
 		fields = facebook["registration"]
+		puts fields
 		u = User.new
 		u.name = fields[:name]
 		u.email = fields[:email]
