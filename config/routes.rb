@@ -1,4 +1,8 @@
 Vidactica::Application.routes.draw do
+  get "tok/ChatRoom"
+
+  get "video/ChatRoom"
+
   get "fb_registration/FbLogin"
 
   get "facebook_registration/FbLogin"

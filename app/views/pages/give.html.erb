@@ -20,7 +20,9 @@ Choose a topic in Entrepreneurship:
 	<%for i in 0...5%>
 		<%if (length - i) >= 0%>
 			<% q = @questions[length-i] %>
+			<% u = User.new %>
 			<% if q.user_id == -1 %>
+				<%u.id = -1 %>
 				<% name = "Guest" %>
 			<% else %>
 				<% u = User.find(q.user_id) %>
@@ -28,7 +30,7 @@ Choose a topic in Entrepreneurship:
 			<% end %>
 
 			<p><b>User:</b> <%= name %><br />
-			<%= q.question%> <input type="submit" value="Answer" /></p>
+			<%= q.question%> <form action="/tok/ChatRoom" method= "get"><input type = "hidden" name = "askID" value = "<%= u.id %>" /><input type="submit" value="Answer" /></form></p>
 			<br>
 		<%end%>
 	<%end%>	
