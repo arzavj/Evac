@@ -15,6 +15,7 @@ class FbRegistrationController < ApplicationController
 		u.email = fields["email"]
 		u.password = fields["password"]
 		u.save
+
 		redirect_to "/"
 
 	end

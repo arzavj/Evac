@@ -25,7 +25,14 @@ class PagesController < ApplicationController
 
 	def submitQuestion
 		q = Question.new
-		q.user_id = 1
+		u = User.where({:email => cookies[:email], :password => cookies[:pass]})
+
+		if u.length == 0
+			q.user_id = -1
+		else
+			u = u[0]
+			q.user_id = u.id
+		end
 		q.question = params[:question]
 		q.category = Integer(params[:category])
 		save = q.save

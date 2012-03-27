@@ -19,8 +19,16 @@ Choose a topic in Entrepreneurship:
 	<%length = @questions.length-1%>
 	<%for i in 0...5%>
 		<%if (length - i) >= 0%>
-			<p><b>User:</b> TanTan<br />
-			<%= @questions[length-i].question%> <input type="submit" value="Answer" /></p>
+			<% q = @questions[length-i] %>
+			<% if q.user_id == -1 %>
+				<% name = "Guest" %>
+			<% else %>
+				<% u = User.find(q.user_id) %>
+				<% name = u.name %>
+			<% end %>
+
+			<p><b>User:</b> <%= name %><br />
+			<%= q.question%> <input type="submit" value="Answer" /></p>
 			<br>
 		<%end%>
 	<%end%>	
