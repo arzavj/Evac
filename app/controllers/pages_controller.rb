@@ -37,7 +37,7 @@ class PagesController < ApplicationController
 		q.category = Integer(params[:category])
 		save = q.save
 		Rails.cache.write("saved", save)
-		redirect_to "/ask"
+		redirect_to "/tok/AskChatRoom"
 	end
 
 	def getCategory

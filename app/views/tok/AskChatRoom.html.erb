@@ -1,0 +1,30 @@
+  <script src="http://staging.tokbox.com/v0.91/js/TB.min.js"></script>
+ 
+  <script type="text/javascript">
+
+    var apiKey = '<%= @apiKey %>';
+    var sessionId = '<%= @sessionID %>';
+    var token = '<%= @token %>';           
+
+	<% puts "Variables" %>
+	<% puts @apiKey %>
+	<% puts @sessionID %>
+	<% puts @token %>
+ 
+    TB.setLogLevel(TB.DEBUG); // Set this for helpful debugging messages in console
+ 
+    var session = TB.initSession(sessionId);      
+    session.addEventListener('sessionConnected', sessionConnectedHandler);      
+    session.connect(apiKey, token);
+	
+    var publisher;
+ 
+    function sessionConnectedHandler(event) {
+	alert('Ready');
+      publisher = session.publish("asker");
+    }     
+  </script>
+
+<center>
+  <div id="asker"></div>
+</center>

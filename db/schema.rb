@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(:version => 20120226065604) do
     t.string   "name"
     t.string   "email"
     t.string   "password"
-    t.integer  "current_session"
+    t.string   "current_session"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
