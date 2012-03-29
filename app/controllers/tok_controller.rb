@@ -10,11 +10,13 @@ class TokController < ApplicationController
 
 	u = u[0]
 	
-	@sessionID = $opentok.create_session request.remote_addr 
+	session = $opentok.create_session request.remote_addr 
+	
+	@sessionID = session.session_id
 
-	@token = $opentok.generate_token :session_id => @sessionID, :role => "subscriber"	
+	@token = $opentok.generate_token :session_id => @sessionID
 
-	u.current_session = @sessionID.session_id
+	u.current_session = @sessionID
 	u.save
 	
 	#@sessionID = "1_MX4xMjMyMDgxfjcyLjUuMTY3LjE0OH4yMDEyLTAzLTI3IDE4OjUwOjAxLjg0MjcxNCswMDowMH4wLjQzMjU4MjQyMDk5Mn4"
@@ -26,7 +28,7 @@ class TokController < ApplicationController
 	
 	@sessionID = u.current_session
 
-	@token = $opentok.generate_token :session_id => @sessionID, :role => "subscriber" 
+	@token = $opentok.generate_token :session_id => @sessionID
 
 	#@sessionID = "1_MX4xMjMyMDgxfjcyLjUuMTY3LjE0OH4yMDEyLTAzLTI3IDE4OjUwOjAxLjg0MjcxNCswMDowMH4wLjQzMjU4MjQyMDk5Mn4"
 	#@token = "devtoken"
