@@ -2,9 +2,14 @@
  
   <script type="text/javascript">
 
-    var apiKey = '<%= @apiKey %>';
+    var apiKey = '<%= $apiKey %>';
     var sessionId = '<%= @sessionID %>';
-    var token = '<%= @token %>';           
+    var token = '<%= @token %>';   
+
+	<% puts "Variables" %>
+	<% puts $apiKey %>
+	<% puts @sessionID %>
+	<% puts @token %>        
  
     TB.setLogLevel(TB.DEBUG); // Set this for helpful debugging messages in console
  
@@ -15,11 +20,11 @@
     var publisher;
  
     function sessionConnectedHandler(event) {
-      alert('Hello world. I am connected to OpenTok :).');
-	publisher = session.publish("myPublisherDiv");
+      alert('Connecting');
+	publisher = session.publish("givDiv");
     }     
   </script>
 
 <center>
-  <div id="myPublisherDiv"></div>
+  <div id="givDiv"></div>
 </center>
