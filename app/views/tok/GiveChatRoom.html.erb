@@ -39,16 +39,18 @@
         }
  
         // Create the div to put the subscriber element in to
-        var div = document.createElement('div');
-        div.setAttribute('id', 'stream' + streams[i].streamId);
-        document.body.appendChild(div);
+        // var div = document.createElement('div');
+        // div.setAttribute('id', 'stream' + streams[i].streamId);
+        // document.body.appendChild(div);
                            
         // Subscribe to the stream
-        session.subscribe(streams[i], div.id);
+        session.subscribe(streams[i], "asker");
+	  return;
       }
     }    
   </script>
 
 <center>
   <div id="givDiv"></div>
+  <div id="asker"></div>
 </center>
