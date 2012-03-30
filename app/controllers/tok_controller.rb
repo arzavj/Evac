@@ -24,6 +24,9 @@ class TokController < ApplicationController
   end
 
   def GiveChatRoom
+	q = Question.find(params["qID"])
+	q.destroy
+	
 	u = User.find(params["askID"])
 	
 	@sessionID = u.current_session
