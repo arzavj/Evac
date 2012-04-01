@@ -29,12 +29,13 @@ header h1
 section {
   font-size: 120%;
   display:block;
-  height:51.5%;
 }
 
 section h1 {
   font-size: 200%;
   font-family: 'Shadows Into Light Two', cursive;
+  margin-top:2%;
+display:block;
 }
 
 #lowHeaderPos
@@ -50,6 +51,21 @@ section h1 {
 	float: left;
 	margin-left: 3cm;
 	margin-top: 1cm;
+}
+
+section .post-questions .drop-down
+{
+	margin-top:2%;
+}
+
+section .answer-questions .drop-down
+{
+	margin-top:4.5%;
+}
+
+section h1, section .drop-down
+{
+	margin-left:2%;
 }
 
 /* Links */
@@ -124,11 +140,9 @@ header .h_navigation ul li a:hover {
 }
 
 footer {
-  /*margin-top: 490px;
-  margin-left: auto;
-  margin-right: auto;*/
   display:block;
   background: #4A5C5C repeat-x url(/images/footer_strip.png);
+  margin-top:5.5%;
 }
 
 #introLines .SmallFont
@@ -156,21 +170,10 @@ header .fb-like
 	top: 4px;
 }
 
-/*#video1
-{	
-	position: relative;
-	top: 120px;left: 90px;	
-}*/
-
-#video2
+.videos
 {
-	position: relative;
-	top: 120px;left: 110px;
-}
-#video3
-{
-	position: relative;
-	top: 120px;left: 130px;
+	margin-top:1%;
+	margin-left:1%;
 }
 
 #homepic

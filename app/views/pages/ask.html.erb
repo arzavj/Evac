@@ -1,24 +1,24 @@
 <h1>Ask for Advice</h1>
 
 <div class="post-questions">
-<div class="drop-down">
-Choose a category in Entrepreneurship:
+	<div class="drop-down">
+		Choose a category in Entrepreneurship:
 
-<form name="input" action="/pages/submitQuestion?method=post"" method="post">
-<select name="category">
-  <option value="1">Tactics for finding Investors</option>
-  <option value="2">Negotiating with VCs</option>
-  <option value="3">Venture Capital: To Raise or Not to Raise?</option>
-  <option value="4">How to Finance a new Venture</option>
-</select>
-<br>
-Post a Question: <input type="text" name="question" /><br>
-<input type="submit" value="Submit" />
-</form>
+		<form name="input" action="/pages/submitQuestion?method=post"" method="post">
+			<select name="category">
+  				<option value="1">Tactics for finding Investors</option>
+  				<option value="2">Negotiating with VCs</option>
+  				<option value="3">Venture Capital: To Raise or Not to Raise?</option>
+  				<option value="4">How to Finance a new Venture</option>
+			</select>
+			<br>
+			Post a Question: <input type="text" name="question" /><br>
+			<input type="submit" value="Submit" />
+		</form>
 
-<% if @saved%>
-	Question Saved
-	<% Rails.cache.write("saved", false) %>
-<% end%>
-
+		<% if @saved%>
+		Question Saved
+		<% Rails.cache.write("saved", false) %>
+		<% end%>
+	</div>
 </div>
