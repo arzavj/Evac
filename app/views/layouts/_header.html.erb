@@ -1,18 +1,19 @@
 <header>
 	<div class="fb-like" data-href="http://vidactica.heroku.com/" data-send="true" data-width="450" data-show-faces="false"></div>
-  <h1> Vidactica </h1> 
-  <div class="h_navigation">
-	<ul>
-      <li class="round"><abbr title="Home"><a href="/"><%= image_tag("home_icon.png", :alt => "Home", :height => "15px", :width => "15px") %><b>Home</b></a></abbr></li>
-      <li><abbr title="Profile"><a class="profile_icon" href="/bio"><%= image_tag("profile_icon.png", :alt => "Profile", :height => "18px", :width => "18px") %> <b>Profile<b></a></abbr></li>
-	<li>
-		<%if cookies[:name]  %>
-			Welcome <%= cookies[:name] %> <a href= "/fb_registration/Logout"> LOGOUT </a>
-		<%else%>
-			<a href="/fb_registration/Login">LOGIN</a>
-		<%end%>
-	</li>
-    </ul>
-  </div>
+  	<h1> Vidactica </h1> 
+  	<div class="h_navigation">
+		<ul>
+			<%if cookies[:name]  %>
+      			<li class="round"><a href="/"><%= image_tag("home_icon.png", :alt => "Home", :height => "15px", :width => "15px") %><b>Home</b></a></li>
+      			<li><a class="profile_icon" href="/bio"><%= image_tag("profile_icon.png", :alt => "Profile", :height => "18px", :width => "18px") %> <b><%= cookies[:name] %><b></a></li>
+				<li>
+				 	<a href= "/fb_registration/Logout"> LOGOUT </a>
+				</li>
+			<%else%>
+				<li class="round"><a href="/"><%= image_tag("home_icon.png", :alt => "Home", :height => "15px", :width => "15px") %><b>Home</b></a></li>
+				<li><a href="/fb_registration/Login">LOGIN</a></li>
+			<%end%>
+    	</ul>
+  	</div>
 </header>
 

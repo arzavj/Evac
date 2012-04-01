@@ -1,33 +1,14 @@
 .container-fluid {
 	padding-left: 0px;
 	padding-right: 0px;
+	height:100%;
 }
 
-/*@font-face
-{
-	font-family: KristenITC;
-	src: url('/stylesheets/ITCKrist.ttf');
-}
-
-@font-face
-{
-	font-family: HarlowSolidItalic;
-	src: url('/stylesheets/HARLOWSI.ttf');
-}
-
-@font-face
-{
-	font-family: Maiandra GD;
-	src: url('/stylesheets/Maiandra GD.ttf');
-}*/
+html, body {height:100%; margin:0; padding:0;}
 
 body {
   background: #ECEEF0 url(/images/bg_body.jpg);
-	width: 100%;
-		position: absolute;
-		top: 0;
-		left: 0;
-		margin: 0 auto;
+	border: 0;
 }
 
 header {
@@ -40,26 +21,26 @@ header h1
 	float: left;
 	margin-top: 1.2cm;
 	margin-left: 1cm;
-	font-family: 'Sail', cursive;
+	font-family: 'Shadows Into Light Two', cursive;
 	font-weight: bold;
-	/*font-family:"HarlowSolidItalic",Hobo Std,Herculanum;*/
 	color:#FFFFFF;
 }
 
 section {
-  margin-top: 1em;
   font-size: 120%;
+  display:block;
+  height:51.5%;
 }
 
 section h1 {
   font-size: 200%;
-  font-family: 'Sevillana', cursive;
+  font-family: 'Shadows Into Light Two', cursive;
 }
 
 #lowHeaderPos
 {
 	float: left;
-	margin-top: 3cm;
+	margin-top: 5%;
 	width: 40%;
 	margin-left: 4cm;
 }
@@ -146,78 +127,17 @@ footer {
   /*margin-top: 490px;
   margin-left: auto;
   margin-right: auto;*/
+  display:block;
   background: #4A5C5C repeat-x url(/images/footer_strip.png);
 }
 
-footer .content{
-float: left;
-width: 30%;
-border:none;
-font-family: 'Macondo Swash Caps', cursive;
-font-size:170%;
-text-align:center;
-}
-
-footer .content a
-{
-	color: #FFFFFF;
-}
-
-footer .content a:hover {
-  	color:#F0E68C;
-}
-
-footer .rightcontent a:hover {
-  	color:#F0E68C;
-}
-
-footer .rightcontent a
-{
-	color: #FFFFFF;
-}
-
-footer .rightcontent{
-float: right;
-width: 30%;
-border:none;
-font-family: 'Macondo Swash Caps', cursive;
-font-size:170%;
-text-align:center;
-}
-
-footer .hspacer{
-width:5%;
-float:left;
-}
-
-footer .clear
-{
-clear:both;
-}
-
-footer .lcontent
-{
-float: left;
-width: 30%;
-border:none;
-font-family: 'Oldenburg', cursive;
-font-size:120%;
-text-align:center;
-}
-
-footer .lrightcontent
-{
-float: right;
-width: 30%;
-border:none;
-font-family: 'Oldenburg', cursive;
-font-size:120%;
-text-align:center;
-}
-
-.SmallFont
+#introLines .SmallFont
 {
 	font-family: 'Oldenburg', cursive;
+}
+
+#introLines
+{
 	float: left;
 	width: 40%;
 	margin-left: 4cm;
@@ -257,5 +177,32 @@ header .fb-like
 {
 	float: right;
 	width: 40%;
-	margin-top: -1cm;
+	margin-top: -3cm;
+	padding-bottom:1%;
+}
+
+footer .row-fluid .span4
+{
+	text-align:center;
+}
+
+footer .row-fluid .span4 h2
+{
+	font-family: 'Macondo Swash Caps', cursive;
+	font-size:170%;
+}
+
+footer .row-fluid .span4 h2 a
+{
+	color: #FFFFFF;
+}
+
+footer .row-fluid .span4 h2 a:hover {
+  	color:#F0E68C;
+}
+
+footer .row-fluid .span4 p
+{
+	font-family: 'Oldenburg', cursive;
+	font-size:120%;
 }
