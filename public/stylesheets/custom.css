@@ -11,6 +11,17 @@ body {
 	border: 0;
 }
 
+
+.wrapper 
+{
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto;
+	position:relative;
+}
+
+
 header {
 	height: 92px;
 	background: #4A5C5C 0px 30px repeat-x url(/images/bg_header.jpg);
@@ -29,21 +40,22 @@ header h1
 section {
   font-size: 120%;
   display:block;
+  padding-bottom:239px; 
 }
 
 section h1 {
   font-size: 200%;
   font-family: 'Shadows Into Light Two', cursive;
   margin-top:2%;
-display:block;
+  display:block;
 }
 
 #lowHeaderPos
 {
 	float: left;
 	margin-top: 5%;
-	width: 40%;
-	margin-left: 4cm;
+	width: 45%;
+	margin-left: 11%;
 }
 
 #highHeaderPos
@@ -139,10 +151,11 @@ header .h_navigation ul li a:hover {
   background: #4A5C5C;
 }
 
-footer {
-  display:block;
-  background: #4A5C5C repeat-x url(/images/footer_strip.png);
-  margin-top:5.5%;
+footer 
+{
+    background: #4A5C5C repeat-x url(/images/footer_strip.png);
+	position:absolute;
+	bottom:0;
 }
 
 #introLines .SmallFont
@@ -154,7 +167,7 @@ footer {
 {
 	float: left;
 	width: 40%;
-	margin-left: 4cm;
+	margin-left: 12%;
 }
 
 .fb-login-button
@@ -180,7 +193,7 @@ header .fb-like
 {
 	float: right;
 	width: 40%;
-	margin-top: -3cm;
+	margin-top: -2cm;
 	padding-bottom:1%;
 }
 
@@ -202,6 +215,7 @@ footer .row-fluid .span4 h2 a
 
 footer .row-fluid .span4 h2 a:hover {
   	color:#F0E68C;
+    text-decoration: none;
 }
 
 footer .row-fluid .span4 p
