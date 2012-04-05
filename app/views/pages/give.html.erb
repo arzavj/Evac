@@ -21,14 +21,8 @@
 				<%for i in 0...5%>
 					<%if (length - i) >= 0%>
 						<% q = @questions[length-i] %>
-						<% u = User.new %>
-						<% if q.user_id == -1 %>
-						<%u.id = -1 %>
-						<% name = "Guest" %>
-						<% else %>
-						<% u = User.find(q.user_id) %>
+						<% u = q.user %>
 						<% name = u.name %>
-						<% end %>
 						<p><b>User:</b> <%= name %><br />
 						<%= q.question%> <form action="/tok/GiveChatRoom" method= "get"><input type = "hidden" name = "qID" value = "<%= q.id %>" /><input type = "hidden" name = "askID" value = "<%= u.id %>" /><input type="submit" value="Answer" /></form></p>
 				<br>
