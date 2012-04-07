@@ -6,6 +6,10 @@ class PagesController < ApplicationController
 
   def bio
     @title = "Bio"
+    u = User.where({:email => cookies[:email], :password => cookies[:pass]})
+    @user = u[0]
+    @profile = @user.profile
+    #send_data @profile.data, :type => 'image/png', :disposition => 'inline'
   end
 
   def editBio
@@ -50,11 +54,16 @@ class PagesController < ApplicationController
 		profile = u.profile
 
 
-		profile.picture = params[:profile][:picture]
+		profile.file_name = params[:profile][:picture].original_filename
+		profile.file_type = params[:profile][:picture].content_type
+		profile.size = params[:profile][:picture].size
+
+		#profile.data = params[:profile][:picture].read
+
 		profile.blurb = params[:profile][:blurb]
 		profile.save
 
-		redirect_to "/pages/bio"
+		redirect_to "/bio"
 	end
 
 	def getCategory

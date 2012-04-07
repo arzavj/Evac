@@ -14,10 +14,10 @@
 ActiveRecord::Schema.define(:version => 20120404230546) do
 
   create_table "profiles", :force => true do |t|
-    t.string   "picture_file_name"
-    t.string   "picture_content_type"
-    t.integer  "picture_file_size"
-    t.datetime "picture_updated_at"
+    t.string   "file_name"
+    t.string   "file_type"
+    t.integer  "size"
+    t.binary   "data"
     t.text     "blurb"
     t.datetime "created_at"
     t.datetime "updated_at"

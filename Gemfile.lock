@@ -30,7 +30,6 @@ GEM
     activesupport (3.0.11)
     arel (2.0.10)
     builder (2.1.2)
-    cocaine (0.2.1)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     facebook_registration (1.0.4)
@@ -45,12 +44,6 @@ GEM
     mime-types (1.18)
     mysql (2.8.1)
     mysql (2.8.1-x86-mingw32)
-    paperclip (3.0.1)
-      activemodel (>= 3.0.0)
-      activerecord (>= 3.0.0)
-      activesupport (>= 3.0.0)
-      cocaine (>= 0.0.2)
-      mime-types
     pg (0.13.2)
     pg (0.13.2-x86-mingw32)
     polyglot (0.3.3)
@@ -91,6 +84,5 @@ PLATFORMS
 DEPENDENCIES
   facebook_registration
   mysql
-  paperclip (~> 3.0)
   pg
   rails (= 3.0.11)
