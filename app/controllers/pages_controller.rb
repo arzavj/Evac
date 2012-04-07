@@ -7,6 +7,10 @@ class PagesController < ApplicationController
   def bio
     @title = "Bio"
   end
+
+  def editBio
+    @title = "Edit"
+  end
   
   def ask
 	@saved = Rails.cache.read("saved")
@@ -38,6 +42,19 @@ class PagesController < ApplicationController
 		save = q.save
 		Rails.cache.write("saved", save)
 		redirect_to "/tok/AskChatRoom"
+	end
+
+	def submitProfile
+		u = User.where({:email => cookies[:email], :password => cookies[:pass]})
+		u = u[0]
+		profile = u.profile
+
+
+		profile.picture = params[:profile][:picture]
+		profile.blurb = params[:profile][:blurb]
+		profile.save
+
+		redirect_to "/pages/bio"
 	end
 
 	def getCategory

@@ -1,7 +1,7 @@
 class CreateProfiles < ActiveRecord::Migration
   def self.up
     create_table :profiles do |t|
-	t.binary "picture"
+	t.has_attached_file :picture
 	t.text "blurb"
       t.timestamps
     end

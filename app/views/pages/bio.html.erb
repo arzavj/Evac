@@ -1,2 +1,20 @@
 <h1>Profile</h1>
+<a href = "/pages/editBio">Edit Me</a>
+<br>
+<% u = User.where({:email => cookies[:email], :password => cookies[:pass]}) %>
+<% u = u[0] %>
+<br>
+Rank: <%= u.rank %> / 5
+<br>
+Number of Sessions: <%= u.sessions %>
+<br><br>
+Description:
+<%profile = u.profile %>
+<%= profile.blurb %>
+	
+<br>
+Image:
+<br>
+<%= image_tag profile.picture.url %>
+
 

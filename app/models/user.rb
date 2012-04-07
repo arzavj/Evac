@@ -1,4 +1,4 @@
 class User < ActiveRecord::Base
-	has_one :profile
+	belongs_to :profile
 	has_many :questions
 end
