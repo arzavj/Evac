@@ -9,9 +9,15 @@ class PagesController < ApplicationController
     u = User.where({:email => cookies[:email], :password => cookies[:pass]})
     @user = u[0]
     @profile = @user.profile
-    #send_data @profile.data, :type => 'image/png', :disposition => 'inline'
+      #send_data @profile.data, :type => 'image/png', :disposition => 'inline'
   end
-
+    
+  def show_image
+      user = User.find(params[:id])
+      profile = user.profile
+      send_data profile.data, :type => 'image/png' #, :disposition => 'inline'      
+  end
+      
   def editBio
     @title = "Edit"
   end
@@ -53,13 +59,23 @@ class PagesController < ApplicationController
 		u = u[0]
 		profile = u.profile
 
+        pic = params[:profile][:picture]
+        
+        if(pic != nil)
+            profile.file_name = pic.original_filename
+            profile.file_type = pic.content_type
+            profile.size = pic.size
 
-		profile.file_name = params[:profile][:picture].original_filename
-		profile.file_type = params[:profile][:picture].content_type
-		profile.size = params[:profile][:picture].size
-
-		#profile.data = params[:profile][:picture].read
-
+            profile.data = pic.read
+            
+            #profile.image_file(params[:profile][:picture])
+        else
+            profile.file_name = ""
+            profile.file_type = ""
+            profile.size = 0
+            
+            profile.data = nil
+        end
 		profile.blurb = params[:profile][:blurb]
 		profile.save
 
