@@ -29,12 +29,22 @@
       // Subscribe to any new streams that are created
       subscribeToStreams(event.streams);
     }
+    
+    function createForm(){
+        var form = document.getElementById("rank");
+               
+        var submit = document.createElement("input");
+        submit.setAttribute("type", "submit");
+        submit.setAttribute("value", "Rank");
+        
+        form.appendChild(submit);
+    }
      
     function subscribeToStreams(streams) {
       for (var i = 0; i < streams.length; i++) {
         // Make sure we don't subscribe to ourself
         if (streams[i].connection.connectionId == session.connection.connectionId) {
-          return;
+          continue;
         }
  
         // Create the div to put the subscriber element in to
@@ -44,7 +54,10 @@
                            
         // Subscribe to the stream
         session.subscribe(streams[i], "answer");
-	  return;
+        elem = document.getElementById("appointment");
+        elem.parentNode.removeChild(elem);
+        createForm();
+        return;
       }
     }     
   </script>
@@ -53,3 +66,10 @@
   <div id="asker"></div>
   <div id="answer"></div>
 </center>
+
+<form id="appointment" action="/tok/ScheduleAppointment" method= "get">
+	<input type="submit" value="Schedule Appointment" />
+</form>
+
+<form id="rank" action="/tok/SetRank" method= "get">
+</form>
