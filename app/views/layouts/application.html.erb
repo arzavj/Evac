@@ -8,6 +8,11 @@
   <%= javascript_include_tag :defaults %>
   
   <%= render 'layouts/stylesheets' %>
+  	<script type="text/javascript">
+		$(window).load(function() {
+    		$('#slider').nivoSlider();
+		});
+	</script>
 </head>
 <body>
 	<div class="wrapper">

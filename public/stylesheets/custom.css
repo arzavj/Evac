@@ -54,7 +54,6 @@ section h1 {
 {
 	float: left;
 	margin-top: 5%;
-	width: 45%;
 	margin-left: 11%;
 }
 
@@ -174,15 +173,13 @@ footer
 #introLines
 {
 	float: left;
-	width: 40%;
 	margin-left: 12%;
 }
 
 .fb-login-button
 {
 	float: left;
-	width: 30%;
-	margin-left: 4cm;
+	margin-left: 12%;
 }
 header .fb-like
 {
@@ -197,12 +194,9 @@ header .fb-like
 	margin-left:1%;
 }
 
-#homepic
+#slider
 {
-	float: right;
-	width: 40%;
-	margin-top: -2cm;
-	padding-bottom:1%;
+	float:left;
 }
 
 footer .row-fluid .span4
@@ -230,4 +224,20 @@ footer .row-fluid .span4 p
 {
 	font-family: 'Oldenburg', cursive;
 	font-size:120%;
+}
+
+.nivoSlider 
+{
+    position:relative;
+    height:100px; /* Change this to your images height */
+    background:url(images/loading.gif) no-repeat 50% 50%;
+	margin-top:5%;
+	margin-left:0%;;
+}
+.nivoSlider img 
+{
+    position:absolute;
+    top:0px;
+    left:0px;
+    display:none;
 }
