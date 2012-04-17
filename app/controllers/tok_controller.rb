@@ -36,5 +36,11 @@ class TokController < ApplicationController
 	#@sessionID = "1_MX4xMjMyMDgxfjcyLjUuMTY3LjE0OH4yMDEyLTAzLTI3IDE4OjUwOjAxLjg0MjcxNCswMDowMH4wLjQzMjU4MjQyMDk5Mn4"
 	#@token = "devtoken"
   end
+	
+	def ScheduleAppointment
+	end
+    
+    def SetRank
+    end
 
 end

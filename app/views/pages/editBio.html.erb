@@ -1,0 +1,20 @@
+<h1>Edit Me</h1>
+<% u = User.where({:email => cookies[:email], :password => cookies[:pass]}) %>
+<% u = u[0] %>
+<%profile = u.profile %>
+
+<%= form_for :profile, :url => "/pages/submitProfile", :html => { :multipart => true } do |form| %>
+	<%= form.file_field (:picture) %>
+	<%= form.text_area ( :blurb ) %>
+	
+	<%= submit_tag ("Submit") %>
+<% end %>
+
+<br>
+
+Description:
+
+
+
+	
+

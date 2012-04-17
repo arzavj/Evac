@@ -10,7 +10,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120226065604) do
+ActiveRecord::Schema.define(:version => 20120404230546) do
+
+  create_table "profiles", :force => true do |t|
+    t.string   "file_name"
+    t.string   "file_type"
+    t.integer  "size"
+    t.binary   "data"
+    t.text     "blurb"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "questions", :force => true do |t|
     t.integer  "user_id"
@@ -25,13 +35,17 @@ ActiveRecord::Schema.define(:version => 20120226065604) do
   add_index "questions", ["user_id"], :name => "index_questions_on_user_id"
 
   create_table "users", :force => true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
+    t.string   "name"
     t.string   "email"
     t.string   "password"
-    t.integer  "current_session"
+    t.string   "current_session"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "rank",            :default => 0.0
+    t.integer  "sessions",        :default => 0
+    t.integer  "profile_id"
   end
+
+  add_index "users", ["profile_id"], :name => "index_users_on_profile_id"
 
 end

@@ -5,10 +5,12 @@ gem 'rails', '3.0.11'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql'
+#gem 'mysql'
+gem 'mysql2' , '0.2.7'
 gem 'pg'
 gem 'facebook_registration'
-
+# gem "paperclip", "~> 3.0"
+gem 'tzinfo', '0.3.33'
 # Use unicorn as the web server
 # gem 'unicorn'
 

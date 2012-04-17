@@ -163,6 +163,7 @@ footer
     background: #4A5C5C repeat-x url(/images/footer_strip.png);
 	position:absolute;
 	bottom:0;
+	width:100%;
 }
 
 #introLines .SmallFont
