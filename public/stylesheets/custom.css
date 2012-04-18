@@ -165,6 +165,15 @@ header .h_navigation ul li a:hover {
   background: #4A5C5C;
 }
 
+#tiny-footer
+{
+	position:absolute;
+	bottom:0;
+	width:100%;
+	height:30px;
+	background: #4A5C5C repeat-x;
+}
+
 footer 
 {
     background: #4A5C5C repeat-x url(/images/footer_strip.png);
@@ -218,20 +227,30 @@ footer .row-fluid .span4 h2
 {
 	font-family: 'Macondo Swash Caps', cursive;
 	font-size:170%;
-}
-
-footer .row-fluid .span4 h2 a
-{
 	color: #FFFFFF;
 }
 
-footer .row-fluid .span4 h2 a:hover {
+/*footer .row-fluid .span4 h2 a:hover {
   	color:#F0E68C;
     text-decoration: none;
-}
+}*/
 
 footer .row-fluid .span4 p
 {
 	font-family: 'Oldenburg', cursive;
 	font-size:120%;
+}
+
+.inline
+{
+	display:inline;
+}
+
+.partition-line
+{
+	border-style:solid;
+	border-bottom: thin  solid #B0C4DE;
+	margin-left:2%;
+	margin-right:2%;
+	margin-top:3%;
 }

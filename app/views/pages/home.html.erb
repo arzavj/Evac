@@ -1,3 +1,4 @@
+<%if cookies[:name]  %>	
 <div class="row-fluid">
 	<div class="span6">
 		<div id="lowHeaderPos">
@@ -23,5 +24,80 @@
 		</div>
 	</div>
 </div>
+<div class="row-fluid">
+	<div class="span12"><%= render 'layouts/footer' %></div>		   	  		
+</div>
+<%else%>
 
+<div class="row-fluid">
+	<div class="span12">
+		<center><h1>Ask for Advice</h1></center>
+		<div class="post-questions">
+			<div class="drop-down row-fluid">
+				<div class="span6">
+				<div class="inline">Choose a category in Entrepreneurship:</div>
+				<form name="input" action="/pages/submitQuestion?method=post" method="post">
+					<select name="category">
+  						<option value="1">Tactics for finding Investors</option>
+  						<option value="2">Negotiating with VCs</option>
+  						<option value="3">Venture Capital: To Raise or Not to Raise?</option>
+  						<option value="4">How to Finance a new Venture</option>
+					</select>
+				</div>
+				<div class="span6">
+					Post a Question: <input type="text" name="question" /><br>
+					<input type="submit" value="Submit" />
+				</form>
+				</div>
 
+				<% if @saved%>
+					Question Saved
+				<% Rails.cache.write("saved", false) %>
+				<% end%>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="partition-line"></div>
+
+<div class="row-fluid">
+	<div class="span12">
+		<center><h1>Provide Words of Wisdom</h1></center>
+
+		<div class="answer-questions">
+			<div class="drop-down">
+				Choose a topic in Entrepreneurship:
+				<form name="input" action="/pages/getCategory?method=post" method="post">
+					<select name="category">
+  						<option value="1">Tactics for finding Investors</option>
+  						<option value="2">Negotiating with VCs</option>
+  						<option value="3">Venture Capital: To Raise or Not to Raise?</option>
+  						<option value="4">How to Finance a new Venture</option>
+					</select>
+					<input type="submit" value="Search" />
+				</form>
+
+				<div class="questions">
+					<br /><p><u><b>Recent Questions:</u></b></p>
+
+					<%if @questions != nil || @cat == 0%>
+						<%length = @questions.length-1%>
+						<%for i in 0...5%>
+							<%if (length - i) >= 0%>
+								<% q = @questions[length-i] %>
+								<% u = q.user %>
+								<% name = u.name %>
+								<p><b>User:</b> <%= name %><br />
+								<%= q.question%> <form action="/tok/GiveChatRoom" method= "get"><input type = "hidden" name = "qID" value = "<%= q.id %>" /><input type = "hidden" name = "askID" value = "<%= u.id %>" /><input type="submit" value="Answer" /></form></p>
+								<br>
+							<%end%>
+						<%end%>	
+					<%end%>
+					<% Rails.cache.write("Category", 0)%>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<%end%>
