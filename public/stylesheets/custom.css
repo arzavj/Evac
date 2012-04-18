@@ -248,9 +248,14 @@ footer .row-fluid .span4 p
 
 .partition-line
 {
-	border-style:solid;
-	border-bottom: thin  solid #B0C4DE;
 	margin-left:2%;
 	margin-right:2%;
 	margin-top:3%;
+	height:20px;
+	background: center bottom no-repeat url(/images/partition.png);
+}
+
+.row-fluid .span6
+{
+	margin-left:0%;
 }
