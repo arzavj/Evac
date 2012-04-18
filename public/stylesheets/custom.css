@@ -2,9 +2,17 @@
 	padding-left: 0px;
 	padding-right: 0px;
 	height:100%;
+	min-width:100px;
 }
 
-html, body {height:100%; margin:0; padding:0;}
+html, body 
+{
+	height:100%; 
+	margin:0; 
+	padding:0;
+	min-height:500px;
+	min-width:500px;
+}
 
 body {
   background: #ECEEF0 url(/images/bg_body.jpg);
@@ -53,7 +61,7 @@ section h1 {
 #lowHeaderPos
 {
 	float: left;
-	margin-top: 5%;
+	margin-top: 12%;
 	margin-left: 11%;
 }
 
@@ -173,12 +181,14 @@ footer
 #introLines
 {
 	float: left;
+	margin-top:2%;
 	margin-left: 12%;
 }
 
 .fb-login-button
 {
 	float: left;
+	margin-top:2%;
 	margin-left: 12%;
 }
 header .fb-like
@@ -224,20 +234,4 @@ footer .row-fluid .span4 p
 {
 	font-family: 'Oldenburg', cursive;
 	font-size:120%;
-}
-
-.nivoSlider 
-{
-    position:relative;
-    height:100px; /* Change this to your images height */
-    background:url(images/loading.gif) no-repeat 50% 50%;
-	margin-top:5%;
-	margin-left:0%;;
-}
-.nivoSlider img 
-{
-    position:absolute;
-    top:0px;
-    left:0px;
-    display:none;
 }
