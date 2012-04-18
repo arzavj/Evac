@@ -30,7 +30,7 @@ class PagesController < ApplicationController
   def give
 	@cat = Rails.cache.read("Category")
 	@questions = Question.where(:category => @cat)
-    @title = "Provide Words of Wisdom"
+  @title = "Provide Words of Wisdom"
   end
   
   def watch
