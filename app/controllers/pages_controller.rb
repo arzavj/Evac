@@ -23,7 +23,6 @@ class PagesController < ApplicationController
   end
   
   def ask
-	@saved = Rails.cache.read("saved")
     @title = "Ask For Advice"
   end
   
@@ -50,8 +49,10 @@ class PagesController < ApplicationController
 		q.question = params[:question]
 		q.category = Integer(params[:category])
 		save = q.save
-		Rails.cache.write("saved", save)
-		redirect_to "/tok/AskChatRoom"
+		
+		#Rails.cache.write("saved", save)
+		
+		redirect_to :controller => :tok, :action => :AskChatRoom, :qID => q.id
 	end
 
 	def submitProfile
