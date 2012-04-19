@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120404230546) do
+ActiveRecord::Schema.define(:version => 20120419055216) do
 
   create_table "profiles", :force => true do |t|
     t.string   "file_name"
@@ -24,12 +24,13 @@ ActiveRecord::Schema.define(:version => 20120404230546) do
 
   create_table "questions", :force => true do |t|
     t.integer  "user_id"
-    t.text     "question",                 :null => false
+    t.text     "question",                                   :null => false
     t.string   "tag",        :limit => 50
     t.integer  "category"
     t.integer  "rank",       :limit => 8
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "in_session",               :default => true
   end
 
   add_index "questions", ["user_id"], :name => "index_questions_on_user_id"

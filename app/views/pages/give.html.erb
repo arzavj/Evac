@@ -24,7 +24,13 @@
 						<% u = q.user %>
 						<% name = u.name %>
 						<p><b>User:</b> <%= name %><br />
-						<%= q.question%> <form action="/tok/GiveChatRoom" method= "get"><input type = "hidden" name = "qID" value = "<%= q.id %>" /><input type = "hidden" name = "askID" value = "<%= u.id %>" /><input type="submit" value="Answer" /></form></p>
+						<% if q.in_session %>
+							<% str = "Answer" %>
+						<% else %>
+							<% str = "Schedule Appointment" %>
+						<% end %>
+						
+						<%= q.question%> <form action="/tok/GiveChatRoom" method= "get"><input type = "hidden" name = "qID" value = "<%= q.id %>" /><input type = "hidden" name = "askID" value = "<%= u.id %>" /><input type="submit" value=<%=str%> /></form></p>
 				<br>
 			<%end%>
 		<%end%>	
