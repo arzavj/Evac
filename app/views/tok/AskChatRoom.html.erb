@@ -1,5 +1,5 @@
   <script src="http://staging.tokbox.com/v0.91/js/TB.min.js"></script>
-	<script type="text/javascript" src ="jquery.js"></script>
+	<script type="text/javascript" src ="/javascripts/jquery.js"></script>
 
   <%= javascript_tag do %>
 
@@ -29,7 +29,18 @@
 		}
 		else{
 			alert ("Don't leave");
-			$.get("/tok/submitStatus?qID=" + <%=params["qID"]%>);
+			var query = "qID="+<%=params["qID"]%>;
+			
+			$.ajax({
+			type: 'POST',
+			url: '/tok/submitStatus',
+			data: query
+			});
+
+			
+			//$.get("submitStatus?qID=" + );
+						
+			//submitChatRoomStatus();
 		}
 	}
 	

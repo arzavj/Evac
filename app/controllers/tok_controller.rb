@@ -47,6 +47,7 @@ class TokController < ApplicationController
 	
 	def submitStatus
 		question = Question.find(params["qID"])
+
 		question.in_session = false
 		
 		question.save
