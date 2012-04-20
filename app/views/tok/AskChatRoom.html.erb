@@ -30,8 +30,8 @@
 			session.cleanup();
 			
 			$.ajax({
-			type: 'POST',
-			url: '/tok/submitStatus',
+			type: 'GET',
+			url: "/tok/submitStatus",
 			data: query
 			});
 		}
