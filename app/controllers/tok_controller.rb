@@ -45,11 +45,17 @@ class TokController < ApplicationController
     def SetRank
     end
 	
-	def submitStatus
-		question = Question.find(params["qID"])
+	def leaveQuestion(qID)
+		question = Question.find(qID)
+		
 		question.in_session = false
 		
 		question.save
+	end
+	
+	def submitStatus
+		leaveQuestion(params["qID"])
+		return ""
 	end
 
 end
