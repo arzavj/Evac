@@ -27,6 +27,8 @@
 			alert ("Don't leave");
 			var query = "qID="+<%=params["qID"]%>;
 			
+			session.cleanup();
+			
 			$.ajax({
 			type: 'POST',
 			url: '/tok/submitStatus',
@@ -63,18 +65,10 @@
         if (streams[i].connection.connectionId == session.connection.connectionId) {
           continue;
         }
- 
-        // Create the div to put the subscriber element in to
-        // var div = document.createElement('div');
-        // div.setAttribute('id', 'stream' + streams[i].streamId);
-        // document.body.appendChild(div);
                            
         // Subscribe to the stream
         session.subscribe(streams[i], "answer");
-		
-        //elem = document.getElementById("appointment");
-        //elem.parentNode.removeChild(elem);
-		
+			
         createForm();
 		inSession = 1;
         return;
