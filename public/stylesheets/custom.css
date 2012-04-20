@@ -259,3 +259,16 @@ footer .row-fluid .span4 p
 {
 	margin-left:0%;
 }
+
+.navbar-inner 
+{
+	background-image: url(/images/navbar.png);
+	background-repeat:repeat-x;
+}
+
+.navbar .brand
+{
+	font-family: 'Shadows Into Light Two', cursive;
+	font-size:131%;
+	padding-top:15px;
+}
