@@ -33,6 +33,8 @@ class TokController < ApplicationController
 			s.save
 		end
 		
+		VidMail.AppointmentScheduled(params["qID"]).deliver
+		
 		redirect_to "/"
 	end
 	
