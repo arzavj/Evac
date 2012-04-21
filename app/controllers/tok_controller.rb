@@ -29,8 +29,10 @@ class TokController < ApplicationController
 		(1..3).each do |i|
 			s = Schedule.new
 			s.question_id = params["qID"]
-			s.appointment = DateTime.parse(params[i.to_s])
-			s.save
+			if params[i.to_s]
+				s.appointment = DateTime.parse(params[i.to_s])
+				s.save
+			end
 		end
 		
 		VidMail.AppointmentScheduled(params["qID"]).deliver
