@@ -26,7 +26,14 @@ class TokController < ApplicationController
 	
 	def Schedule
 		#TODO fill with saving to data and parsing data
-
+		(1..3).each do |i|
+			s = Schedule.new
+			s.question_id = params["qID"]
+			s.appointment = DateTime.parse(params[i.to_s])
+			s.save
+		end
+		
+		redirect_to "/"
 	end
 	
 	def ScheduleAppointment
@@ -49,7 +56,7 @@ class TokController < ApplicationController
 		
 		q.answer_id = u.id
 		
-		redirect_to "/tok/ScheduleAppointment"
+		redirect_to :action=> "ScheduleAppointment", :qID => params["qID"]
 	end
 	  
 
