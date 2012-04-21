@@ -30,7 +30,7 @@
 							<% str = "Schedule Appointment" %>
 						<% end %>
 						
-						<%= q.question%> <form action="/tok/GiveChatRoom" method= "get"><input type = "hidden" name = "qID" value = "<%= q.id %>" /><input type = "hidden" name = "askID" value = "<%= u.id %>" /><input type="submit" value=<%=str%> /></form></p>
+						<%= q.question%> <form action="/tok/GiveChatRoom" method= "get"><input type = "hidden" name = "qID" value = "<%= q.id %>" /><input type = "hidden" name = "askID" value = "<%= u.id %>" /><input type = "hidden" name = "answer" value = <%= q.in_session %> /><input type="submit" value=<%=str%> /></form></p>
 				<br>
 			<%end%>
 		<%end%>	

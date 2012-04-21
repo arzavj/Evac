@@ -18,22 +18,41 @@ class TokController < ApplicationController
 
 	u.current_session = @sessionID
 	u.save
-	  
-	  #@qID = Integer()
+
 	
 	#@sessionID = "1_MX4xMjMyMDgxfjcyLjUuMTY3LjE0OH4yMDEyLTAzLTI3IDE4OjUwOjAxLjg0MjcxNCswMDowMH4wLjQzMjU4MjQyMDk5Mn4"
 	#@token = "devtoken"
   end
+	
+	def Schedule
+		#TODO fill with saving to data and parsing data
 
+	end
+	
+	def ScheduleAppointment
+	end
+		
   def GiveChatRoom
 	q = Question.find(params["qID"])
-	q.destroy
-	
-	u = User.find(params["askID"])
-	
-	@sessionID = u.current_session
+	  
+	if params["answer"].eql?("true") #still in session
+		u = q.user
+		
+		q.destroy
+		
+		@sessionID = u.current_session
+		
+		@token = $opentok.generate_token :session_id => @sessionID
+		
+	else #if offline
+		u = User.where({:email => cookies[:email], :password => cookies[:pass]})
+		
+		q.answer_id = u.id
+		
+		redirect_to "/tok/ScheduleAppointment"
+	end
+	  
 
-	@token = $opentok.generate_token :session_id => @sessionID
 
 	#@sessionID = "1_MX4xMjMyMDgxfjcyLjUuMTY3LjE0OH4yMDEyLTAzLTI3IDE4OjUwOjAxLjg0MjcxNCswMDowMH4wLjQzMjU4MjQyMDk5Mn4"
 	#@token = "devtoken"
