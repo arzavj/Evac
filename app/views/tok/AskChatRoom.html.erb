@@ -24,16 +24,18 @@
 			alert ("Your session is over");
 		}
 		else{
-			alert ("Don't leave");
+			
 			var query = "qID="+<%=params["qID"]%>;
 			
 			session.cleanup();
 			
 			$.ajax({
 			type: 'GET',
-			url: "/tok/submitStatus",
+			url: '/tok/submitStatus',
 			data: query
 			});
+			
+			alert ("Don't leave");
 		}
 	}
 	
