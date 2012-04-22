@@ -1,0 +1,11 @@
+Questions Asked: <p>
+<% @qAsked.each do |q| %>
+	<%=q.question%>
+	<br>
+<%end%>
+
+Questions Scheduled To Answer: <p>
+<% @qAnswer.each do |q| %>
+	<%=q.question%>
+	<br>
+<%end%>
