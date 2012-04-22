@@ -47,7 +47,7 @@ class TokController < ApplicationController
 	q = Question.find(params["qID"])
 	  
 	if params["answer"].eql?("true") #still in session
-		u = q.user
+		u = q.user	
 		
 		q.destroy
 		
@@ -57,7 +57,7 @@ class TokController < ApplicationController
 		
 	else #if offline
 		u = User.where({:email => cookies[:email], :password => cookies[:pass]})
-		
+		puts u
 		q.answer_id = u.id
 		q.save
 		redirect_to :action=> "ScheduleAppointment", :qID => params["qID"]
