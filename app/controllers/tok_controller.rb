@@ -7,6 +7,16 @@ class TokController < ApplicationController
 		redirect_to :action => "AskChatRoom", :qID => params["qID"]
 	end
 	
+	def AcceptSchedule
+		question = Question.find(params["qID"])
+		
+		question.schedule_id = params["appointment"]
+		
+		question.save
+		
+		redirect_to "/myquestions"
+	end
+	
   def AskChatRoom
 	u = User.where({:email => cookies[:email], :password => cookies[:pass]})
 
@@ -33,10 +43,11 @@ class TokController < ApplicationController
 	
 	def Schedule
 		#TODO fill with saving to data and parsing data
+		
 		(1..3).each do |i|
 			s = Schedule.new
 			s.question_id = params["qID"]
-			if params[i.to_s]
+			if !params[i.to_s].eql?("")
 				s.appointment = DateTime.parse(params[i.to_s])
 				s.save
 			end
