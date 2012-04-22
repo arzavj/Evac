@@ -35,6 +35,12 @@ class PagesController < ApplicationController
   def watch
     @title = "View Top Video Sessions"
   end
+	
+	def myquestions
+		user = User.where({:email => cookies[:email], :password => cookies[:pass]})
+		@qAsked = Question.where({:user_id => user.id})
+		@qAnswer = Question.where({:answer_id => user.id})
+	end
 
 	def submitQuestion
 		q = Question.new
