@@ -6,6 +6,6 @@ Questions Asked: <p>
 <p>
 Questions Scheduled To Answer: <p>
 <% @qAnswer.each do |q| %>
-	<%=q.question%>
+	<%=q.question%><form action="/tok/ScheduleAppointment" method= "get"><input type = "hidden" name = "qID" value = "<%= q.id %>" /><input type="submit" value="Schedule" /></form>
 	<br>
 <%end%>
