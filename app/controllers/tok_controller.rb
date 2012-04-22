@@ -1,5 +1,12 @@
 class TokController < ApplicationController
 
+	def ResetQuestion
+		question = Question.find(params["qID"])
+		question.in_session = true
+		question.save
+		redirect_to :action => "AskChatRoom", :qID => params["qID"]
+	end
+	
   def AskChatRoom
 	u = User.where({:email => cookies[:email], :password => cookies[:pass]})
 

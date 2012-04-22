@@ -1,9 +1,9 @@
 Questions Asked: <p>
 <% @qAsked.each do |q| %>
-	<%=q.question%>
+	<%=q.question%><form action="/tok/ResetQuestion" method= "get"><input type = "hidden" name = "qID" value = "<%= q.id %>" /><input type="submit" value="Re-enter Room" /></form>
 	<br>
 <%end%>
-
+<p>
 Questions Scheduled To Answer: <p>
 <% @qAnswer.each do |q| %>
 	<%=q.question%>

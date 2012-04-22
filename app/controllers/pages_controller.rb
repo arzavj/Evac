@@ -38,6 +38,7 @@ class PagesController < ApplicationController
 	
 	def myquestions
 		user = User.where({:email => cookies[:email], :password => cookies[:pass]})
+		user = user[0]
 		@qAsked = Question.where({:user_id => user.id})
 		@qAnswer = Question.where({:answer_id => user.id})
 	end
@@ -55,8 +56,6 @@ class PagesController < ApplicationController
 		q.question = params[:question]
 		q.category = Integer(params[:category])
 		save = q.save
-		
-		#Rails.cache.write("saved", save)
 		
 		redirect_to :controller => :tok, :action => :AskChatRoom, :qID => q.id
 	end
