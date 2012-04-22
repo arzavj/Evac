@@ -59,7 +59,7 @@ class TokController < ApplicationController
 		u = User.where({:email => cookies[:email], :password => cookies[:pass]})
 		
 		q.answer_id = u.id
-		
+		q.save
 		redirect_to :action=> "ScheduleAppointment", :qID => params["qID"]
 	end
 	  
