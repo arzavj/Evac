@@ -2,7 +2,7 @@
 	
 	
   <%= javascript_tag do%>
-
+	jQuery.noConflict();
 
     var apiKey = '<%= $apiKey %>';
     var sessionId = '<%= @sessionID %>';
@@ -29,7 +29,7 @@
 			
 			session.cleanup();
 			
-			$.ajax({
+			jQuery.ajax({
 			type: 'GET',
 			url: '/tok/submitStatus',
 			data: query

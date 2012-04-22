@@ -1,5 +1,5 @@
 class Profile < ActiveRecord::Base
-	has_one :user, :dependent => :destroy
+	has_one :user
 	# has_attached_file :picture
     
     def self.image_file=(input_data)
