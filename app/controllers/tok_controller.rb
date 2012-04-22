@@ -57,7 +57,7 @@ class TokController < ApplicationController
 		
 	else #if offline
 		u = User.where({:email => cookies[:email], :password => cookies[:pass]})
-		puts u
+		puts u.name
 		q.answer_id = u.id
 		q.save
 		redirect_to :action=> "ScheduleAppointment", :qID => params["qID"]
