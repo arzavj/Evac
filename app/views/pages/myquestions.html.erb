@@ -1,6 +1,20 @@
 Questions Asked: <p>
 <% @qAsked.each do |q| %>
-	<%=q.question%><form action="/tok/ResetQuestion" method= "get"><input type = "hidden" name = "qID" value = "<%= q.id %>" /><input type="submit" value="Re-enter Room" /></form>
+	<%=q.question%>
+	<% if q.schedules.empty?%>
+		<form action="/tok/ResetQuestion" method= "get">
+		<input type = "hidden" name = "qID" value = "<%= q.id %>" />
+		<input type="submit" value="Re-enter Room" />
+		</form>
+	<% else %>
+		<form action="/tok/AcceptSchedule" method= "get">
+		<input type = "hidden" name = "qID" value = "<%= q.id %>" />
+		<% q.schedules.each do |appointment|%>
+			<input type="radio" name="appointment" value="<%=appointment.id%>" /> <%= appointment.appointment%> <br>
+		<%end%>
+		<input type="submit" value="Schedlue" />
+		</form>
+	<%end%>
 	<br>
 <%end%>
 <p>
