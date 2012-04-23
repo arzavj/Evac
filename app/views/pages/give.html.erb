@@ -16,26 +16,26 @@
 		<div class="questions">
 			<br /><p><u><b>Recent Questions:</u></b></p>
 
-			<%if @questions != nil || @cat == 0%>
-				<%length = @questions.length-1%>
-				<%for i in 0...5%>
-					<%if (length - i) >= 0%>
-						<% q = @questions[length-i] %>
-						<% u = q.user %>
-						<% name = u.name %>
-						<p><b>User:</b> <%= name %><br />
-						<% if q.in_session %>
-							<% str = "Answer" %>
-						<% else %>
-							<% str = "Schedule Appointment" %>
-						<% end %>
-						
-						<%= q.question%> <form action="/tok/GiveChatRoom" method= "get"><input type = "hidden" name = "qID" value = "<%= q.id %>" /><input type = "hidden" name = "askID" value = "<%= u.id %>" /><input type = "hidden" name = "answer" value = <%= q.in_session %> /><input type="submit" value=<%=str%> /></form></p>
-				<br>
-			<%end%>
-		<%end%>	
-	<%end%>
-	<% Rails.cache.write("Category", 0)%>
+			<%if @questions.any? || @cat == 0%>
+				<%counter = 0%>
+				<%@questions.each do |q|%>
+					<%if counter > 5%>
+						<%break%>
+					<%end%>
+					<% u = q.user %>
+					<% name = u.name %>
+					<p><b>User:</b> <%= name %><br />
+					<% if q.in_session %>
+						<% str = "Answer" %>
+					<% else %>
+						<% str = "Schedule Appointment" %>
+					<% end %>
+					
+					<%= q.question%> <form action="/tok/GiveChatRoom" method= "get"><input type = "hidden" name = "qID" value = "<%= q.id %>" /><input type = "hidden" name = "askID" value = "<%= u.id %>" /><input type = "hidden" name = "answer" value = <%= q.in_session %> /><input type="submit" value=<%=str%> /></form></p>
+					<br>
+					<%counter = counter + 1%>
+			<%end%>	
+		<%end%>
 		</div>
 	</div>
 </div>

@@ -27,7 +27,7 @@ class PagesController < ApplicationController
   end
   
   def give
-	@cat = Rails.cache.read("Category")
+	@cat = Integer(params[:category])
 	@questions = Question.where(:category => @cat)
   @title = "Provide Words of Wisdom"
   end
@@ -89,8 +89,7 @@ class PagesController < ApplicationController
 	end
 
 	def getCategory
-		Rails.cache.write("Category", Integer(params[:category]))
-		redirect_to "/give"
+		redirect_to :action => "give", :category => params[:category]
 	end
 
 
