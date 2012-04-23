@@ -4,9 +4,9 @@
 <% question = Question.find(params["qID"]) %>
 <%schedule = question.schedules %>
 
-<%(1..3).each do|i| %>
+<%(1..3).each do |i| %>
 	<%unless schedule[i].nil?%>
-		<%str= schedule[i]%>
+		<%str= schedule[i].appointment%>
 	<%end%>
 
 <input id="<%=i%>" name="<%=i%>" type="text" size="25" readonly="readonly" value="<%=str%>"/><a href="javascript:NewCal('<%=i%>','ddmmmyyyy',true,24)"><img src="/images/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>

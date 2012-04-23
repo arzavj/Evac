@@ -22,18 +22,20 @@
 					<%if counter > 5%>
 						<%break%>
 					<%end%>
-					<% u = q.user %>
-					<% name = u.name %>
-					<p><b>User:</b> <%= name %><br />
-					<% if q.in_session %>
-						<% str = "Answer" %>
-					<% else %>
-						<% str = "Schedule Appointment" %>
-					<% end %>
+					<%if q.schedules.empty? || q.in_session%>
+						<% u = q.user %>
+						<% name = u.name %>
+						<p><b>User:</b> <%= name %><br />
+						<% if q.in_session %>
+							<% str = "Answer" %>
+						<% else %>
+							<% str = "Schedule Appointment" %>
+						<% end %>
 					
-					<%= q.question%> <form action="/tok/GiveChatRoom" method= "get"><input type = "hidden" name = "qID" value = "<%= q.id %>" /><input type = "hidden" name = "askID" value = "<%= u.id %>" /><input type = "hidden" name = "answer" value = <%= q.in_session %> /><input type="submit" value=<%=str%> /></form></p>
-					<br>
-					<%counter = counter + 1%>
+						<%= q.question%> <form action="/tok/GiveChatRoom" method= "get"><input type = "hidden" name = "qID" value = "<%= q.id %>" /><input type = "hidden" name = "askID" value = "<%= u.id %>" /><input type = "hidden" name = "answer" value = <%= q.in_session %> /><input type="submit" value=<%=str%> /></form></p>
+						<br>
+						<%counter = counter + 1%>
+					<%end%>
 			<%end%>	
 		<%end%>
 		</div>
