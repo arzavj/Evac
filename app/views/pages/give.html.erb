@@ -5,10 +5,12 @@
 		Choose a topic in Entrepreneurship:
 		<form name="input" action="/pages/getCategory?method=post"" method="post">
 			<select name="category">
-  				<option value="1">Tactics for finding Investors</option>
-  				<option value="2">Negotiating with VCs</option>
-  				<option value="3">Venture Capital: To Raise or Not to Raise?</option>
-  				<option value="4">How to Finance a new Venture</option>
+				<%(0..@categories.length-1).each do |i|%>
+					<%if i == @cat-1%>
+						<%str = "selected=\"selected\""%>
+					<%end%>
+					<option value="<%=(i+1).to_s%>" <%=str%>> <%=@categories[i]%> </option>
+				<%end%>
 			</select>
 			<input type="submit" value="Search" />
 		</form>

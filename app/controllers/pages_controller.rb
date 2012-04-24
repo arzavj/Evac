@@ -27,9 +27,10 @@ class PagesController < ApplicationController
   end
   
   def give
-	@cat = Integer(params[:category])
-	@questions = Question.where(:category => @cat)
-  @title = "Provide Words of Wisdom"
+	  @categories = ["Tactics for finding Investors", "Negotiating with VCs", "Venture Capital: To Raise or Not to Raise?", "How to Finance a new Venture"]  
+	  @cat = Integer(params[:category])
+	  @questions = Question.where(:category => @cat)
+	  @title = "Provide Words of Wisdom"
   end
   
   def watch
@@ -41,6 +42,23 @@ class PagesController < ApplicationController
 		user = user[0]
 		@qAsked = Question.where({:user_id => user.id})
 		@qAnswer = Question.where({:answer_id => user.id})
+		
+		@qAsked.each do |q|
+			if q.schedule_id != -1
+				date = Schedule.find(q.schedule_id).appointment
+				if date.past?
+					redirect_to :controller => "tok", :action => "ResetQuestion", :qID => q.id
+					return
+				end
+			end
+		end
+		
+		@qAnswer.each do |q|
+			if q.in_session 
+				redirect_to :controller => "tok", :action => "GiveChatRoom", :qID => q.id, :answer => "true", :askID => q.user.id
+				return
+			end
+		end
 	end
 
 	def submitQuestion
