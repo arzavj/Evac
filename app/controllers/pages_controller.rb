@@ -52,13 +52,6 @@ class PagesController < ApplicationController
 				end
 			end
 		end
-		
-		@qAnswer.each do |q|
-			if q.in_session 
-				redirect_to :controller => "tok", :action => "GiveChatRoom", :qID => q.id, :answer => "true", :askID => q.user.id
-				return
-			end
-		end
 	end
 
 	def submitQuestion

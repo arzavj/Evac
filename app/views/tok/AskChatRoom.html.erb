@@ -20,8 +20,10 @@
 	var inSession = 0;
 	
 	window.onbeforeunload = function (){
+		jQuery.noConflict();
+	
 		if(inSession){
-			alert ("Your session is over");
+			return "Your session is over";
 		}
 		else{
 			
@@ -35,7 +37,7 @@
 			data: query
 			});
 			
-			alert ("Don't leave");
+			return "You're question is being scheduled.";
 		}
 	}
 	

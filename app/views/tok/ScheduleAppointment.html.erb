@@ -1,4 +1,16 @@
-<script language="javascript" type="text/javascript" src="/javascripts/datetimepicker.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
+<script language="javascript" type="text/javascript" src="/javascripts/jquery-ui-timepicker-addon.js"></script>
+
+
+<style media="screen" type="text/css">
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+</style>
+
 
 <form action="/tok/Schedule" method= "GET">
 <% question = Question.find(params["qID"]) %>
@@ -9,7 +21,13 @@
 		<%str= schedule[i].appointment%>
 	<%end%>
 
-<input id="<%=i%>" name="<%=i%>" type="text" size="25" readonly="readonly" value="<%=str%>"/><a href="javascript:NewCal('<%=i%>','ddmmmyyyy',true,24)"><img src="/images/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
+<script text="text/javascript">
+	$(function() {
+		$( "#<%=i%>" ).datetimepicker();
+	});
+</script>
+	
+<input id="<%=i%>" name="<%=i%>" type="text" size="25" readonly="readonly" value="<%=str%>"/>
 
 <p>
 

@@ -100,7 +100,7 @@ class TokController < ApplicationController
 	
 	def submitStatus
 		leaveQuestion(params["qID"])
-		return ""
+		render :content_type => 'text/javascript'
 	end
 
 end
