@@ -10,6 +10,7 @@ Vidactica::Application.routes.draw do
   get "pages/fb_login"
 
   match '/bio', :to => 'pages#bio'
+  match '/myquestions', :to => 'pages#myquestions'
   match '/editBio', :to => 'pages#editBio'
   match '/ask', :to => 'pages#ask'
   match '/give', :to => 'pages#give'

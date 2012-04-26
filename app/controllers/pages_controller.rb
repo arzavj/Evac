@@ -27,14 +27,32 @@ class PagesController < ApplicationController
   end
   
   def give
-	@cat = Rails.cache.read("Category")
-	@questions = Question.where(:category => @cat)
-  @title = "Provide Words of Wisdom"
+	  @categories = ["Tactics for finding Investors", "Negotiating with VCs", "Venture Capital: To Raise or Not to Raise?", "How to Finance a new Venture"]  
+	  @cat = Integer(params[:category])
+	  @questions = Question.where(:category => @cat)
+	  @title = "Provide Words of Wisdom"
   end
   
   def watch
     @title = "View Top Video Sessions"
   end
+	
+	def myquestions
+		user = User.where({:email => cookies[:email], :password => cookies[:pass]})
+		user = user[0]
+		@qAsked = Question.where({:user_id => user.id})
+		@qAnswer = Question.where({:answer_id => user.id})
+		
+		@qAsked.each do |q|
+			if q.schedule_id != -1
+				date = Schedule.find(q.schedule_id).appointment
+				if date.past?
+					redirect_to :controller => "tok", :action => "ResetQuestion", :qID => q.id
+					return
+				end
+			end
+		end
+	end
 
 	def submitQuestion
 		q = Question.new
@@ -49,8 +67,6 @@ class PagesController < ApplicationController
 		q.question = params[:question]
 		q.category = Integer(params[:category])
 		save = q.save
-		
-		#Rails.cache.write("saved", save)
 		
 		redirect_to :controller => :tok, :action => :AskChatRoom, :qID => q.id
 	end
@@ -84,8 +100,7 @@ class PagesController < ApplicationController
 	end
 
 	def getCategory
-		Rails.cache.write("Category", Integer(params[:category]))
-		redirect_to "/give"
+		redirect_to :action => "give", :category => params[:category]
 	end
 
 

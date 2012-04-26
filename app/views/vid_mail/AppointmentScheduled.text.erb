@@ -1,0 +1,12 @@
+Dear <%=@asker.name%>,
+
+	We are please to inform you that another user is willing to answer your question at one of the following times:
+	
+	<%@appointments.each do |appoint|%>
+		<%= appoint.appointment%>
+		
+	<%end%>
+	
+	Regards,
+	Vidactica Team
+	

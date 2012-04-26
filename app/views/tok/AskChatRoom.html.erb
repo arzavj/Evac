@@ -1,8 +1,8 @@
   <script src="http://staging.tokbox.com/v0.91/js/TB.min.js"></script>
-	<script type="text/javascript" src ="/javascripts/jquery.js"></script>
-
+	
+	
   <%= javascript_tag do%>
-
+	jQuery.noConflict();
 
     var apiKey = '<%= $apiKey %>';
     var sessionId = '<%= @sessionID %>';
@@ -20,18 +20,24 @@
 	var inSession = 0;
 	
 	window.onbeforeunload = function (){
+		jQuery.noConflict();
+	
 		if(inSession){
-			alert ("Your session is over");
+			return "Your session is over";
 		}
 		else{
-			alert ("Don't leave");
+			
 			var query = "qID="+<%=params["qID"]%>;
 			
-			$.ajax({
-			type: 'POST',
+			session.cleanup();
+			
+			jQuery.ajax({
+			type: 'GET',
 			url: '/tok/submitStatus',
 			data: query
 			});
+			
+			return "You're question is being scheduled.";
 		}
 	}
 	
@@ -63,18 +69,10 @@
         if (streams[i].connection.connectionId == session.connection.connectionId) {
           continue;
         }
- 
-        // Create the div to put the subscriber element in to
-        // var div = document.createElement('div');
-        // div.setAttribute('id', 'stream' + streams[i].streamId);
-        // document.body.appendChild(div);
                            
         // Subscribe to the stream
         session.subscribe(streams[i], "answer");
-		
-        //elem = document.getElementById("appointment");
-        //elem.parentNode.removeChild(elem);
-		
+			
         createForm();
 		inSession = 1;
         return;
