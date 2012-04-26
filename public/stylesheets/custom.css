@@ -38,13 +38,22 @@ header {
 header h1
 {
 	float: left;
-	margin-top: 1.2cm;
-	margin-left: 1cm;
 	font-family: 'Shadows Into Light Two', cursive;
 	font-weight: bold;
 	color:#FFFFFF;
 }
 
+header .row-fluid
+{
+	position:relative;
+	top: 1.2cm;
+}
+
+header .span4 h1
+{
+	position:relative;
+	left:1cm;
+}
 section {
   font-size: 120%;
   display:block;
@@ -101,7 +110,7 @@ a:hover {
 a:visited {
   color: #069;
 }
-
+/*
 header .h_navigation {
   	position: absolute;
 		right: 10px;
@@ -110,14 +119,14 @@ header .h_navigation {
 		height: 100px;
 		/*float: right;*/
 }
-
+/*
 header .h_navigation ul{
   float: right;
 	margin:0;
 	margin-top: 1%;
 	width:50%;
   /*padding: 0 0.7em;*/
-  /*white-space: nowrap;*/
+  /*white-space: nowrap;
 }
 
 header .h_navigation ul li {
@@ -126,7 +135,7 @@ header .h_navigation ul li {
 	padding-right:6%;
 	/*list-style-type: none;
 	  display: inline-block;
-	  padding: 0.2em 0;*/
+	  padding: 0.2em 0;
 }
 
 header .h_navigation ul li a 
@@ -142,8 +151,8 @@ header .h_navigation ul li a
 		text-shadow: 0px -1px 3px #162F43;
 		text-align: left;
 		font-size: 112%;
-}
-
+}*/
+/*
 header .h_navigation ul li a img
 {
 	float:left;
@@ -152,9 +161,9 @@ header .h_navigation ul li a img
 header .h_navigation ul li a b
 {
 	float:center;
-}
+}*/
 
-header .h_navigation ul li a:hover {
+header .nav ul li a:hover {
   color:#F0E68C;
 }
 
@@ -244,6 +253,13 @@ footer .row-fluid .span4 p
 .inline
 {
 	display:inline;
+}
+
+.nav > li > a
+{
+	display:inline;
+	color: #fff;
+	margin-right:1cm;
 }
 
 .partition-line

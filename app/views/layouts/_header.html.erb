@@ -1,16 +1,26 @@
 <header>
 	<div class="fb-like" data-href="http://vidactica.heroku.com/" data-send="true" data-width="450" data-show-faces="false"></div>
-  	<h1> Vidactica </h1> 
-  	<div class="h_navigation">
-		<ul>
-			<li><a href="/"><%= image_tag("home_icon.png", :alt => "Home", :height => "15px", :width => "14px") %><b>Home</b></a></li>
-			<%if cookies[:name]  %>	
-      			<li><a class="profile_icon" href="/bio"><%= image_tag("profile_icon.png", :alt => "Profile", :height => "18px", :width => "18px") %> <b><%= cookies[:name] %><b></a></li>
-				<li><a href= "/fb_registration/Logout"><b>LOGOUT <b></a></li>
+	<div class="row-fluid">
+  	<div class="span4"><h1> Vidactica</h1> </div>
+  	<div class="span8">
+		<ul class="nav pull-right">
+			<li class="inline"><a class="inline" href="/"><%= image_tag("home_icon.png", :alt => "Home", :height => "15px", :width => "14px") %><b>Home</b></a></li>
+			<%if cookies[:name]  %>
+			<li class="dropdown inline">
+				    <a class="dropdown-toggle profile_icon" data-toggle="dropdown" data-target="#" href="/bio"><%= image_tag("profile_icon.png", :alt => "Profile", :height => "18px", :width => "18px") %> <b><%= cookies[:name] %><b>
+				    <b class="caret"></b></a>
+				    <ul class="dropdown-menu">
+				      <li><a href="/myquestions">My Questions</a></li>
+				      <li class="divider"></li>
+				      <li><a href= "/fb_registration/Logout">Logout</a></li>
+			    	</ul>
+			</li>
+					
 			<%else%>
 				<li><a href="/fb_registration/Login"><%= image_tag("profile_icon.png", :alt => "LOGIN", :height => "18px", :width => "18px") %><b>LOGIN</b></a></li>
 			<%end%>
     	</ul>
   	</div>
+	</div>
 </header>
 
