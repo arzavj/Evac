@@ -1,6 +1,14 @@
 Questions Asked: <p>
 <% @qAsked.each do |q| %>
 	
+	
+	<% if q.schedule_id != -1 %>
+		<% date = Schedule.find(q.schedule_id).appointment %>
+		<% if date.past? %>
+			<b>YOU ARE SCHEDULED TO ANSWER THIS QUESTION </b><br>
+		<% end %>
+	<% end %>
+			
 	<%=q.question%>
 	<% if q.schedules.any?%>
 		<form action="/tok/AcceptSchedule" method= "get">
@@ -28,3 +36,5 @@ Questions Scheduled To Answer: <p>
 	<%=q.question%><form action="/tok/ScheduleAppointment" method= "get"><input type = "hidden" name = "qID" value = "<%= q.id %>" /><input type="submit" value="Schedule" /></form>
 	<br>
 <%end%>
+
+

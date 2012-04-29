@@ -42,16 +42,6 @@ class PagesController < ApplicationController
 		user = user[0]
 		@qAsked = Question.where({:user_id => user.id})
 		@qAnswer = Question.where({:answer_id => user.id})
-		
-		@qAsked.each do |q|
-			if q.schedule_id != -1
-				date = Schedule.find(q.schedule_id).appointment
-				if date.past?
-					redirect_to :controller => "tok", :action => "ResetQuestion", :qID => q.id
-					return
-				end
-			end
-		end
 	end
 
 	def submitQuestion
