@@ -20,7 +20,7 @@ class FbRegistrationController < ApplicationController
 		u.profile_id = pro.id
 		u.save
 
-		redirect_to "/fb_registration/Remember", :user => u.email, :pass => u.password
+		redirect_to :action=> "Remember", :user => u.email, :pass => u.password
 
 	end
 
