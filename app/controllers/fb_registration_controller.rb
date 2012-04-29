@@ -20,15 +20,15 @@ class FbRegistrationController < ApplicationController
 		u.profile_id = pro.id
 		u.save
 
-		redirect_to "/"
+		redirect_to "/tok/Remember", :user => u.email, :pass => u.password
 
 	end
 
 	def Remember
-		user = params[:user]
+		email = params[:user]
 		pass = params[:pass]
 		
-		u = User.where({:email => user, :password => pass})
+		u = User.where({:email => email, :password => pass})
 		if u.length == 0
 			redirect_to "/fb_registration/Login"
 		else
