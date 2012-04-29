@@ -258,10 +258,25 @@ footer .row-fluid .span4 p
 .nav > li > a
 {
 	display:inline;
-	color: #fff;
-	margin-right:1cm;
+	margin-right:1.2cm;
+	background-color:transparent;
 }
 
+.nav > li > a:hover
+{
+	background-color:transparent;
+}
+
+.nav > li > a:hover b
+{
+	color:#F0E68C;
+}
+
+.nav > li > a b
+{
+	color: #fff;
+	text-tranform:uppercase;
+}
 .partition-line
 {
 	margin-left:2%;
