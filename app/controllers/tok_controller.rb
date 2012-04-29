@@ -41,6 +41,15 @@ class TokController < ApplicationController
 	#@token = "devtoken"
   end
 	
+	def pastQuestion
+		q = Question.find(params["qID"])
+		
+		q.notes = params["notes"]
+		q.was_answered = true
+		
+		q.save
+	end
+	
 	def Schedule
 		#TODO fill with saving to data and parsing data
 		
@@ -67,7 +76,7 @@ class TokController < ApplicationController
 	if params["answer"].eql?("true") #still in session
 		u = q.user	
 		
-		q.destroy
+		#q.destroy
 		
 		@sessionID = u.current_session
 		

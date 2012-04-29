@@ -24,7 +24,7 @@
 					<%if counter > 5%>
 						<%break%>
 					<%end%>
-					<%if q.schedules.empty? || q.in_session%>
+					<%if (q.schedules.empty? || q.in_session) && !q.was_answered%>
 						<% u = q.user %>
 						<% name = u.name %>
 						<p><b>User:</b> <%= name %><br />
