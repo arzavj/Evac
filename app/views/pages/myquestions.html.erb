@@ -39,7 +39,12 @@ Questions Scheduled To Answer: <p>
 <p>
 Previous Asked Questions: <p>
 <% @qPrev.each do |q| %>
-	<%=q.question%>
+	Question: <br>
+	<%=q.question%> <br>
+	Notes: 
+	<br>
+	<%=q.notes%>
+	<br>
 	<br>
 <%end%>
 
