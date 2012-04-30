@@ -316,6 +316,11 @@ footer .row-fluid .span4 p
 	padding-top:15px;
 }
 
+.navbar
+{
+	position:fixed;
+}
+
 .transparent-background
 {
 	width:950px;

@@ -32,7 +32,10 @@
 		        nextText: 'Next', // Next directionNav text
 		        randomStart: false, // Start on a random slide
 		    });
-			$('.dropdown-toggle').dropdown()
+			$('.dropdown-toggle').dropdown();
+			var docHeight = $(document).height();
+			alert("docHeight");
+			$('.transparent-background').css('height',$(document).height());
 		});
 	</script>
 </head>
