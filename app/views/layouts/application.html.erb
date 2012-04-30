@@ -43,9 +43,11 @@
 	      <div class="row-fluid">
 				<div class="span12"><%= render 'layouts/header' %></div>
 		  </div>
-	      <section>
-	        <%= yield %>
-	      </section>
+		  <div class="transparent-background">
+	      	<section>
+	        	<%= yield %>
+	      	</section>
+		  </div>
 		</div>
 		<%= render 'layouts/tiny-footer' %>
 	</div>
