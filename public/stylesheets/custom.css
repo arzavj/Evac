@@ -54,10 +54,15 @@ header .span4 h1
 	position:relative;
 	left:1cm;
 }
+
 section {
   font-size: 120%;
-  display:block;
-  padding-bottom:239px; 
+  display:block; 
+}
+
+.border-padding
+{
+	padding-bottom:239px;
 }
 
 section h1 {

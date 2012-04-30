@@ -1,3 +1,4 @@
+
 Questions Asked: <p>
 <% @qAsked.each do |q| %>
 	
@@ -36,6 +37,7 @@ Questions Scheduled To Answer: <p>
 	<%=q.question%><form action="/tok/ScheduleAppointment" method= "get"><input type = "hidden" name = "qID" value = "<%= q.id %>" /><input type="submit" value="Schedule" /></form>
 	<br>
 <%end%>
+</div>
 <p>
 Previous Asked Questions: <p>
 <% @qPrev.each do |q| %>
