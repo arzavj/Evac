@@ -1,101 +1,100 @@
-
 <%if cookies[:name]  %>
-<div class="navbar">
-  	<div class="navbar-inner">
-    	<div class="container">
-			<span class="brand">Ask For Advice</span>
-			<form name="input" action="/pages/submitQuestion?method=post" method="post" class="navbar-search pull-left">
-				<ul>
-					<li class="divider-vertical inline"></li>
-					<li class="inline"><input type="text" name="question" class="search-query" placeholder="Post a question"></li>		
-					<li class="divider-vertical inline"></li>
-					Select Category:
-					<select name="category">
-  						<option value="1">Tactics for finding Investors</option>
-  						<option value="2">Negotiating with VCs</option>
-  						<option value="3">Venture Capital: To Raise or Not to Raise?</option>
-  						<option value="4">How to Finance a new Venture</option>
-					</select>
-					<li class="divider-vertical inline"></li>
-					<li class="inline"><input type="submit" value="Submit" /></li>
-				</ul>
-			</form>
+	<div class="navbar">
+	  	<div class="navbar-inner">
+	    	<div class="container">
+				<span class="brand">Ask For Advice</span>
+				<form name="input" action="/pages/submitQuestion?method=post" method="post" class="navbar-search pull-left">
+					<ul>
+						<li class="divider-vertical inline"></li>
+						<li class="inline"><input type="text" name="question" class="search-query" placeholder="Post a question"></li>		
+						<li class="divider-vertical inline"></li>
+						Select Category:
+						<select name="category">
+	  						<option value="1">Tactics for finding Investors</option>
+	  						<option value="2">Negotiating with VCs</option>
+	  						<option value="3">Venture Capital: To Raise or Not to Raise?</option>
+	  						<option value="4">How to Finance a new Venture</option>
+						</select>
+						<li class="divider-vertical inline"></li>
+						<li class="inline"><input type="submit" value="Submit" /></li>
+					</ul>
+				</form>
+			</div>
 		</div>
 	</div>
-</div>
-<div class="transparent-background">
-	<div class="body-wrapper">
-		<div class="row-fluid">
-	<div class="span12">
-		<center><h1>Provide Words of Wisdom</h1></center>
+	<div class="transparent-background">
+		<div class="body-wrapper">
+			<div class="row-fluid">
+		<div class="span12">
+			<center><h1>Provide Words of Wisdom</h1></center>
 
-		<div class="answer-questions">
-			<div class="drop-down">
-				Choose a topic in Entrepreneurship:
-				<form name="input" action="/pages/getCategory?method=post" method="post">
-					<select name="category">
-  						<option value="1">Tactics for finding Investors</option>
-  						<option value="2">Negotiating with VCs</option>
-  						<option value="3">Venture Capital: To Raise or Not to Raise?</option>
-  						<option value="4">How to Finance a new Venture</option>
-					</select>
-					<input type="submit" value="Search" />
-				</form>
+			<div class="answer-questions">
+				<div class="drop-down">
+					Choose a topic in Entrepreneurship:
+					<form name="input" action="/pages/getCategory?method=post" method="post">
+						<select name="category">
+	  						<option value="1">Tactics for finding Investors</option>
+	  						<option value="2">Negotiating with VCs</option>
+	  						<option value="3">Venture Capital: To Raise or Not to Raise?</option>
+	  						<option value="4">How to Finance a new Venture</option>
+						</select>
+						<input type="submit" value="Search" />
+					</form>
 
-				<div class="questions">
-					<br /><p><u><b>Recent Questions:</u></b></p>
+					<div class="questions">
+						<br /><p><u><b>Recent Questions:</u></b></p>
 
-					<%if @questions != nil || @cat == 0%>
-						<%length = @questions.length-1%>
-						<%for i in 0...5%>
-							<%if (length - i) >= 0%>
-								<% q = @questions[length-i] %>
-								<% u = q.user %>
-								<% name = u.name %>
-								<p><b>User:</b> <%= name %><br />
-								<%= q.question%> <form action="/tok/GiveChatRoom" method= "get"><input type = "hidden" name = "qID" value = "<%= q.id %>" /><input type = "hidden" name = "askID" value = "<%= u.id %>" /><input type="submit" value="Answer" /></form></p>
-								<br>
-							<%end%>
-						<%end%>	
-					<%end%>
-					<% Rails.cache.write("Category", 0)%>
+						<%if @questions != nil || @cat == 0%>
+							<%length = @questions.length-1%>
+							<%for i in 0...5%>
+								<%if (length - i) >= 0%>
+									<% q = @questions[length-i] %>
+									<% u = q.user %>
+									<% name = u.name %>
+									<p><b>User:</b> <%= name %><br />
+									<%= q.question%> <form action="/tok/GiveChatRoom" method= "get"><input type = "hidden" name = "qID" value = "<%= q.id %>" /><input type = "hidden" name = "askID" value = "<%= u.id %>" /><input type="submit" value="Answer" /></form></p>
+									<br>
+								<%end%>
+							<%end%>	
+						<%end%>
+						<% Rails.cache.write("Category", 0)%>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
-		<div class="border-padding"></div>
+			<div class="border-padding"></div>
+		</div>
 	</div>
-</div>
 
-<%else%>
-	<div class="row-fluid">
-	<div class="span6">
-		<div id="lowHeaderPos">
-			<h1>Online advice now has a face and voice!</h1>
-		</div>
-		<div id="introLines">
-			<p class="SmallFont">Have live video chat conversations with knowledgeable<br /> individuals who provide you with valuable advice.</p>
-		</div>
-		<div class="fb-login-button">
-			<a href = "/fb_registration/FbLogin">
-			<%= image_tag("signup-facebook-md.png", :width => "250") %>
-			</a>
-		</div>
-	</div>
-	<div class="span6" style="margin-left:0px;">
-		<div class="slider-wrapper theme-default">
-			<div class="ribbon"></div>
-			<div id="slider" class="nivoSlider round">
-				<img src="images/Animation1.png" alt="" />
-				<img src="images/Animation2.png" alt="" />
-				<img src="images/Animation3.png" alt="" />
+	<%else%>
+		<div class="row-fluid">
+		<div class="span6">
+			<div id="lowHeaderPos">
+				<h1>Online advice now has a face and voice!</h1>
+			</div>
+			<div id="introLines">
+				<p class="SmallFont">Have live video chat conversations with knowledgeable<br /> individuals who provide you with valuable advice.</p>
+			</div>
+			<div class="fb-login-button">
+				<a href = "/fb_registration/FbLogin">
+				<%= image_tag("signup-facebook-md.png", :width => "250") %>
+				</a>
 			</div>
 		</div>
+		<div class="span6" style="margin-left:0px;">
+			<div class="slider-wrapper theme-default">
+				<div class="ribbon"></div>
+				<div id="slider" class="nivoSlider round">
+					<img src="images/Animation1.png" alt="" />
+					<img src="images/Animation2.png" alt="" />
+					<img src="images/Animation3.png" alt="" />
+				</div>
+			</div>
+		</div>
+		</div>
+	<div class="border-padding"></div>
+	<div class="row-fluid">
+		<div class="span12"><%= render 'layouts/footer' %></div>		   	  		
 	</div>
-	</div>
-<div class="border-padding"></div>
-<div class="row-fluid">
-	<div class="span12"><%= render 'layouts/footer' %></div>		   	  		
-</div>
-<%end%>
+	<%end%>
