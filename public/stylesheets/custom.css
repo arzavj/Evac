@@ -284,11 +284,15 @@ footer .row-fluid .span4 p
 	color: #fff;
 }
 
-.uppercase
+b.uppercase
 {
 	text-tranform:uppercase;
 }
 
+h1.uppercase
+{
+	text-tranform:uppercase;
+}
 .partition-line
 {
 	margin-left:2%;
