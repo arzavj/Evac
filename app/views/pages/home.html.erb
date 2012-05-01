@@ -55,7 +55,7 @@
 					<%if (q.schedules.empty? || q.in_session) && !q.was_answered%>
 						<% u = q.user %>
 						<% name = u.name %>
-						<p><b>User:</b> <a href = "/bio?id=<%=u.id%>"<%= name %></a><br />
+						<p><b>User:</b> <a href = "/bio?id=<%=u.id%>" ><%= name %></a><br />
 						<% if q.in_session %>
 							<% str = "Answer" %>
 						<% else %>
