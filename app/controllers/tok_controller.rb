@@ -57,7 +57,7 @@ class TokController < ApplicationController
 			s = Schedule.new
 			s.question_id = params["qID"]
 			if !params[i.to_s].eql?("")
-				s.appointment = DateTime.parse(params[i.to_s])
+				s.appointment = Date.parse(params[i.to_s])
 				s.save
 			end
 		end
