@@ -10,8 +10,9 @@ class FbRegistrationController < ApplicationController
 		facebook = FacebookRegistration::SignedRequest.parse(params["signed_request"], secret)
 		fields = facebook["registration"]
 
+		profile = Profile.new
+		
 		File.open(Rails.root.join('public/images/profile_icon.png')) do |pic|
-			profile = Profile.new
 			profile.file_name = "Default Pic"
             profile.file_type = nil
             profile.size = nil
