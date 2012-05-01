@@ -1,4 +1,5 @@
 <div class="transparent-background">
+	<div class="body-wrapper">
 	<h1>Edit Profile</h1>
 	<% u = User.where({:email => cookies[:email], :password => cookies[:pass]}) %>
 	<% u = u[0] %>
@@ -11,6 +12,7 @@
 	
 		<div><%= submit_tag ("Submit") %></div>
 		<% end %>
+	</div>
 </div>
 
 

@@ -265,8 +265,10 @@ footer .row-fluid .span4 p
 .nav > li > a
 {
 	display:inline;
-	margin-right:1.4cm;
+	margin-right:1.5cm;
 	background-color:transparent;
+	position:relative;
+	right:0%;
 }
 
 .nav > li > a:hover
@@ -365,4 +367,18 @@ h1.uppercase
 .navbar
 {
 	margin-bottom:0px;
+}
+
+.navbar .dropdown-menu {
+ margin-top: 0px;
+}
+
+ul.nav li.dropdown:hover ul.dropdown-menu{
+    display: block;    
+}
+
+textarea
+{
+	width:500px;
+	height:100px;
 }
