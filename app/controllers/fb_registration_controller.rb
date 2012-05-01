@@ -10,7 +10,7 @@ class FbRegistrationController < ApplicationController
 		facebook = FacebookRegistration::SignedRequest.parse(params["signed_request"], secret)
 		fields = facebook["registration"]
 
-		File.open("/public//images/profile_icon.png", "r") do |pic|
+		File.open("/public/images/profile_icon.png", "r") do |pic|
 			profile = Profile.new
 			profile.file_name = pic.original_filename
             profile.file_type = pic.content_type
