@@ -2,6 +2,11 @@ class PagesController < ApplicationController
 	
   def home
     @title = "Home"
+	  
+	  @categories = ["Tactics for finding Investors", "Negotiating with VCs", "Venture Capital: To Raise or Not to Raise?", "How to Finance a new Venture"]  
+	  @cat = Integer(params[:category])
+	  @questions = Question.where(:category => @cat)
+
   end
 
   def bio
@@ -31,6 +36,8 @@ class PagesController < ApplicationController
 	  @cat = Integer(params[:category])
 	  @questions = Question.where(:category => @cat)
 	  @title = "Provide Words of Wisdom"
+	  
+	  redirect_to :action => "home", :category => params[:category]
   end
   
   def watch
