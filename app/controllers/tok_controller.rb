@@ -1,3 +1,5 @@
+require 'date'
+
 class TokController < ApplicationController
 
 	def ResetQuestion
