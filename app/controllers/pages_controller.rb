@@ -2,11 +2,20 @@ class PagesController < ApplicationController
 	
   def home
     @title = "Home"
+	  
+	  @categories = ["Tactics for finding Investors", "Negotiating with VCs", "Venture Capital: To Raise or Not to Raise?", "How to Finance a new Venture"]  
+	  @cat = Integer(params[:category])
+	  @questions = Question.where(:category => @cat)
+
   end
 
   def bio
     @title = "Bio"
-    u = User.where({:email => cookies[:email], :password => cookies[:pass]})
+	if params[:id] != nil
+		u = User.where({:id => params[:id]})
+	else
+		u = User.where({:email => cookies[:email], :password => cookies[:pass]})
+	end
     @user = u[0]
     @profile = @user.profile
       #send_data @profile.data, :type => 'image/png', :disposition => 'inline'
@@ -31,6 +40,8 @@ class PagesController < ApplicationController
 	  @cat = Integer(params[:category])
 	  @questions = Question.where(:category => @cat)
 	  @title = "Provide Words of Wisdom"
+	  
+	  redirect_to :action => "home", :category => params[:category]
   end
   
   def watch
@@ -78,11 +89,14 @@ class PagesController < ApplicationController
             
             #profile.image_file(params[:profile][:picture])
         else
-            profile.file_name = ""
-            profile.file_type = ""
-            profile.size = 0
-            
-            profile.data = nil
+			File.open(Rails.root.join('public/images/default-profile-pic.png')) do |pic|
+				profile.file_name = "Default Pic"
+				profile.file_type = nil
+				profile.size = nil
+				
+				profile.data = pic.read
+				profile.save
+			end
         end
 		profile.blurb = params[:profile][:blurb]
 		profile.save
