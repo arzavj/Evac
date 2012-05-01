@@ -4,7 +4,9 @@ class PagesController < ApplicationController
     @title = "Home"
 	  
 	  @categories = ["Tactics for finding Investors", "Negotiating with VCs", "Venture Capital: To Raise or Not to Raise?", "How to Finance a new Venture"]  
-	  @cat = Integer(params[:category])
+	  if(params[:category])
+		  @cat = Integer(params[:category])
+		end  
 	  @questions = Question.where(:category => @cat)
 
   end
