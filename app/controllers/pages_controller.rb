@@ -11,7 +11,11 @@ class PagesController < ApplicationController
 
   def bio
     @title = "Bio"
-    u = User.where({:email => cookies[:email], :password => cookies[:pass]})
+	if params[:id] != nil
+		u = User.where({:id => params[:id]})
+	else
+		u = User.where({:email => cookies[:email], :password => cookies[:pass]})
+	end
     @user = u[0]
     @profile = @user.profile
       #send_data @profile.data, :type => 'image/png', :disposition => 'inline'
