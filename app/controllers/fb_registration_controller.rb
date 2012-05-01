@@ -10,14 +10,23 @@ class FbRegistrationController < ApplicationController
 		facebook = FacebookRegistration::SignedRequest.parse(params["signed_request"], secret)
 		fields = facebook["registration"]
 
-		pro = Profile.new
-		pro.save
+		File.open("/images/profile_icon.png", "r") do |pic|
+			profile = Profile.new
+			profile.file_name = pic.original_filename
+            profile.file_type = pic.content_type
+            profile.size = pic.size
+			
+            profile.data = pic.read
+			profile.save
+		end
+		
+
 
 		u = User.new
 		u.name = fields["name"]
 		u.email = fields["email"]
 		u.password = fields["password"]
-		u.profile_id = pro.id
+		u.profile_id = profile.id
 		u.save
 
 		redirect_to :action=> "Remember", :user => u.email, :pass => u.password
