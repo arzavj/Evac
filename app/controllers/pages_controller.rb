@@ -57,7 +57,7 @@ class PagesController < ApplicationController
 		user = User.where({:email => cookies[:email], :password => cookies[:pass]})
 		user = user[0]
 		@qAsked = Question.where({:user_id => user.id, :was_answered => false})
-		@qAnswer = Question.where({:answer_id => user.id})
+		@qAnswer = Question.where({:answer_id => user.id, :was_answered => false})
 		@qPrev = Question.where({:user_id => user.id, :was_answered => true})
 	end
 
