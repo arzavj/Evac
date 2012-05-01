@@ -49,11 +49,10 @@ ActiveRecord::Schema.define(:version => 20120429024128) do
   add_index "schedules", ["question_id"], :name => "index_schedules_on_question_id"
 
   create_table "users", :force => true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
+    t.string   "name"
     t.string   "email"
     t.string   "password"
-    t.integer  "current_session"
+    t.string   "current_session"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.float    "rank",            :default => 0.0

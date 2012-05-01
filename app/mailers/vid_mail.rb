@@ -12,7 +12,7 @@ class VidMail < ActionMailer::Base
 	def AppointmentConfirmed (qID)
 		@question = Question.find(qID)
 		@answerer = User.find(@question.answer_id)
-		@appointment = Schedule.find(@question.schedule.id)
+		@appointment = Schedule.find(@question.schedule_id)
 		
 		mail(:to => @answerer.email, :subject => "Schedule Confirmed")
 	end
