@@ -81,6 +81,12 @@ class TokController < ApplicationController
 	q = Question.find(params["qID"])
 	  
 	if params["answer"].eql?("true") #still in session
+		u = User.where({:email => cookies[:email], :password => cookies[:pass]})
+		u = u[0]
+		q.answer_id = u.id
+		
+		q.save
+		
 		u = q.user	
 		
 		#q.destroy
@@ -104,7 +110,23 @@ class TokController < ApplicationController
   end
     
     def SetRank
+		@numValues = 5
     end
+	
+	def submitRank
+		q = Question.find(params["qID"])
+		q.rank = params["rank"]
+		
+		answerer = User.find(q.answer_id)
+		answerer.rank = ((answerer.rank*answerer.sessions) + q.rank)/(answerer.sessions+1)
+		answerer.sessions = answerer.sessions+1
+		
+		answerer.save
+		
+		q.save
+		
+		redirect_to "/"
+	end
 	
 	def leaveQuestion(qID)
 		question = Question.find(qID)
