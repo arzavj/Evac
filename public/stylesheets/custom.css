@@ -382,3 +382,8 @@ textarea
 	width:500px;
 	height:100px;
 }
+
+#edit-profile-btn
+{
+	background-color:#4A5C5C;
+}
