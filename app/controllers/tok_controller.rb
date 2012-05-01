@@ -16,6 +16,8 @@ class TokController < ApplicationController
 		
 		question.save
 		
+		VidMail.AppointmentConfirmed(params["qID"]).deliver #send email
+		
 		redirect_to "/myquestions"
 	end
 	
@@ -59,7 +61,10 @@ class TokController < ApplicationController
 			s = Schedule.new
 			s.question_id = params["qID"]
 			if !params[i.to_s].eql?("")
-				s.appointment = DateTime.parse(params[i.to_s])
+				split = params[i.to_s].split(' ')
+				date = Date.parse(split[0])
+				time = Time.parse(split[1])
+				s.appointment = DateTime.new(date.year, date.month, date.day, time.hour, time.min, time.sec)
 				s.save
 			end
 		end
