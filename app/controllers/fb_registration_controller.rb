@@ -12,9 +12,9 @@ class FbRegistrationController < ApplicationController
 
 		File.open(Rails.root.join('public/images/profile_icon.png')) do |pic|
 			profile = Profile.new
-			profile.file_name = pic.original_filename
-            profile.file_type = pic.content_type
-            profile.size = pic.size
+			profile.file_name = "Default Pic"
+            profile.file_type = nil
+            profile.size = nil
 			
             profile.data = pic.read
 			profile.save
