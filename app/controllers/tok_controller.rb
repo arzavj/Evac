@@ -16,6 +16,8 @@ class TokController < ApplicationController
 		
 		question.save
 		
+		VidMail.AppointmentConfirmed(params["qID"]).deliver #send email
+		
 		redirect_to "/myquestions"
 	end
 	
@@ -59,7 +61,10 @@ class TokController < ApplicationController
 			s = Schedule.new
 			s.question_id = params["qID"]
 			if !params[i.to_s].eql?("")
-				s.appointment = DateTime.parse(params[i.to_s])
+				split = params[i.to_s].split(' ')
+				date = Date.strptime(split[0], "%m/%d/%y")
+				time = Time.parse(split[1])
+				s.appointment = DateTime.new(date.year, date.month, date.day, time.hour, time.min, time.sec)
 				s.save
 			end
 		end
@@ -76,6 +81,12 @@ class TokController < ApplicationController
 	q = Question.find(params["qID"])
 	  
 	if params["answer"].eql?("true") #still in session
+		u = User.where({:email => cookies[:email], :password => cookies[:pass]})
+		u = u[0]
+		q.answer_id = u.id
+		
+		q.save
+		
 		u = q.user	
 		
 		#q.destroy
@@ -99,7 +110,23 @@ class TokController < ApplicationController
   end
     
     def SetRank
+		@numValues = 5
     end
+	
+	def submitRank
+		q = Question.find(params["qID"])
+		q.rank = params["rank"]
+		
+		answerer = User.find(q.answer_id)
+		answerer.rank = ((answerer.rank*answerer.sessions) + q.rank)/(answerer.sessions+1)
+		answerer.sessions = answerer.sessions+1
+		
+		answerer.save
+		
+		q.save
+		
+		redirect_to "/"
+	end
 	
 	def leaveQuestion(qID)
 		question = Question.find(qID)

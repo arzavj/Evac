@@ -101,7 +101,9 @@ textarea{
 }
 </style>
 
+<center>
 <form id="rank" action="/tok/SetRank" method= "get">
+<input type = "hidden" name = "qID" value = <%= params["qID"] %> />
 </form>
-
+</center>
 <textarea id="notes" COLS=100 ROWS=10></textarea>
