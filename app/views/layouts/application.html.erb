@@ -12,6 +12,13 @@
 	<script type="text/javascript">
 		$(window).load(function() {
 			$('.dropdown-toggle').dropdown();
+			$(".collapse").collapse();
+			$('#ques-sched').collapse({
+			  toggle: true
+			});
+			$('#prev-ques').collapse({
+			  toggle: true
+			});
 		    $('#slider').nivoSlider({
 		        effect: 'random', // Specify sets like: 'fold,fade,sliceDown'
 		        slices: 10, // For slice animations
@@ -33,13 +40,6 @@
 		        nextText: 'Next', // Next directionNav text
 		        randomStart: false, // Start on a random slide
 		    });
-			$(".collapse").collapse();
-			$('#ques-sched').collapse({
-			  toggle: true
-			});
-			$('#prev-ques').collapse({
-			  toggle: true
-			});
 			$('#facebook-modal').modal();
 			$('#facebook-modal').modal('toggle');
 		});

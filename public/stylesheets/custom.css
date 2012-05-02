@@ -275,8 +275,14 @@ footer .row-fluid .span4 p
 {
 	position: relative;
 	top: 3px;
-	left: 5px;
+	left: 2px;
 }
+
+.span8 ul.nav
+{
+	width:35%;
+}
+
 #home-nav
 {
 	margin-right:10%;
@@ -431,4 +437,10 @@ footer .row-fluid .span4 p, footer .row-fluid .span4 img, footer .row-fluid .spa
 center object
 {
 	padding-top:4%;
+}
+
+#email-login
+{
+	position: relative;
+	left: 11px;
 }
