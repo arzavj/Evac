@@ -5,12 +5,13 @@
 	<% u = u[0] %>
 	<%profile = u.profile %>
 
+	<h4 style="padding-top:3%;">Profile Picture:</h4>
 	<%= form_for :profile, :url => "/pages/submitProfile", :html => { :multipart => true } do |form| %>
 		<div><%= form.file_field (:picture) %></div>
-		Tell others about yourself:
+		<h4>Tell others about yourself:</h4>
 		<div><%= form.text_area ( :blurb ) %></div>
 	
-		<div><%= submit_tag ("Submit") %></div>
+		<div><%= submit_tag "Submit", :class => "btn btn-inverse" %></div>
 		<% end %>
 	</div>
 </div>

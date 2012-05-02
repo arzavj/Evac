@@ -2,6 +2,9 @@
 	<div class="body-wrapper">
 		<center><h1>Questions Asked:</h1></center>
 		<ul class="nav nav-list" style="padding-left:0px;padding-right:0px;">
+			<% if @qAsked.empty? %>
+				<li class="divider"></li>
+			<%end%>
 <% @qAsked.each do |q| %>
 	
 	<% if q.schedule_id != -1 %>
@@ -40,6 +43,9 @@
 	</button>
 	<div id="ques-sched" class="collapse in">
 	<ul class="nav nav-list" style="padding-left:0px;padding-right:0px;">
+		<% if @qAnswer.empty? %>
+			<li class="divider"></li>
+		<%end%>
 <% @qAnswer.each do |q| %>
 	<li><%=q.question%></li><form action="/tok/ScheduleAppointment" method= "get"><input type = "hidden" name = "qID" value = "<%= q.id %>" /><input class="btn" type="submit" value="Schedule" /></form>
 	<li class="divider"></li>
