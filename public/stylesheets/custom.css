@@ -71,7 +71,7 @@ section h1 {
 {
 	float: left;
 	margin-top: 12%;
-	margin-left: 11%;
+	/*margin-left: 11%;*/
 }
 
 #highHeaderPos
@@ -201,14 +201,14 @@ footer
 {
 	float: left;
 	margin-top:2%;
-	margin-left: 12%;
+	margin-left: 2%;
 }
 
 .fb-login-button
 {
 	float: left;
 	margin-top:2%;
-	margin-left: 12%;
+	margin-left: 0%;
 }
 header .fb-like
 {
@@ -256,12 +256,18 @@ footer .row-fluid .span4 p
 	display:inline;
 }
 
+/*ul.nav.pull-right
+{
+	position: relative;
+	right: 10%;
+}*/
+
 .nav > li > a
 {
 	display:inline;
 	background-color:transparent;
 	position:relative;
-	right:0%;
+	right:5%;
 	font-size:117%;
 }
 
@@ -273,7 +279,7 @@ footer .row-fluid .span4 p
 }
 #home-nav
 {
-	margin-right:15%;
+	margin-right:10%;
 }
 .nav > li > a:hover
 {
@@ -385,4 +391,10 @@ textarea
 {
 	width:500px;
 	height:100px;
+}
+
+.nivoSlider img
+{
+	height:288px;
+	width:462px;
 }
