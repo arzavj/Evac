@@ -51,12 +51,6 @@ header .row-fluid
 	top: 1.2cm;
 }
 
-header .span4 h1
-{
-	position:relative;
-	left:1cm;
-}
-
 section {
   font-size: 120%;
   display:block; 
@@ -265,12 +259,22 @@ footer .row-fluid .span4 p
 .nav > li > a
 {
 	display:inline;
-	margin-right:1.5cm;
 	background-color:transparent;
 	position:relative;
 	right:0%;
+	font-size:117%;
 }
 
+.nav > li > a b
+{
+	position: relative;
+	top: 3px;
+	left: 5px;
+}
+#home-nav
+{
+	margin-right:15%;
+}
 .nav > li > a:hover
 {
 	background-color:transparent;
