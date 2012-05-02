@@ -89,21 +89,20 @@
 	}
 
 <% end %>
- 
+
+<div class="transparent-background">
 <center>
   <div id="asker"></div>
   <div id="answer"></div>
 </center>
-
-<style type="text/css">
-textarea{
-	width:100%;
-}
-</style>
 
 <center>
 <form id="rank" action="/tok/SetRank" method= "get">
 <input type = "hidden" name = "qID" value = <%= params["qID"] %> />
 </form>
 </center>
-<textarea id="notes" COLS=100 ROWS=10></textarea>
+<center>
+	<div class="SmallFont">Notes:</div>
+	<textarea id="notes" COLS=100 ROWS=10></textarea>
+</center>
+</div>

@@ -86,8 +86,27 @@
 			<div id="introLines">
 				<p class="SmallFont">Have live video chat conversations with<br /> knowledgeable individuals who provide you with<br /> valuable advice.</p>
 			</div>
+			<div class="modal hide fade in" id="facebook-modal">
+				<div class="modal-header">
+					<button class="close" data-dismiss="modal">×</button>
+					<h3>Register With Facebook</h3>
+				</div>
+				<div class="modal-body">
+					<iframe src="https://www.facebook.com/plugins/registration.php?
+			             client_id=258011107615370&
+			             redirect_uri=http://vidactica.heroku.com/fb_registration/RegisterUser&
+			             fields=name,email,password"
+			        scrolling="auto"
+			        frameborder="no"
+			        style="border:none"
+			        allowTransparency="true"
+			        width="100%"
+			        height="330">
+					</iframe>
+				</div>
+			</div>
 			<div class="fb-login-button">
-				<a href = "/fb_registration/FbLogin">
+				<a data-toggle="modal" data-target="#facebook-modal" href = "#facebook-modal">
 				<%= image_tag("signup-facebook-md.png", :width => "250") %>
 				</a>
 			</div>

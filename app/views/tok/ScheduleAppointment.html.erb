@@ -14,7 +14,9 @@
 <script type="text/javascript" src="/javascripts/jquery-ui-sliderAccess.js"></script>
 
 <link type="text/css" href="/stylesheets/jquery-ui-1.8.16.custom.css" rel="stylesheet">
-
+<div class="transparent-background">
+	<div class="body-wrapper">
+		<div class="SmallFont" style="padding-top:5%;">Times that work for you:</div>
 <form action="/tok/Schedule" method= "GET">
 <% question = Question.find(params["qID"]) %>
 <%schedule = question.schedules %>
@@ -39,4 +41,6 @@
 <input type="hidden" name="qID" value="<%= params["qID"]%>" />
 
 <input type="submit" value= "Submit"/>
+</div>
+</div>
 </form>

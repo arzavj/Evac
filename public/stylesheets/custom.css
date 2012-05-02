@@ -192,7 +192,7 @@ footer
 	width:100%;
 }
 
-#introLines .SmallFont
+.SmallFont
 {
 	font-family: 'Oldenburg', cursive;
 }
@@ -393,6 +393,12 @@ textarea
 	height:100px;
 }
 
+#notes
+{
+	width:800px;
+	height:300px;
+}
+
 .nivoSlider img
 {
 	height:262px;
@@ -402,4 +408,27 @@ textarea
 .body-wrapper #home-row
 {
 	padding-top:5%;
+}
+
+#edit-profile-btn
+{
+	padding-left:13px;
+	padding-bottom:11px;
+}
+
+.profile-pic h1
+{
+	position: relative;
+	top: -58px;
+	left: 5px;
+}
+
+footer .row-fluid .span4 p, footer .row-fluid .span4 img, footer .row-fluid .span4 h2
+{
+	margin-top:2%;
+}
+
+center object
+{
+	padding-top:4%;
 }
