@@ -395,6 +395,11 @@ textarea
 
 .nivoSlider img
 {
-	height:288px;
+	height:262px;
 	width:462px;
+}
+
+.body-wrapper #home-row
+{
+	padding-top:5%;
 }
