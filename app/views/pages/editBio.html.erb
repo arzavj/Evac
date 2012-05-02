@@ -7,7 +7,7 @@
 
 	<%= form_for :profile, :url => "/pages/submitProfile", :html => { :multipart => true } do |form| %>
 		<div><%= form.file_field (:picture) %></div>
-		Description:
+		Tell others about yourself:
 		<div><%= form.text_area ( :blurb ) %></div>
 	
 		<div><%= submit_tag ("Submit") %></div>

@@ -33,22 +33,34 @@
 	<li class="divider"></li>
 <%end%>
 	</ul>
-	<center><h3 class="SmallFont">Questions Scheduled To Answer:</h3></center>
+	<center>
+		<button class="btn" data-toggle="collapse" data-target="#ques-sched">
+			<h3 class="SmallFont">Questions Scheduled To Answer:</h3>
+		</button>
+	</center>
+	<div id="ques-sched" class="collapse in">
 	<ul class="nav nav-list">
 <% @qAnswer.each do |q| %>
 	<li><%=q.question%></li><form action="/tok/ScheduleAppointment" method= "get"><input type = "hidden" name = "qID" value = "<%= q.id %>" /><input class="btn" type="submit" value="Schedule" /></form>
 	<li class="divider"></li>
 <%end%>
 	</ul>
-<p>
-	<center><h3 class="SmallFont">Previously Asked Questions:</h3></center>
-	<ul class="nav nav-list">
-<% @qPrev.each do |q| %>
-	<li><%=q.question%></li>
-	<button class="btn" data-toggle="collapse" data-target="#notes">Notes</button>
-	<div id="notes" class="collapse in"><%=q.notes%></div>
-	<li class="divider"></li>
-<%end%>
-	</ul>
+	</div>
+	
+	<center>
+		<button class="btn" data-toggle="collapse" data-target="#prev-ques">
+			<h3 class="SmallFont">Previously Asked Questions:</h3>
+		</button>
+			<div id="prev-ques" class="collapse in">
+	</center>
+		<ul class="nav nav-list">
+		<% @qPrev.each do |q| %>
+		<li><%=q.question%></li>
+		<button class="btn" data-toggle="collapse" data-target="#notes">Notes</button>
+		<div id="notes" class="collapse in"><%=q.notes%></div>
+		<li class="divider"></li>
+		<%end%>
+		</ul>
+		</div>
 	</div>
 </div>
