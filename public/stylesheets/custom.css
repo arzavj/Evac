@@ -385,6 +385,9 @@ h1.uppercase
 .navbar
 {
 	margin-bottom: 0px;
+
+	min-width:1000px; // suppose you want minimun width of 1000px
+   _width: expression( document.body.clientWidth > 1000 ? "1000px" : "auto" ); /* sets max-width for IE */
 }
 
 .navbar .dropdown-menu {
