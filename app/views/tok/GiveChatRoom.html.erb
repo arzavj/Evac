@@ -11,7 +11,7 @@
 	<% puts @sessionID %>
 	<% puts @token %>        
  
-    TB.setLogLevel(TB.DEBUG); // Set this for helpful debugging messages in console
+    //TB.setLogLevel(TB.DEBUG); // Set this for helpful debugging messages in console
  
     var session = TB.initSession(sessionId);      
     session.addEventListener('sessionConnected', sessionConnectedHandler);

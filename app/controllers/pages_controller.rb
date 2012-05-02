@@ -91,17 +91,7 @@ class PagesController < ApplicationController
             profile.size = pic.size
 
             profile.data = pic.read
-            
-            #profile.image_file(params[:profile][:picture])
-        else
-			File.open(Rails.root.join('public/images/default-profile-pic.png')) do |pic|
-				profile.file_name = "Default Pic"
-				profile.file_type = nil
-				profile.size = nil
-				
-				profile.data = pic.read
-				profile.save
-			end
+
         end
 		profile.blurb = params[:profile][:blurb]
 		profile.save
