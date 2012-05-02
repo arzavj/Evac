@@ -9,8 +9,6 @@
 	<%= form_for :profile, :url => "/pages/submitProfile", :html => { :multipart => true } do |form| %>
 		<div><%= form.file_field (:picture) %></div>
 		<h4>Tell others about yourself:</h4>
-		<div><%= form.text_area ( :blurb ) %></div>
-		Tell others about yourself:
 		<div><%= form.text_area :blurb, :value => profile.blurb %></div>
 		<div><%= submit_tag "Submit", :class => "btn btn-inverse" %></div>
 		<% end %>
