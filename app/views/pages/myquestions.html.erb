@@ -39,8 +39,8 @@
 	
 	
 	<div class="wd-expando">
-		<h2 class="SmallFont">Questions Scheduled To Answer:</h2>
-	<ul>
+		<h2 class="SmallFont">Questions Scheduled To Answer:<b class="caret caret-myquestions"></b></h2>
+	<ul class="nav nav-list">
 <% @qAnswer.each do |q| %>
 	<li><%=q.question%><br /><form action="/tok/ScheduleAppointment" method= "get"><input type = "hidden" name = "qID" value = "<%= q.id %>" /><input class="btn" type="submit" value="Schedule" /></form></li>
 	<li class="divider"></li>
@@ -49,12 +49,17 @@
 	</div>
 	
 	<div class="wd-expando">
-		<h2 class="SmallFont">Previously Asked Questions:</h2>
-		<ul>
+		<h2 class="SmallFont">Previously Asked Questions:<b class="caret caret-myquestions"></b></h2>
+		<ul class="nav nav-list">
 			<% @qPrev.each do |q| %>
 			<li><%=q.question%><br />
-			<button class="btn" data-toggle="collapse" data-target="#notes">Notes</button>
-			<div id="notes" class="collapse in"><%=q.notes%></div></li>
+				<div class="wd-expando notes-collapse">
+					<h2>Notes</h2>
+					<ul>
+						<li><%=q.notes%></li>
+					</ul>
+				</div>
+			</li>
 			<li class="divider"></li>
 			<%end%>
 		</ul>
