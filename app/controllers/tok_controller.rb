@@ -87,6 +87,7 @@ class TokController < ApplicationController
 	end
 		
   def GiveChatRoom
+	@numValues = 5
 	q = Question.find(params["qID"])
 	  
 	if params["answer"].eql?("true") #still in session
@@ -126,7 +127,7 @@ class TokController < ApplicationController
 		q = Question.find(params["qID"])
 		
 		
-		if params["user"]
+		if params["user"].to_i == 1
 		q.rank = params["rank"]
 		answerer = User.find(q.answer_id)
 		answerer.rank = ((answerer.rank*answerer.sessions) + q.rank)/(answerer.sessions+1)
@@ -138,7 +139,7 @@ class TokController < ApplicationController
 		q.ask_rank = params["rank"]	
 		asker = q.user
 		asker.ask_rank = ((asker.ask_rank*asker.ask_sessions) + q.ask_rank)/(asker.ask_sessions+1)
-		asker.sessions = asker.sessions+1
+		asker.ask_sessions = asker.ask_sessions+1
 		
 		asker.save
 		end
