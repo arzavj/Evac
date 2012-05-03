@@ -4,15 +4,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <title><%= @title %></title>
-  <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :defaults %>
-  
   <%= render 'layouts/stylesheets' %>
 
 	<script type="text/javascript">
 		$(document).ready(function() {
-			//jQuery('.dropdown-toggle').dropdown();
-			/*jQuery(".collapse").collapse();
+			jQuery('.dropdown-toggle').dropdown();
+			jQuery(".collapse").collapse();
 			
 			jQuery('#ques-sched').collapse({
 			  toggle: true
@@ -20,7 +17,7 @@
 			
 			jQuery('#prev-ques').collapse({
 			  toggle: true
-			});*/
+			});
 			
 		    jQuery('#slider').nivoSlider({
 		        effect: 'random', // Specify sets like: 'fold,fade,sliceDown'
@@ -43,9 +40,7 @@
 		        nextText: 'Next', // Next directionNav text
 		        randomStart: false, // Start on a random slide
 		    });
-			
-			//jQuery('#facebook-modal').modal();
-			//jQuery('#facebook-modal').modal('toggle');
+			jQuery('#facebook-modal').modal({ keyboard: true, backdrop:true, show:false});
 		});
 	</script>
 </head>

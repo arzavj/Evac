@@ -53,11 +53,13 @@
 		<ul class="nav nav-list">
 			<% @qPrev.each do |q| %>
 			<li><%=q.question%><br />
-				<div class="wd-expando notes-collapse">
-					<h2>Notes</h2>
-					<ul>
-						<li><%=q.notes%></li>
-					</ul>
+				<div class="notes-exp">
+					<div class="wd-expando notes-collapse">
+						<h2>Notes</h2>
+						<ul>
+							<li><%=q.notes%></li>
+						</ul>
+					</div>
 				</div>
 			</li>
 			<li class="divider"></li>
