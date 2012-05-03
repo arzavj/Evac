@@ -462,3 +462,10 @@ select
 	font-size:100%;
 	padding:0px;
 }
+
+h2 b.caret-myquestions
+{
+	position: relative;
+	left: 10px;
+	top: 17px;
+}
