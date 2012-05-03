@@ -36,12 +36,12 @@
 
 .wd-expando-on h2
 {
-	border-bottom-right-radius:    0px;
+	/*border-bottom-right-radius:    0px;
 	border-bottom-left-radius:    0px;
 	-moz-border-bottom-right-radius:    0px;
 	-webkit-border-bottom-right-radius: 0px;
 	-moz-border-bottom-left-radius:    0px;
-	-webkit-border-bottom-left-radius: 0px;
+	-webkit-border-bottom-left-radius: 0px;*/
 }
 
 .wd-expando-off ul {
