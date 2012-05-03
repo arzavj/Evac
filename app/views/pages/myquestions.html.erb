@@ -66,5 +66,25 @@
 			<%end%>
 		</ul>
 	</div>
+	
+		<div class="wd-expando">
+		<h2 class="SmallFont">Previously Answered Questions:<b class="caret caret-myquestions"></b></h2>
+		<ul class="nav nav-list">
+			<% @qPrevAnswer.each do |q| %>
+			<li><%=q.question%><br />
+				<div class="wd-expando notes-collapse">
+					<h2>Notes</h2>
+					<ul>
+						<li><%=q.notes%></li>
+					</ul>
+				</div>
+			</li>
+			<li class="divider"></li>
+			<%end%>
+		</ul>
 	</div>
+	
+	</div>
+	
+	
 </div>
