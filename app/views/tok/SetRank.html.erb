@@ -1,4 +1,6 @@
-Select the rating for your answer:
+<div class="transparent-background">
+	<div class="body-wrapper">
+		<h3 style="padding-top:3%;">Select the rating for your answer:</h3>
 	<form name="input" action="/tok/submitRank" method="post">
 		<select name="rank">
 			<%(1..@numValues).each do |i|%>
@@ -9,3 +11,5 @@ Select the rating for your answer:
 		<input type="hidden" name = "user" value=<%=params["user"]%> />
 		<input class="btn" type="submit" value="Submit" />
 	</form>
+	</div>
+</div>

@@ -36,6 +36,8 @@
 
 .wd-expando-on h2
 {
+	border-bottom-right-radius:    0px;
+	border-bottom-left-radius:    0px;
 	-moz-border-bottom-right-radius:    0px;
 	-webkit-border-bottom-right-radius: 0px;
 	-moz-border-bottom-left-radius:    0px;
@@ -44,4 +46,17 @@
 
 .wd-expando-off ul {
   display: none;
+}
+
+.notes-collapse h2
+{
+	-moz-border-radius:    0px;
+	-webkit-border-radius: 0px;
+	text-align:left;
+	background: #f9f9f9;
+	color:black;
+}
+
+.notes-exp .wd-expando
+{
 }
