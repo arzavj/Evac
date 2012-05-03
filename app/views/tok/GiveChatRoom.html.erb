@@ -18,6 +18,22 @@
     session.addEventListener('streamCreated', streamCreatedHandler);       
     session.connect(apiKey, token);
 	
+	window.onbeforeunload = function (){
+		jQuery.noConflict();
+	
+		var query = "notes=" + document.getElementById("notes").value + "&qID=" + <%=params["qID"]%>;
+		
+		jQuery.ajax({
+			type: 'GET',
+			url: '/tok/answerPastQuestion',
+			data: query
+			});
+		
+			return "Thank You For Answering";
+		}
+	}
+
+	
     var publisher;
  
     function sessionConnectedHandler(event) {
@@ -59,4 +75,14 @@
 <form id="rank" action="/" method= "get">
 <input class="btn" type="submit" value="Leave Session" />
 </form>
+<form id="rank" action="/tok/SetRank" method= "get">
+<input type="submit" value="Rank" />
+<input type="hidden" name="user" value="0">
+<input type = "hidden" name = "qID" value = <%= params["qID"] %> />
+</form>
+</center>
+
+<center>
+	<div class="SmallFont">Notes:</div>
+	<textarea id="notes" COLS=100 ROWS=10></textarea>
 </center>

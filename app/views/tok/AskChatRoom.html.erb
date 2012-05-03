@@ -97,8 +97,12 @@
 </center>
 
 <center>
+<form id="rank" action="/" method= "get">
+<input class="btn" type="submit" value="Leave Session" />
+</form>
 <form id="rank" action="/tok/SetRank" method= "get">
 <input type = "hidden" name = "qID" value = <%= params["qID"] %> />
+<input type="hidden" name= "user" value="1">
 </form>
 </center>
 <center>
