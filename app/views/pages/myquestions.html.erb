@@ -38,30 +38,23 @@
 	</ul>
 	
 	
-	<button class="btn" data-toggle="collapse" data-target="#ques-sched">
-		<h4 class="SmallFont">Questions Scheduled To Answer:</h3>
-	</button>
-	<div id="ques-sched" class="collapse in">
-	<ul class="nav nav-list" style="padding-left:0px;padding-right:0px;">
-		<% if @qAnswer.empty? %>
-			<li class="divider"></li>
-		<%end%>
+	<div class="wd-expando">
+		<h2 class="SmallFont">Questions Scheduled To Answer:</h2>
+	<ul>
 <% @qAnswer.each do |q| %>
-	<li><%=q.question%></li><form action="/tok/ScheduleAppointment" method= "get"><input type = "hidden" name = "qID" value = "<%= q.id %>" /><input class="btn" type="submit" value="Schedule" /></form>
+	<li><%=q.question%><br /><form action="/tok/ScheduleAppointment" method= "get"><input type = "hidden" name = "qID" value = "<%= q.id %>" /><input class="btn" type="submit" value="Schedule" /></form></li>
 	<li class="divider"></li>
 <%end%>
 	</ul>
 	</div>
 	
-	<button class="btn" data-toggle="collapse" data-target="#prev-ques">
-		<h4 class="SmallFont">Previously Asked Questions:</h3>
-	</button>
-	<div id="prev-ques" class="collapse in">
-		<ul class="nav nav-list" style="padding-left:0px;padding-right:0px;">
+	<div class="wd-expando">
+		<h2 class="SmallFont">Previously Asked Questions:</h2>
+		<ul>
 			<% @qPrev.each do |q| %>
-			<li><%=q.question%></li>
+			<li><%=q.question%><br />
 			<button class="btn" data-toggle="collapse" data-target="#notes">Notes</button>
-			<div id="notes" class="collapse in"><%=q.notes%></div>
+			<div id="notes" class="collapse in"><%=q.notes%></div></li>
 			<li class="divider"></li>
 			<%end%>
 		</ul>

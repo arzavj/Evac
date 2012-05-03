@@ -2,8 +2,7 @@
 	<div class="body-wrapper">
 		
 		<div class="row-fluid" style="padding-top:5%;">
-			<div class="span6">
-				<div class="pull-left">
+			<div class="span6 pull-left">
 						<div class="profile-pic">
 						<%= image_tag url_for(:action => 'show_image', :id => @user.id, :size => "300x200")  %>
 						<h1 class="uppercase inline"><%= @user.name %></h1>
@@ -12,7 +11,6 @@
 							<h4 class="alert-heading">Description:</h4>
 							<%= @profile.blurb %>
 						</div>
-				</div>
 			</div>
 			<div class="span6">
 				<div class="pull-right">
