@@ -18,9 +18,15 @@
 						<div><h2 id="edit-profile-btn"><a class="btn" href = "/pages/editBio">Edit Profile</a></h2></div>
 					<%end%>
 					<ul class="nav nav-list">
-						<div><strong>Rank:</strong> <%= @user.rank %> / 5</div>
+						<div><strong>Answer Rank:</strong> <%= @user.rank %> / 5</div>
 						<li class="divider"></li>
-						<div><strong>Number of Sessions:</strong> <%= @user.sessions %></div>
+						<div><strong>Answer Number of Sessions:</strong> <%= @user.sessions %></div>
+						<li class="divider"></li>
+					</ul>
+					<ul class="nav nav-list">
+						<div><strong>Ask Rank:</strong> <%= @user.ask_rank %> / 5</div>
+						<li class="divider"></li>
+						<div><strong>Ask Number of Sessions:</strong> <%= @user.ask_sessions %></div>
 						<li class="divider"></li>
 					</ul>
 				</div>
