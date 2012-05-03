@@ -124,20 +124,23 @@ class TokController < ApplicationController
 	
 	def submitRank
 		q = Question.find(params["qID"])
-		q.rank = params["rank"]
+		
 		
 		if params["user"]
+		q.rank = params["rank"]
 		answerer = User.find(q.answer_id)
 		answerer.rank = ((answerer.rank*answerer.sessions) + q.rank)/(answerer.sessions+1)
 		answerer.sessions = answerer.sessions+1
 		
 		answerer.save
 		else
+			
+		q.ask_rank = params["rank"]	
 		asker = q.user
-		asker.rank = ((answerer.rank*answerer.sessions) + q.rank)/(answerer.sessions+1)
+		asker.ask_rank = ((asker.ask_rank*asker.ask_sessions) + q.ask_rank)/(asker.ask_sessions+1)
 		asker.sessions = asker.sessions+1
 		
-		answerer.save
+		asker.save
 		end
 		
 		q.save
