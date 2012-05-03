@@ -54,6 +54,15 @@ class TokController < ApplicationController
 		q.save
 	end
 	
+	def answerPastQuestion
+		q = Question.find(params["qID"])
+		
+		q.answerer_notes = params["notes"]
+		q.was_answered = true
+		
+		q.save
+	end
+	
 	def Schedule
 		#TODO fill with saving to data and parsing data
 		
@@ -117,11 +126,19 @@ class TokController < ApplicationController
 		q = Question.find(params["qID"])
 		q.rank = params["rank"]
 		
+		if params["user"]
 		answerer = User.find(q.answer_id)
 		answerer.rank = ((answerer.rank*answerer.sessions) + q.rank)/(answerer.sessions+1)
 		answerer.sessions = answerer.sessions+1
 		
 		answerer.save
+		else
+		asker = q.user
+		asker.rank = ((answerer.rank*answerer.sessions) + q.rank)/(answerer.sessions+1)
+		asker.sessions = asker.sessions+1
+		
+		answerer.save
+		end
 		
 		q.save
 		
