@@ -7,8 +7,8 @@ class AddAnswerRanking < ActiveRecord::Migration
 	end
 
 	change_table :users do |t|
-		t.integer "ask_rank", :limit => 8
-		t.integer "ask_sessions"
+		t.integer "ask_rank", :limit => 8, :default => 0.0
+		t.integer "ask_sessions", :default => 0
 	end
   end
 

@@ -60,8 +60,8 @@ ActiveRecord::Schema.define(:version => 20120503040825) do
     t.float    "rank",                         :default => 0.0
     t.integer  "sessions",                     :default => 0
     t.integer  "profile_id"
-    t.integer  "ask_rank",        :limit => 8
-    t.integer  "ask_sessions"
+    t.integer  "ask_rank",        :limit => 8, :default => 0
+    t.integer  "ask_sessions",                 :default => 0
   end
 
   add_index "users", ["profile_id"], :name => "index_users_on_profile_id"
