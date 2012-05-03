@@ -22,9 +22,6 @@
 <%schedule = question.schedules %>
 
 <%(1..3).each do |i| %>
-	<%unless schedule[i].nil?%>
-		<%str= schedule[i].appointment%>
-	<%end%>
 
 <script text="text/javascript">
 	$(function() {
@@ -32,7 +29,7 @@
 	});
 </script>
 	
-<input id="<%=i%>" name="<%=i%>" type="text" size="25" readonly="readonly" value="<%=str%>"/>
+<input id="<%=i%>" name="<%=i%>" type="text" size="25" readonly="readonly" />
 
 <p>
 
