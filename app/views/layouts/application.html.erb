@@ -10,15 +10,12 @@
 		$(document).ready(function() {
 			jQuery('.dropdown-toggle').dropdown();
 			jQuery(".collapse").collapse();
-			
 			jQuery('#ques-sched').collapse({
 			  toggle: true
 			});
-			
 			jQuery('#prev-ques').collapse({
 			  toggle: true
 			});
-			
 		    jQuery('#slider').nivoSlider({
 		        effect: 'random', // Specify sets like: 'fold,fade,sliceDown'
 		        slices: 10, // For slice animations
@@ -41,6 +38,12 @@
 		        randomStart: false, // Start on a random slide
 		    });
 			jQuery('#facebook-modal').modal({ keyboard: true, backdrop:true, show:false});
+			/*transparent-background height setter*/
+			var docH = $(document).height();
+			var headerH = $("header").height();
+			var footerH = $("#tiny-footer").height();
+			$(".transparent-background").css('min-height',docH - headerH - footerH);
+			$(".tabs-left .nav-tabs").css('height',docH - headerH - footerH);
 		});
 	</script>
 </head>

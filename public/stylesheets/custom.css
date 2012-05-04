@@ -342,7 +342,7 @@ h1.uppercase
 .transparent-background
 {
 	width:950px;
-	min-height:15cm;
+	/*min-height:15cm;*/
 	margin-left:auto;
 	margin-right:auto;
 	margin-top:0px;
@@ -468,4 +468,54 @@ h2 b.caret-myquestions
 	position: relative;
 	left: 10px;
 	top: 17px;
+}
+
+.big-wrapper
+{
+	width:1200px;
+}
+
+.tabs-left .tab-content, .tabs-right .tab-content 
+{
+  	display: block;
+	width: auto;
+}
+
+.tabs-left .nav-tabs li > a
+{
+	display:block;
+	position:static;
+	font-size:100%;
+}
+
+.tabs-left .nav-tabs > li > a:hover 
+{
+	background-color:#eee;
+	font-size:100%;
+}
+
+.tabs-left .nav-tabs > li.active > a:hover 
+{
+	background-color:#fff;
+	font-size:100%;
+}
+
+.nav-tabs > .active > a, .nav-tabs > .active > a:hover 
+{
+	outline: 0;
+}
+
+.modal .modal-header
+{
+	background-color:#3C619A;
+}
+
+.modal .modal-header h3
+{
+	color:white;
+}
+
+.modal .modal-body
+{
+	height:222px;
 }
