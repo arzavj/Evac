@@ -19,3 +19,4 @@ for (var i=0; i < expandos.length; i++) {
   var expandoTitle = expandos[i].getElementsByTagName('h2')[0];
   addEventSimple(expandoTitle, 'click', toggleExpando);
 }
+

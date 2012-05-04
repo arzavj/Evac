@@ -5,8 +5,9 @@
 <%end%>
 
 <%if cookies[:name]  %>
+
 	<div class="navbar">
-	  	<div class="navbar-inner">
+	  	<div class="navbar-inner">		
 	    	<div class="container">
 				<span class="brand">Ask For Advice</span>
 				<form name="input" action="/pages/submitQuestion?method=post" method="post" class="navbar-search pull-left">
@@ -28,59 +29,32 @@
 			</div>
 		</div>
 	</div>
+
 	<div class="transparent-background">
 		<div class="body-wrapper">
-			<div class="row-fluid">
-		<div class="span12">
 			<center><h1>Provide Words of Wisdom</h1></center>
-
-<div class="answer-questions">
-	<div class="drop-down">
-		<h4>Choose a topic in Entrepreneurship:</h4>
-		<form name="input" action="/pages/getCategory?method=post" method="post">
-			<select name="category">
-				<%(0..@categories.length-1).each do |i|%>
-					<%if i == @cat-1%>
-						<%str = "selected=\"selected\""%>
-					<%end%>
-					<option value="<%=(i+1).to_s%>" <%=str%>> <%=@categories[i]%> </option>
-				<%end%>
-			</select>
-			<input class="btn btn-inverse" type="submit" value="Search" />
-		</form>
-
-		<div class="questions">
-			<h4><u><b>Recent Questions:</u></b></h4>
-			<ul class="nav nav-list" style="padding-left:0px;padding-right:0px;">
-			<%if @questions.any? || @cat == 0%>
-				<%counter = 0%>
-				<%@questions.each do |q|%>
-					<%if counter > 5%>
-						<%break%>
-					<%end%>
-					<%if (q.schedules.empty? || q.in_session) && !q.was_answered%>
-						<% u = q.user %>
-						<% name = u.name %>
-						<li style="margin-top:1%;"><b>User:</b> <a id="username" href = "/bio?id=<%=u.id%>" ><%= name %></a><br />
-						<% if q.in_session %>
-							<% str = "Answer" %>
-						<% else %>
-							<% str = "Schedule Appointment" %>
-						<% end %>
-					
-						<%= q.question%> <form action="/tok/GiveChatRoom" method= "get"><input type = "hidden" name = "qID" value = "<%= q.id %>" /><input type = "hidden" name = "askID" value = "<%= u.id %>" /><input type = "hidden" name = "answer" value = <%= q.in_session %> /><input class="btn" type="submit" value=<%=str%> /></form>
-						</li>
-						<li class="divider"></li>
-						<%counter = counter + 1%>
-					<%end%>
-			<%end%>	
-		<%end%>
-		</ul>
-		</div>
-	</div>
-</div>
-
-			<div class="border-padding"></div>
+			<div class="row-fluid">
+				<div class="span12">
+					<div class="tabbable tabs-left">
+			  			<ul class="nav nav-tabs">
+							<%(0..@categories.length-1).each do |i|%>
+								<%if i==0 %>
+			    					<li class="active"><a href="#<%=@categories[i]%>" data-toggle="tab"><%=@categories[i]%></a></li>
+								<%end%>
+			    				<li><a href="#<%=@categories[i]%>" data-toggle="tab"><%=@categories[i]%></a></li>
+							<%end%>
+			  			</ul>
+			  			<div class="tab-content">
+			    			<div class="tab-pane fade in active" id="tab1">
+			      				<p>I'm in Section 1.</p>
+			    			</div>
+			    			<div class="tab-pane fade in" id="tab2">
+			      				<p>Howdy, I'm in Section 2.</p>
+			    			</div>
+			  			</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 
