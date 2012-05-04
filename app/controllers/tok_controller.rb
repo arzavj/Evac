@@ -80,7 +80,7 @@ class TokController < ApplicationController
 		
 		VidMail.AppointmentScheduled(params["qID"]).deliver
 		
-		redirect_to "/"
+		redirect_to :controller => "pages", :action => "home", :sent => "1"
 	end
 	
 	def ScheduleAppointment

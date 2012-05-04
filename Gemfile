@@ -9,6 +9,8 @@ gem 'rails', '3.0.11'
 gem 'mysql2' , '0.2.7'
 gem 'pg'
 gem 'facebook_registration'
+gem 'delayed_job_active_record'
+
 # gem "paperclip", "~> 3.0"
 gem 'tzinfo', '0.3.33'
 # Use unicorn as the web server
