@@ -39,19 +39,45 @@
 			  			<ul class="nav nav-tabs">
 							<%(0..@categories.length-1).each do |i|%>
 								<%if i==0 %>
-			    					<li class="active"><a href="#<%=@categories[i]%>" data-toggle="tab"><%=@categories[i]%></a></li>
+			    					<li class="active"><a href="#tab<%=i%>" data-toggle="tab"><%=@categories[i]%></a></li>
+								<%else%>
+			    					<li><a href="#tab<%=i%>" data-toggle="tab"><%=@categories[i]%></a></li>
 								<%end%>
-			    				<li><a href="#<%=@categories[i]%>" data-toggle="tab"><%=@categories[i]%></a></li>
 							<%end%>
 			  			</ul>
 			  			<div class="tab-content">
-			    			<div class="tab-pane fade in active" id="tab1">
-			      				<p>I'm in Section 1.</p>
-			    			</div>
-			    			<div class="tab-pane fade in" id="tab2">
-			      				<p>Howdy, I'm in Section 2.</p>
-			    			</div>
-			  			</div>
+						<%(0..@categories.length-1).each do |i|%>
+							<%if i == 0%>
+								<div class="tab-pane fade in active" id="tab<%=i%>">
+							<%else%>
+								<div class="tab-pane fade in" id="tab<%=i%>">
+							<%end%>
+								<ul class="nav nav-list">
+  									<%questions = Question.where(:category => i+1)%>
+									<%counter = 0%>
+									<%questions.each do |q|%>
+										<%if counter > 5%>
+											<%break%>
+										<%end%>
+											<%if (q.schedules.empty? || q.in_session) && !q.was_answered%>
+												<% u = q.user %>
+												<% name = u.name %>
+					    						<li style="margin-top:1%;"><b>User:</b> <a id="username" href = "/bio?id=<%=u.id%>" ><%= name %></a><br />
+												<% if q.in_session %>
+													<% str = "Answer" %>
+												<% else %>
+													<% str = "Schedule Appointment" %>
+												<% end %>
+											<%= q.question%><form action="/tok/GiveChatRoom" method= "get"><input type = "hidden" name = "qID" value = "<%= q.id %>" /><input type = "hidden" name = "askID" value = "<%= u.id %>" /><input type = "hidden" name = "answer" value = <%= q.in_session %> /><input class="btn" type="submit" value=<%=str%> /></form>
+												</li>
+												<li class="divider"></li>
+												<%counter = counter + 1%>
+											<%end%>
+									<%end%>	
+								</ul>
+							</div>
+						<%end%>
+						</div>
 					</div>
 				</div>
 			</div>
