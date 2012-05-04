@@ -3,7 +3,7 @@ class PagesController < ApplicationController
   def home
     @title = "Home"
 	  
-	  @categories = ["Tactics for finding Investors", "Negotiating with VCs", "Venture Capital: To Raise or Not to Raise?", "How to Finance a new Venture"]  
+	  @categories = ["Ideas", "Business Model", "Financing", "Team", "Marketing"]  
 	  if(params[:category])
 		  @cat = Integer(params[:category])
 		else
@@ -41,7 +41,7 @@ class PagesController < ApplicationController
   end
   
   def give
-	  @categories = ["Tactics for finding Investors", "Negotiating with VCs", "Venture Capital: To Raise or Not to Raise?", "How to Finance a new Venture"]  
+	  @categories = ["Ideas", "Business Model", "Financing", "Team", "Marketing"]  
 	  @cat = Integer(params[:category])
 	  @questions = Question.where(:category => @cat)
 	  @title = "Provide Words of Wisdom"
