@@ -236,7 +236,7 @@ footer .row-fluid .span4
 footer .row-fluid .span4 h2
 {
 	font-family: 'Macondo Swash Caps', cursive;
-	font-size:170%;
+	font-size:130%;
 	color: #FFFFFF;
 }
 
@@ -248,7 +248,7 @@ footer .row-fluid .span4 h2
 footer .row-fluid .span4 p
 {
 	font-family: 'Oldenburg', cursive;
-	font-size:120%;
+	font-size:100%;
 }
 
 .inline
