@@ -9,18 +9,17 @@
 	<div class="navbar">
 	  	<div class="navbar-inner">		
 	    	<div class="container">
-				<span class="brand">Ask For Advice</span>
+				<span class="brand">Spark a Conversation</span>
 				<form name="input" action="/pages/submitQuestion?method=post" method="post" class="navbar-search pull-left">
 					<ul>
 						<li class="divider-vertical inline"></li>
-						<li class="inline"><input type="text" name="question" class="search-query" placeholder="Post a question"></li>		
+						<li class="inline"><input type="text" name="question" class="search-query" placeholder="Post a topic"></li>		
 						<li class="divider-vertical inline"></li>
 						<h4 class="inline">Select Category:</h4>
 						<select name="category">
-	  						<option value="1">Tactics for finding Investors</option>
-	  						<option value="2">Negotiating with VCs</option>
-	  						<option value="3">Venture Capital: To Raise or Not to Raise?</option>
-	  						<option value="4">How to Finance a new Venture</option>
+							<%(0..@categories.length-1).each do |i|%>
+	  							<option value="<%=(i+1)%>"><%=@categories[i]%></option>
+							<%end%>
 						</select>
 						<li class="divider-vertical inline"></li>
 						<li class="inline"><input class="btn btn-info" type="submit" value="Submit" /></li>
@@ -32,7 +31,7 @@
 
 	<div class="transparent-background">
 		<div class="body-wrapper">
-			<center><h1>Provide Words of Wisdom</h1></center>
+			<center><h1>Browse Interesting Posts</h1></center>
 			<div class="row-fluid">
 				<div class="span12">
 					<div class="tabbable tabs-left">
