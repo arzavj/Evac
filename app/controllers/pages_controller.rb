@@ -22,6 +22,13 @@ class PagesController < ApplicationController
 		u = User.where({:email => cookies[:email], :password => cookies[:pass]})
 	end
     @user = u[0]
+	@rank = @user.rank*@user.sessions + @user.ask_rank*@user.ask_sessions 
+	@sessions = @user.sessions + @user.ask_sessions
+	if @sessions == 0
+		@rank = 0
+	else
+		@rank = @rank/@sessions
+	end
     @profile = @user.profile
       #send_data @profile.data, :type => 'image/png', :disposition => 'inline'
   end
