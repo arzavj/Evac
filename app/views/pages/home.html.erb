@@ -52,7 +52,7 @@
 								<div class="tab-pane fade in" id="tab<%=i%>">
 							<%end%>
 								<ul class="nav nav-list">
-  									<%questions = Question.where(:category => i+1)%>
+  									<%questions = Question.where({:category => i+1, :was_answered => false})%>
 									<%counter = 0%>
 									<%questions.each do |q|%>
 										<%if counter > 5%>
