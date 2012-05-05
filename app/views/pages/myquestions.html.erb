@@ -1,21 +1,23 @@
+<%if params["offline"]%>
+	<script type ="text/javascript">
+		alert("It seems that that user has gone offline");
+	</script>
+<%end%>
+
 <div class="transparent-background">
 	<div class="body-wrapper">
-		<center><h1>Questions Asked:</h1></center>
+		<center><h1>Active Conversations:</h1></center>
 		<ul class="nav nav-list" style="padding-left:0px;padding-right:0px;">
 			<% if @qAsked.empty? %>
 				<li class="divider"></li>
 			<%end%>
-<% @qAsked.each do |q| %>
-	
-	<% if q.schedule_id != -1 %>
-		<% date = Schedule.find(q.schedule_id).appointment %>
-		<% if date.past? %>
-			<b>YOU ARE SCHEDULED TO ANSWER THIS QUESTION </b><br>
-		<% end %>
-	<% end %>
 			
+<% @qAsked.each do |q| %>
+		
 	<li><%=q.question%></li>
+			
 	<% if q.schedules.any?%>
+			
 		<form action="/tok/AcceptSchedule" method= "get">
 		<input type = "hidden" name = "qID" value = "<%= q.id %>" />
 		<% q.schedules.each do |appointment|%>
@@ -24,36 +26,42 @@
 			<%else%>
 				<%str = ""%>
 			<%end%>
-			<input type="radio" name="appointment" value="<%=appointment.id%>" <%=str%>/> <%= appointment.appointment%> 			<br>
+			<input type="radio" name="appointment" value="<%=appointment.id%>" <%=str%>/> <%= appointment.appointment%> <br>
 		<%end%>
-		<input class="btn" type="submit" value="Schedlue" />
+		<input class="btn" type="submit" value="Schedule" />
 		</form>
+			
 	<%end%>
+			
 		<form action="/tok/ResetQuestion" method= "get">
 		<input type = "hidden" name = "qID" value = "<%= q.id %>" />
 		<input class="btn" type="submit" value="Re-enter Room" />
 		</form>
+			
 	<li class="divider"></li>
 <%end%>
-	</ul>
-	
-	
-	<div class="wd-expando">
-		<h2 class="SmallFont">Questions Scheduled To Answer:<b class="caret caret-myquestions"></b></h2>
-		<ul class="nav nav-list">
+			
 			<% @qAnswer.each do |q| %>
-				<li><%=q.question%><br />
+			<li><%=q.question%><br />
 				<%if q.schedule_id == -1%>
-					No schedule has been confirmed yet...
+				No schedule has been confirmed yet...
 				<%else%>
 				<%s = Schedule.find(q.schedule_id)%>
 				You are scheduled to meet at <%=s.appointment%>
 				<%end%>
-				</li>
-				<li class="divider"></li>
+				
+				<%if q.in_session == true%>
+				<form action="/tok/GiveChatRoom" method= "get">
+				<input type = "hidden" name = "qID" value = "<%= q.id %>" />
+				<input type = "hidden" name = "askID" value = "<%= q.user.id %>" />
+				<input type = "hidden" name = "ignore" value = "1" />
+				<input class="btn" type="submit" value="Re-enter Room" />
+				</form>
+				<%end%>
+			</li>
+			<li class="divider"></li>
 			<%end%>
-		</ul>
-	</div>
+	</ul>
 	
 	<div class="wd-expando">
 		<h2 class="SmallFont">Previously Asked Questions:<b class="caret caret-myquestions"></b></h2>
@@ -72,10 +80,7 @@
 			<li class="divider"></li>
 			<%end%>
 		</ul>
-	</div>
-	
-	<div class="wd-expando">
-		<h2 class="SmallFont">Previously Answered Questions:<b class="caret caret-myquestions"></b></h2>
+		
 		<ul class="nav nav-list">
 			<% @qPrevAnswer.each do |q| %>
 			<li><%=q.question%><br />
@@ -89,9 +94,9 @@
 			<li class="divider"></li>
 			<%end%>
 		</ul>
+		
 	</div>
+
 	
 	</div>
-	
-	
 </div>

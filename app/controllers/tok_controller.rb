@@ -90,7 +90,7 @@ class TokController < ApplicationController
 	@numValues = 5
 	q = Question.find(params["qID"])
 	  
-	if params["answer"].eql?("true") #still in session
+	if q.in_session == true #still in session
 		u = User.where({:email => cookies[:email], :password => cookies[:pass]})
 		u = u[0]
 		q.answer_id = u.id
@@ -106,6 +106,11 @@ class TokController < ApplicationController
 		@token = $opentok.generate_token :session_id => @sessionID
 		
 	else #if offline
+		if params["ignore"]
+			redirect_to :controller => "pages", :action => myquestions, :offline => "1"
+			return
+		end
+		
 		u = User.where({:email => cookies[:email], :password => cookies[:pass]})
 		u = u[0]
 		q.answer_id = u.id
