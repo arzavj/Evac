@@ -1,17 +1,26 @@
 class VidMail < ActionMailer::Base
   default :from => "noreplyvidactia@gmail.com"
 	
-	def AppointmentScheduled (qID)
+	def AppointmentScheduled (qID, uID)
 		question = Question.find(qID)
-		@asker = question.user
+		if @question.user.id == uID
+			@asker = User.find(@question.answer_id)
+		else
+			@asker = User.find(@question.user.id)
+		end
+		
 		@appointments = question.schedules
 		
 		mail(:to => @asker.email, :subject => "Someone Wants To Answer")
 	end
 	
-	def AppointmentConfirmed (qID)
+	def AppointmentConfirmed (qID, uID)
 		@question = Question.find(qID)
-		@answerer = User.find(@question.answer_id)
+		if @question.user.id == uID
+			@answerer = User.find(@question.answer_id)
+		else
+			@answerer = User.find(@question.user.id)
+		end
 		@appointment = Schedule.find(@question.schedule_id)
 		
 		mail(:to => @answerer.email, :subject => "Schedule Confirmed")

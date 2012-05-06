@@ -16,9 +16,11 @@ class TokController < ApplicationController
 		
 		question.save
 		
-		VidMail.AppointmentConfirmed(params["qID"]).deliver #send email
+		u = User.where({:email => cookies[:email], :password => cookies[:pass]})
 		
-		redirect_to "/myquestions"
+		VidMail.AppointmentConfirmed(params["qID"], u.id).deliver #send email
+		
+		redirect_to "/myquestions?sent=1"
 	end
 	
   def AskChatRoom
@@ -64,26 +66,47 @@ class TokController < ApplicationController
 	end
 	
 	def Schedule
-		#TODO fill with saving to data and parsing data
+		
+		question = Question.find(params["qID"])
+		if question.schedules.any?
+			user = question.schedules[0].user_id
+			if user == question.user.id
+				user = question.answer_id
+			else
+				user = question.user.id
+			end
+		else
+			user = question.answer_id
+		end
+		
+		question.schedules.each do |appointment|
+			appointment.destroy
+		end
 		
 		(1..3).each do |i|
 			s = Schedule.new
-			s.question_id = params["qID"]
+			s.question_id = question.id
 			if !params[i.to_s].eql?("")
 				split = params[i.to_s].split(' ')
-				date = Date.strptime(split[0], "%m/%d/%y")
+				date = Date.strptime(split[0], '%m/%d/%Y')
 				time = Time.parse(split[1])
+
 				s.appointment = DateTime.new(date.year, date.month, date.day, time.hour, time.min, time.sec)
+				s.user_id = user #proposer
 				s.save
 			end
 		end
 		
-		VidMail.AppointmentScheduled(params["qID"]).deliver
+		#TODO change email
+		VidMail.AppointmentScheduled(params["qID"], user).deliver
 		
 		redirect_to :controller => "pages", :action => "home", :sent => "1"
 	end
 	
 	def ScheduleAppointment
+		q = Question.find(params["qID"])
+		q.schedule_id = -1
+		q.save
 	end
 		
   def GiveChatRoom
