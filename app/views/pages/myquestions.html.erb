@@ -30,7 +30,7 @@
 						<% q.schedules.each do |appointment|%>
 							<%if appointment.id == q.schedule_id%>
 								<% str = "checked=\"checked\""%>
-								<% schedule = appointment%>
+								<% schedule = appointment - (5/1440.0)%>
 							<%else%>
 								<%str = ""%>
 							<%end%>
