@@ -75,6 +75,7 @@ class TokController < ApplicationController
 				time = Time.parse(split[1])
 
 				s.appointment = DateTime.new(date.year, date.month, date.day, time.hour, time.min, time.sec)
+				s.user_id = User.find(Question.find(s.question_id)).id #answerer
 				s.save
 			end
 		end
