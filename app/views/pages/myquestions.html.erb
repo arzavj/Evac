@@ -15,6 +15,7 @@
 		<div class="wd-expando">
 			<h2 class="SmallFont">Upcoming Conversations:<b class="caret caret-myquestions"></b></h2>
 			<ul class="nav nav-list">
+			<!-- Questions that have been proposed to discuss -->
 			<% if @qAsked.empty? %>
 				<li class="divider"></li>
 			<%end%>
@@ -23,12 +24,12 @@
 		
 				<li><%=q.question%>
 			
-				<% if q.schedules.any? && q.schedules[0].user_id != @user.id%>
+				<% if q.schedules.any? && q.schedules[0].user_id != @user.id%> <!-- Checks who the proposer of questions was -->
 					<%schedule = nil%>
 					<form action="/tok/AcceptSchedule" method= "get">
 						<input type = "hidden" name = "qID" value = "<%= q.id %>" />
 						<% q.schedules.each do |appointment|%>
-							<%if appointment.id == q.schedule_id%>
+							<%if appointment.id == q.schedule_id%> <!-- Creates a form to subit choice -->
 								<% str = "checked=\"checked\""%>
 								<% schedule = appointment - (5/1440.0)%>
 							<%else%>
@@ -42,9 +43,9 @@
 					
 					<form action="/tok/ScheduleAppointment" method= "get">
 					<input type = "hidden" name = "qID" value = "<%= q.id %>" />
-					<input class="btn" type="submit" value="Propose a Schedule" />
+					<input class="btn" type="submit" value="Propose a Schedule" /><!-- If nothing works -->
 					</form>
-				<%elsif q.schedules.any? && q.schedules[0].user_id == @user.id%>
+				<%elsif q.schedules.any? && q.schedules[0].user_id == @user.id%> <!-- If I proposed a schedule and am waiting on response -->
 					<%schedule = Schedule.new #so that it does not allow to reenter room%>
 					<%schedule.appointment = DateTime.now%>
 					<%schedule.appointment += 9001%>
@@ -56,7 +57,7 @@
 					<%end%>
 				<%end%>
 
-			<%if schedule == nil%>
+			<%if schedule == nil%> <!-- Buttons to get into chat room at appropriate time -->
 					<form action="/tok/ResetQuestion" method= "get">
 						<input type = "hidden" name = "qID" value = "<%= q.id %>" />
 						<input class="btn" type="submit" value="Re-enter Room" />
@@ -72,10 +73,10 @@
 			
 				<li class="divider"></li>
 			<%end%>
-			
+			<!-- Shows questions that have been picked up as opposed to asked -->
 			<% @qAnswer.each do |q| %>
 			<li><%=q.question%><br />
-				<% if q.schedules.any? && q.schedules[0].user_id != @user.id%>
+				<% if q.schedules.any? && q.schedules[0].user_id != @user.id%> <!-- Checks who the proposer of questions was -->
 				<%schedule = nil%>
 				<form action="/tok/AcceptSchedule" method= "get">
 					<input type = "hidden" name = "qID" value = "<%= q.id %>" />
@@ -96,7 +97,7 @@
 					<input type = "hidden" name = "qID" value = "<%= q.id %>" />
 					<input class="btn" type="submit" value="Propose a Schedule" />
 				</form>
-				<%elsif q.schedules.any? && q.schedules[0].user_id == @user.id%>
+				<%elsif q.schedules.any? && q.schedules[0].user_id == @user.id%> <!-- if i proposed -->
 	
 					<%if q.schedule_id == -1%>
 						No schedule has been confirmed yet...
@@ -108,7 +109,7 @@
 						<%end%>
 					<%end%>
 				
-					<%if q.in_session == true%>
+					<%if q.in_session == true%> <!-- can only enter when the asker enters the chat room -->
 						<form action="/tok/GiveChatRoom" method= "get">
 							<input type = "hidden" name = "qID" value = "<%= q.id %>" />
 							<input type = "hidden" name = "askID" value = "<%= q.user.id %>" />
@@ -122,7 +123,8 @@
 			<%end%>
 			</ul>
 		</div>
-	
+
+		<!-- Questions that have been discuessed in the past -->
 	<div class="wd-expando">
 		<h2 class="SmallFont">Past Conversations:<b class="caret caret-myquestions"></b></h2>
 		<ul class="nav nav-list">

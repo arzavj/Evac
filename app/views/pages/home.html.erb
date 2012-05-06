@@ -1,4 +1,4 @@
-<%if params["sent"].to_i == 1%>
+<%if params["sent"].to_i == 1%> <!-- If this alert needs to be presented to clarify to the user -->
 	<script type ="text/javascript">
 		alert('Your choices were sent');
 	</script>
@@ -12,6 +12,7 @@
 				<span class="brand">Spark a Conversation</span>
 				<form name="input" action="/pages/submitQuestion?method=post" method="post" class="navbar-search pull-left">
 					<ul>
+						<!-- Creates a form to submit a question with a given category -->
 						<li class="divider-vertical inline"></li>
 						<li class="inline"><input type="text" name="question" class="search-query" placeholder="Post a topic"></li>		
 						<li class="divider-vertical inline"></li>
@@ -29,13 +30,14 @@
 		</div>
 	</div>
 
-	<div class="transparent-background">
+		<div class="transparent-background">
 		<div class="body-wrapper">
 			<center><h1>Browse Interesting Posts</h1></center>
 			<div class="row-fluid">
 				<div class="span12">
 					<div class="tabbable tabs-left">
 			  			<ul class="nav nav-tabs">
+							<!-- Creates the banner on the left for the user to select a category -->
 							<%(0..@categories.length-1).each do |i|%>
 								<%if i==0 %>
 			    					<li class="active"><a href="#tab<%=i%>" data-toggle="tab"><%=@categories[i]%></a></li>
@@ -45,6 +47,7 @@
 							<%end%>
 			  			</ul>
 			  			<div class="tab-content">
+						<!-- Preloads the top 5 questions for each category -->
 						<%(0..@categories.length-1).each do |i|%>
 							<%if i == 0%>
 								<div class="tab-pane fade in active" id="tab<%=i%>">
@@ -52,17 +55,17 @@
 								<div class="tab-pane fade in" id="tab<%=i%>">
 							<%end%>
 								<ul class="nav nav-list">
+									<!-- Creates the query to the database based on category, if the question was answered, and that nobody has choosen to answer -->
   									<%questions = Question.where("category = ? AND was_answered = ? AND answer_id IS NULL", i+1, false)%>
 									<%counter = 0%>
 									<%questions.each do |q|%>
-										<%if counter > 5%>
+										<%if counter > 5%> <!-- Top 5 -->
 											<%break%>
 										<%end%>
-											<%if (q.schedules.empty? || q.in_session) && !q.was_answered%>
 												<% u = q.user %>
 												<% name = u.name %>
 					    						<li style="margin-top:1%;"><b>User:</b> <a id="username" href = "/bio?id=<%=u.id%>" ><%= name %></a><br />
-												<% if q.in_session %>
+												<% if q.in_session %> <!--Check if user is waiting -->
 													<% str = "Answer" %>
 												<% else %>
 													<% str = "Schedule Appointment" %>
@@ -71,7 +74,6 @@
 												</li>
 												<li class="divider"></li>
 												<%counter = counter + 1%>
-											<%end%>
 									<%end%>	
 								</ul>
 							</div>
@@ -83,7 +85,7 @@
 		</div>
 	</div>
 
-	<%else%>
+	<%else%> <!-- If not logged in-->
 	<div class="transparent-background">
 	<div class="body-wrapper">
 		<div id="home-row" class="row-fluid">
