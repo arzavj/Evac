@@ -18,7 +18,7 @@ class TokController < ApplicationController
 		
 		u = User.where({:email => cookies[:email], :password => cookies[:pass]})
 		
-		VidMail.AppointmentConfirmed(params["qID"], u.id).deliver #send email
+		VidMail.AppointmentConfirmed(params["qID"], u[0].id).deliver #send email
 		
 		redirect_to "/myquestions?sent=1"
 	end
