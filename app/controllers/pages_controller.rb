@@ -71,6 +71,7 @@ class PagesController < ApplicationController
 		
 		@qPrev = Question.where({:user_id => user.id, :was_answered => true})
 		@qPrevAnswer = Question.where({:answer_id => user.id, :was_answered => true})
+		@user = user
 	end
 
 	def submitQuestion
