@@ -9,7 +9,7 @@ class VidMail < ActionMailer::Base
 			@asker = User.find(@question.user.id)
 		end
 		
-		@appointments = question.schedules
+		@appointments = @question.schedules
 		
 		mail(:to => @asker.email, :subject => "Someone Wants To Answer")
 	end
