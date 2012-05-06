@@ -2,7 +2,7 @@ class VidMail < ActionMailer::Base
   default :from => "noreplyvidactia@gmail.com"
 	
 	def AppointmentScheduled (qID, uID)
-		question = Question.find(qID)
+		@question = Question.find(qID)
 		if @question.user.id == uID
 			@asker = User.find(@question.answer_id)
 		else
