@@ -1,9 +1,12 @@
 class PagesController < ApplicationController
+
+	@@categories = ["Politics", "Philosophy", "Entertainment", "Business", "Social Justice", "Miscellaneous"]
+	
 	
   def home
     @title = "Home"
 	  
-	  @categories = ["Ideas", "Business Model", "Financing", "Team", "Marketing"]  
+	  @categories = @@categories  
 	  if(params[:category])
 		  @cat = Integer(params[:category])
 		else
@@ -48,7 +51,7 @@ class PagesController < ApplicationController
   end
   
   def give
-	  @categories = ["Ideas", "Business Model", "Financing", "Team", "Marketing"]  
+	  @categories = @@categories  
 	  @cat = Integer(params[:category])
 	  @questions = Question.where(:category => @cat)
 	  @title = "Provide Words of Wisdom"
