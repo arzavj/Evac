@@ -519,3 +519,8 @@ h2 b.caret-myquestions
 {
 	height:222px;
 }
+
+.navbar-search .search-query
+{
+	color: #999999;
+}
