@@ -18,12 +18,13 @@
 				<li><%=q.question%>
 			
 				<% if q.schedules.any?%>
-			
+					<%schedule = nil%>
 					<form action="/tok/AcceptSchedule" method= "get">
 						<input type = "hidden" name = "qID" value = "<%= q.id %>" />
 						<% q.schedules.each do |appointment|%>
 							<%if appointment.id == q.schedule_id%>
 								<% str = "checked=\"checked\""%>
+								<% schedule = appointment%>
 							<%else%>
 								<%str = ""%>
 							<%end%>
@@ -33,11 +34,19 @@
 					</form>
 			
 				<%end%>
-			
-				<form action="/tok/ResetQuestion" method= "get">
-					<input type = "hidden" name = "qID" value = "<%= q.id %>" />
-					<input class="btn" type="submit" value="Re-enter Room" />
-				</form>
+
+			<%if schedule == nil%>
+					<form action="/tok/ResetQuestion" method= "get">
+						<input type = "hidden" name = "qID" value = "<%= q.id %>" />
+						<input class="btn" type="submit" value="Re-enter Room" />
+					</form>
+			<%elsif schedule.appointment.past?%>
+					<form action="/tok/ResetQuestion" method= "get">
+						<input type = "hidden" name = "qID" value = "<%= q.id %>" />
+						<input class="btn" type="submit" value="Time For Appointment" />
+					</form>
+			<%end%>
+					
 				</li>
 			
 				<li class="divider"></li>
@@ -50,6 +59,9 @@
 				<%else%>
 					<%s = Schedule.find(q.schedule_id)%>
 					You are scheduled to meet at <%=s.appointment%>
+					<%if s.appointment.past? && q.in_session == false%>
+						<br>Your conversation partner is not here yet...
+					<%end%>
 				<%end%>
 				
 				<%if q.in_session == true%>
@@ -57,7 +69,7 @@
 						<input type = "hidden" name = "qID" value = "<%= q.id %>" />
 						<input type = "hidden" name = "askID" value = "<%= q.user.id %>" />
 						<input type = "hidden" name = "ignore" value = "1" />
-						<input class="btn" type="submit" value="Re-enter Room" />
+						<input class="btn" type="submit" value="Your Conversation is Ready" />
 					</form>
 				<%end%>
 			</li>
