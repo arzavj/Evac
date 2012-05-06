@@ -71,8 +71,9 @@ class TokController < ApplicationController
 			s.question_id = params["qID"]
 			if !params[i.to_s].eql?("")
 				split = params[i.to_s].split(' ')
-				date = Date.strptime(split[0], "%m/%d/%y")
+				date = Date.strptime(split[0], '%m/%d/%Y')
 				time = Time.parse(split[1])
+
 				s.appointment = DateTime.new(date.year, date.month, date.day, time.hour, time.min, time.sec)
 				s.save
 			end
