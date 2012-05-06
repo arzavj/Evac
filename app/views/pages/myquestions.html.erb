@@ -38,7 +38,7 @@
 					<input type = "hidden" name = "qID" value = "<%= q.id %>" />
 					<input class="btn" type="submit" value="Propose a Schedule" />
 					</form>
-				<%elsif q.schedules[0].user_id == @user.id%>
+				<%elsif q.schedules.any? && q.schedules[0].user_id == @user.id%>
 					<%schedule = Schedule.new #so that it does not allow to reenter room%>
 					<%schedule.appointment = DateTime.now%>
 					<%schedule.appointment += 9001%>
