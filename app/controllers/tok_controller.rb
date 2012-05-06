@@ -20,7 +20,7 @@ class TokController < ApplicationController
 		
 		VidMail.AppointmentConfirmed(params["qID"], u.id).deliver #send email
 		
-		redirect_to "/myquestions"
+		redirect_to "/myquestions?sent=1"
 	end
 	
   def AskChatRoom
