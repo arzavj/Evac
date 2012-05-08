@@ -17,7 +17,7 @@ html, body
 }
 
 body {
-  background: #ECEEF0 url(/images/bg_body.jpg);
+	background: #ECEEF0 url(/images/grey_background.png);
 	border: 0;
 }
 
@@ -266,26 +266,24 @@ footer .row-fluid .span4 p
 {
 	display:inline;
 	background-color:transparent;
-	position:relative;
-	right:5%;
 	font-size:117%;
 }
 
 .nav > li > a b
 {
 	position: relative;
-	top: 3px;
+	top: 1px;
 	left: 2px;
 }
 
 .span8 ul.nav
 {
-	width:35%;
+	width:60%;
 }
 
-#home-nav
+.home-nav
 {
-	margin-right:10%;
+	margin-right:3%;
 }
 .nav > li > a:hover
 {
@@ -349,7 +347,7 @@ h1.uppercase
 	margin-bottom:auto;
 	background-color: rgb(255,255,255);
 	/* RGBa with 0.6 opacity */
-	background-color: rgba(255, 255, 255, 1.0);
+	background-color: rgba(255, 255, 255, 0.9);
 
 }
 
@@ -510,6 +508,11 @@ h2 b.caret-myquestions
 	background-color:#3C619A;
 }
 
+#login-modal .modal-header
+{
+	background-color:#4A5C5C;
+}
+
 .modal .modal-header h3
 {
 	color:white;
@@ -523,4 +526,9 @@ h2 b.caret-myquestions
 .navbar-search .search-query
 {
 	color: #999999;
+}
+
+.navbar .navbar-inner .container
+{
+	width:915px;
 }

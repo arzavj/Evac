@@ -16,9 +16,6 @@
 			<h2 class="SmallFont">Upcoming Conversations:<b class="caret caret-myquestions"></b></h2>
 			<ul class="nav nav-list">
 			<!-- Questions that have been proposed to discuss -->
-			<% if @qAsked.empty? %>
-				<li class="divider"></li>
-			<%end%>
 			
 			<% @qAsked.each do |q| %>
 		
