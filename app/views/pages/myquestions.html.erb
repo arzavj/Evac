@@ -31,7 +31,8 @@
 						<% q.schedules.each do |appointment|%>
 							<%if appointment.id == q.schedule_id%> <!-- Creates a form to subit choice -->
 								<% str = "checked=\"checked\""%>
-								<% schedule = appointment - (5/1440.0)%>
+								<%schedule = appointment%>
+								<% schedule.appointment = schedule.appointment - (5/1440.0)%>
 							<%else%>
 								<%str = ""%>
 							<%end%>
@@ -65,7 +66,7 @@
 			<%elsif schedule.appointment.past?%>
 					<form action="/tok/ResetQuestion" method= "get">
 						<input type = "hidden" name = "qID" value = "<%= q.id %>" />
-						<input class="btn" type="submit" value="Time For Appointment" />
+						<input class="btn" type="submit" value="Re-Enter Room For Appointment" />
 					</form>
 			<%end%>
 					
@@ -74,6 +75,7 @@
 				<li class="divider"></li>
 			<%end%>
 			<!-- Shows questions that have been picked up as opposed to asked -->
+			<!--HERE IS WHERE THE DIVIDE OCCURS-->
 			<% @qAnswer.each do |q| %>
 			<li><%=q.question%><br />
 				<% if q.schedules.any? && q.schedules[0].user_id != @user.id%> <!-- Checks who the proposer of questions was -->
