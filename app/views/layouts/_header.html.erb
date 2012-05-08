@@ -14,20 +14,23 @@
   		<div class="span4"><a href="/"><h1> Vidactica</h1></a></div>
   		<div class="span8">
 		<ul class="nav pull-right">
-			<li class="inline"><a class="inline" href="/"><%= image_tag("home_icon.png", :alt => "Home", :height => "15px", :width => "14px") %><b id="home-nav">Home</b></a></li>
+			<li class="inline"><a class="inline" href="/"><%= image_tag("home_icon.png", :alt => "Home", :height => "15px", :width => "14px") %><b class="home-nav">Home</b></a></li>
 			<%if cookies[:name]  %>
+			<li class="inline"><a href="/myquestions" class="inline"><b class="home-nav">My Conversations</b></a></li>
 			<li class="dropdown inline">
-				    <a class="dropdown-toggle profile_icon" data-toggle="dropdown" data-target="#" href="/bio"><%= image_tag("profile_icon.png", :alt => "Profile", :height => "18px", :width => "18px") %> <b class="uppercase"><%= cookies[:name] %></b>
+				    <a class="dropdown-toggle profile_icon" data-toggle="dropdown" data-target="#" href="/bio"><%= image_tag("profile_icon.png", :alt => "Profile", :height => "13px", :width => "15px") %> <b class="uppercase"><%= cookies[:name] %></b>
 				    <b class="caret"></b></a>
 				    <ul class="dropdown-menu">
-				      <li><a href="/myquestions">My Conversations</a></li>
 					  <li><a href="/bio">Profile</a></li>
 				      <li class="divider"></li>
 				      <li><a href= "/fb_registration/Logout">Logout</a></li>
 			    	</ul>
 			</li>
+			
 			<%else%>
-				<li class="inline"><a class="inline" href="/fb_registration/Login"><%= image_tag("profile_icon.png", :alt => "LOGIN", :height => "18px", :width => "18px") %><b>Login</b></a></li>
+					<li class="inline">
+							<a data-toggle="modal" data-target="#login-modal" href = "#login-modal"><%= image_tag("profile_icon.png", :alt => "LOGIN", :height => "18px", :width => "18px") %><b>Login</b></a>
+					</li>
 			<%end%>
     	</ul>
   		</div>
