@@ -25,7 +25,7 @@ class FbRegistrationController < ApplicationController
 
 		u = User.new
 		u.name = fields["name"]
-		u.email = fields["College Email"]
+		u.email = fields["email"]
 		u.password = fields["password"]
 		u.profile_id = profile.id
 		u.save
