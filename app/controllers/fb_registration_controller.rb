@@ -1,14 +1,44 @@
 class FbRegistrationController < ApplicationController
+	@@colleges = ["stanford", "harvard", "yale", "princeton"]
+	
   def FbLogin
   end
 
   def Login
   end
-
+	
+	def ValidCollegeEmail(email)
+		array = email.split('@')
+		if array.length != 2
+			return false
+		end
+		
+		dot = array[1].split('.')
+		
+		if dot.length != 2
+			return false
+		end
+		
+		college = dot[0]
+		
+		@@colleges.each do |c|
+			if c.eql?(college)
+				return true
+			end	
+		end
+		
+		return false
+	end
+	
 	def RegisterUser
 		secret = "377aecb43717e1dc8bd78a803c1448a0"
 		facebook = FacebookRegistration::SignedRequest.parse(params["signed_request"], secret)
 		fields = facebook["registration"]
+		
+		if !ValidCollegeEmail(fields["email"])
+			redirect_to :action => "FbLogin", :efail => true
+			return
+		end
 
 		profile = Profile.new
 		

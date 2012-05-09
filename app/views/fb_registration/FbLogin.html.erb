@@ -1,15 +1,25 @@
+<%if params["efail"]%>
+	<script type ="text/javascript">
+		alert("Invalid College E-mail Address");
+	</script>
+<%end%>
+
 <h1>Register</h1>
 
 <iframe src="https://www.facebook.com/plugins/registration.php?
-             client_id=258011107615370&
-             redirect_uri=http://vidactica.heroku.com/fb_registration/RegisterUser&
-             fields=name,email,password"
-        scrolling="auto"
-        frameborder="no"
-        style="border:none"
-        allowTransparency="true"
-        width="100%"
-        height="330">
+	client_id=258011107615370&
+	redirect_uri=http://vidactica.heroku.com/fb_registration/RegisterUser&
+	fields=[
+	{'name':'name'},
+	{'name':'email', 'description':'College Email',  'type':'text'},
+	{'name':'password'}
+	]"
+   scrolling="auto"
+   frameborder="no"
+   style="border:none"
+   allowTransparency="true"
+   width="100%"
+   height="330">
 </iframe>
 <div class="row-fluid">
 	<div class="span12"><%= render 'layouts/footer' %></div>		   	  		
