@@ -75,6 +75,8 @@ class PagesController < ApplicationController
 	end
 
 	def submitQuestion
+
+		
 		q = Question.new
 		u = User.where({:email => cookies[:email], :password => cookies[:pass]})
 
@@ -86,7 +88,14 @@ class PagesController < ApplicationController
 		end
 		q.question = params[:question]
 		q.category = Integer(params[:category])
-		save = q.save
+		q.save
+		
+		if params["sType"].eql?("B") #TODO to what the actual value becomes
+			q.in_session = false
+			q.save
+			redirect_to "/"
+			return
+		end
 		
 		redirect_to :controller => :tok, :action => :AskChatRoom, :qID => q.id
 	end
