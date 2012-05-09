@@ -10,8 +10,8 @@
 	client_id=258011107615370&
 	redirect_uri=http://vidactica.heroku.com/fb_registration/RegisterUser&
 	fields=[
-	{'name':'name'},
-	{'name':'email', 'description':'College Email',  'type':'text'},
+	{'name':'name', 'default':'<%=params["name"]%>'},
+	{'name':'email', 'description':'College Email',  'type':'text', 'default':'<%=params["email"]%>'},
 	{'name':'password'}
 	]"
    scrolling="auto"

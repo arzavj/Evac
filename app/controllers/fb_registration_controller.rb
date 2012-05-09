@@ -36,7 +36,7 @@ class FbRegistrationController < ApplicationController
 		fields = facebook["registration"]
 		
 		if !ValidCollegeEmail(fields["email"])
-			redirect_to :action => "FbLogin", :efail => true
+			redirect_to :action => "FbLogin", :efail => true, :name => fields["name"], :email=> fields["email"]
 			return
 		end
 
