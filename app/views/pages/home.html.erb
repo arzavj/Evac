@@ -107,7 +107,12 @@
 					<iframe src="https://www.facebook.com/plugins/registration.php?
 			             client_id=258011107615370&
 			             redirect_uri=http://vidactica.heroku.com/fb_registration/RegisterUser&
-			             fields=name,email,password"
+			             fields=[
+							{'name':'name'},
+							{'name':'email'},
+							{'name':'password'},
+							{'name':'school', 'description':'College',  'type':'text'}
+							]"
 			        scrolling="auto"
 			        frameborder="no"
 			        style="border:none"
