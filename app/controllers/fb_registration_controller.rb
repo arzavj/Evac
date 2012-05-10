@@ -20,7 +20,7 @@ class FbRegistrationController < ApplicationController
 		end
 		
 		college = dot[0]
-		
+		=begin
 		@@colleges.each do |c|
 			if c.eql?(college)
 				return true
@@ -28,6 +28,9 @@ class FbRegistrationController < ApplicationController
 		end
 		
 		return false
+		=end
+		
+		return true
 	end
 	
 	def GetSchool(email)
@@ -44,6 +47,10 @@ class FbRegistrationController < ApplicationController
 	
 	def NewUser
 		user = User.find(params["uID"])
+		if u.verify.eql?("Clear")
+			redirect_to	"/"
+		end	
+		
 		if params["verify"].eql?(user.verify)
 			user.verify = "Clear"
 			user.save
