@@ -1,5 +1,17 @@
 <script src="//connect.facebook.net/en_US/all.js"></script>
 
+<%if params["fail"]%> <!-- If this alert needs to be presented to clarify to the user -->
+<script type ="text/javascript">
+	alert('Invalid email/password combination');
+	</script>
+<%end%>
+
+<%if params["verify"]%> <!-- If this alert needs to be presented to clarify to the user -->
+<script type ="text/javascript">
+	alert('Please verify your email');
+	</script>
+<%end%>
+
 <div class="transparent-background">
 	<div class="body-wrapper">
 		<div style="margin-left:auto;margin-right:auto;">

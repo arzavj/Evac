@@ -1,8 +1,9 @@
 Dear <%=@user.name%>,
 
 Please confirm your email address by clicking on this link:
-
-<a href="<%=Rails.root%>/?<%="uID="+@user.id.to_s()%>&<%="verify="+@user.verify%>"><%=Rails.root%>/?<%="uID="+@user.id.to_s()%>&<%="verify="+@user.verify%></a>
-
+<%url = "vidactica.heroku.com/fb_registration/NewUser/"%>
+<br><br>
+<a href="<%=url%>?<%="uID="+@user.id.to_s()%>&<%="verify="+@user.verify%>"><%=url%>?<%="uID="+@user.id.to_s()%>&<%="verify="+@user.verify%></a>
+<br><br>
 Regards,
 Vidactica Team

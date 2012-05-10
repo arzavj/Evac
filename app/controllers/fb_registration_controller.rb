@@ -42,15 +42,27 @@ class FbRegistrationController < ApplicationController
 		return s
 	end
 	
+	def NewUser
+		user = User.find(params["uID"])
+		if params["verify"].eql?(user.verify)
+			user.verify = "Clear"
+			user.save
+			redirect_to	:action=>"Remember", :user => user.email, :pass => user.password
+			return
+		end
+		
+		redirect_to "/"
+	end
+	
 	def RegisterUser
 		secret = "377aecb43717e1dc8bd78a803c1448a0"
 		facebook = FacebookRegistration::SignedRequest.parse(params["signed_request"], secret)
 		fields = facebook["registration"]
 		
-		#if !ValidCollegeEmail(fields["email"])
-		#	redirect_to :action => "FbLogin", :efail => true
-		#	return
-		#end
+		if !ValidCollegeEmail(fields["email"])
+			redirect_to :action => "FbLogin", :efail => true
+			return
+		end
 
 		profile = Profile.new
 		
@@ -74,7 +86,7 @@ class FbRegistrationController < ApplicationController
 		
 		VidMail.ConfirmEmail(u.id).deliver #send email
 
-		redirect_to :action=> "Remember", :user => u.email, :pass => u.password
+		redirect_to :controller=>"pages", :action=> "home", :email => "1"
 
 	end
 
@@ -84,9 +96,14 @@ class FbRegistrationController < ApplicationController
 		
 		u = User.where({:email => email, :password => pass})
 		if u.length == 0
-			redirect_to "/fb_registration/Login"
+			redirect_to :action => "Login", :fail => "1"
+			return
 		else
 			u = u[0]
+			if !u.verify.eql?("Clear")
+				redirect_to :action=> "Login", :verify => "1"
+				return
+			end
 			cookies[:name] = u.name
 			cookies[:email] = u.email
 			cookies[:pass] = u.password

@@ -4,6 +4,12 @@
 	</script>
 <%end%>
 
+<%if params["email"]%> <!-- If this alert needs to be presented to clarify to the user -->
+<script type ="text/javascript">
+	alert('An email was sent');
+	</script>
+<%end%>
+
 <%if cookies[:name]  %>
 
 	<div class="navbar">
@@ -105,7 +111,6 @@
 				</div>
 				<div class="modal-body">
 					<!-- {'name':'school', 'description':'College',  'type':'text'} IS IF I WANTED THE SCHOOL TYPED-->
-
 
 					<iframe src="https://www.facebook.com/plugins/registration.php?
 			             client_id=258011107615370&
