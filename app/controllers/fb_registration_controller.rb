@@ -54,7 +54,7 @@ class FbRegistrationController < ApplicationController
             profile.size = nil
 			
             profile.data = pic.read
-			profile.School = GetSchool(fields["email"])
+			profile.School = GetSchool(fields["email"]) #test
 			profile.save
 		end
 		
