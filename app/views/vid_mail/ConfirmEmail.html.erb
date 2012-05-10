@@ -2,7 +2,7 @@ Dear <%=@user.name%>,
 
 Please confirm your email address by clicking on this link:
 
-<a href="<%=Rails.root%>/?<%="uID="+@user.id%>&<%="verify="+@user.verify%>"><%=Rails.root%>/?<%="uID="+@user.id%>&<%="verify="+@user.verify%></a>
+<a href="<%=Rails.root%>/?<%="uID="+@user.id.to_s()%>&<%="verify="+@user.verify%>"><%=Rails.root%>/?<%="uID="+@user.id%>&<%="verify="+@user.verify%></a>
 
 Regards,
 Vidactica Team
