@@ -31,17 +31,7 @@ class VidMail < ActionMailer::Base
 		
 		mail(:to => @answerer.email, :subject => "Schedule Confirmed")
 	end
-    
-    def self.when_to_run
-        time = Time.now
-        h = 24 - time.hour
-        if h != 1
-            return h.hours.from_now
-        else
-            m = 60 - time.minutes
-            return m.minutes.from_now
-        end    
-    end
+
 
     def Reminder
         future = Time.now
@@ -59,5 +49,5 @@ class VidMail < ActionMailer::Base
         end
     end
 
-    handle_asynchronously :Reminder, :run_at => Proc.new { when_to_run }   
+
 end
