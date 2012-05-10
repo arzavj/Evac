@@ -1,5 +1,11 @@
 class VidMail < ActionMailer::Base
-  default :from => "noreplyvidactia@gmail.com"
+	default :from => "noreplyvidactia@gmail.com" #will change when get a namespace
+	
+	def ConfirmEmail(uID)
+		@user = User.find(uID)
+		
+		mail(:to => @user.email, :subject => "Confirm Email")
+	end
 	
 	def AppointmentScheduled (qID, uID)
 		@question = Question.find(qID)

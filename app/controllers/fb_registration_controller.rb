@@ -47,10 +47,10 @@ class FbRegistrationController < ApplicationController
 		facebook = FacebookRegistration::SignedRequest.parse(params["signed_request"], secret)
 		fields = facebook["registration"]
 		
-		if !ValidCollegeEmail(fields["email"])
-			redirect_to :action => "FbLogin", :efail => true
-			return
-		end
+		#if !ValidCollegeEmail(fields["email"])
+		#	redirect_to :action => "FbLogin", :efail => true
+		#	return
+		#end
 
 		profile = Profile.new
 		
@@ -64,8 +64,6 @@ class FbRegistrationController < ApplicationController
 			profile.save
 		end
 		
-
-
 		u = User.new
 		u.name = fields["name"]
 		u.email = fields["email"]
@@ -73,6 +71,8 @@ class FbRegistrationController < ApplicationController
 		u.profile_id = profile.id
 		u.verify = random_alphanumeric(Kernel.rand(16)+16)
 		u.save
+		
+		VidMail.ConfirmEmail(u.id).deliver #send email
 
 		redirect_to :action=> "Remember", :user => u.email, :pass => u.password
 
