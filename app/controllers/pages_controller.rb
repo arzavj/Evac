@@ -2,7 +2,6 @@ class PagesController < ApplicationController
 
 	@@categories = ["Politics", "Philosophy", "Entertainment", "Business", "Social Justice", "Miscellaneous"]
 	
-	
   def home
     @title = "Home"
 	  

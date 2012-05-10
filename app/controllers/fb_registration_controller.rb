@@ -30,13 +30,19 @@ class FbRegistrationController < ApplicationController
 		return false
 	end
 	
+	def GetSchool(email)
+		college = email.split('@')[1].split('.')[0]
+		college.capitalize!
+		return college
+	end
+	
 	def RegisterUser
 		secret = "377aecb43717e1dc8bd78a803c1448a0"
 		facebook = FacebookRegistration::SignedRequest.parse(params["signed_request"], secret)
 		fields = facebook["registration"]
 		
 		if !ValidCollegeEmail(fields["email"])
-			redirect_to :action => "FbLogin", :efail => true, :name => fields["name"], :email=> fields["email"]
+			redirect_to :action => "FbLogin", :efail => true
 			return
 		end
 
@@ -48,6 +54,7 @@ class FbRegistrationController < ApplicationController
             profile.size = nil
 			
             profile.data = pic.read
+			profile.School = GetSchool(fields["email"])
 			profile.save
 		end
 		
