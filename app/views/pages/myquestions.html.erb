@@ -17,6 +17,10 @@
 			<ul class="nav nav-list">
 			<!-- Questions that have been proposed to discuss -->
 			
+			<%if @qAsked.length == 0 && @qAnswer.length == 0%>
+				No upcoming conversations...
+			<%end%>
+			
 			<% @qAsked.each do |q| %>
 		
 				<li><%=q.question%>
