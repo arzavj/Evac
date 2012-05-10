@@ -20,15 +20,15 @@ class FbRegistrationController < ApplicationController
 		end
 		
 		college = dot[0]
-		=begin
-		@@colleges.each do |c|
-			if c.eql?(college)
-				return true
-			end	
-		end
+		
+		#@@colleges.each do |c|
+		#	if c.eql?(college)
+		#		return true
+		#		end	
+		#end
 		
 		return false
-		=end
+		
 		
 		return true
 	end
