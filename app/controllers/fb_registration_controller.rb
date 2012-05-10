@@ -36,6 +36,12 @@ class FbRegistrationController < ApplicationController
 		return college
 	end
 	
+	def random_alphanumeric(size)
+		s = ""
+		size.times { s << (i = Kernel.rand(62); i += ((i < 10) ? 48 : ((i < 36) ? 55 : 61 ))).chr }
+		return s
+	end
+	
 	def RegisterUser
 		secret = "377aecb43717e1dc8bd78a803c1448a0"
 		facebook = FacebookRegistration::SignedRequest.parse(params["signed_request"], secret)
@@ -65,6 +71,7 @@ class FbRegistrationController < ApplicationController
 		u.email = fields["email"]
 		u.password = fields["password"]
 		u.profile_id = profile.id
+		u.verify = random_alphanumeric(Kernel.rand(16)+16)
 		u.save
 
 		redirect_to :action=> "Remember", :user => u.email, :pass => u.password
