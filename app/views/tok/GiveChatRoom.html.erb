@@ -83,7 +83,7 @@
 	<div class="modal-body">
 		<form name="input" action="/tok/submitRank" method="post">
 			<select name="rank">
-				<%(1..@numValues).each do |i|%>
+				<%(1..5).each do |i|%>
 					<option value="<%=(i).to_s%>"> <%=i.to_s%> </option>
 				<%end%>
 			</select>
