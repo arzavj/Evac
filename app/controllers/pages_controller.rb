@@ -89,7 +89,7 @@ class PagesController < ApplicationController
 		q.category = Integer(params[:category])
 		q.save
 		
-		if params["sType"].eql?("B") #TODO to what the actual value becomes
+		if params["sType"].eql?("Post") #TODO to what the actual value becomes
 			q.in_session = false
 			q.save
 			redirect_to "/"
