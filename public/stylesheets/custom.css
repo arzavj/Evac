@@ -530,5 +530,15 @@ h2 b.caret-myquestions
 
 .navbar .navbar-inner .container
 {
-	width:915px;
+	width:949px;
+}
+
+.container .brand 
+{
+	padding-right:0px;
+}
+
+.navbar-search ul
+{
+	margin-left:0px;
 }
