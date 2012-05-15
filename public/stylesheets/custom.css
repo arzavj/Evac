@@ -542,3 +542,15 @@ h2 b.caret-myquestions
 {
 	margin-left:0px;
 }
+
+#asker
+{
+	height:150px;
+	width:150px;
+}
+
+#answer
+{
+	height:387px;
+	width:565px;
+}
