@@ -71,9 +71,6 @@
 </center>
 
 <center>
-<form id="leave" action="/" method= "get">
-<input class="btn" type="submit" value="Leave Session" />
-</form>
 
 <div class="modal hide fade" id="rank-modal">
 	<div class="modal-header">
@@ -88,14 +85,14 @@
 				<%end%>
 			</select>
 			<input type="hidden" name = "qID" value=<%=params["qID"]%> />
-			<input type="hidden" name = "user" value=<%=params["user"]%> />
+			<input type="hidden" name = "user" value="1" />
 			<input class="btn" type="submit" value="Submit" />
 		</form>
 	</div>
 </div>
 
 <a data-toggle="modal" data-target="#rank-modal" href = "#rank-modal">
-	<button class="btn">Rank</button> 
+	<button class="btn">Leave Session</button> 
 </a>
 
 </center>
