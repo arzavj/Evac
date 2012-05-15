@@ -96,15 +96,31 @@
   <div id="answer"></div>
 </center>
 
+<div class="modal hide fade" id="rank-modal">
+	<div class="modal-header">
+		<button class="close" data-dismiss="modal">&times;</button>
+		<h3>Rank the Conversation</h3>
+	</div>
+	<div class="modal-body">
+		<form name="input" action="/tok/submitRank" method="post">
+			<select name="rank">
+				<%(1..5).each do |i|%>
+					<option value="<%=(i).to_s%>"> <%=i.to_s%> </option>
+				<%end%>
+			</select>
+			<input type="hidden" name = "qID" value=<%=params["qID"]%> />
+			<input type="hidden" name = "user" value=<%=params["user"]%> />
+			<input class="btn" type="submit" value="Submit" />
+		</form>
+	</div>
+</div>
+
 <center>
-<form id="leave" action="/" method= "get">
-<input class="btn" type="submit" value="Leave Session" />
-</form>
-<form id="rank" action="/tok/SetRank" method= "get">
-<input type = "hidden" name = "qID" value = <%= params["qID"] %> />
-<input type="hidden" name= "user" value="1">
-</form>
+		<a data-toggle="modal" data-target="#rank-modal" href = "#rank-modal">
+			<button class="btn">Rank</button> 
+		</a>
 </center>
+
 <center>
 	<div class="SmallFont">Notes:</div>
 	<textarea id="notes" COLS=100 ROWS=10></textarea>
