@@ -1,6 +1,12 @@
 class VidMail < ActionMailer::Base
 	default :from => "noreplyvidactia@gmail.com" #will change when get a namespace
 	
+	def Welcome(uID)
+		@user = User.find(uID)
+		
+		mail(:to => @user.email, :subject => "Welcome to Vidactica")
+	end
+	
 	def ConfirmEmail(uID)
 		@user = User.find(uID)
 		
@@ -11,8 +17,10 @@ class VidMail < ActionMailer::Base
 		@question = Question.find(qID)
 		if @question.user.id == uID
 			@asker = User.find(@question.answer_id)
+			@answer = User.find(@question.user.id)
 		else
 			@asker = User.find(@question.user.id)
+			@answer = User.find(@question.answer_id)
 		end
 		
 		@appointments = @question.schedules
@@ -24,8 +32,10 @@ class VidMail < ActionMailer::Base
 		@question = Question.find(qID)
 		if @question.user.id == uID
 			@answerer = User.find(@question.answer_id)
+			@asker = User.find(@question.user.id)
 		else
 			@answerer = User.find(@question.user.id)
+			@asker = User.find(@question.answer_id)
 		end
 		@appointment = Schedule.find(@question.schedule_id)
 		
