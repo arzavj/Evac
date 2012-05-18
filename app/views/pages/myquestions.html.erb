@@ -21,27 +21,28 @@
 				No upcoming conversations...
 			<%end%>
 			
-			<% @qAsked.each do |q| %>
-		
+			<% @qAsked.each do |q| %>		
 				<li><%=q.question%>
+				<%if q.answer_id != -1%>
+					by <a href="/bio?id=<%=q.answer_id%>"><%=User.find(q.answer_id).name%></a><br> 
+				<%end%>
 			
 				<% if q.schedules.any? && q.schedules[0].user_id != @user.id%> <!-- Checks who the proposer of questions was -->
 					<%schedule = nil%>
+					
 					<%if q.schedule_id == -1%>
 						<form action="/tok/AcceptSchedule" method= "get">
 							<input type = "hidden" name = "qID" value = "<%= q.id %>" />
 							<% q.schedules.each do |appointment|%>
 								<%if appointment.id == q.schedule_id%> <!-- Creates a form to submit choice -->
 									<% str = "checked=\"checked\""%>
-									<%schedule = appointment%>
-									<% schedule.appointment = schedule.appointment - (5/1440.0)%>
 								<%else%>
 									<%str = ""%>
 								<%end%>
 								<input type="radio" name="appointment" value="<%=appointment.id%>" <%=str%>/> <%= appointment.appointment%> <br>
 							<%end%>
 							<input class="btn" type="submit" value="Schedule" />
-							</form>
+						</form>
 					<%end%>
 					
 					
@@ -49,19 +50,22 @@
 					<input type = "hidden" name = "qID" value = "<%= q.id %>" />
 					<input class="btn" type="submit" value="Propose a Schedule" /><!-- If nothing works -->
 					</form>
-				<%elsif q.schedules.any? && q.schedules[0].user_id == @user.id%> <!-- If I proposed a schedule and am waiting on response -->
-					<%schedule = Schedule.new #so that it does not allow to reenter room%>
-					<%schedule.appointment = DateTime.now%>
-					<%schedule.appointment += 9001%>
+					<%#elsif q.schedules.any? && q.schedules[0].user_id == @user.id%> <!-- If I proposed a schedule and am waiting on response -->
+					<%#schedule = Schedule.new #so that it does not allow to reenter room%>
+					<%#schedule.appointment = DateTime.now%>
+					<%#schedule.appointment += 9001%>
 				<%end%>
-					
+				
 				<%if q.schedule_id == -1%>
 					<br>No schedule has been confirmed yet...
 				<%else%>
-					<%s = Schedule.find(q.schedule_id)%>
-					<br>You are scheduled to meet at <%=s.appointment%>
+					<%schedule = Schedule.find(q.schedule_id)%>
+					<% schedule.appointment = schedule.appointment - (5/1440.0)%>
+					<br>You are scheduled to meet at <%=schedule.appointment%>
 				<%end%>
-
+					
+				
+				
 				<%if schedule == nil%> <!-- Buttons to get into chat room at appropriate time -->
 					<form action="/tok/ResetQuestion" method= "get">
 						<input type = "hidden" name = "qID" value = "<%= q.id %>" />
@@ -82,6 +86,7 @@
 			<li><h3>Other Posts</h3></li>
 			<% @qAnswer.each do |q| %>
 			<li><%=q.question%><br />
+				by <a href="/bio?id=<%=q.user.id%>"><%=q.user.name%></a><br>
 				<% if q.schedules.any? && q.schedules[0].user_id != @user.id%> <!-- Checks who the proposer of questions was -->
 				<%schedule = nil%>
 				<%if q.schedule_id == -1%>
@@ -143,6 +148,7 @@
 			<%end%>
 			<% @qPrev.each do |q| %>
 			<li><%=q.question%><br />
+				by <a href="/bio?id=<%=q.answer_id%>"><%=User.find(q.answer_id).name%></a><br>
 				<div class="notes-exp">
 					<div class="wd-expando notes-collapse">
 						<h2>Notes</h2>
@@ -159,6 +165,7 @@
 		<ul class="nav nav-list">
 			<% @qPrevAnswer.each do |q| %>
 			<li><%=q.question%><br />
+				by <a href="/bio?id=<%=q.user.id%>"><%=q.user.name%></a><br>
 				<div class="wd-expando notes-collapse">
 					<h2>Notes</h2>
 					<ul>
