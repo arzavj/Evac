@@ -23,9 +23,7 @@
 			
 			<% @qAsked.each do |q| %>		
 				<li><%=q.question%>
-				<%if q.answer_id != -1%>
-					<%puts "sfsdjfbsdkhfbdkhgbdfkjbsldfhgbdlsfkbhdfslhbgaslhvdfsjhgbarslkjvbdfklhvbadslvhbsdaclkhabvdfk;bvdflkhbdfaghkbvdfslhjvbdfslhvbadshvdflsbvjkdsvladhfbvldshbvlshdfbvlhsdfbvldbsldbvlhesfbdvkjlsdbfvjhdfsbvlhdfbvlsdfhbvlkadfbvlkhbdfslkvhbsdflkvbsldkfbv;ksdfbvlkdfhbsvdfhksbvldafhbvlsdfhbvladkfbvf;gjhfdlbvdfslkbvldksajvkldfbv"%>
-					<%puts q.answer_id%>
+				<%if q.answer_id != nil%>
 					by <a href="/bio?id=<%=q.answer_id%>"><%=(User.find(q.answer_id)).name%></a><br> 
 				<%end%>
 			
