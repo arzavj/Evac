@@ -23,9 +23,10 @@
 			
 			<% @qAsked.each do |q| %>		
 				<li><%=q.question%>
-				<%#if q.answer_id != -1%>
-					by <a href="/bio?id=<%=#q.answer_id%>"><%=#(User.find(q.answer_id)).name%></a><br> 
-				<%#end%>
+				<%if q.answer_id != -1%>
+					<%puts q.answer_id%>
+					by <a href="/bio?id=<%=q.answer_id%>"><%=(User.find(q.answer_id)).name%></a><br> 
+				<%end%>
 			
 				<% if q.schedules.any? && q.schedules[0].user_id != @user.id%> <!-- Checks who the proposer of questions was -->
 					<%schedule = nil%>
