@@ -27,7 +27,7 @@ class FbRegistrationController < ApplicationController
 		#		end	
 		#end
 		
-		return false
+		#return false
 		
 		
 		return true
