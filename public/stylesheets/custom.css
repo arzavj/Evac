@@ -542,3 +542,29 @@ h2 b.caret-myquestions
 {
 	margin-left:0px;
 }
+
+#myconversations .nav-tabs
+{
+	margin-top:20px;
+	height:27px;
+}
+
+#myconversations .tab-content
+{
+	padding-bottom:50px;
+}
+
+#myconversations .nav-tabs > li > a:hover 
+{
+	background-color:#eee;
+}
+
+#myconversations .nav-tabs > li.active > a:hover 
+{
+	background-color:#fff;
+}
+
+#myconversations .nav-tabs > li > a
+{
+	font-size:100%;
+}
