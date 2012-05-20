@@ -27,7 +27,7 @@ class FbRegistrationController < ApplicationController
 		#		end	
 		#end
 		
-		return false
+		#return false
 		
 		
 		return true
@@ -47,13 +47,15 @@ class FbRegistrationController < ApplicationController
 	
 	def NewUser
 		user = User.find(params["uID"])
-		if u.verify.eql?("Clear")
+		if user.verify.eql?("Clear")
 			redirect_to	"/"
+			return
 		end	
 		
 		if params["verify"].eql?(user.verify)
 			user.verify = "Clear"
 			user.save
+			VidMail.Welcome(user.id).deliver #send email
 			redirect_to	:action=>"Remember", :user => user.email, :pass => user.password
 			return
 		end

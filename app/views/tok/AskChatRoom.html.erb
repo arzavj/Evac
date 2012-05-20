@@ -60,16 +60,6 @@
       // Subscribe to any new streams that are created
       subscribeToStreams(event.streams);
     }
-    
-    function createForm(){
-        var form = document.getElementById("rank");
-               
-        var submit = document.createElement("input");
-        submit.setAttribute("type", "submit");
-        submit.setAttribute("value", "Rank");
-        
-        form.appendChild(submit);
-    }
      
     function subscribeToStreams(streams) {
       for (var i = 0; i < streams.length; i++) {
@@ -80,8 +70,7 @@
                            
         // Subscribe to the stream
         session.subscribe(streams[i], "answer");
-			
-        createForm();
+		
 		inSession = 1;
         return;
       }

@@ -1,0 +1,10 @@
+Hi <%=@answerer.name%>,
+<br><br>
+<%url = "vidactica.heroku.com"%>
+<a href="<%=url+"/bio?id="+@asker.id.to_s%>"><%=@asker.name%></a> has confirmed the following time to vidact about “<%= @question.question %>:”
+<br><br>
+<%= @appointment.appointment%>
+<br><br>
+You will be able to enter the chatroom through your <a href="<%=url+"/myquestions"%>">‘My Conversations’</a> tab 5 minutes before the scheduled time.
+<br><br>
+Have fun!

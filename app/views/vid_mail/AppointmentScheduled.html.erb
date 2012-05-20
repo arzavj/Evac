@@ -1,0 +1,13 @@
+Hi <%=@asker.name%>, <br><br>
+
+<%url = "vidactica.heroku.com"%>
+<a href="<%=url+"/bio?id="+@answer.id.to_s%>"><%=@answer.name%></a> wants to vidact with you about “<%@question.question%>” at the following times:
+<br><br>
+	<%@appointments.each do |appoint|%>
+		<%= appoint.appointment%>
+		<br>
+	<%end%>
+<br><br>
+
+Go into your <a href="<%=url+"/myquestions"%>">‘My Conversations’</a> Tab to confirm any of these times or propose different ones. 
+	
