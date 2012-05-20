@@ -22,16 +22,17 @@
 <div class="tab-content">
 	<div class="tab-pane fade in active" id="upcoming">
 		<ul class="nav nav-list">
-			<li><h3>My Posts</h3></li>
-			<%if @qAsked.length == 0 && @qAnswer.length==0%>
-				No upcoming conversations...
-			<%end%>
+					<!-- Questions that have been proposed to discuss -->
+					<li><h3>My Posts</h3></li>
+					<%if @qAsked.length == 0 && @qAnswer.length==0%>
+						No upcoming conversations...
+					<%end%>
+
+					<% @qAsked.each do |q| %>
+
+						<li><%=q.question%>
+
 <<<<<<< HEAD
-
-			<% @qAsked.each do |q| %>
-
-				<li><%=q.question%>
-
 					<% if q.schedules.any? && q.schedules[0].user_id != @user.id%> <!-- Checks who the proposer of questions was -->
 						<%schedule = nil%>
 						<form action="/tok/AcceptSchedule" method= "get">
@@ -109,141 +110,115 @@
 						<%if appointment.id == q.schedule_id%>
 							<% str = "checked=\"checked\""%>
 							<% schedule = appointment%>
-						<%else%>
-							<%str = ""%>
-						<%end%>
-						<input type="radio" name="appointment" value="<%=appointment.id%>" <%=str%>/> <%= appointment.appointment%> <br>
-					<%end%>
-					<input class="btn" type="submit" value="Schedule" />
-					</form>
-				<%end%>
-				
-				<form action="/tok/ScheduleAppointment" method= "get">
-					<input type = "hidden" name = "qID" value = "<%= q.id %>" />
-					<input class="btn" type="submit" value="Propose a Schedule" />
-				</form>
-				<%elsif q.schedules.any? && q.schedules[0].user_id == @user.id%> <!-- if i proposed -->
-	
+=======
+						<% if q.schedules.any? && q.schedules[0].user_id != @user.id%> <!-- Checks who the proposer of questions was -->
+							<%schedule = nil%>
+							<%if q.schedule_id == -1%>
+								<form action="/tok/AcceptSchedule" method= "get">
+									<input type = "hidden" name = "qID" value = "<%= q.id %>" />
+									<% q.schedules.each do |appointment|%>
+										<%if appointment.id == q.schedule_id%> <!-- Creates a form to submit choice -->
+											<% str = "checked=\"checked\""%>
+											<%schedule = appointment%>
+											<% schedule.appointment = schedule.appointment - (5/1440.0)%>
+										<%else%>
+											<%str = ""%>
+										<%end%>
+										<input type="radio" name="appointment" value="<%=appointment.id%>" <%=str%>/> <%= appointment.appointment%> <br>
+									<%end%>
+									<input class="btn" type="submit" value="Schedule" />
+									</form>
+							<%end%>
 
-					<%if q.in_session == true%> <!-- can only enter when the asker enters the chat room -->
-						<form action="/tok/GiveChatRoom" method= "get">
->>>>>>> 45c7ba3b7fb253660b05de6a41dc04be7a320809
+
+							<form action="/tok/ScheduleAppointment" method= "get">
+							<input type = "hidden" name = "qID" value = "<%= q.id %>" />
+							<input class="btn" type="submit" value="Propose a Schedule" /><!-- If nothing works -->
+							</form>
+						<%elsif q.schedules.any? && q.schedules[0].user_id == @user.id%> <!-- If I proposed a schedule and am waiting on response -->
+							<%schedule = Schedule.new #so that it does not allow to reenter room%>
+							<%schedule.appointment = DateTime.now%>
+							<%schedule.appointment += 9001%>
+						<%end%>
+
+						<%if q.schedule_id == -1%>
+							<br>No schedule has been confirmed yet...
+>>>>>>> e83e0c942ed6beeb891c2e4f8e8c639635583268
+						<%else%>
+							<%s = Schedule.find(q.schedule_id)%>
+							<br>You are scheduled to meet at <%=s.appointment%>
+						<%end%>
+
+						<%if schedule == nil%> <!-- Buttons to get into chat room at appropriate time -->
+							<form action="/tok/ResetQuestion" method= "get">
+								<input type = "hidden" name = "qID" value = "<%= q.id %>" />
+								<input class="btn" type="submit" value="Re-enter Room" />
+							</form>
+						<%elsif schedule.appointment.past?%>
+							<form action="/tok/ResetQuestion" method= "get">
+							<input type = "hidden" name = "qID" value = "<%= q.id %>" />
+							<input class="btn" type="submit" value="Re-Enter Room For Appointment" />
+							</form>
+						<%end%>	
+						</li>
+						<li class="divider"></li>
+					<%end%>
+
+					<!-- Shows questions that have been picked up as opposed to asked -->
+					<!--HERE IS WHERE THE DIVIDE OCCURS-->
+					<li><h3>Other Posts</h3></li>
+					<% @qAnswer.each do |q| %>
+					<li><%=q.question%><br />
+						<% if q.schedules.any? && q.schedules[0].user_id != @user.id%> <!-- Checks who the proposer of questions was -->
+						<%schedule = nil%>
+						<%if q.schedule_id == -1%>
+							<form action="/tok/AcceptSchedule" method= "get">
 							<input type = "hidden" name = "qID" value = "<%= q.id %>" />
 							<% q.schedules.each do |appointment|%>
-								<%if appointment.id == q.schedule_id%> <!-- Creates a form to subit choice -->
+								<%if appointment.id == q.schedule_id%>
 									<% str = "checked=\"checked\""%>
-									<%schedule = appointment%>
-									<% schedule.appointment = schedule.appointment - (5/1440.0)%>
+									<% schedule = appointment%>
 								<%else%>
 									<%str = ""%>
 								<%end%>
 								<input type="radio" name="appointment" value="<%=appointment.id%>" <%=str%>/> <%= appointment.appointment%> <br>
 							<%end%>
 							<input class="btn" type="submit" value="Schedule" />
+							</form>
+						<%end%>
+
+						<form action="/tok/ScheduleAppointment" method= "get">
+							<input type = "hidden" name = "qID" value = "<%= q.id %>" />
+							<input class="btn" type="submit" value="Propose a Schedule" />
 						</form>
-<<<<<<< HEAD
-		
-		
-		<form action="/tok/ScheduleAppointment" method= "get">
-		<input type = "hidden" name = "qID" value = "<%= q.id %>" />
-		<input class="btn" type="submit" value="Propose a Schedule" /><!-- If nothing works -->
-		</form>
-	<%elsif q.schedules.any? && q.schedules[0].user_id == @user.id%> <!-- If I proposed a schedule and am waiting on response -->
-		<%schedule = Schedule.new #so that it does not allow to reenter room%>
-		<%schedule.appointment = DateTime.now%>
-		<%schedule.appointment += 9001%>
-		<%if q.schedule_id == -1%>
-			<br>No schedule has been confirmed yet...
-		<%else%>
-			<%s = Schedule.find(q.schedule_id)%>
-			<br>You are scheduled to meet at <%=s.appointment%>
-		<%end%>
-	<%end%>
+						<%elsif q.schedules.any? && q.schedules[0].user_id == @user.id%> <!-- if i proposed -->
 
-<%if schedule == nil%> <!-- Buttons to get into chat room at appropriate time -->
-		<form action="/tok/ResetQuestion" method= "get">
-			<input type = "hidden" name = "qID" value = "<%= q.id %>" />
-			<input class="btn" type="submit" value="Re-enter Room" />
-		</form>
-<%elsif schedule.appointment.past?%>
-		<form action="/tok/ResetQuestion" method= "get">
-			<input type = "hidden" name = "qID" value = "<%= q.id %>" />
-			<input class="btn" type="submit" value="Re-Enter Room For Appointment" />
-		</form>
-<%end%>	
-	</li>
-	<li class="divider"></li>
-<%end%>
 
-<!-- Shows questions that have been picked up as opposed to asked -->
-<!--HERE IS WHERE THE DIVIDE OCCURS-->
-<li><h3>Other Posts</h3></li>
-<% @qAnswer.each do |q| %>
-<li><%=q.question%><br />
-	<% if q.schedules.any? && q.schedules[0].user_id != @user.id%> <!-- Checks who the proposer of questions was -->
-	<%schedule = nil%>
-	<form action="/tok/AcceptSchedule" method= "get">
-		<input type = "hidden" name = "qID" value = "<%= q.id %>" />
-		<% q.schedules.each do |appointment|%>
-		<%if appointment.id == q.schedule_id%>
-		<% str = "checked=\"checked\""%>
-		<% schedule = appointment%>
-		<%else%>
-		<%str = ""%>
-		<%end%>
-		<input type="radio" name="appointment" value="<%=appointment.id%>" <%=str%>/> <%= appointment.appointment%> <br>
-=======
+							<%if q.in_session == true%> <!-- can only enter when the asker enters the chat room -->
+								<form action="/tok/GiveChatRoom" method= "get">
+									<input type = "hidden" name = "qID" value = "<%= q.id %>" />
+									<input type = "hidden" name = "askID" value = "<%= q.user.id %>" />
+									<input type = "hidden" name = "ignore" value = "1" />
+									<input class="btn" type="submit" value="Your Conversation is Ready" />
+								</form>
+							<%end%>
+						<%end%>
+
+						<%if q.schedule_id == -1%>
+							No schedule has been confirmed yet...
+						<%else%>
+							<%s = Schedule.find(q.schedule_id)%>
+							You are scheduled to meet at <%=s.appointment%>
+							<%if s.appointment.past? && q.in_session == false%>
+								<br>Your conversation partner is not here yet...
+							<%end%>
+						<%end%>
+
+
+					</li>
+					<li class="divider"></li>
 					<%end%>
-				<%end%>
-				
-				<%if q.schedule_id == -1%>
-					No schedule has been confirmed yet...
-				<%else%>
-					<%s = Schedule.find(q.schedule_id)%>
-					You are scheduled to meet at <%=s.appointment%>
-					<%if s.appointment.past? && q.in_session == false%>
-						<br>Your conversation partner is not here yet...
-					<%end%>
-				<%end%>
-				
-				
-			</li>
-			<li class="divider"></li>
->>>>>>> 45c7ba3b7fb253660b05de6a41dc04be7a320809
-			<%end%>
-			<input class="btn" type="submit" value="Schedule" />
-			</form>
-	
-	
-	<form action="/tok/ScheduleAppointment" method= "get">
-		<input type = "hidden" name = "qID" value = "<%= q.id %>" />
-		<input class="btn" type="submit" value="Propose a Schedule" />
-	</form>
-	<%elsif q.schedules.any? && q.schedules[0].user_id == @user.id%> <!-- if i proposed -->
-
-		<%if q.schedule_id == -1%>
-			No schedule has been confirmed yet...
-		<%else%>
-			<%s = Schedule.find(q.schedule_id)%>
-			You are scheduled to meet at <%=s.appointment%>
-			<%if s.appointment.past? && q.in_session == false%>
-				<br>Your conversation partner is not here yet...
-			<%end%>
-		<%end%>
-	
-		<%if q.in_session == true%> <!-- can only enter when the asker enters the chat room -->
-			<form action="/tok/GiveChatRoom" method= "get">
-				<input type = "hidden" name = "qID" value = "<%= q.id %>" />
-				<input type = "hidden" name = "askID" value = "<%= q.user.id %>" />
-				<input type = "hidden" name = "ignore" value = "1" />
-				<input class="btn" type="submit" value="Your Conversation is Ready" />
-			</form>
-		<%end%>
-	<%end%>
-</li>
-<li class="divider"></li>
-<%end%>
-</ul>
+					</ul>
 	</div>
 	<div class="tab-pane fade" id="past">
 		<ul class="nav nav-list">
@@ -251,7 +226,6 @@
 				No past conversations...
 			<%end%>
 			<% @qPrev.each do |q| %>
-<<<<<<< HEAD
 				<li><%=q.question%><br />
 					<div class="notes-exp">
 						<div class="wd-expando notes-collapse">
@@ -260,7 +234,6 @@
 								<li><%=q.notes%></li>
 							</ul>
 						</div>
-=======
 			<li><%=q.question%><br />
 				by <a href="/bio?id=<%=q.answer_id%>"><%=User.find(q.answer_id).name%></a><br>
 				<div class="notes-exp">
@@ -269,7 +242,6 @@
 						<ul>
 							<li><%=q.notes%></li>
 						</ul>
->>>>>>> 45c7ba3b7fb253660b05de6a41dc04be7a320809
 					</div>
 				</li>
 				<li class="divider"></li>
@@ -278,7 +250,6 @@
 
 		<ul class="nav nav-list">
 			<% @qPrevAnswer.each do |q| %>
-<<<<<<< HEAD
 				<li><%=q.question%><br />
 					<div class="wd-expando notes-collapse">
 						<h2>Notes</h2>
@@ -288,7 +259,6 @@
 					</div>
 				</li>
 				<li class="divider"></li>
-=======
 			<li><%=q.question%><br />
 				by <a href="/bio?id=<%=q.user.id%>"><%=q.user.name%></a><br>
 				<div class="wd-expando notes-collapse">
@@ -299,7 +269,6 @@
 				</div>
 			</li>
 			<li class="divider"></li>
->>>>>>> 45c7ba3b7fb253660b05de6a41dc04be7a320809
 			<%end%>
 		</ul>
 	</div>
