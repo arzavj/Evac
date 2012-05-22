@@ -3,6 +3,12 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="-1">
+	<meta name="keywords" content="vidactica, online video, online chat, online advice, advice, chat, video, chatting" />
+	<meta name="description" content="Vidactica - Have insightful video conversations" />
+	
   <title><%= @title %></title>
   <%= render 'layouts/stylesheets' %>
 
@@ -46,7 +52,7 @@
 			var footerH = $("#tiny-footer").height();
 			$(".transparent-background").css('min-height',docH - headerH - footerH);
 			$(".tabs-left .nav-tabs").css('height',docH - headerH - footerH);
-			$('input.star').rating();
+			$('.star').raty();
 		});
 	</script>
 </head>
