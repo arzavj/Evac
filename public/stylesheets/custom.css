@@ -568,3 +568,14 @@ h2 b.caret-myquestions
 {
 	font-size:100%;
 }
+
+.ui-datepicker .ui-datepicker-header
+{
+	background-color:#4A5C5C;
+	border: 1px solid #4A5C5C;
+}
+
+.ui-state-hover a, .ui-state-hover a:hover
+{
+	color:#4A5C5C;
+}
