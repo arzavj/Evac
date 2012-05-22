@@ -71,7 +71,11 @@
         // Subscribe to the stream
         session.subscribe(streams[i], "answer");
 		
-		inSession = 1;
+		inSession = 1
+		var leaveButton = document.getElementById("leaveButton");
+		leaveButton.setAttribute("data-toggle", "modal");
+		leaveButton.setAttribute("data-target", "#rank-modal");
+		leaveButton.setAttribute("href", "#rank-modal");
         return;
       }
 	  
@@ -101,11 +105,12 @@
 			<input type="hidden" name = "user" value="0"/>
 			<input class="btn" type="submit" value="Submit" />
 		</form>
+		<div id="star"></div>
 	</div>
 </div>
 
 <center>
-		<a data-toggle="modal" data-target="#rank-modal" href = "#rank-modal">
+		<a id="leaveButton">
 			<button class="btn">Leave Session</button> 
 		</a>
 		
