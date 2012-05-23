@@ -32,7 +32,7 @@
 						
 						<li><%=q.question%>
 						<%if q.answer_id != nil%>
-							by <a href="/bio?id=<%=q.answer_id%>"><%=(User.find(q.answer_id)).name%></a><br> 
+							with <a href="/bio?id=<%=q.answer_id%>"><%=(User.find(q.answer_id)).name%></a><br> 
 						<%end%>
 							
 							<% if q.schedules.any? && q.schedules[0].user_id != @user.id%> <!-- Checks who the proposer of questions was -->
@@ -94,7 +94,7 @@
 						<li><h3>Other Posts</h3></li>
 						<% @qAnswer.each do |q| %>
 						<li><%=q.question%><br />
-							by <a href="/bio?id=<%=q.user.id%>"><%=q.user.name%></a><br>
+							with <a href="/bio?id=<%=q.user.id%>"><%=q.user.name%></a><br>
 							<% if q.schedules.any? && q.schedules[0].user_id != @user.id%> <!-- Checks who the proposer of questions was -->
 							<%schedule = nil%>
 							<%if q.schedule_id == -1%>
