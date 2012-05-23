@@ -1,0 +1,20 @@
+<%if params["efail"]%>
+	<script type ="text/javascript">
+		alert("Invalid College E-mail Address");
+	</script>
+<%end%>
+
+<%if params["pfail"]%>
+	<script type ="text/javascript">
+		alert("Passwords Do Not Match");
+	</script>
+<%end%>
+
+<h1>Register</h1>
+<form action="SaveUser" method="post">
+Full name: <input type="text" value= "<%=params["name"]%>" name="name" /><br />
+College Email: <input type="text" value= "<%=params["email"]%>" name="email" /><br />
+Vidactica Password: <input type="password" name="password" /><br />
+Re-Enter Password: <input type="password" name="passwordAgain" /><br />	
+<input type="submit" value="Submit" />	
+</form>
