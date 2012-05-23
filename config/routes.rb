@@ -1,4 +1,6 @@
 Vidactica::Application.routes.draw do
+  get "facebook_registration/Registration"
+
   get "tok/AskChatRoom"
 
   get "tok/GiveChatRoom"

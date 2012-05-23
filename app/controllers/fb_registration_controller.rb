@@ -7,6 +7,9 @@ class FbRegistrationController < ApplicationController
   def Login
   end
 	
+	def Registration
+	end
+		
 	def ValidCollegeEmail(email)
 		array = email.split('@')
 		if array.length != 2
@@ -63,7 +66,7 @@ class FbRegistrationController < ApplicationController
 		redirect_to "/"
 	end
 	
-	def RegisterUser
+	def RegisterUser #from facebook
 		secret = "377aecb43717e1dc8bd78a803c1448a0"
 		facebook = FacebookRegistration::SignedRequest.parse(params["signed_request"], secret)
 		fields = facebook["registration"]
@@ -97,6 +100,43 @@ class FbRegistrationController < ApplicationController
 
 		redirect_to :controller=>"pages", :action=> "home", :email => "1"
 
+	end
+	
+	def SaveUser
+	
+		if !params["password"].eql?(params["passwordAgain"]) 
+			redirect_to :action => "Registration", :pfail => true, :name => params["name"], :email => params["email"]
+			return
+		end
+		
+		if !ValidCollegeEmail(params["email"])
+			redirect_to :action => "Registration", :efail => true, :name => params["name"], :email => params["email"]
+			return
+		end
+		
+		profile = Profile.new
+		
+		File.open(Rails.root.join('public/images/default-profile-pic.png')) do |pic|
+			profile.file_name = "Default Pic"
+            profile.file_type = nil
+            profile.size = nil
+			
+            profile.data = pic.read
+			profile.School = GetSchool(params["email"]) #test
+			profile.save
+		end
+		
+		u = User.new
+		u.name = params["name"]
+		u.email = params["email"]
+		u.password = params["password"]
+		u.profile_id = profile.id
+		u.verify = random_alphanumeric(Kernel.rand(16)+16)
+		u.save
+		
+		VidMail.ConfirmEmail(u.id).deliver #send email
+		
+		redirect_to :controller=>"pages", :action=> "home", :email => "1"
 	end
 
 	def Remember
