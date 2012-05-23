@@ -73,10 +73,12 @@
 							<%end%>
 							
 							<%if schedule == nil%> <!-- Buttons to get into chat room at appropriate time -->
+							<!--
 							<form action="/tok/ResetQuestion" method= "get">
 								<input type = "hidden" name = "qID" value = "<%= q.id %>" />
 								<input class="btn" type="submit" value="Re-enter Room" />
 							</form>
+							 -->
 							<%elsif schedule.appointment.past?%>
 							<form action="/tok/ResetQuestion" method= "get">
 								<input type = "hidden" name = "qID" value = "<%= q.id %>" />
