@@ -102,20 +102,10 @@
 							<form action="/tok/ScheduleAppointment" method= "get">
 								<input type = "hidden" name = "qID" value = "<%= q.id %>" />
 								<input class="btn" type="submit" value="Propose a Schedule" />
-							</form>
-							<%elsif q.schedules.any? && q.schedules[0].user_id == @user.id%> <!-- if i proposed -->
-							
-							
-							<%if q.in_session == true%> <!-- can only enter when the asker enters the chat room -->
-							<form action="/tok/GiveChatRoom" method= "get">
-								<input type = "hidden" name = "qID" value = "<%= q.id %>" />
-								<input type = "hidden" name = "askID" value = "<%= q.user.id %>" />
-								<input type = "hidden" name = "ignore" value = "1" />
-								<input class="btn" type="submit" value="Your Conversation is Ready" />
-							</form>
-							<%end%>
+							</form>					
 							<%end%>
 							
+						
 							<%if q.schedule_id == -1%>
 							No schedule has been confirmed yet...
 							<%else%>
@@ -123,6 +113,14 @@
 							You are scheduled to meet at <%=s.appointment%>
 							<%if s.appointment.past? && q.in_session == false%>
 							<br>Your conversation partner is not here yet...
+							<%else%><!-- can only enter when the asker enters the chat room -->
+
+							<form action="/tok/GiveChatRoom" method= "get">
+								<input type = "hidden" name = "qID" value = "<%= q.id %>" />
+								<input type = "hidden" name = "askID" value = "<%= q.user.id %>" />
+								<input type = "hidden" name = "ignore" value = "1" />
+								<input class="btn" type="submit" value="Your Conversation is Ready" />
+							</form>
 							<%end%>
 							<%end%>
 							
