@@ -138,6 +138,7 @@
 					<%end%>
 					<% @qPrev.each do |q| %>
 					<li><%=q.question%><br />
+						with <a href="/bio?id=<%=q.answer_id%>"><%=(User.find(q.answer_id)).name%></a><br>
 						<div class="notes-exp">
 							<div class="wd-expando notes-collapse">
 								<h2>Notes</h2>
@@ -154,6 +155,7 @@
 				<ul class="nav nav-list">
 					<% @qPrevAnswer.each do |q| %>
 					<li><%=q.question%><br />
+						with <a href="/bio?id=<%=q.user.id%>"><%=q.user.name%></a><br>
 						<div class="wd-expando notes-collapse">
 							<h2>Notes</h2>
 							<ul>
