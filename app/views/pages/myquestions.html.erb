@@ -41,7 +41,7 @@
 								<form action="/tok/AcceptSchedule" method= "get">
 									<input type = "hidden" name = "qID" value = "<%= q.id %>" />
 									<% q.schedules.each do |appointment|%>
-										<input type="radio" name="appointment" value="<%=appointment.id%>" /> <%= appointment.appointment%> <br>
+										<input type="radio" name="appointment" value="<%=appointment.id%>" /> <%= appointment.appointment.localtime.to_s%> <br>
 									<%end%>
 									<input class="btn" type="submit" value="Schedule" />
 									</form>
@@ -54,7 +54,7 @@
 								<br>No schedule has been confirmed yet...
 							<%else%>
 								<%s = Schedule.find(q.schedule_id)%>
-								<br>You are scheduled to meet at <%=s.appointment%>
+								<br>You are scheduled to meet at <%=s.appointment.localtime.to_s%>
 								<%schedule = s.appointment - (5/1440.0)%>
 								<%if schedule.past?%>
 									<form action="/tok/ResetQuestion" method= "get">
@@ -83,18 +83,11 @@
 						<li><%=q.question%><br />
 							with <a href="/bio?id=<%=q.user.id%>"><%=q.user.name%></a><br>
 							<% if q.schedules.any? && q.schedules[0].user_id != @user.id%> <!-- Checks who the proposer of questions was -->
-							<%schedule = nil%>
 							<%if q.schedule_id == -1%>
 							<form action="/tok/AcceptSchedule" method= "get">
 								<input type = "hidden" name = "qID" value = "<%= q.id %>" />
 								<% q.schedules.each do |appointment|%>
-								<%if appointment.id == q.schedule_id%>
-								<% str = "checked=\"checked\""%>
-								<% schedule = appointment%>
-								<%else%>
-								<%str = ""%>
-								<%end%>
-								<input type="radio" name="appointment" value="<%=appointment.id%>" <%=str%>/> <%= appointment.appointment%> <br>
+								<input type="radio" name="appointment" value="<%=appointment.id%>" <%=str%>/> <%= appointment.appointment.localtime.to_s%> <br>
 									<%end%>
 									<input class="btn" type="submit" value="Schedule" />
 									</form>
@@ -108,7 +101,7 @@
 							No schedule has been confirmed yet...
 							<%else%>
 							<%s = Schedule.find(q.schedule_id)%>
-							You are scheduled to meet at <%=s.appointment%>
+							You are scheduled to meet at <%=s.appointment.localtime.to_s%>
 							<%if s.appointment.past? && q.in_session == false%>
 							<br>Your conversation partner is not here yet...
 							<%else%><!-- can only enter when the asker enters the chat room -->

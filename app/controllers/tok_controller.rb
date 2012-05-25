@@ -102,7 +102,7 @@ class TokController < ApplicationController
 			if !params["Slot"+i.to_s].eql?("")
 				split = params["Slot"+i.to_s].split(' ')
 				date = Date.strptime(split[0], '%m/%d/%Y')
-				time = Time.parse(split[1])
+				time = Time.parse(split[1]).utc
 
 				s.appointment = DateTime.new(date.year, date.month, date.day, time.hour, time.min, time.sec)
 				s.user_id = user #proposer
