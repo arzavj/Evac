@@ -65,6 +65,11 @@ class TokController < ApplicationController
 		q.save
 	end
 	
+	def delete
+		Question.find(params["qID"]).delete
+		redirect_to "/pages/myquestion"
+	end
+	
 	def Schedule
 			
 		question = Question.find(params["qID"])

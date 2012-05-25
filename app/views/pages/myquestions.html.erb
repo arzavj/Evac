@@ -48,11 +48,6 @@
 								<%end%>
 							
 							
-							<form action="/tok/ScheduleAppointment" method= "get">
-								<input type = "hidden" name = "qID" value = "<%= q.id %>" />
-								<input class="btn" type="submit" value="Propose a Schedule" /><!-- If nothing works -->
-							</form>
-
 							<%end%>
 							
 							<%if q.schedule_id == -1%>
@@ -64,12 +59,18 @@
 								<%if schedule.past?%>
 									<form action="/tok/ResetQuestion" method= "get">
 										<input type = "hidden" name = "qID" value = "<%= q.id %>" />
-										<input class="btn" type="submit" value="Re-Enter Room For Appointment" />
+										<input class="btn" type="submit" value="Enter Room For Appointment" />
 									</form>							
 								<%end%>	
 							<%end%>
 							
-
+							
+							<%if q.answer_id != nil%>
+								<form action="/tok/ScheduleAppointment" method= "get">
+									<input type = "hidden" name = "qID" value = "<%= q.id %>" />
+									<input class="btn" type="submit" value="Propose a Schedule" /><!-- If nothing works -->
+								</form>
+							<%end%>
 
 						</li>
 						<li class="divider"></li>
@@ -99,10 +100,7 @@
 									</form>
 							<%end%>
 							
-							<form action="/tok/ScheduleAppointment" method= "get">
-								<input type = "hidden" name = "qID" value = "<%= q.id %>" />
-								<input class="btn" type="submit" value="Propose a Schedule" />
-							</form>					
+				
 							<%end%>
 							
 						
@@ -124,6 +122,10 @@
 							<%end%>
 							<%end%>
 							
+							<form action="/tok/ScheduleAppointment" method= "get">
+								<input type = "hidden" name = "qID" value = "<%= q.id %>" />
+								<input class="btn" type="submit" value="Propose a Schedule" />
+							</form>		
 							
 						</li>
 						<li class="divider"></li>
@@ -147,6 +149,10 @@
 								</ul>
 							</div>
 						</div>
+						<form action="/tok/delete" method= "get">
+							<input type = "hidden" name = "qID" value = "<%= q.id %>" />
+							<input class="btn" type="submit" value="Delete Question" />
+						</form>	
 					</li>
 					<li class="divider"></li>
 					<%end%>
@@ -162,6 +168,10 @@
 								<li><%=q.answerer_notes%></li>
 							</ul>
 						</div>
+						<form action="/tok/delete" method= "get">
+							<input type = "hidden" name = "qID" value = "<%= q.id %>" />
+							<input class="btn" type="submit" value="Delete Question" />
+						</form>	
 					</li>
 					<li class="divider"></li>
 					<%end%>
