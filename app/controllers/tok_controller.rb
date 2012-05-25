@@ -66,9 +66,17 @@ class TokController < ApplicationController
 	end
 	
 	def Schedule
-		
+			
 		question = Question.find(params["qID"])
-		if question.schedules.any?
+		
+		if question.answer_id == nil
+			question.answer_id = User.where({:email => cookies[:email], :password => cookies[:pass]})[0].id
+			question.save
+		end
+		
+		puts question.answer_id
+		
+		if question.schedules.any? #if there are existing schedules
 			user = question.schedules[0].user_id
 			if user == question.user.id
 				user = question.answer_id
@@ -86,8 +94,8 @@ class TokController < ApplicationController
 		(1..3).each do |i|
 			s = Schedule.new
 			s.question_id = question.id
-			if !params[i.to_s].eql?("")
-				split = params[i.to_s].split(' ')
+			if !params["Slot"+i.to_s].eql?("")
+				split = params["Slot"+i.to_s].split(' ')
 				date = Date.strptime(split[0], '%m/%d/%Y')
 				time = Time.parse(split[1])
 
@@ -97,6 +105,7 @@ class TokController < ApplicationController
 			end
 		end
 		
+	
 		#TODO change email
 		VidMail.AppointmentScheduled(params["qID"], user).deliver
 		
@@ -136,8 +145,6 @@ class TokController < ApplicationController
 		
 		u = User.where({:email => cookies[:email], :password => cookies[:pass]})
 		u = u[0]
-		q.answer_id = u.id
-		q.save
 		redirect_to :action=> "ScheduleAppointment", :qID => params["qID"]
 	end
 	  

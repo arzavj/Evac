@@ -7,10 +7,26 @@
 /*.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }*/
 </style>
 
+<script>
+	function checkForm()
+	{
+		if (document.input.Slot1.value == "" && document.input.Slot2.value == "" && document.input.Slot3.value == "")
+		{
+			alert("Please post at least one schedule");
+			return false;
+		}
+		else
+		{
+			f.submit();
+			return true;
+		}
+	}
+</script>
+
 <div class="transparent-background">
 	<div class="body-wrapper">
 		<div class="SmallFont" style="padding-top:5%;">Times that work for you:</div>
-<form action="/tok/Schedule" method= "GET">
+<form action="/tok/Schedule" name ="input" method= "GET" onSubmit="return checkForm();">
 <% question = Question.find(params["qID"]) %>
 <%schedule = question.schedules %>
 
@@ -22,7 +38,7 @@
 	});
 </script>
 	
-<input class="search-query" style="cursor: pointer;" id="<%=i%>" name="<%=i%>" type="text" size="25" readonly="readonly" placeholder="Click here to select times..."/>
+<input class="search-query" style="cursor: pointer;" id="<%=i%>" name="Slot<%=i%>" type="text" size="25" readonly="readonly" placeholder="Click here to select times..."/>
 
 <p>
 
