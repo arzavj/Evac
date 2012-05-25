@@ -87,7 +87,7 @@
 							<form action="/tok/AcceptSchedule" method= "get">
 								<input type = "hidden" name = "qID" value = "<%= q.id %>" />
 								<% q.schedules.each do |appointment|%>
-								<input type="radio" name="appointment" value="<%=appointment.id%>" <%=str%>/> <%= appointment.appointment.localtime.to_s%> <br>
+								<input type="radio" name="appointment" value="<%=appointment.id%>"/> <%= appointment.appointment.localtime.to_s%> <br>
 									<%end%>
 									<input class="btn" type="submit" value="Schedule" />
 									</form>
