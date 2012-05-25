@@ -4,6 +4,12 @@
 	</script>
 <%end%>
 
+<%if params["exist"]%>
+	<script type ="text/javascript">
+		alert("This email is already being used");
+	</script>
+<%end%>
+
 <%if params["pfail"]%>
 	<script type ="text/javascript">
 		alert("Passwords Do Not Match");

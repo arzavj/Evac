@@ -4,6 +4,12 @@
 	</script>
 <%end%>
 
+<%if params["exist"]%>
+	<script type ="text/javascript">
+		alert("This email is already being used");
+	</script>
+<%end%>
+
 <h1>Register</h1>
 
 <iframe src="https://www.facebook.com/plugins/registration.php?

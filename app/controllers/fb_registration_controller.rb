@@ -71,6 +71,11 @@ class FbRegistrationController < ApplicationController
 		facebook = FacebookRegistration::SignedRequest.parse(params["signed_request"], secret)
 		fields = facebook["registration"]
 		
+		if User.where(:email => fields["email"]).length != 0
+			redirect_to :action => "FbLogin", :exist => true
+			return
+		end
+		
 		if !ValidCollegeEmail(fields["email"])
 			redirect_to :action => "FbLogin", :efail => true
 			return
@@ -106,6 +111,11 @@ class FbRegistrationController < ApplicationController
 	
 		if !params["password"].eql?(params["passwordAgain"]) 
 			redirect_to :action => "Registration", :pfail => true, :name => params["name"], :email => params["email"]
+			return
+		end
+		
+		if User.where(:email => params["email"]).length != 0
+			redirect_to :action => "Registration", :exist => true, :name => params["name"], :email => params["email"]
 			return
 		end
 		
