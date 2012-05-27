@@ -60,6 +60,10 @@
                            
         // Subscribe to the stream
         session.subscribe(streams[i], "asker");
+		var leaveButton = document.getElementById("leaveButton");
+		leaveButton.setAttribute("data-toggle", "modal");
+		leaveButton.setAttribute("data-target", "#rank-modal");
+		leaveButton.setAttribute("href", "#rank-modal");
 	  return;
       }
     }    

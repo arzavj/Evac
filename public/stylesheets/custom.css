@@ -584,3 +584,13 @@ h2 b.caret-myquestions
 {
 	border-right: 1px solid #DFDFDF;
 }
+
+.nav-tabs > .active > a, .nav-tabs > .active > a:hover
+{
+	background-color: rgba(255, 255, 255, 0.9);
+}
+
+.ui-widget-header a:hover
+{
+	cursor: pointer;
+}

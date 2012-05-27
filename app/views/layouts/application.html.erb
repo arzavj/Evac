@@ -51,6 +51,7 @@
 			var headerH = $("header").height();
 			var footerH = $("#tiny-footer").height();
 			$(".transparent-background").css('min-height',docH - headerH - footerH);
+			$(".container-fluid").css('min-height',docH - headerH - footerH);
 			$(".tabs-left .nav-tabs").css('height',docH - headerH - footerH);
 			$('.modal .modal-body #star').raty();
 		});
