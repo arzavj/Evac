@@ -16,11 +16,17 @@
 	</script>
 <%end%>
 
-<h1>Register</h1>
-<form action="SaveUser" method="post">
-Full name: <input type="text" value= "<%=params["name"]%>" name="name" /><br />
-Email: <input type="text" value= "<%=params["email"]%>" name="email" /><br />
-Vidactica Password: <input type="password" name="password" /><br />
-Re-Enter Password: <input type="password" name="passwordAgain" /><br />	
-<input type="submit" value="Submit" />	
-</form>
+<div class="transparent-background">
+	<div class="body-wrapper">
+		<h1>Register</h1>
+		<form class="well form-inline" action="SaveUser" method="post">
+			<fieldset>
+			<div class="control-group">Full name: <input type="text" value= "<%=params["name"]%>" name="name" /></div>
+			<div class="control-group">Email: <input type="text" value= "<%=params["email"]%>" name="email" /></div>
+			<div class="control-group">Vidactica Password: <input type="password" name="password" /></div>
+			<div class="control-group">Re-Enter Password: <input type="password" name="passwordAgain" /></div>	
+			<input class="btn" type="submit" value="Submit" />	
+			</fieldset>
+		</form>
+	</div>
+</div>

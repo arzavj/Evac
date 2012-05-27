@@ -121,14 +121,11 @@
 			<div id="introLines">
 				<p class="SmallFont">Connect with amazing people and have insightful<br /> video-chat conversations about topics you're passionate<br /> about</p>
 			</div>
-			<a href ="/fb_registration/Registration">Sign-up with email</a>
 			<div class="modal hide fade" id="facebook-modal">
 				<div class="modal-header">
 					<button class="close" data-dismiss="modal">&times;</button>
 					<h3>Register With Facebook</h3>
-
 				</div>
-
 				<div class="modal-body">
 					<!-- {'name':'school', 'description':'College',  'type':'text'} IS IF I WANTED THE SCHOOL TYPED-->
 
@@ -152,6 +149,53 @@
 			<div class="fb-login-button">
 				<a data-toggle="modal" data-target="#facebook-modal" href = "#facebook-modal">
 					<%= image_tag("signup-facebook-md.png", :width => "250") %>
+				</a>
+			</div>
+			<div class="modal hide fade" id="register-modal">
+				<div class="modal-header">
+					<button class="close" data-dismiss="modal">&times;</button>
+					<h3>Register With Vidactica</h3>
+				</div>
+				<div class="modal-body">
+					<form class="well form-horizontal" action="SaveUser" method="post">
+						<fieldset>
+							<div class="control-group">
+								<label class="control-label">Full name:</label>
+								<div class="controls">
+									<input class="input-xlarge" type="text" value= "<%=params["name"]%>" name="name" />
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">Email:</label>
+								<div class="controls">
+									<input class="input-xlarge" type="text" value= "<%=params["email"]%>" name="email" />
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">Vidactica Password:</label>
+								<div class="controls">
+									<input class="input-xlarge" type="password" name="password" />
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">Re-Enter Password:</label>
+								<div class="controls">
+									<input class="input-xlarge" type="password" name="passwordAgain" />
+								</div>
+							</div>
+							<div class="control-group">
+								<div class="controls">
+									<input class="btn btn-inverse" type="submit" value="Submit" />	
+								</div>
+							</div>
+							
+						</fieldset>
+					</form>
+				</div>
+			</div>
+			<div id="email-signup">
+				<a data-toggle="modal" data-target="#register-modal" href = "#register-modal">
+					Don't have a Facebook account? Sign Up with Email instead
 				</a>
 			</div>
 		</div>

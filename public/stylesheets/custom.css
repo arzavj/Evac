@@ -508,7 +508,7 @@ h2 b.caret-myquestions
 	background-color:#3C619A;
 }
 
-#login-modal .modal-header, #rank-modal .modal-header
+#login-modal .modal-header, #rank-modal .modal-header, #register-modal .modal-header
 {
 	background-color:#4A5C5C;
 }
@@ -520,7 +520,7 @@ h2 b.caret-myquestions
 
 .modal .modal-body
 {
-	height:222px;
+	height:290px;
 }
 
 .navbar-search .search-query
@@ -593,4 +593,21 @@ h2 b.caret-myquestions
 .ui-widget-header a:hover
 {
 	cursor: pointer;
+}
+
+#email-signup a
+{
+	float:left;
+	margin-left:2%;
+	font-size:75%;
+}
+
+#email-signup a:hover
+{
+	text-decoration:underline;
+}
+
+.form-horizontal .control-label
+{
+	padding-top:11px;
 }
