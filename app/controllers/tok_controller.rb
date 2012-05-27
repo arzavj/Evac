@@ -167,7 +167,7 @@ class TokController < ApplicationController
 		q = Question.find(params["qID"])
 		
 		
-		if params["user"].to_i == 1 #ranks the answerer 
+		if params["user"].to_i == 1 #rank the answerer 
 		q.rank = params["rank"]
 		answerer = User.find(q.answer_id)
 		answerer.rank = ((answerer.rank*answerer.sessions) + q.rank)/(answerer.sessions+1)
