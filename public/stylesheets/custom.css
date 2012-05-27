@@ -579,3 +579,8 @@ h2 b.caret-myquestions
 {
 	color:#4A5C5C;
 }
+
+.right-border
+{
+	border-right: 1px solid #DFDFDF;
+}
