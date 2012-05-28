@@ -612,7 +612,12 @@ h2 b.caret-myquestions
 	padding-top:11px;
 }
 
-.divider
+.questions
 {
-	height:2px;
+	font-weight:bold;
+}
+
+li a.question-username
+{
+	font-size:100%;
 }
