@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120510012745) do
+ActiveRecord::Schema.define(:version => 20120528202229) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -70,7 +70,6 @@ ActiveRecord::Schema.define(:version => 20120510012745) do
   add_index "schedules", ["user_id"], :name => "index_schedules_on_user_id"
 
   create_table "users", :force => true do |t|
-    t.string   "name"
     t.string   "email"
     t.string   "password"
     t.string   "current_session"
@@ -82,6 +81,8 @@ ActiveRecord::Schema.define(:version => 20120510012745) do
     t.integer  "ask_rank",        :limit => 8, :default => 0
     t.integer  "ask_sessions",                 :default => 0
     t.string   "verify"
+    t.string   "firstName",                    :default => ""
+    t.string   "lastName",                     :default => ""
   end
 
   add_index "users", ["profile_id"], :name => "index_users_on_profile_id"

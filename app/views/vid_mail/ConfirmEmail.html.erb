@@ -1,4 +1,5 @@
-Hi <%=@user.name%>,
+<%name = @user.firstName + " " + @user.lastName%>
+Hi <%=name%>,
 <br /><br /> 
 Please confirm your email address by clicking on this link:
 <%url = "http://vidactica.heroku.com/fb_registration/NewUser/"%>

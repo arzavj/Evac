@@ -1,7 +1,9 @@
-Hi <%=@answerer.name%>,
+<%answerName = @answerer.firstName + " " + @answerer.lastName%>
+Hi <%=answerName%>,
 <br /><br /> 
 <%url = "http://vidactica.heroku.com"%>
-<a href="<%=url+"/bio?id="+@asker.id.to_s%>"><%=@asker.name%></a> has confirmed the following time to vidact about “<%= @question.question %>:”
+<%askName = @asker.firstName + " " + @asker.lastName%>
+<a href="<%=url+"/bio?id="+@asker.id.to_s%>"><%=askName%></a> has confirmed the following time to vidact about “<%= @question.question %>:”
 <br /><br /> 
 <%= @appointment.appointment%>
 <br /><br /> 

@@ -94,7 +94,8 @@ class FbRegistrationController < ApplicationController
 		end
 		
 		u = User.new
-		u.name = fields["name"]
+		u.firstName = fields["first_name"]
+		u.lastName = fields["last_name"]
 		u.email = fields["email"]
 		u.password = fields["password"]
 		u.profile_id = profile.id
@@ -120,7 +121,7 @@ class FbRegistrationController < ApplicationController
 		end
 		
 		if !ValidCollegeEmail(params["email"])
-			redirect_to :action => "Registration", :efail => true, :name => params["name"], :email => params["email"]
+			redirect_to :action => "Registration", :efail => true, :fname => params["fname"], :lname => params["lname"], :email => params["email"]
 			return
 		end
 		
@@ -137,7 +138,8 @@ class FbRegistrationController < ApplicationController
 		end
 		
 		u = User.new
-		u.name = params["name"]
+		u.firstName = params["fname"]
+		u.lastName = params["lname"]
 		u.email = params["email"]
 		u.password = params["password"]
 		u.profile_id = profile.id
@@ -163,7 +165,7 @@ class FbRegistrationController < ApplicationController
 				redirect_to :action=> "Login", :verify => "1"
 				return
 			end
-			cookies[:name] = u.name
+			cookies[:name] = u.firstName
 			cookies[:email] = u.email
 			cookies[:pass] = u.password
 			redirect_to "/"

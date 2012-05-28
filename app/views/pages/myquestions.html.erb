@@ -35,7 +35,9 @@
 						
 							<li><%=q.question%> <!-- If a pending question, it must have a answerer -->
 								<%if q.answer_id != nil%>
-									with <a href="/bio?id=<%=q.answer_id%>"><%=(User.find(q.answer_id)).name%></a><br>
+									<%user = User.find(q.answer_id)%>
+									<%name = user.firstName + " " + user.lastName%>
+									with <a href="/bio?id=<%=q.answer_id%>"><%=name%></a><br>
 								<%end%>
 							
 							<%if q.schedules.length != 0%>
@@ -69,7 +71,9 @@
 						<!-- DIVIDE OCCURS HERE -->
 						<%@qConfirmed.each do |q|%>
 							<li><%=q.question%>
-									with <a href="/bio?id=<%=q.answer_id%>"><%=(User.find(q.answer_id)).name%></a><br> 
+									<%user = User.find(q.answer_id)%>
+									<%name = user.firstName + " " + user.lastName%>
+									with <a href="/bio?id=<%=q.answer_id%>"><%=name%></a><br> 
 								
 								<%s = Schedule.find(q.schedule_id)%>
 								<br>You are scheduled to meet at <%=s.appointment.localtime.to_s%>
@@ -101,7 +105,9 @@
 					<%end%>
 					<% @qPrev.each do |q| %>
 					<li><%=q.question%><br />
-						with <a href="/bio?id=<%=q.answer_id%>"><%=(User.find(q.answer_id)).name%></a><br>
+						<%user = User.find(q.answer_id)%>
+						<%name = user.firstName + " " + user.lastName%>
+						with <a href="/bio?id=<%=q.answer_id%>"><%=name%></a><br>
 						<div class="notes-exp">
 							<div class="wd-expando notes-collapse">
 								<h2>Notes</h2>
@@ -122,7 +128,9 @@
 				<ul class="nav nav-list">
 					<% @qPrevAnswer.each do |q| %>
 					<li><%=q.question%><br />
-						with <a href="/bio?id=<%=q.user.id%>"><%=q.user.name%></a><br>
+						<%user = q.user%>
+						<%name = user.firstName + " " + user.lastName%>
+						with <a href="/bio?id=<%=q.user.id%>"><%=name%></a><br>
 						<div class="wd-expando notes-collapse">
 							<h2>Notes</h2>
 							<ul>

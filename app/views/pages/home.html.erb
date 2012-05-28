@@ -88,7 +88,7 @@
 											<%break%>
 										<%end%>
 												<% u = q.user %>
-												<% name = u.name %>
+												<% name = u.firstName +  " " + u.lastName %>
 					    						<li style="margin-top:1%;"><b>User:</b> <a id="username" href = "/bio?id=<%=u.id%>" ><%= name %></a><br />
 												<% if q.in_session %> <!--Check if user is waiting -->
 													<% str = "Answer" %>
@@ -133,7 +133,9 @@
 			             client_id=258011107615370&
 			             redirect_uri=http://vidactica.heroku.com/fb_registration/RegisterUser&
 			             fields=[
-							{'name':'name'},
+							{'name':'name', 'view':'prefilled'},
+							{'name':'first_name'},
+							{'name':'last_name'},
 							{'name':'email', 'description':'College Email',  'type':'text'},
 							{'name':'password'}
 							]"
