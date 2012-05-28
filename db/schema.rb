@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120528202229) do
+ActiveRecord::Schema.define(:version => 20120528213057) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(:version => 20120528202229) do
     t.string   "verify"
     t.string   "firstName",                    :default => ""
     t.string   "lastName",                     :default => ""
+    t.integer  "age",                          :default => 0
   end
 
   add_index "users", ["profile_id"], :name => "index_users_on_profile_id"
