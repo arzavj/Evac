@@ -25,7 +25,7 @@
 						<div class="span6">
 					<ul class="nav nav-list right-border">
 						<!-- Questions that have been proposed to discuss -->
-						<li><h3 class="SmallFont">My Posts</h3></li>
+						<li><h3 class="SmallFont">Confirmed Conversations</h3></li>
 						<li class="divider"></li>
 						<%if @qAsked.length == 0 && @qAnswer.length==0%>
 						No upcoming conversations...
@@ -85,7 +85,7 @@
 								<ul class="nav nav-list">
 						<!-- Shows questions that have been picked up as opposed to asked -->
 						<!--HERE IS WHERE THE DIVIDE OCCURS-->
-						<li><h3 class="SmallFont">Other Posts</h3></li>
+						<li><h3 class="SmallFont">Schedule Pending Conversations</h3></li>
 						<li class="divider"></li>
 						<% @qAnswer.each do |q| %>
 						<li><%=q.question%><br />
