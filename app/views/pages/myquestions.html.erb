@@ -45,7 +45,7 @@
 								<form action="/tok/AcceptSchedule" method= "get">
 									<input type = "hidden" name = "qID" value = "<%= q.id %>" />
 									<% q.schedules.each do |appointment|%> <!-- Set up form -->
-										<input type="radio" name="appointment" value="<%=appointment.id%>"/> <%= appointment.appointment.localtime.to_s%> <br />
+										<input type="radio" name="appointment" value="<%=appointment.id%>"/> <%= appointment.appointment.localtime.strftime("%A %B %d %I:%M %p %Z")%> <br />
 									<%end%>
 									<input class="btn" type="submit" value="Schedule" />
 								</form>
@@ -79,7 +79,7 @@
 							
 							
 								<%s = Schedule.find(q.schedule_id)%>
-								<br>You are scheduled to meet at <%=s.appointment.localtime.to_s%>
+								<br>You are scheduled to meet at <%=s.appointment.localtime.strftime("%A %B %d %I:%M %p %Z")%>
 								<%schedule = s.appointment - (5/1440.0)%> <!--5 minutes before hand-->
 								<%if schedule.past?%>
 									<form action="/tok/ResetQuestion" method= "get">
