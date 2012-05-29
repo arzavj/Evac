@@ -1,0 +1,15 @@
+<%askName = @asker.firstName + " " + @asker.lastName%>
+<%answerName = @answer.firstName + " " + @answer.lastName%>
+Hi <%=answerName%>, 
+<br /><br /> 
+<%url = "http://vidactica.heroku.com"%>
+You have sent the following times to vidact with <a href="<%=url+"/bio?id="+@asker.id.to_s%>"><%=askName%></a> about “<%=@question.question%>”:
+<br /><br /> 
+	<%@appointments.each do |appoint|%>
+		<%= appoint.appointment.localtime.strftime("%A %B %d %I:%M %p %Z")%>
+		<br>
+	<%end%>
+<br /><br /> 
+
+Please wait as <a href="<%=url+"/bio?id="+@asker.id.to_s%>"><%=askName%></a> selects a time. 
+	

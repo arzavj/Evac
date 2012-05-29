@@ -35,9 +35,14 @@
 						
 							<li><span class="questions"><%=q.question%></span> <!-- If a pending question, it must have a answerer -->
 								<%if q.answer_id != nil%>
-									<%user = User.find(q.answer_id)%>
+									<%if @user.id == q.user_id%>
+										<%id = q.answer_id%>
+									<%else%>
+										<%id = q.user_id%>
+									<%end%>
+									<%user = User.find(id)%>
 									<%name = user.firstName + " " + user.lastName%>
-									with <a class="question-username" href="/bio?id=<%=name%>"><%=name%></a>
+									with <a class="question-username" href="/bio?id=<%=id%>"><%=name%></a>
 								<%end%>
 								<br />
 							
@@ -73,7 +78,6 @@
 						<!-- DIVIDE OCCURS HERE -->
 						<%@qConfirmed.each do |q|%>
 							<li><span class="questions"><%=q.question%></span>
-									<%puts @user.id == q.user_id%>
 									<%if @user.id == q.user_id%>
 										<%id = q.answer_id%>
 									<%else%>
@@ -88,10 +92,23 @@
 								<br>You are scheduled to meet at <%=s.appointment.localtime.strftime("%A %B %d %I:%M %p %Z")%>
 								<%schedule = s.appointment - (5/1440.0)%> <!--5 minutes before hand-->
 								<%if schedule.past?%>
-									<form action="/tok/ResetQuestion" method= "get">
-										<input type = "hidden" name = "qID" value = "<%= q.id %>" />
-										<input class="btn" type="submit" value="Enter Room For Appointment" />
-									</form>							
+									<%if @user.id == q.user_id%>
+										<form action="/tok/ResetQuestion" method= "get">
+											<input type = "hidden" name = "qID" value = "<%= q.id %>" />
+											<input class="btn" type="submit" value="Enter Room For Appointment" />
+										</form>			
+									<%else%>
+										<%if q.in_session == false%>
+											<br>Your conversation partner is not here yet...
+										<%else%><!-- can only enter when the asker enters the chat room -->
+											<form action="/tok/GiveChatRoom" method= "get">
+												<input type = "hidden" name = "qID" value = "<%= q.id %>" />
+												<input type = "hidden" name = "askID" value = "<%= q.user.id %>" />
+												<input type = "hidden" name = "ignore" value = "1" />
+												<input class="btn" type="submit" value="Your Conversation is Ready" />
+											</form>
+										<%end%>
+									<%end%>				
 								<%end%>	
 								
 								<form action="/tok/ScheduleAppointment" method= "get"> <!-- Ability to propose a schedule -->
@@ -110,7 +127,7 @@
 	</div>
 	<div class="tab-pane fade" id="past">
 		<ul class="nav nav-list">
-					<%if @qPrev.length == 0%>
+					<%if @qPrev.length == 0 && @qPrevAnswer.length == 0%>
 						No past conversations...
 					<%end%>
 					<% @qPrev.each do |q| %>
@@ -118,8 +135,6 @@
 						<%user = User.find(q.answer_id)%>
 						<%name = user.firstName + " " + user.lastName%>
 						with <a class="question-username" href="/bio?id=<%=q.answer_id%>"><%=name%></a><br>
-					<li><div class="questions"><%=q.question%></div>
-						with <a class="question-username" href="/bio?id=<%=q.answer_id%>"><%=(User.find(q.answer_id)).name%></a><br>
 						<div class="notes-exp">
 							<div class="wd-expando notes-collapse">
 								<h2>Notes</h2>
@@ -139,10 +154,10 @@
 
 				<ul class="nav nav-list">
 					<% @qPrevAnswer.each do |q| %>
-					<li><%=q.question%><br />
+					<li><span class="questions"><%=q.question%></span>
 						<%user = q.user%>
 						<%name = user.firstName + " " + user.lastName%>
-						with <a href="/bio?id=<%=q.user.id%>"><%=name%></a><br>
+						with <a class="question-username" href="/bio?id=<%=q.user.id%>"><%=name%></a><br>
 						<div class="wd-expando notes-collapse">
 							<h2>Notes</h2>
 							<ul>
