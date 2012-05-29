@@ -136,7 +136,6 @@
 							{'name':'name', 'view':'prefilled'},
 							{'name':'first_name'},
 							{'name':'last_name'},
-							{'name': 'age'},
 							{'name':'email', 'description':'College Email',  'type':'text'},
 							{'name':'password'}
 							]"
@@ -163,17 +162,26 @@
 					<form class="well form-horizontal" action="SaveUser" method="post">
 						<fieldset>
 							<div class="control-group">
-								<label class="control-label">Full name:</label>
+								<label class="control-label">First Name: </label>
 								<div class="controls">
-									<input class="input-xlarge" type="text" value= "<%=params["name"]%>" name="name" />
+									<input type="text" value= "<%=params["fname"]%>" name="fname" />
 								</div>
 							</div>
+							
+							<div class="control-group">
+								<label class="control-label">Last Name: </label>
+								<div class="controls">
+									<input type="text" value= "<%=params["lname"]%>" name="lname" />
+								</div>
+							</div>
+
 							<div class="control-group">
 								<label class="control-label">Email:</label>
 								<div class="controls">
 									<input class="input-xlarge" type="text" value= "<%=params["email"]%>" name="email" />
 								</div>
 							</div>
+							
 							<div class="control-group">
 								<label class="control-label">Vidactica Password:</label>
 								<div class="controls">
