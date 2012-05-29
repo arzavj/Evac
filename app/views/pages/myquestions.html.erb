@@ -41,7 +41,7 @@
 								<%end%>
 								<br />
 							
-							<%if q.schedules.length != 0%>
+							<%if q.schedules.any? && q.schedules[0].user_id != @user.id %>
 								<form action="/tok/AcceptSchedule" method= "get">
 									<input type = "hidden" name = "qID" value = "<%= q.id %>" />
 									<% q.schedules.each do |appointment|%> <!-- Set up form -->
@@ -55,7 +55,7 @@
 									<input class="btn" type="submit" value="Propose a Schedule" />
 								</form>
 							<%else%>
-								No one has scheduled this conversation...
+								Waiting for conversation to be  scheduled...
 							<%end%>	
 							</li>
 							<li class="divider"></li>
