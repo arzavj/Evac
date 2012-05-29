@@ -37,7 +37,7 @@
 								<%if q.answer_id != nil%>
 									<%user = User.find(q.answer_id)%>
 									<%name = user.firstName + " " + user.lastName%>
-									with <a class="question-username" href="/bio?id=<%=name%>"><%=(User.find(q.answer_id)).name%></a>
+									with <a class="question-username" href="/bio?id=<%=name%>"><%=name%></a>
 								<%end%>
 								<br />
 							
