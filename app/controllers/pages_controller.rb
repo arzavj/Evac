@@ -68,11 +68,16 @@ class PagesController < ApplicationController
 		@qAsked = Question.where({:user_id => user.id, :was_answered => false})
 		@qAnswer = Question.where({:answer_id => user.id, :was_answered => false})
 			
-		@qPending = []
+		qPendAnswer = []
+		qPendNoAnswer = []
 		@qConfirmed = []
 		@qAsked.each do |q|
 			if q.schedule_id == -1
-				@qPending << q
+				if q.answer_id == nil
+					qPendNoAnswer << q
+				else
+					qPendAnswer << q
+				end
 			else
 				@qConfirmed << q
 			end
@@ -80,11 +85,17 @@ class PagesController < ApplicationController
 		
 		@qAnswer.each do |q|
 			if q.schedule_id == -1
-				@qPending << q
+				if q.answer_id == nil
+					qPendNoAnswer << q
 				else
+					qPendAnswer << q
+				end
+			else
 				@qConfirmed << q
 			end
 		end
+		
+		@qPending = qPendAnswer + qPendNoAnswer
 		
 		@qPrev = Question.where({:user_id => user.id, :was_answered => true})
 		@qPrevAnswer = Question.where({:answer_id => user.id, :was_answered => true})
