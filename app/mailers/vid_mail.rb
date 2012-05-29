@@ -41,6 +41,35 @@ class VidMail < ActionMailer::Base
 		
 		mail(:to => @answerer.email, :subject => "Schedule Confirmed")
 	end
+	
+	def ConfirmAppointmentScheduled (qID, uID)
+		@question = Question.find(qID)
+		if @question.user.id == uID
+			@asker = User.find(@question.answer_id)
+			@answer = User.find(@question.user.id)
+			else
+			@asker = User.find(@question.user.id)
+			@answer = User.find(@question.answer_id)
+		end
+		
+		@appointments = @question.schedules
+		
+		mail(:to => @asker.email, :subject => "Schedule Sent")
+	end
+	
+	def ConfirmAppointmentConfirmed (qID, uID)
+		@question = Question.find(qID)
+		if @question.user.id == uID
+			@answerer = User.find(@question.answer_id)
+			@asker = User.find(@question.user.id)
+			else
+			@answerer = User.find(@question.user.id)
+			@asker = User.find(@question.answer_id)
+		end
+		@appointment = Schedule.find(@question.schedule_id)
+		
+		mail(:to => @answerer.email, :subject => "Schedule Confirmed")
+	end
 
 
     def Reminder

@@ -19,6 +19,7 @@ class TokController < ApplicationController
 		u = User.where({:email => cookies[:email], :password => cookies[:pass]})
 		
 		VidMail.AppointmentConfirmed(params["qID"], u[0].id).deliver #send email
+		VidMail.ConfirmAppointmentConfirmed(params["qID"], u[0].id).deliver #send email
 		
 		redirect_to "/myquestions?sent=1"
 	end
@@ -110,9 +111,8 @@ class TokController < ApplicationController
 			end
 		end
 		
-	
-		#TODO change email
 		VidMail.AppointmentScheduled(params["qID"], user).deliver
+		VidMail.ConfirmAppointmentScheduled(params["qID"], user).deliver
 		
 		redirect_to :controller => "pages", :action => "home", :sent => "1"
 	end
