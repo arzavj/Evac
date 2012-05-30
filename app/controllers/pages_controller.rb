@@ -145,6 +145,9 @@ class PagesController < ApplicationController
         end
 		profile.blurb = params[:profile][:blurb]
 		profile.save
+		
+		u.age = params[:profile][:age]
+		u.save
 
 		redirect_to "/bio"
 	end

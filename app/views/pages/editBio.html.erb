@@ -10,6 +10,7 @@
 		<div><%= form.file_field (:picture) %></div>
 		<h4>Tell others about yourself:</h4>
 		<div><%= form.text_area :blurb, :value => profile.blurb %></div>
+		<div><%= number_field_tag :age, :value => u.age %></div>
 		<div><%= submit_tag "Submit", :class => "btn btn-inverse" %></div>
 		<% end %>
 	</div>
