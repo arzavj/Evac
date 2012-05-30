@@ -52,12 +52,12 @@
 									<% q.schedules.each do |appointment|%> <!-- Set up form -->
 										<input type="radio" name="appointment" value="<%=appointment.id%>"/> <%= appointment.appointment.localtime.strftime("%A %B %d %I:%M %p %Z")%> <br />
 									<%end%>
-									<input class="btn" type="submit" value="Schedule" />
+									<input class="btn" type="submit" value="Confirm Schedule" />
 								</form>
 							
 								<form action="/tok/ScheduleAppointment" method= "get"> <!-- Ability to propose a schedule -->
 									<input type = "hidden" name = "qID" value = "<%= q.id %>" />
-									<input class="btn" type="submit" value="Propose a Schedule" />
+									<input class="btn" type="submit" value="Propose Alternate Schedule" />
 								</form>
 							<%else%>
 								Waiting for conversation to be scheduled...
@@ -113,7 +113,7 @@
 								
 								<form action="/tok/ScheduleAppointment" method= "get"> <!-- Ability to propose a schedule -->
 									<input type = "hidden" name = "qID" value = "<%= q.id %>" />
-									<input class="btn" type="submit" value="Propose a Schedule" />
+									<input class="btn" type="submit" value="Propose Alternate Schedule" />
 								</form>	
 							</li>
 							<li class="divider"></li>
