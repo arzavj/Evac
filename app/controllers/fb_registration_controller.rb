@@ -16,13 +16,9 @@ class FbRegistrationController < ApplicationController
 			return false
 		end
 		
-		dot = array[1].split('.')
+		#dot = array[1].split('.')
 		
-		if dot.length != 2
-			return false
-		end
-		
-		college = dot[0]
+		#college = dot[0]
 		
 		#@@colleges.each do |c|
 		#	if c.eql?(college)
