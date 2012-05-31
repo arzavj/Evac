@@ -153,12 +153,12 @@ class FbRegistrationController < ApplicationController
 		
 		u = User.where({:email => email, :password => pass})
 		if u.length == 0
-			redirect_to :action => "Login", :fail => "1"
+			redirect_to :controller => "pages", :action => "home", :fail => "1"
 			return
 		else
 			u = u[0]
 			if !u.verify.eql?("Clear")
-				redirect_to :action=> "Login", :verify => "1"
+				redirect_to :controller => "pages", :action => "home", :verify => "1"
 				return
 			end
 			cookies[:name] = u.firstName
