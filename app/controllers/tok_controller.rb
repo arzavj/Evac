@@ -80,7 +80,7 @@ class TokController < ApplicationController
 			question.save
 		end
 		
-		puts question.answer_id
+		question.schedule_id == -1
 		
 		if question.schedules.any? #if there are existing schedules
 			user = question.schedules[0].user_id
@@ -118,9 +118,6 @@ class TokController < ApplicationController
 	end
 	
 	def ScheduleAppointment
-		q = Question.find(params["qID"])
-		q.schedule_id = -1
-		q.save
 	end
 		
   def GiveChatRoom
