@@ -1,20 +1,20 @@
-<h1><%=Question.find(params["qID"]).question%></h1>
-
 <div class="transparent-background">
-<center>
-  <div id="asker"></div>
-  <div id="answer"></div>
-</center>
+	<div class="body-wrapper">
+		<h3 class="SmallFont" style="padding-top:10px;"><%=Question.find(params["qID"]).question%></h3>
+		<center>
+  			<div id="asker"></div>
+  			<div id="answer"></div>
+		</center>
 
-<center>
-		<a id="leaveButton" href="/">
-			<button class="btn">Leave Session</button> 
-		</a>
-		
-</center>
+		<center>
+			<a id="leaveButton" href="/">
+				<button class="btn">Leave Session</button> 
+			</a>
+		</center>
 
-<center>
-	<div class="SmallFont">Notes:</div>
-	<textarea id="notes" COLS=100 ROWS=10></textarea>
-</center>
+		<center>
+			<div class="SmallFont">Notes:</div>
+			<textarea id="notes" COLS=100 ROWS=10></textarea>
+		</center>
+	</div>
 </div>

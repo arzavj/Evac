@@ -28,10 +28,9 @@
 			url: '/tok/answerPastQuestion',
 			data: query
 			});
-		
 			return "Thank You For Answering";
 	}
-
+	
 	
     var publisher;
  
@@ -64,6 +63,13 @@
 		leaveButton.setAttribute("data-toggle", "modal");
 		leaveButton.setAttribute("data-target", "#rank-modal");
 		leaveButton.setAttribute("href", "#rank-modal");
+		var aTags = document.getElementsByTagName("a");
+		for(var i = 0; i<aTags.length;i++)
+		{
+			aTags[i].setAttribute("data-toggle", "modal");
+			aTags[i].setAttribute("data-target", "#rank-modal");
+			aTags[i].setAttribute("href", "#rank-modal");
+		}
 	  return;
       }
     }    
@@ -85,7 +91,6 @@
 			<input type="hidden" name = "user" value="0"/>
 			<input class="btn" type="submit" value="Submit" />
 		</form>
-		<div id="star"></div>
 	</div>
 </div>
 
