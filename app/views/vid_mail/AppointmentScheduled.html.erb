@@ -1,7 +1,7 @@
 <%askName = @asker.firstName + " " + @asker.lastName%>
 Hi <%=askName%>, 
 <br /><br /> 
-<%url = "http://vidactica.heroku.com"%>
+<%url = "http://vidactica.com"%>
 <%answerName = @answer.firstName + " " + @answer.lastName%>
 <a href="<%=url+"/bio?id="+@answer.id.to_s%>"><%=answerName%></a> wants to vidact with you about “<%=@question.question%>” at the following times:
 <br /><br /> 
