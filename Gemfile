@@ -7,12 +7,13 @@ gem 'rails', '3.0.11'
 
 #gem 'mysql'
 gem 'mysql2' , '0.2.7'
-gem 'pg'
+#gem 'pg'
 gem 'facebook_registration'
 gem 'whenever'
 
 # gem "paperclip", "~> 3.0"
 gem 'tzinfo', '0.3.33'
+gem 'rake', '0.8.7'
 # Use unicorn as the web server
 # gem 'unicorn'
 
