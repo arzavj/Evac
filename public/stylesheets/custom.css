@@ -523,6 +523,11 @@ h2 b.caret-myquestions
 	height:290px;
 }
 
+#register-modal .modal-body
+{
+	height:340px;
+}
+
 .navbar-search .search-query
 {
 	color: #999999;
