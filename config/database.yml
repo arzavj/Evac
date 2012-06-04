@@ -9,7 +9,6 @@ development:
   pool: 5
   username: vidactica
   password: business
-  host: localhost
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -22,6 +21,10 @@ test:
 
 production:
   adapter: mysql2
-  database: db/production.mysql
+  encoding: utf8
+  reconnect: true
+  database: vidactic_vidactica
   pool: 5
-  timeout: 5000
+  username: vidactic_video
+  password: Vidactica221!
+  socket: /tmp/mysql.sock
