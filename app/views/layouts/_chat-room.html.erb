@@ -1,6 +1,14 @@
 <div class="transparent-background">
 	<div class="body-wrapper">
-		<h3 class="SmallFont" style="padding-top:10px;"><%=Question.find(params["qID"]).question%></h3>
+		<%q = Question.find(params["qID"])%>
+		<%if @user.id == q.user_id%>
+			<%id = q.answer_id%>
+		<%else%>
+			<%id = q.user_id%>
+		<%end%>
+		<%user = User.find(id)%>
+		<%name = user.firstName + " " + user.lastName%>
+		<h3 class="SmallFont" style="padding-top:10px;"><a href="/bio?id=<%=id%>"><%=name%></a>: <%=q.question%></h3>
 		<center>
   			<div id="asker"></div>
   			<div id="answer"></div>

@@ -8,9 +8,9 @@
 	<h4 style="padding-top:3%;">Profile Picture:</h4>
 	<%= form_for :profile, :url => "/pages/submitProfile", :html => { :multipart => true } do |form| %>
 		<div><%= form.file_field (:picture) %></div>
+		<div><h4>Age:</h4> <%= number_field_tag :age, :value => u.age %></div>
 		<h4>Tell others about yourself:</h4>
 		<div><%= form.text_area :blurb, :value => profile.blurb %></div>
-		<div><%= number_field_tag :age, :value => u.age %></div>
 		<div><%= submit_tag "Submit", :class => "btn btn-inverse" %></div>
 		<% end %>
 	</div>
