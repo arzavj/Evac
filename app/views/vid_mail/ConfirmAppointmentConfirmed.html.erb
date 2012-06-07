@@ -3,7 +3,7 @@
 Hi <%=askName%>,
 <br /><br /> 
 <%url = "http://vidactica.com"%>
-<a href="<%=url+"/bio?id="+@asker.id.to_s%>"><%=askName%></a> has confirmed the following time to vidact about “<%= @question.question %>:”
+YOU have confirmed the following time to vidact about “<%= @question.question %>:”
 <br /><br /> 
 <%= @appointment.appointment.localtime.strftime("%A %B %d %I:%M %p %Z")%>
 <br /><br /> 
