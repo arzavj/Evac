@@ -48,7 +48,7 @@ header h1
 header .row-fluid
 {
 	position:relative;
-	top: 1.2cm;
+	top: 23px;
 }
 
 section {
@@ -508,7 +508,7 @@ h2 b.caret-myquestions
 	background-color:#3C619A;
 }
 
-#login-modal .modal-header, #rank-modal .modal-header, #register-modal .modal-header
+#login-modal .modal-header, #rank-modal .modal-header, #register-modal .modal-header, #feedback-modal .modal-header
 {
 	background-color:#4A5C5C;
 }
@@ -526,6 +526,11 @@ h2 b.caret-myquestions
 #register-modal .modal-body
 {
 	height:340px;
+}
+
+#feedback-modal .modal-body
+{
+	height:370px;
 }
 
 .navbar-search .search-query
@@ -630,4 +635,10 @@ li a.question-username
 .margin-bottom-5
 {
 	margin-bottom:5px;
+}
+
+header #feedback .body-wrapper .row-fluid
+{
+	position:relative;
+	top:5px;
 }

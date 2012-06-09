@@ -1,4 +1,56 @@
 <header>
+	<div id="feedback">
+		<div class="body-wrapper">
+			<div class="row-fluid">
+				<div class="span12">
+					<a data-toggle="modal" data-target="#feedback-modal" href = "#feedback-modal">
+						<img src="/images/feedback.png" />
+					</a>
+					<div class="modal hide fade" id="feedback-modal">
+						<div class="modal-header">
+							<button class="close" data-dismiss="modal">&times;</button>
+							<h3>Feedback</h3>
+						</div>
+						<div class="modal-body">
+							<form class="well form-horizontal" action="" method="">
+								<fieldset>
+									<div class="control-group">
+										<label class="control-label">First Name: </label>
+										<div class="controls">
+											<input type="text" value= "<%=params["fname"]%>" name="fname" />
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label">Last Name: </label>
+										<div class="controls">
+											<input type="text" value= "<%=params["lname"]%>" name="lname" />
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label">Email: </label>
+										<div class="controls">
+											<input type="text" value= "<%=params["fname"]%>" name="fname" />
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label" for="textarea">Comments: </label>
+										<div class="controls">
+									          <textarea class="input-xlarge" id="textarea" rows="5"></textarea>
+						            	</div>
+									</div>
+									<div class="control-group">
+										<div class="controls">
+											<input class="btn btn-inverse" type="submit" value="Send Feedback" />	
+										</div>
+									</div>
+								</fieldset>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div id="fb-root"></div>
 	<script>(function(d, s, id) {
 		var js, fjs = d.getElementsByTagName(s)[0];
