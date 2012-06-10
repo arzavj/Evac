@@ -71,6 +71,7 @@ section h1 {
 {
 	float: left;
 	margin-top: 12%;
+	width:100%;
 	/*margin-left: 11%;*/
 }
 
@@ -646,4 +647,11 @@ header #feedback .body-wrapper .row-fluid
 .fredoka
 {
 	font-family: 'Fredoka One', cursive;
+	font-size:180%;
+	line-height:135%;
+}
+
+#home-header
+{
+	margin-left:2%;
 }
