@@ -101,6 +101,10 @@ class PagesController < ApplicationController
 		@qPrevAnswer = Question.where({:answer_id => user.id, :was_answered => true})
 		@user = user
 	end
+	
+	def feedback
+		VidMail.Feedback(params["fname"], params["lname"], params["comment"]).deliver
+	end
 
 	def submitQuestion
 

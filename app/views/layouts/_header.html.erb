@@ -12,7 +12,7 @@
 							<h3>Feedback</h3>
 						</div>
 						<div class="modal-body">
-							<form class="well form-horizontal" action="" method="">
+							<form class="well form-horizontal" action="/pages/feedback" method="POST">
 								<fieldset>
 									<div class="control-group">
 										<label class="control-label">First Name: </label>
@@ -27,15 +27,9 @@
 										</div>
 									</div>
 									<div class="control-group">
-										<label class="control-label">Email: </label>
-										<div class="controls">
-											<input type="text" value= "<%=params["fname"]%>" name="fname" />
-										</div>
-									</div>
-									<div class="control-group">
 										<label class="control-label" for="textarea">Comments: </label>
 										<div class="controls">
-									          <textarea class="input-xlarge" id="textarea" rows="5"></textarea>
+									          <textarea class="input-xlarge" id="textarea" name"comment" rows="5"></textarea>
 						            	</div>
 									</div>
 									<div class="control-group">
