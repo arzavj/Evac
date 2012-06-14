@@ -135,6 +135,7 @@ class TokController < ApplicationController
 		
 		#q.destroy
 		
+		@user = u
 		@sessionID = u.current_session
 		
 		@token = $opentok.generate_token :session_id => @sessionID
