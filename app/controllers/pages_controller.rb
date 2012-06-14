@@ -104,11 +104,10 @@ class PagesController < ApplicationController
 	
 	def feedback
 		VidMail.Feedback(params["fname"], params["lname"], params["comment"]).deliver
+		redirect_to "/"
 	end
 
 	def submitQuestion
-
-		
 		q = Question.new
 		u = User.where({:email => cookies[:email], :password => cookies[:pass]})
 
