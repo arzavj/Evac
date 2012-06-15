@@ -1,5 +1,5 @@
 ActionMailer::Base.smtp_settings = {
-    :address => "mail.vidactica.com", 
+    :address => "vidactica.com", 
 	#:address => "smtp.gmail.com",
     :port => 25,
 	#:port => 587,
@@ -7,8 +7,9 @@ ActionMailer::Base.smtp_settings = {
     :user_name => "noreply@vidactica.com", 
 	#user_name => "noreplyvidactica",
 	#:password => "g%T^)wnA2ws8/Y+-$",
-	:password => "jS;v0Uf/#@oLKiE<y",
+	:password => "%pN5AJUf@mG/0r;mB",
+	:openssl_verify_mode => 'none',
 	#:password => "vidactica321",
-	#:authentication       => "plain",
+	:authentication       => "plain"
 	#:enable_starttls_auto => true
 }
