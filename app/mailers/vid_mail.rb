@@ -45,7 +45,7 @@ class VidMail < ActionMailer::Base
 	def Feedback(fname, lname, comment)
 		@comment = comment
 		puts "Got Here"
-		puts comment
+		puts commet
 		mail(:to => "feedback@vidactica.com", :subject => "Feedback from " + fname + " " + lname)
 	end
 	
