@@ -40,9 +40,10 @@ class TokController < ApplicationController
 
 	@token = $opentok.generate_token :session_id => @sessionID
 
-	u.current_session = @sessionID
-	u.save
-
+	@q = Question.find(params["qID"])
+	@q.current_session = @sessionID
+	@q.save
+	  
 	@user = u
 	#@sessionID = "1_MX4xMjMyMDgxfjcyLjUuMTY3LjE0OH4yMDEyLTAzLTI3IDE4OjUwOjAxLjg0MjcxNCswMDowMH4wLjQzMjU4MjQyMDk5Mn4"
 	#@token = "devtoken"
@@ -136,7 +137,7 @@ class TokController < ApplicationController
 		#q.destroy
 		
 		@user = u
-		@sessionID = u.current_session
+		@sessionID = q.current_session
 		
 		@token = $opentok.generate_token :session_id => @sessionID
 		
