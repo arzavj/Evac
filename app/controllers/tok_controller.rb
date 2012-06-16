@@ -97,19 +97,21 @@ class TokController < ApplicationController
 			question.answer_id = User.where({:email => cookies[:email], :password => cookies[:pass]})[0].id
 		end
 		
-		question.schedule_id == -1
+		question.schedule_id = -1
 		question.save
 		
-		if question.schedules.any? #if there are existing schedules
-			user = question.schedules[0].user_id
-			if user == question.user.id
-				user = question.answer_id
-			else
-				user = question.user.id
-			end
-		else
-			user = question.answer_id
-		end
+		user = User.where({:email => cookies[:email], :password => cookies[:pass]})[0].id
+		
+		#if question.schedules.any? #if there are existing schedules
+		#	user = question.schedules[0].user_id
+		#	if user == question.user.id
+		#		user = question.answer_id
+		#	else
+		#		user = question.user.id
+		#	end
+		#else
+		#	user = question.answer_id
+		#end
 		
 		question.schedules.each do |appointment|
 			appointment.destroy
