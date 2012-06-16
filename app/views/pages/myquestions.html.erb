@@ -10,6 +10,32 @@
 	</script>
 <%end%>
 
+<script>
+	function checkForm()
+	{
+		var radios = document.getElementsByTagName('appointment');
+		var value = true;
+		for (var i = 0; i < radios.length; i++) {
+			if (radios[i].type === 'radio' && radios[i].checked) {
+				value = false;
+				break;
+			}
+		}
+
+		
+		if (value)
+		{
+			alert("Please select one schedule");
+			return false;
+		}
+		else
+		{
+			f.submit();
+			return true;
+		}
+	}
+	</script>
+
 <div class="transparent-background">
 	<div class="body-wrapper">
 		<div class="tabbable" id="myconversations">
@@ -47,7 +73,7 @@
 								<br />
 								
 							<%if q.schedules.any? && q.schedules[0].user_id != @user.id %>
-								<form class="margin-bottom-5" action="/tok/AcceptSchedule" method= "get">
+								<form class="margin-bottom-5" action="/tok/AcceptSchedule" method= "get" onSubmit="return checkForm();">
 									<input type = "hidden" name = "qID" value = "<%= q.id %>" />
 									<% q.schedules.each do |appointment|%> <!-- Set up form -->
 										<input type="radio" name="appointment" value="<%=appointment.id%>"/> <%= appointment.appointment.localtime.strftime("%A %B %d %I:%M %p %Z")%> <br />
@@ -69,13 +95,13 @@
 						</ul>
 						</div>
 						
-						
+						<!-- DIVIDE OCCURS HERE -->
 						
 						<div class="span6">
 							<ul class="nav nav-list">
 								<li><h3 class="SmallFont">Confirmed Conversations</h3></li>
 								<li class="divider"></li>
-						<!-- DIVIDE OCCURS HERE -->
+						
 						<%@qConfirmed.each do |q|%>
 							<li><span class="questions"><%=q.question%></span>
 									<%if @user.id == q.user_id%>
