@@ -123,21 +123,21 @@ class TokController < ApplicationController
 		
   def GiveChatRoom
 	@numValues = 5
-	q = Question.find(params["qID"])
+	@q = Question.find(params["qID"])
 	  
-	if q.in_session == true #still in session
+	if @q.in_session == true #still in session
 		u = User.where({:email => cookies[:email], :password => cookies[:pass]})
 		u = u[0]
-		q.answer_id = u.id
+		@q.answer_id = u.id
 		
-		q.save
+		@q.save
 		
-		u = q.user	
+		u = @q.user	
 		
 		#q.destroy
 		
 		@user = u
-		@sessionID = q.current_session
+		@sessionID = @q.current_session
 		
 		@token = $opentok.generate_token :session_id => @sessionID
 		
