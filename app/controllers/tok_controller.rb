@@ -12,7 +12,7 @@ class TokController < ApplicationController
 	def AcceptSchedule
 		question = Question.find(params["qID"])
 		
-		question.schedule_id = params["appointment"]
+		question.schedule_id = params["appointment" + params["count"]]
 		
 		question.save
 		
@@ -24,30 +24,47 @@ class TokController < ApplicationController
 		redirect_to "/myquestions?sent=1"
 	end
 	
+	def EnterSession	
+		question = Question.find(params["qID"])
+		
+		if !question.in_session
+			session = $opentok.create_session request.remote_addr
+			question.current_session = session.session_id 
+		end
+		
+		question.in_session = true
+		question.save
+	
+		if params["uID"].to_i == question.user_id
+			redirect_to :action => "AskChatRoom", :qID => params["qID"]
+		else
+			redirect_to :action => "GiveChatRoom", :qID => params["qID"]
+		end
+	end
+	
   def AskChatRoom
 	u = User.where({:email => cookies[:email], :password => cookies[:pass]})
 
-	if u.length == 0
-		redirect_to "/ask"
-		return
-	end
-
 	u = u[0]
 	
-	session = $opentok.create_session request.remote_addr 
+	@q = Question.find(params["qID"])  
 	
-	@sessionID = session.session_id
+	@sessionID = @q.current_session
 
 	@token = $opentok.generate_token :session_id => @sessionID
-
-	@q = Question.find(params["qID"])
-	@q.current_session = @sessionID
-	@q.save
 	  
 	@user = u
-	#@sessionID = "1_MX4xMjMyMDgxfjcyLjUuMTY3LjE0OH4yMDEyLTAzLTI3IDE4OjUwOjAxLjg0MjcxNCswMDowMH4wLjQzMjU4MjQyMDk5Mn4"
-	#@token = "devtoken"
   end
+	
+	def GiveChatRoom
+		@q = Question.find(params["qID"])
+			
+		@user = @q.user	
+		@sessionID = @q.current_session
+			
+		@token = $opentok.generate_token :session_id => @sessionID
+
+	end
 	
 	def pastQuestion
 		q = Question.find(params["qID"])
@@ -78,10 +95,10 @@ class TokController < ApplicationController
 		
 		if question.answer_id == nil
 			question.answer_id = User.where({:email => cookies[:email], :password => cookies[:pass]})[0].id
-			question.save
 		end
 		
 		question.schedule_id == -1
+		question.save
 		
 		if question.schedules.any? #if there are existing schedules
 			user = question.schedules[0].user_id
@@ -120,43 +137,6 @@ class TokController < ApplicationController
 	
 	def ScheduleAppointment
 	end
-		
-  def GiveChatRoom
-	@numValues = 5
-	@q = Question.find(params["qID"])
-	  
-	if @q.in_session == true #still in session
-		u = User.where({:email => cookies[:email], :password => cookies[:pass]})
-		u = u[0]
-		@q.answer_id = u.id
-		
-		@q.save
-		
-		u = @q.user	
-		
-		#q.destroy
-		
-		@user = u
-		@sessionID = @q.current_session
-		
-		@token = $opentok.generate_token :session_id => @sessionID
-		
-	else #if offline
-		if params["ignore"]
-			redirect_to :controller => "pages", :action => myquestions, :offline => "1"
-			return
-		end
-		
-		u = User.where({:email => cookies[:email], :password => cookies[:pass]})
-		u = u[0]
-		redirect_to :action=> "ScheduleAppointment", :qID => params["qID"]
-	end
-	  
-
-
-	#@sessionID = "1_MX4xMjMyMDgxfjcyLjUuMTY3LjE0OH4yMDEyLTAzLTI3IDE4OjUwOjAxLjg0MjcxNCswMDowMH4wLjQzMjU4MjQyMDk5Mn4"
-	#@token = "devtoken"
-  end
     
     def SetRank
 		@numValues = 5

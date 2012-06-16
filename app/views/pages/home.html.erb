@@ -110,7 +110,7 @@
 												<% else %>
 													<% str = "Schedule Appointment" %>
 												<% end %>
-											<%= q.question%><form action="/tok/GiveChatRoom" method= "get"><input type = "hidden" name = "qID" value = "<%= q.id %>" /><input type = "hidden" name = "askID" value = "<%= u.id %>" /><input type = "hidden" name = "answer" value = <%= q.in_session %> /><input class="btn" type="submit" value=<%=str%> /></form>
+											<%= q.question%><form action="/tok/ScheduleAppointment" method= "get"><input type = "hidden" name = "qID" value = "<%= q.id %>" /><input class="btn" type="submit" value=<%=str%> /></form>
 												</li>
 												<li class="divider"></li>
 												<%counter = counter + 1%>
