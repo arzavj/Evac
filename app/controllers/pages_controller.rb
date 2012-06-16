@@ -13,7 +13,10 @@ class PagesController < ApplicationController
 	  end
 	  
 	  @questions = Question.where(:category => @cat)
-
+	  @user = User.where({:email => cookies[:email], :password => cookies[:pass]})
+	  if @user.length > 0
+		  @user = @user[0]
+	  end
   end
 
   def bio
