@@ -119,7 +119,7 @@
 							
 								<%s = Schedule.find(q.schedule_id)%>
 								<br>You are scheduled to meet at <%=s.appointment.localtime.strftime("%A %B %d %I:%M %p %Z")%>
-								<%schedule = s.appointment - (5.minutes)%> <!--5 minutes before hand-->
+								<%schedule = s.appointment.localtime - (5.minutes)%> <!--5 minutes before hand-->
 								<%if schedule.past?%>
 									<%if q.in_session == false%>
 										<%str = "Enter Room For Appointment"%>

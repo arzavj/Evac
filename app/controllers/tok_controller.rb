@@ -43,9 +43,6 @@ class TokController < ApplicationController
 	end
 	
   def AskChatRoom
-	u = User.where({:email => cookies[:email], :password => cookies[:pass]})
-
-	u = u[0]
 	
 	@q = Question.find(params["qID"])  
 	
@@ -53,13 +50,13 @@ class TokController < ApplicationController
 
 	@token = $opentok.generate_token :session_id => @sessionID
 	  
-	@user = u
+	@user = User.where({:email => cookies[:email], :password => cookies[:pass]})[0]
   end
 	
 	def GiveChatRoom
 		@q = Question.find(params["qID"])
 			
-		@user = @q.user	
+		@user = User.where({:email => cookies[:email], :password => cookies[:pass]})[0]	
 		@sessionID = @q.current_session
 			
 		@token = $opentok.generate_token :session_id => @sessionID
@@ -68,7 +65,7 @@ class TokController < ApplicationController
 	
 	def pastQuestion
 		q = Question.find(params["qID"])
-		
+
 		q.notes = params["notes"]
 		q.was_answered = true
 		
@@ -101,17 +98,6 @@ class TokController < ApplicationController
 		question.save
 		
 		user = User.where({:email => cookies[:email], :password => cookies[:pass]})[0].id
-		
-		#if question.schedules.any? #if there are existing schedules
-		#	user = question.schedules[0].user_id
-		#	if user == question.user.id
-		#		user = question.answer_id
-		#	else
-		#		user = question.user.id
-		#	end
-		#else
-		#	user = question.answer_id
-		#end
 		
 		question.schedules.each do |appointment|
 			appointment.destroy
