@@ -46,6 +46,9 @@ class PagesController < ApplicationController
       
   def editBio
     @title = "Edit"
+	u = User.where({:email => cookies[:email], :password => cookies[:pass]})
+	@user = u[0]
+	@profile = @user.profile
   end
   
   def ask
@@ -152,7 +155,7 @@ class PagesController < ApplicationController
 		profile.blurb = params[:profile][:blurb]
 		profile.save
 		
-		u.age = params[:profile][:age]
+		u.age = params[:age].to_i
 		u.save
 
 		redirect_to "/bio"
