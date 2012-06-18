@@ -102,18 +102,21 @@
 										<%if counter > 5%> <!-- Top 5 -->
 											<%break%>
 										<%end%>
-												<% u = q.user %>
-												<% name = u.firstName +  " " + u.lastName %>
-					    						<li style="margin-top:1%;"><b>User:</b> <a id="username" href = "/bio?id=<%=u.id%>" ><%= name %></a><br />
-												<% if q.in_session %> <!--Check if user is waiting -->
-													<% str = "Answer" %>
-												<% else %>
-													<% str = "Schedule Appointment" %>
-												<% end %>
-											<%= q.question%><form action="/tok/GiveChatRoom" method= "get"><input type = "hidden" name = "qID" value = "<%= q.id %>" /><input type = "hidden" name = "askID" value = "<%= u.id %>" /><input type = "hidden" name = "answer" value = <%= q.in_session %> /><input class="btn" type="submit" value=<%=str%> /></form>
-												</li>
-												<li class="divider"></li>
-												<%counter = counter + 1%>
+											<% u = q.user %>
+											<% name = u.firstName +  " " + u.lastName %>
+					    					<li style="margin-top:1%;"><b>User:</b> <a id="username" href = "/bio?id=<%=u.id%>" ><%= name %></a><br />
+											<% if q.in_session %> <!--Check if user is waiting -->
+												<% str = "Answer" %>
+											<% else %>
+												<% str = "Schedule Appointment" %>
+											<% end %>
+											<%= q.question%>
+											<%if u.id != @user.id%>
+													<form action="/tok/ScheduleAppointment" method= "get"><input type = "hidden" name = "qID" value = "<%= q.id %>" /><input class="btn" type="submit" value=<%=str%> /></form>
+											<%end%>
+											</li>
+											<li class="divider"></li>
+											<%counter = counter + 1%>
 									<%end%>	
 								</ul>
 							</div>

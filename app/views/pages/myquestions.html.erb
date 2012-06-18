@@ -1,14 +1,40 @@
 <%if params["offline"]%>
 <script type ="text/javascript">
 	alert("It seems that that user has gone offline");
-	</script>
+</script>
 <%end%>
 
 <%if params["sent"]%>
 <script type ="text/javascript">
 	alert("Your preference has been saved");
-	</script>
+</script>
 <%end%>
+
+<script type ="text/javascript">
+	function checkForm(formNumber)
+	{
+		var radios = document.getElementsByName("appointment" + formNumber);
+		var value = true;
+		for (var i = 0; i < radios.length; i++) {
+			if (radios[i].type === 'radio' && radios[i].checked) {
+				value = false;
+				break;
+			}
+		}
+
+		
+		if (value)
+		{
+			alert("Please select one schedule");
+			return false;
+		}
+		else
+		{
+			f.submit();
+			return true;
+		}
+	}
+</script>
 
 <div class="transparent-background">
 	<div class="body-wrapper">
@@ -31,6 +57,7 @@
 								No upcoming conversations...
 							<%end%>
 						
+						<%count = 0%>
 						<% @qPending.each do |q| %>
 						
 							<li><span class="questions"><%=q.question%></span> <!-- If a pending question, it must have a answerer -->
@@ -47,10 +74,12 @@
 								<br />
 								
 							<%if q.schedules.any? && q.schedules[0].user_id != @user.id %>
-								<form class="margin-bottom-5" action="/tok/AcceptSchedule" method= "get">
+								<%count = count + 1%>
+								<form class="margin-bottom-5" action="/tok/AcceptSchedule" method= "get" onSubmit="return checkForm(<%=count.to_s%>);">
 									<input type = "hidden" name = "qID" value = "<%= q.id %>" />
+									<input type = "hidden" name = "count" value = "<%=count.to_s%>">
 									<% q.schedules.each do |appointment|%> <!-- Set up form -->
-										<input type="radio" name="appointment" value="<%=appointment.id%>"/> <%= appointment.appointment.localtime.strftime("%A %B %d %I:%M %p %Z")%> <br />
+										<input type="radio" name="appointment<%=count%>" value="<%=appointment.id%>"/> <%= appointment.appointment.localtime.strftime("%A %B %d %I:%M %p %Z")%> <br />
 									<%end%>
 									<input class="btn" type="submit" value="Confirm Schedule" />
 								</form>
@@ -69,13 +98,13 @@
 						</ul>
 						</div>
 						
-						
+						<!-- DIVIDE OCCURS HERE -->
 						
 						<div class="span6">
 							<ul class="nav nav-list">
 								<li><h3 class="SmallFont">Confirmed Conversations</h3></li>
 								<li class="divider"></li>
-						<!-- DIVIDE OCCURS HERE -->
+						
 						<%@qConfirmed.each do |q|%>
 							<li><span class="questions"><%=q.question%></span>
 									<%if @user.id == q.user_id%>
@@ -90,28 +119,21 @@
 							
 								<%s = Schedule.find(q.schedule_id)%>
 								<br>You are scheduled to meet at <%=s.appointment.localtime.strftime("%A %B %d %I:%M %p %Z")%>
-								<%schedule = s.appointment - (5/1440.0)%> <!--5 minutes before hand-->
+								<%schedule = s.appointment.localtime - (5.minutes)%> <!--5 minutes before hand-->
 								<%if schedule.past?%>
-									<%if @user.id == q.user_id%>
-										<form class="margin-bottom-5" action="/tok/ResetQuestion" method= "get">
-											<input type = "hidden" name = "qID" value = "<%= q.id %>" />
-											<input class="btn" type="submit" value="Enter Room For Appointment" />
-										</form>			
+									<%if q.in_session == false%>
+										<%str = "Enter Room For Appointment"%>
 									<%else%>
-										<%if q.in_session == false%>
-											<div>Your conversation partner is not here yet...</div>
-											<div class="margin-bottom-5"><input class="btn disabled enter-chatroom-tooltip" rel="tooltip" title="Your conversation partner is not here yet..." type="submit" value="Enter Room For Appointment" /></div>
-										<%else%><!-- can only enter when the asker enters the chat room -->
-											<form class="margin-bottom-5" action="/tok/GiveChatRoom" method= "get">
-												<input type = "hidden" name = "qID" value = "<%= q.id %>" />
-												<input type = "hidden" name = "askID" value = "<%= q.user.id %>" />
-												<input type = "hidden" name = "ignore" value = "1" />
-												<input class="btn" type="submit" value="Your Conversation is Ready" />
-											</form>
-										<%end%>
+										<%str = "Your Conversation is Ready"%>
 									<%end%>
+									
+									<form class="margin-bottom-5" action="/tok/EnterSession" method= "get">
+										<input type = "hidden" name = "qID" value = "<%= q.id %>" />
+										<input type = "hidden" name = "uID" value = "<%= @user.id %>" />
+										<input class="btn" type="submit" value="Enter Room For Appointment" />
+									</form>			
 								<%else%>
-											<div class="margin-bottom-5"><input class="btn disabled enter-chatroom-tooltip" rel="tooltip" title="Please return 5 minutes prior to scheduled time" type="submit" value="Enter Room For Appointment" /></div>
+										<div class="margin-bottom-5"><input class="btn disabled enter-chatroom-tooltip" rel="tooltip" title="Please return 5 minutes prior to scheduled time" type="submit" value="Enter Room For Appointment" /></div>
 								<%end%>	
 								
 								<form action="/tok/ScheduleAppointment" method= "get"> <!-- Ability to propose a schedule -->

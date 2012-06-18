@@ -1,6 +1,6 @@
 class VidMail < ActionMailer::Base
-	#default :from => "noreplyvidactia@gmail.com" 
-    default :from => "noreply@vidactia.com" 
+	#default :from => "	" 
+    default :from => "noreply@vidactica.com" 
 	
 	def Welcome(uID)
 		@user = User.find(uID)
