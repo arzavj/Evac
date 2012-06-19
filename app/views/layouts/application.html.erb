@@ -57,7 +57,11 @@
 			$(".tabs-left .nav-tabs").css('height',docH - headerH - footerH);
 			$('.modal .modal-body #star').raty();
 			$(".enter-chatroom-tooltip").tooltip();
-		});
+			$('.star').rating(
+				  callback: function(value, link){ 
+				   alert(value); 
+				  } 
+			});
 	</script>
 </head>
 <body>
