@@ -82,7 +82,17 @@ class TokController < ApplicationController
 	end
 	
 	def delete
-		Question.find(params["qID"]).delete
+		user = User.where({:email => cookies[:email], :password => cookies[:pass]})[0]
+		question = Question.find(params["qID"])
+		
+		if question.user_id == user.id
+			question.delete_past_question_ask = true
+		else
+			question.delete_past_question_answerer = true
+		end
+		
+		question.save
+		
 		redirect_to "/pages/myquestions"
 	end
 	
@@ -90,14 +100,16 @@ class TokController < ApplicationController
 			
 		question = Question.find(params["qID"])
 		
+		user = User.where({:email => cookies[:email], :password => cookies[:pass]})[0]
+		
 		if question.answer_id == nil
 			question.answer_id = User.where({:email => cookies[:email], :password => cookies[:pass]})[0].id
+			user.new_questions = user.new_questions +1
+			user.save
 		end
 		
 		question.schedule_id = -1
 		question.save
-		
-		user = User.where({:email => cookies[:email], :password => cookies[:pass]})[0].id
 		
 		question.schedules.each do |appointment|
 			appointment.destroy
@@ -112,7 +124,7 @@ class TokController < ApplicationController
 				time = Time.parse(split[1]).utc
 
 				s.appointment = DateTime.new(date.year, date.month, date.day, time.hour, time.min, time.sec)
-				s.user_id = user #proposer
+				s.user_id = user.id #proposer
 				s.save
 			end
 		end

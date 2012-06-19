@@ -71,6 +71,9 @@ class PagesController < ApplicationController
 	def myquestions
 		user = User.where({:email => cookies[:email], :password => cookies[:pass]})
 		user = user[0]
+		user.new_questions = 0
+		user.save
+		
 		@qAsked = Question.where({:user_id => user.id, :was_answered => false})
 		@qAnswer = Question.where({:answer_id => user.id, :was_answered => false})
 			
@@ -103,8 +106,8 @@ class PagesController < ApplicationController
 		
 		@qPending = qPendAnswer + qPendNoAnswer
 		
-		@qPrev = Question.where({:user_id => user.id, :was_answered => true})
-		@qPrevAnswer = Question.where({:answer_id => user.id, :was_answered => true})
+		@qPrev = Question.where({:user_id => user.id, :was_answered => true, :delete_past_question_ask => false})
+		@qPrevAnswer = Question.where({:answer_id => user.id, :was_answered => true, :delete_past_question_answerer => false})
 		@user = user
 	end
 	
