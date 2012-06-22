@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(:version => 20120619204500) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "in_session",                                  :default => true
-    t.intege	r  "answer_id"
+    t.integer  "answer_id"
     t.integer  "schedule_id",                                 :default => -1
     t.text     "notes"
     t.boolean  "was_answered",                                :default => false

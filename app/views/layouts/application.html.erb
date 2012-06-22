@@ -14,14 +14,16 @@
 
 	<script type="text/javascript">
 		$(document).ready(function() {
+			
 			jQuery('.dropdown-toggle').dropdown();
-			jQuery(".collapse").collapse();
+			/*jQuery(".collapse").collapse();
 			jQuery('#ques-sched').collapse({
-			  toggle: true
+			  toggle: truef
 			});
 			jQuery('#prev-ques').collapse({
 			  toggle: true
-			});
+			});*/
+			
 		    jQuery('#slider').nivoSlider({
 		        effect: 'random', // Specify sets like: 'fold,fade,sliceDown'
 		        slices: 10, // For slice animations
@@ -43,6 +45,7 @@
 		        nextText: 'Next', // Next directionNav text
 		        randomStart: false, // Start on a random slide
 		    });
+		    
 			jQuery('#facebook-modal').modal({ keyboard: true, backdrop:true, show:false});
 			jQuery('#login-modal').modal({ keyboard: true, backdrop:true, show:false});
 			jQuery('#rank-modal').modal({ keyboard: true, backdrop:true, show:false});
@@ -55,13 +58,7 @@
 			$(".transparent-background").css('min-height',docH - headerH - footerH);
 			$(".container-fluid").css('min-height',docH - headerH - footerH);
 			$(".tabs-left .nav-tabs").css('height',docH - headerH - footerH);
-			$('.modal .modal-body #star').raty();
 			$(".enter-chatroom-tooltip").tooltip();
-			$('.star').rating(
-				  callback: function(value, link){ 
-				   alert(value); 
-				  } 
-			});
 	</script>
 </head>
 <body>
@@ -77,7 +74,5 @@
 		</div>
 		<%= render 'layouts/tiny-footer' %>
 	</div>
-	<script src="/javascripts/utility.js"></script>
-	<script src="/javascripts/expandos-simple.js"></script>
 </body>
 </html>

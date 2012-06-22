@@ -1,29 +1,4 @@
 <footer>
-	<div class="modal hide fade" id="login-modal">
-		<div class="modal-header">
-			<button class="close" data-dismiss="modal">&times;</button>
-			<h3>Login</h3>
-		</div>
-		<div class="modal-body">
-			<center>
-				<form class="well" method="POST" action="/fb_registration/Remember">
-					<span id="email-login">E-mail: <input type="text" name="user" size="15" /><br /></span>
-					Password: <input type="password" name="pass" size="15" /><br />
-					<p><input class="btn btn-inverse" type="submit" value="Login" /></p>
-				</form>
-				<div class="fb-login-button">
-					<a data-toggle="modal" data-target="#facebook-modal" data-dismiss="modal" href = "#facebook-modal">
-						<%= image_tag("signup-facebook-md.png", :width => "250") %>
-					</a>
-				</div>
-				<div id="email-signup">
-					<a data-toggle="modal" data-target="#register-modal" data-dismiss="modal" href = "#register-modal">
-						Don't have a Facebook account? Sign Up with Email instead
-					</a>
-				</div>
-			</center>
-		</div>
-	</div>
 	<div class="body-wrapper">
 	<div class="row-fluid">	
 		<div class="span4">

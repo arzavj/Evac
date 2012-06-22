@@ -641,8 +641,9 @@ li a.question-username
 
 #feedback
 {
+	text-align:center;
 	right:31px;
-	bottom:0px;
+	bottom:3px;
 	position:fixed;
 }
 
@@ -663,6 +664,12 @@ li a.question-username
 	font-weight: bold;
 	position:relative;
 	top:5px;
-	font-size: 11px;
+	font-size: 9px;
 	color: #DFE9E9;
+}
+
+.priv-pol-section
+{
+	padding-top:5px;
+	padding-bottom:5px;
 }
