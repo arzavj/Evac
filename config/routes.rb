@@ -17,6 +17,7 @@ Vidactica::Application.routes.draw do
   match '/ask', :to => 'pages#ask'
   match '/give', :to => 'pages#give'
   match '/watch', :to => 'pages#watch'
+  match '/privacypolicy', :to => 'pages#privacypolicy'
   
   root :to => 'pages#home'
 

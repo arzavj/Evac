@@ -23,7 +23,7 @@
 			<%else%>
 				<!--Make the My Conversations Red Here -->
 				<!--The number of new questions since refresh is stored in the rails object user.new_questions-->
-				<a href="/myquestions"><%= image_tag("conversation_icon_white.png", :alt => "My Conversations", :height => "15px", :width => "14px") %><b class="home-nav">My Conversations</b></a></li>
+				<a href="/myquestions"><%= image_tag("conversation_icon_white.png", :alt => "My Conversations", :height => "15px", :width => "14px") %><b class="home-nav" style="font-color:red;">My Conversations</b></a></li>
 			<%end%>
 			<li class="dropdown inline">
 				    <a class="dropdown-toggle profile_icon" data-toggle="dropdown" data-target="#" href="/bio"><%= image_tag("profile_icon.png", :alt => "Profile", :height => "13px", :width => "15px") %> <b class="uppercase"><%= cookies[:name] %></b>
@@ -39,6 +39,31 @@
 					<li class="inline">
 							<a data-toggle="modal" data-target="#login-modal" href = "#login-modal"><%= image_tag("profile_icon.png", :alt => "LOGIN", :height => "18px", :width => "18px") %><b>Login</b></a>
 					</li>
+					<div class="modal hide fade" id="login-modal">
+						<div class="modal-header">
+							<button class="close" data-dismiss="modal">&times;</button>
+							<h3>Login</h3>
+						</div>
+						<div class="modal-body">
+							<center>
+								<form class="well" method="POST" action="/fb_registration/Remember">
+									<span id="email-login">E-mail: <input type="text" name="user" size="15" /><br /></span>
+									Password: <input type="password" name="pass" size="15" /><br />
+									<p><input class="btn btn-inverse" type="submit" value="Login" /></p>
+								</form>
+								<div class="fb-login-button">
+									<a data-toggle="modal" data-target="#facebook-modal" data-dismiss="modal" href = "#facebook-modal">
+										<%= image_tag("signup-facebook-md.png", :width => "250") %>
+									</a>
+								</div>
+								<div id="email-signup">
+									<a data-toggle="modal" data-target="#register-modal" data-dismiss="modal" href = "#register-modal">
+										Don't have a Facebook account? Sign Up with Email instead
+									</a>
+								</div>
+							</center>
+						</div>
+					</div>
 			<%end%>
     	</ul>
   		</div>

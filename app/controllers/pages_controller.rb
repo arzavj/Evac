@@ -168,6 +168,8 @@ class PagesController < ApplicationController
 		redirect_to :action => "give", :category => params[:category]
 	end
 
-
+  def privacyPolicy
+    @title = "Privacy Policy"
+  end
 
 end
