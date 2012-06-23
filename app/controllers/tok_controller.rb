@@ -104,7 +104,7 @@ class TokController < ApplicationController
 		
 		if question.answer_id == nil
 			question.answer_id = user.id
-			user.new_questions = (user.new_questions +1)
+			user.questions = (user.questions +1)
 			user.save
 		end
 		
