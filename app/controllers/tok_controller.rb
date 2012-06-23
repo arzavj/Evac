@@ -103,8 +103,8 @@ class TokController < ApplicationController
 		user = User.where({:email => cookies[:email], :password => cookies[:pass]})[0]
 		
 		if question.answer_id == nil
-			question.answer_id = User.where({:email => cookies[:email], :password => cookies[:pass]})[0].id
-			user.new_questions = user.new_questions +1
+			question.answer_id = user.id
+			user.new_questions = (user.new_questions +1)
 			user.save
 		end
 		
