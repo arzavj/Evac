@@ -10,6 +10,7 @@
 </script>
 <%end%>
 
+
 <script type ="text/javascript">
 	function checkForm(formNumber)
 	{
@@ -78,9 +79,11 @@
 								<form class="margin-bottom-5" action="/tok/AcceptSchedule" method= "get" onSubmit="return checkForm(<%=count.to_s%>);">
 									<input type = "hidden" name = "qID" value = "<%= q.id %>" />
 									<input type = "hidden" name = "count" value = "<%=count.to_s%>">
-									<% q.schedules.each do |appointment|%> <!-- Set up form -->
-										<input type="radio" name="appointment<%=count%>" value="<%=appointment.id%>"/> <%= appointment.appointment.localtime.strftime("%A %B %d %I:%M %p %Z")%> <br />
-									<%end%>
+										<% q.schedules.each do |appointment|%> <!-- Set up form -->
+										<input type="radio" name="appointment<%=count%>" value="<%=appointment.id%>" /> <div name="timeDiv"><%=appointment.appointment.strftime("%B %d, %Y %H:%M:%S UTC")%></div>
+											<br />
+										<%end%>
+									
 									<input class="btn" type="submit" value="Confirm Schedule" />
 								</form>
 							
@@ -118,8 +121,8 @@
 							
 							
 								<%s = Schedule.find(q.schedule_id)%>
-								<br>You are scheduled to meet at <%=s.appointment.localtime.strftime("%A %B %d %I:%M %p %Z")%>
-								<%schedule = s.appointment.localtime - (5.minutes)%> <!--5 minutes before hand-->
+								<br>You are scheduled to meet at <div name="timeDiv" ><%=s.appointment.strftime("%B %d, %Y %H:%M:%S UTC")%> </div>
+								<%schedule = s.appointment - (5.minutes)%> <!--5 minutes before hand-->
 								<%if schedule.past?%>
 									<%if q.in_session == false%>
 										<%str = "Enter Room For Appointment"%>
@@ -202,3 +205,12 @@
 
 	</div>
 </div>
+
+<script type ="text/javascript">
+	var times = document.getElementsByName("timeDiv");
+	for(i = 0; i < times.length; i++){
+		var appointment = times[i];
+		appointment.innerHTML = dateFormat(new Date(appointment.innerHTML), 'mmmm dd yyyy hh:MM tt Z');
+	}
+	
+</script>
