@@ -65,7 +65,7 @@
 	</div>
 </header>
 <%user = User.where({:email => cookies[:email], :password => cookies[:pass]})[0]%>
-<%if user.new_questions != 0%>
+<%if cookies[:name] && user.new_questions != 0%>
 <div class="alert-wrapper">
 		<div class="alert alert-block alert-error fade in" style="margin-bottom:0px;">
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
