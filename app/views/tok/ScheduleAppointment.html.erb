@@ -18,6 +18,7 @@
 		else
 		{
 			document.getElementById("submitButton").disabled = true;
+			document.getElementById("offset").value = ((new Date()).getTimezoneOffset())/60	;
 			f.submit();
 			return true;
 		}
@@ -45,6 +46,7 @@
 
 <%end%>
 
+<input type="hidden" id="offset" name="timeOffset" value="" />
 <input type="hidden" name="qID" value="<%= params["qID"]%>" />
 <input class="btn btn-inverse" type="submit" id= "submitButton" value= "Submit"/>
 
