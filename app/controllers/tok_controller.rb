@@ -123,7 +123,8 @@ class TokController < ApplicationController
 				date = Date.strptime(split[0], '%m/%d/%Y')
 				time = Time.parse(split[1])
 
-				s.appointment = DateTime.new(date.year, date.month, date.day, time.hour + params["timeOffset"].to_i, time.min, time.sec)
+				s.appointment = DateTime.new(date.year, date.month, date.day, time.hour, time.min, time.sec)
+				s.appointment = s.appointment.new_offset(params["timeOffset"].to_i/24.0)
 				s.user_id = user.id #proposer
 				s.save
 			end
