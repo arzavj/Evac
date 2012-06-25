@@ -7,6 +7,12 @@
 	margin-bottom:0px;
 }
 
+@font-face 
+{ 
+	font-family: Harlow; 
+	src: url('/fonts/HARLOWSI.ttf'); 
+} 
+
 html, body 
 {
 	height:100%; 
@@ -672,4 +678,13 @@ li a.question-username
 {
 	padding-top:5px;
 	padding-bottom:5px;
+}
+
+.alert-wrapper
+{
+	width:950px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:0px;
+	margin-bottom:auto;
 }
