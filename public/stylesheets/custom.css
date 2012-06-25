@@ -688,3 +688,9 @@ li a.question-username
 	margin-top:0px;
 	margin-bottom:auto;
 }
+
+#vidactica-logo
+{
+	position:relative;
+	bottom:5px;
+}
