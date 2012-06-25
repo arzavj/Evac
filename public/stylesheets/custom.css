@@ -7,6 +7,12 @@
 	margin-bottom:0px;
 }
 
+@font-face 
+{ 
+	font-family: Harlow; 
+	src: url('/fonts/HARLOWSI.ttf'); 
+} 
+
 html, body 
 {
 	height:100%; 
@@ -40,7 +46,8 @@ header {
 header h1
 {
 	float: left;
-	font-family: 'Shadows Into Light Two', cursive;
+	/*font-family: 'Shadows Into Light Two', cursive;*/
+	font-family: 'Harlow', cursive;
 	font-weight: bold;
 	color:#FFFFFF;
 }
