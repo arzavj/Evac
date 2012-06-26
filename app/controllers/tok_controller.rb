@@ -9,17 +9,26 @@ class TokController < ApplicationController
 		redirect_to :action => "AskChatRoom", :qID => params["qID"]
 	end
 	
+	def updateNewQuestion(question)
+		asker = question.user
+		answer = User.find(question.answer_id)
+		asker.new_questions = asker.new_questions + 1
+		answer.new_questions = answer.new_questions + 1
+		asker.save
+		answer.save
+	end
+	
 	def AcceptSchedule
 		question = Question.find(params["qID"])
-		
 		question.schedule_id = params["appointment" + params["count"]]
-		
 		question.save
 		
-		u = User.where({:email => cookies[:email], :password => cookies[:pass]})
+		updateNewQuestion(question)
 		
-		VidMail.AppointmentConfirmed(params["qID"], u[0].id).deliver #send email
-		VidMail.ConfirmAppointmentConfirmed(params["qID"], u[0].id).deliver #send email
+		u = User.where({:email => cookies[:email], :password => cookies[:pass]})[0]
+		
+		VidMail.AppointmentConfirmed(params["qID"], u.id).deliver #send email
+		VidMail.ConfirmAppointmentConfirmed(params["qID"], u.id).deliver #send email
 		
 		redirect_to "/myquestions?sent=1"
 	end
@@ -104,12 +113,12 @@ class TokController < ApplicationController
 		
 		if question.answer_id == nil
 			question.answer_id = user.id
-			user.new_questions = (user.new_questions + 1)
-			user.save
 		end
 		
 		question.schedule_id = -1
 		question.save
+		
+		updateNewQuestion(question)
 		
 		question.schedules.each do |appointment|
 			appointment.destroy
@@ -133,7 +142,7 @@ class TokController < ApplicationController
 		VidMail.AppointmentScheduled(params["qID"], user).deliver
 		VidMail.ConfirmAppointmentScheduled(params["qID"], user).deliver
 		
-		redirect_to :controller => "pages", :action => "home", :sent => "1"
+		redirect_to :controller => "pages", :action => "myquestions", :schedule => "1"
 	end
 	
 	def ScheduleAppointment

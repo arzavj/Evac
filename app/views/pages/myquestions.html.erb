@@ -4,6 +4,12 @@
 </script>
 <%end%>
 
+<%if params["schedule"].to_i == 1%> 
+<script type ="text/javascript">
+	alert('Your choices were sent');
+	</script>
+<%end%>
+
 <%if params["sent"]%>
 <script type ="text/javascript">
 	alert("Your preference has been saved");
