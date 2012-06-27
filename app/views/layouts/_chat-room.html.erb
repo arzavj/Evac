@@ -1,3 +1,7 @@
+<script type="text/javascript">
+	
+</script>
+
 <div class="transparent-background">
 	<div class="body-wrapper">
 		<%if @user.id == @q.user_id%>
@@ -7,7 +11,7 @@
 		<%end%>
 		<%user = User.find(id)%>
 		<%name = user.firstName + " " + user.lastName%>
-		<h3 class="SmallFont" style="padding-top:10px;"><a href="/bio?id=<%=id%>">With <%=name%></a>: <%=@q.question%></h3>
+		<h3 class="SmallFont" style="padding-top:10px;">With <a href="/bio?id=<%=id%>"><%=name%></a>: <%=@q.question%></h3>
 		<center>
   			<div id="asker"></div>
   			<div id="answer"></div>
