@@ -171,10 +171,10 @@
 						with <a class="question-username" href="/bio?id=<%=q.answer_id%>"><%=name%></a><br>
 						<div class="notes-exp">
 							<div class="wd-expando notes-collapse">
-								<h2>Notes</h2>
+								<h2>Notes<b class="caret" style="position: relative; top: 17px; left: 6px;"></b></h2>
 								<ul>
 									<%if !q.notes.nil?%>
-										<li><%=q.notes.html_safe%></li>
+										<li><p style="word-wrap:break-word;"><%=q.notes.html_safe%></p></li>
 									<%end%>
 								</ul>
 							</div>
@@ -195,10 +195,10 @@
 						<%name = user.firstName + " " + user.lastName%>
 						with <a class="question-username" href="/bio?id=<%=q.user.id%>"><%=name%></a><br>
 						<div class="wd-expando notes-collapse">
-							<h2>Notes</h2>
+							<h2>Notes<b class="caret" style="position: relative; top: 17px; left: 6px;"></b></h2>
 							<ul>
 								<%if !q.answerer_notes.nil?%>
-									<li><%=q.answerer_notes.html_safe%></li>
+									<li><p style="word-wrap:break-word;"><%=q.answerer_notes.html_safe%></p></li>
 								<%end%>
 							</ul>
 						</div>
