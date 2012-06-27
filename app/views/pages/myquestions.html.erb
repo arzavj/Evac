@@ -197,7 +197,9 @@
 						<div class="wd-expando notes-collapse">
 							<h2>Notes</h2>
 							<ul>
-								<li><%=q.answerer_notes%></li>
+								<%if !q.answerer_notes.nil?%>
+									<li><%=q.answerer_notes.html_safe%></li>
+								<%end%>
 							</ul>
 						</div>
 						<form action="/tok/delete" method= "get">
