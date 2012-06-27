@@ -217,7 +217,7 @@
 </div>
 
 <script type ="text/javascript">
-	var times = document.getElementsByName("timeDiv");
+	var times = $("*[name='timeDiv']");
 	var hasInnerText = (document.getElementsByTagName("body")[0].innerText != undefined) ? true : false;
 	alert(!hasInnerText);
 	alert(times.length);
