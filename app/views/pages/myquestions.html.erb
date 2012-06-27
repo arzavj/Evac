@@ -173,7 +173,9 @@
 							<div class="wd-expando notes-collapse">
 								<h2>Notes</h2>
 								<ul>
-									<li><p><%=q.notes%></p></li>
+									<%if !q.notes.nil?%>
+										<li><p style="word-wrap:break-word;"><%=q.notes.html_safe%></p></li>
+									<%end%>
 								</ul>
 							</div>
 						</div>
@@ -195,7 +197,9 @@
 						<div class="wd-expando notes-collapse">
 							<h2>Notes</h2>
 							<ul>
-								<li><p><%=q.answerer_notes%></p></li>
+								<%if !q.answerer_notes.nil?%>
+									<li><p style="word-wrap:break-word;"><%=q.answerer_notes.html_safe%></p></li>
+								<%end%>
 							</ul>
 						</div>
 						<form action="/tok/delete" method= "get">
