@@ -23,7 +23,8 @@
 		jQuery.noConflict();
 		if(inSession){
 			var notes = document.getElementById("notes").value;
-			notes = notes.replace("\n", "<br />")
+			notes = notes.replace("\n", "<br />");
+			alert(notes);
 			var query = "notes=" + notes + "&qID=" + <%=params["qID"]%>;
 		
 			jQuery.ajax({
