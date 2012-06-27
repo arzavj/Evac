@@ -139,8 +139,8 @@ class TokController < ApplicationController
 			end
 		end
 		
-		VidMail.AppointmentScheduled(params["qID"], user).deliver
-		VidMail.ConfirmAppointmentScheduled(params["qID"], user).deliver
+		VidMail.AppointmentScheduled(params["qID"], user.id).deliver
+		VidMail.ConfirmAppointmentScheduled(params["qID"], user.id).deliver
 		
 		redirect_to :controller => "pages", :action => "myquestions", :schedule => "1"
 	end
