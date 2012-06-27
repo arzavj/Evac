@@ -21,7 +21,10 @@
 	window.onbeforeunload = function (){
 		jQuery.noConflict();
 	
-		var query = "notes=" + document.getElementById("notes").value + "&qID=" + <%=params["qID"]%>;
+		var notes = document.getElementById("notes").value;
+		notes = notes.replace("\\n", "<br />");
+		alert(notes);
+		var query = "notes=" + notes + "&qID=" + <%=params["qID"]%>;
 		
 		jQuery.ajax({
 			type: 'GET',
