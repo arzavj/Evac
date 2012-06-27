@@ -22,7 +22,9 @@
 	window.onbeforeunload = function (){
 		jQuery.noConflict();
 		if(inSession){
-			var query = "notes=" + document.getElementById("notes").value + "&qID=" + <%=params["qID"]%>;
+			var notes = document.getElementById("notes").value;
+			notes = notes.replace("\n", "<br />")
+			var query = "notes=" + notes + "&qID=" + <%=params["qID"]%>;
 		
 			jQuery.ajax({
 			type: 'GET',
