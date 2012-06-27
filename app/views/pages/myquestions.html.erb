@@ -173,7 +173,9 @@
 							<div class="wd-expando notes-collapse">
 								<h2>Notes</h2>
 								<ul>
-									<li><%=q.notes%></li>
+									<%if !q.notes.nil?%>
+										<li><%=q.notes.html_safe%></li>
+									<%end%>
 								</ul>
 							</div>
 						</div>
