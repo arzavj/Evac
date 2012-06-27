@@ -22,7 +22,7 @@
 		jQuery.noConflict();
 	
 		var notes = document.getElementById("notes").value;
-		notes = notes.replace("\\n", "<br />");
+		notes = notes.replace(/\n/g, '<br />');
 		alert(notes);
 		var query = "notes=" + notes + "&qID=" + <%=params["qID"]%>;
 		
