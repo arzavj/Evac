@@ -219,13 +219,8 @@
 <script type ="text/javascript">
 	var times = $("*[name='timeDiv']");
 	var hasInnerText = (document.getElementsByTagName("body")[0].innerText != undefined) ? true : false;
-	alert(!hasInnerText);
-	alert(times.length);
 	for(i = 0; i < times.length; i++){
 		var appointment = times[i];
-		alert(appointment.textContent);
-		
-		alert(appointment.innerText);
 		if(!hasInnerText){
 			appointment.textContent = dateFormat(new Date(appointment.textContent), 'mmmm dd yyyy hh:MM tt Z');
 		}else{
