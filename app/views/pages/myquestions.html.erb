@@ -222,7 +222,7 @@
 	for(i = 0; i < times.length; i++){
 		var appointment = times[i];
 		if(!hasInnerText){
-			appointment.textContent = dateFormat(new Date(appointment.textContent), 'mmmm dd yyyy hh:MM tt Z');
+			appointment.innerText = dateFormat(new Date(appointment.innerText), 'mmmm dd yyyy hh:MM tt Z');
 		} else{
 			appointment.innerHTML = dateFormat(new Date(appointment.innerHTML), 'mmmm dd yyyy hh:MM tt Z');
 		}
