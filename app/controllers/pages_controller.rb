@@ -3,7 +3,7 @@ class PagesController < ApplicationController
 	@@categories = ["Politics", "Philosophy", "Entertainment", "Business", "Social Justice", "Science", "Tutoring", "Sports", "Miscellaneous"]
 	
   def home
-    @title = "Home"
+    @title = "Vidactica"
 	  
 	  @categories = @@categories  
 	  if(params[:category])
