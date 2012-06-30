@@ -98,7 +98,7 @@
 										<%end%>
 											<% u = q.user %>
 											<% name = u.firstName +  " " + u.lastName %>
-					    					<li style="margin-top:1%;"><b>User:</b> <a id="username" href = "/bio?id=<%=u.id%>" ><%= name %></a><br />
+					    					<li style="margin-top:1%;"><%= q.question%><br />
 											<% if q.in_session %> <!--Check if user is waiting -->
 												<% str = "Answer" %>
 											<% else %>
@@ -135,9 +135,9 @@
 												</div>
 												<a class="btn" data-toggle="modal" data-target="#schedule-modal" href = "#schedule-modal">
 														Schedule
-												</a>
+												</a> a conversation with <a id="username" href = "/bio?id=<%=u.id%>" ><%= name %></a>
 											<% end %>
-											<%= q.question%>
+											
 											<%if u.id != @user.id%>
 													<form action="/tok/ScheduleAppointment" method= "get">
 														<input type = "hidden" name = "qID" value = "<%= q.id %>" />
