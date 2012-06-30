@@ -81,7 +81,7 @@ class VidMail < ActionMailer::Base
 
     def Reminder
         future = Time.now
-        future.hour = future.hour + 24
+        future = future + 1.day
         schedules = Schedule.where("appointment >= ? AND appointment < ?", Time.now, future)
 
         schedules.each do |s|
