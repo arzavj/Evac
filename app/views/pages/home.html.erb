@@ -146,9 +146,6 @@
 										<li style="margin-top:10px;">No posts currently in this category</li>
 									<%end%>
 									<%questions.each do |q|%>
-										<%if counter > 5%> <!-- Top 5 -->
-											<%break%>
-										<%end%>
 											<% u = q.user %>
 											<% name = u.firstName +  " " + u.lastName %>
 					    					<li style="margin-top:1%;"><%= q.question%><br />
