@@ -123,10 +123,12 @@
 			  			<ul class="nav nav-tabs">
 							<!-- Creates the banner on the left for the user to select a category -->
 							<%(0..@categories.length-1).each do |i|%>
+								<%questions = Question.where("category = ? AND was_answered = ? AND answer_id IS NULL", i+1, false)%>
+								<%tabStr = @categories[i] + " (" + questions.length.to_s + ")"%>
 								<%if i==0 %>
-			    					<li class="active"><a href="#tab<%=i%>" data-toggle="tab"><%=@categories[i]%></a></li>
+			    					<li class="active"><a href="#tab<%=i%>" data-toggle="tab"><%=tabStr%></a></li>
 								<%else%>
-			    					<li><a href="#tab<%=i%>" data-toggle="tab"><%=@categories[i]%></a></li>
+			    					<li><a href="#tab<%=i%>" data-toggle="tab"><%=tabStr%></a></li>
 								<%end%>
 							<%end%>
 			  			</ul>
