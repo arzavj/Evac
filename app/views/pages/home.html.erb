@@ -157,12 +157,13 @@
 												<!--Schedule Block-->
 												<!--End-->
 												</div>
-												<%#if u.id != @user.id%>
-													<a class="btn" data-toggle="modal" data-target="#schedule-modal" href = "#schedule-modal" onClick="addQID(<%q.id%>)">
+
+												<%if u.id != @user.id%>
+													<button class="btn" data-toggle="modal" data-target="#schedule-modal" href = "#schedule-modal" onClick="addQID(<%q.id%>)">
 															Schedule
-													</a> a conversation with <a id="username" href = "/bio?id=<%=u.id%>" ><%= name %></a>
+													</button> a conversation with <a id="username" href = "/bio?id=<%=u.id%>" ><%= name %></a>
 												<%end%>
-												<%# end %>
+												<% end %>
 											
 											</li>
 											<li class="divider"></li>
