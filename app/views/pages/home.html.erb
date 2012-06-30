@@ -61,7 +61,6 @@
 		</div>
 		<div class="modal-body">
 			<form class="well" action="/tok/Schedule" name ="input" method= "GET" onSubmit="return checkScheduleForm();">
-				<%schedule = q.schedules %>
 			
 				<%(1..3).each do |i| %>
 			
@@ -80,6 +79,7 @@
 				<input type="hidden" id="qScheduleID" name="qID" value="" />
 				<input class="btn btn-inverse" type="submit" id= "submitButton" value= "Submit"/>
 			</form>	
+		</div>
 	</div>
 
 
@@ -155,15 +155,14 @@
 											<% else %>
 												<% str = "Schedule Appointment" %>
 												<!--Schedule Block-->
-												<!--End-->
-												</div>
+												
 
-												<%if u.id != @user.id%>
-													<button class="btn" data-toggle="modal" data-target="#schedule-modal" href = "#schedule-modal" onClick="addQID(<%q.id%>)">
+												<%#if u.id != @user.id%>
+													<button class="btn" data-toggle="modal" data-target="#schedule-modal" href = "#schedule-modal" onClick="addQID(<%=q.id%>)">
 															Schedule
 													</button> a conversation with <a id="username" href = "/bio?id=<%=u.id%>" ><%= name %></a>
-												<%end%>
-												<% end %>
+												<%#end%>
+											<% end %>
 											
 											</li>
 											<li class="divider"></li>
