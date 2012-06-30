@@ -134,19 +134,12 @@
 													</div>
 												<!--End-->
 												</div>
-												<%if u.id != @user.id%>
+												<%#if u.id != @user.id%>
 													<a class="btn" data-toggle="modal" data-target="#schedule-modal" href = "#schedule-modal">
 															Schedule
 													</a> a conversation with <a id="username" href = "/bio?id=<%=u.id%>" ><%= name %></a>
 												<%end%>
-											<% end %>
-											
-											<!--
-													<form action="/tok/ScheduleAppointment" method= "get">
-														<input type = "hidden" name = "qID" value = "<%= q.id %>" />
-														<input class="btn" type="submit" value=<%=str%> />
-													</form>
-											 -->
+												<%# end %>
 											
 											</li>
 											<li class="divider"></li>
