@@ -188,6 +188,20 @@
 			<div id="lowHeaderPos">
 				<div class="fredoka" id="home-header">A community for <br />interesting conversations!</div>
 			</div>
+			<ul class='star-rating'>
+				<li class='current-rating' id='current-rating' style="width: 37px"></li>
+				<li><a href="#" onclick="vote(1); return false;" 
+			           title='1 star out of 5' class='one-star'>1</a></li>
+				<li><a href="#" onclick="vote(2); return false;" 
+			           title='2 star out of 5' class='two-stars'>2</a></li>
+				<li><a href="#" onclick="vote(3); return false;" 
+			           title='3 star out of 5' class='three-stars'>3</a></li>
+				<li><a href="#" onclick="vote(4); return false;" 
+			           title='4 star out of 5' class='four-stars'>4</a></li>
+				<li><a href="#" onclick="vote(5); return false;" 
+			           title='5 star out of 5' class='five-stars'>5</a></li>
+			</ul>
+			<div id='current-rating-result'></div> <!-- used to show "success" message after vote -->
 			<div id="introLines">
 				<p class="SmallFont">Connect with amazing people and have insightful<br /> video-chat conversations about topics you're passionate<br /> about</p>
 			</div>
