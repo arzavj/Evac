@@ -16,6 +16,33 @@
 	</script>
 <%end%>
 
+<%if params["efail"]%>
+	<script type ="text/javascript">
+		alert("Invalid College E-mail Address");
+	</script>
+<%end%>
+
+<%if params["exist"]%>
+	<script type ="text/javascript">
+		alert("This email is already being used");
+	</script>
+<%end%>
+
+<%if params["pfail"]%>
+	<script type ="text/javascript">
+		alert("Passwords Do Not Match");
+	</script>
+<%end%>
+
+<script type ="text/javascript">
+	function regWithVidPopup()
+	{
+		$('#register-modal').modal('hide');
+		$('#regWithVidPopup').click();
+		return true;
+	}
+</script>
+
 <%if cookies[:name]  %>
 	<script>
 		function checkPostForm()
@@ -54,6 +81,7 @@
 			var doc = document.getElementById("qScheduleID");
 			doc.value= qID;
 		}
+		
 	</script>
 
 	<div class="modal hide fade" id="schedule-modal">
@@ -267,7 +295,7 @@
 							</div>
 							<div class="control-group">
 								<div class="controls">
-									<input class="btn btn-inverse" type="submit" value="Submit" />	
+									<input class="btn btn-inverse" type="submit" value="Submit" onsubmit="return regWithVidPopup();"/>	
 								</div>
 							</div>
 							
@@ -280,6 +308,14 @@
 					Don't have a Facebook account? Sign Up with Email instead
 				</a>
 			</div>
+			<div class="modal hide fade" id="regWithVid-modal">
+				<div class="modal-body">
+					<button class="close" data-dismiss="modal">&times;</button>
+				</div>
+			</div>
+			<a id="regWithVidPopup" data-toggle="modal" data-target="#regWithVid-modal" href = "#regWithVid-modal" style="display:none;">
+				RegWithVid
+			</a>
 		</div>
 		<div class="span6" style="margin-left:0px;">
 			<div class="slider-wrapper theme-default">

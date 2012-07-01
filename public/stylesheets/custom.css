@@ -535,6 +535,11 @@ h2 b.caret-myquestions
 	height:370px;
 }
 
+#regWithVid-modal .modal-body
+{
+	background-image: url(/images/vidacticaVerification.png);
+}
+
 .navbar-search .search-query
 {
 	color: #999999;
