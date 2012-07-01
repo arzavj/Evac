@@ -158,8 +158,13 @@
 												<%if u.id != @user.id%>
 													<button class="btn" data-toggle="modal" data-target="#schedule-modal" href = "#schedule-modal" onClick="addQID(<%=q.id%>)">
 															Schedule
-													</button> a conversation with <a id="username" href = "/bio?id=<%=u.id%>" ><%= name %></a>
+													</button> 
+												<%else%>
+													<button class="btn" disabled="disabled" data-toggle="modal" data-target="#schedule-modal" href = "#schedule-modal" onClick="addQID(<%=q.id%>)">
+															Schedule
+													</button>
 												<%end%>
+												a conversation with <a id="username" href = "/bio?id=<%=u.id%>" ><%= name %></a>
 											<% end %>
 											
 											</li>
@@ -184,7 +189,6 @@
 			<div id="lowHeaderPos">
 				<div class="fredoka" id="home-header">A community for <br />interesting conversations!</div>
 			</div>
-			<div id='current-rating-result'></div> <!-- used to show "success" message after vote -->
 			<div id="introLines">
 				<p class="SmallFont">Connect with amazing people and have insightful<br /> video-chat conversations about topics you're passionate<br /> about</p>
 			</div>

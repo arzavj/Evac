@@ -106,11 +106,6 @@ function rate(amnt){
 	</div>
 	<div class="modal-body">
 		<form name="input" action="/tok/submitRank" method="post">
-			<!--<select name="rank">
-				<%(1..5).each do |i|%>
-					<option value="<%=(i).to_s%>"> <%=i.to_s%> </option>
-				<%end%>
-			</select>-->
 			<input type="hidden" name = "rating" />
 			<ul class='star-rating'>
 				<!--the width determines how many stars are already highlighted-->
