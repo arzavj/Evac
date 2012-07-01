@@ -1,4 +1,6 @@
 class FbRegistrationController < ApplicationController
+  skip_before_filter :require_login
+	
 	@@colleges = ["stanford", "harvard", "yale", "princeton"]
 	
   def FbLogin
