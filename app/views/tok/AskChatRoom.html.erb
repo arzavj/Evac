@@ -91,21 +91,39 @@
 
 <% end %>
 
+<script language="javascript">
+function rate(amnt){
+	document.forms["input"].rating.value = amnt;
+	document.forms["input"].submit();
+	return false;
+}
+</script>
+
 <div class="modal hide fade" id="rank-modal">
 	<div class="modal-header">
 		<button class="close" data-dismiss="modal">&times;</button>
-		<h3>Rate Your Partner</h3>
+		<h3>Rate Your Conversation Partner</h3>
 	</div>
 	<div class="modal-body">
 		<form name="input" action="/tok/submitRank" method="post">
-			<select name="rank">
+			<!--<select name="rank">
 				<%(1..5).each do |i|%>
 					<option value="<%=(i).to_s%>"> <%=i.to_s%> </option>
 				<%end%>
-			</select>
+			</select>-->
+			<input type="hidden" name = "rating" />
+			<ul class='star-rating'>
+				<!--the width determines how many stars are already highlighted-->
+				<li class='current-rating' id='current-rating' style="width: 0px;"></li>
+				<li><a href="#" onclick="return rate(1);" title='Horrible' class='one-star'>1</a></li>
+				<li><a href="#" onclick="return rate(2);" title='OK' class='two-stars'>2</a></li>
+				<li><a href="#" onclick="return rate(3);" title='Good' class='three-stars'>3</a></li>
+				<li><a href="#" onclick="return rate(4);" title='Very Good' class='four-stars'>4</a></li>
+				<li><a href="#" onclick="return rate(5);" title='Excellent' class='five-stars'>5</a></li>
+			</ul>
+			
 			<input type="hidden" name = "qID" value=<%=params["qID"]%> />
 			<input type="hidden" name = "user" value="1"/>
-			<input class="btn" type="submit" value="Submit" />
 		</form>
 	</div>
 </div>

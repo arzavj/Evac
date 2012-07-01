@@ -157,7 +157,7 @@ class TokController < ApplicationController
 		
 		
 		if params["user"].to_i == 1 #rank the answerer 
-		q.rank = params["rank"]
+		q.rank = params["rating"]
 		answerer = User.find(q.answer_id)
 		answerer.rank = ((answerer.rank*answerer.sessions) + q.rank)/(answerer.sessions+1)
 		answerer.sessions = answerer.sessions+1
@@ -165,7 +165,7 @@ class TokController < ApplicationController
 		answerer.save
 		else #ranks the asker
 			
-		q.ask_rank = params["rank"]	
+		q.ask_rank = params["rating"]	
 		asker = q.user
 		asker.ask_rank = ((asker.ask_rank*asker.ask_sessions) + q.ask_rank)/(asker.ask_sessions+1)
 		asker.ask_sessions = asker.ask_sessions+1

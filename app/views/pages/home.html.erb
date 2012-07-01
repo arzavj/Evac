@@ -150,7 +150,7 @@
 									<%questions.each do |q|%>
 											<% u = q.user %>
 											<% name = u.firstName +  " " + u.lastName %>
-					    					<li style="margin-top:1%;"><%= q.question%><br />
+					    					<li style="margin-top:1%;"><b><%= q.question%></b><br />
 											<% if q.in_session %> <!--Check if user is waiting -->
 												<% str = "Answer" %>
 											<% else %>
@@ -184,6 +184,7 @@
 			<div id="lowHeaderPos">
 				<div class="fredoka" id="home-header">A community for <br />interesting conversations!</div>
 			</div>
+			<div id='current-rating-result'></div> <!-- used to show "success" message after vote -->
 			<div id="introLines">
 				<p class="SmallFont">Connect with amazing people and have insightful<br /> video-chat conversations about topics you're passionate<br /> about</p>
 			</div>
