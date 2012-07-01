@@ -19,4 +19,6 @@ class Schedule < ActiveRecord::Base
 			VidMail.Reminder(s.id, asker.id).deliver
 			VidMail.Reminder(s.id, answer.id).deliver
 		end
+	end
 end
+
