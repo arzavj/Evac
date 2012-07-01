@@ -155,14 +155,11 @@
 												<% str = "Answer" %>
 											<% else %>
 												<% str = "Schedule Appointment" %>
-												<!--Schedule Block-->
-												
-
-												<%#if u.id != @user.id%>
+												<%if u.id != @user.id%>
 													<button class="btn" data-toggle="modal" data-target="#schedule-modal" href = "#schedule-modal" onClick="addQID(<%=q.id%>)">
 															Schedule
 													</button> a conversation with <a id="username" href = "/bio?id=<%=u.id%>" ><%= name %></a>
-												<%#end%>
+												<%end%>
 											<% end %>
 											
 											</li>
