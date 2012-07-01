@@ -1,7 +1,7 @@
 <%if params["email"]%> <!-- If this alert needs to be presented to clarify to the user -->
 <script type ="text/javascript">
-	alert('An email was sent');
-	</script>
+	$('#regWithVid-modal').modal('show');
+</script>
 <%end%>
 
 <%if params["fail"]%> <!-- If this alert needs to be presented to clarify to the user -->
@@ -295,7 +295,7 @@
 							</div>
 							<div class="control-group">
 								<div class="controls">
-									<input class="btn btn-inverse" type="submit" value="Submit" onclick="return regWithVidPopup();"/>	
+									<input class="btn btn-inverse" type="submit" value="Submit"/>	
 								</div>
 							</div>
 							
