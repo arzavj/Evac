@@ -79,20 +79,9 @@ class VidMail < ActionMailer::Base
 	end
 
 
-    def Reminder
-        future = Time.now
-        future = future + 1.day
-        schedules = Schedule.where("appointment >= ? AND appointment < ?", Time.now, future)
-
-        schedules.each do |s|
-                q = s.question
-                asker = q.user
-                answer = Question.find(q.answer_id)
-                @appointment = s
-            
-                mail(:to => asker.email, :subject => "Reminder").deliver
-                mail(:to => answer.email, :subject => "Reminder").deliver
-        end
+    def Reminder (schedule_id, uID)
+		@appointment = Schedule.find(schedule_id)
+		mail(:to => User.find(uID).email, :subject => "Reminder").deliver
     end
 
 

@@ -9,7 +9,7 @@
 #
  every 1.day, :at => '12:00 am' do
 	 #command "echo 'you can use raw cron syntax too'"
-	 runner "vid_mail.Reminder"
+	 runner "Schedule.reminder"
  end
 #
 # every 4.days do
