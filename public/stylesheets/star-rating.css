@@ -73,3 +73,9 @@
 		text-indent: -9000px;
 		z-index: 1;
 	}
+	
+	#rank-modal .modal-body
+	{
+		height:100px;
+	}
+	
