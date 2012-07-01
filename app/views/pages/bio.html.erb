@@ -27,7 +27,15 @@
 						<div><h2 id="edit-profile-btn"><a class="btn" href = "/pages/editBio">Edit Profile</a></h2></div>
 					<%end%>
 					<ul class="nav nav-list">
-						<div><strong>Rating:</strong> <%= "%0.2f" % @rank %> / 5</div>
+						<!--<div><strong>Rating:</strong> <%= "%0.2f" % @rank %> / 5</div>-->
+						<div class="row-fluid">
+							<div class="span6" style="width: 60px;"><strong>Rating: </strong></div>
+							<div class="span6"><ul class='star-rating'>
+								<!--the width determines how many stars are already highlighted-->
+								<li class='current-rating' id='current-rating' style="width: <%= @rank*25 %>px;"></li>
+							</ul>
+							</div>
+						</div>
 						<li class="divider"></li>
 						<div><strong>Number of Sessions:</strong> <%= @sessions %></div>
 						<li class="divider"></li>
