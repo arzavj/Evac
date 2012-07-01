@@ -7,7 +7,7 @@
 #
 # set :output, "/path/to/my/cron_log.log"
 #
- every 1.day, :at => '2:00 pm' do
+ every 1.day, :at => '12:00 am' do
 	 #command "echo 'you can use raw cron syntax too'"
 	 runner "Schedule.reminder"
  end
