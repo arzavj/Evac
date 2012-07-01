@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-	skip_before_filter :require_login, :only => :home, :privacyPolicy
+	skip_before_filter :require_login, :only => [:home, :privacyPolicy]
 	@@categories = ["Politics", "Philosophy", "Entertainment", "Business", "Social Justice", "Science", "Tutoring", "Sports", "Miscellaneous"]
 	
   def home
