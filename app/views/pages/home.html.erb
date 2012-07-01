@@ -93,20 +93,20 @@
 					<ul>
 						<!-- Creates a form to submit a question with a given category -->
 						<li class="divider-vertical inline"></li>
-						<li class="inline"><input type="text" name="question" class="search-query" placeholder="Post a topic"></li>		
-						<li class="divider-vertical inline"></li>
 						<h4 class="inline">Category:</h4>
 						<select name="category" style="width:154px;">
 							<%(0..@categories.length-1).each do |i|%>
 	  							<option value="<%=(i+1)%>"><%=@categories[i]%></option>
 							<%end%>
-						</select>
+						</select>				
+						<li class="divider-vertical inline"></li>
+						<li class="inline"><input type="text" name="question" class="search-query" placeholder="Post a conversation topic"></li>	
 						<li class="divider-vertical inline"></li>
 						<!--
 						<li class="inline"><input class="btn btn-info" type="submit" name="sType" value="Post and Enter Room" /></li> 
 						 -->
 						 <!--For entering chat room-->
-						<li class="inline"><input class="btn btn-info" type="submit" name="sType" value="Submit Post" /></li> <!--For just posting-->
+						<li class="inline" style="position: relative; bottom: 3px;"><input class="btn btn-info" type="submit" name="sType" value="Submit Post" /></li> <!--For just posting-->
 					</ul>
 				</form>
 			</div>

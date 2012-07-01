@@ -538,6 +538,7 @@ h2 b.caret-myquestions
 .navbar-search .search-query
 {
 	color: #999999;
+	width:318px;
 }
 
 .navbar .navbar-inner .container
@@ -693,3 +694,8 @@ li a.question-username
 .ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
 .ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
 .ui-timepicker-div td { font-size: 90%; }
+
+.navbar .divider-vertical
+{
+	border-right-color: gray;
+}

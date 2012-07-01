@@ -42,6 +42,72 @@
 		}
 	}
 </script>
+<script>
+	function checkPostForm()
+	{
+		var question = document.getElementsByName("question")[0];
+		if (question.value == "" )
+		{
+			alert("Please submit a post or question");
+			return false;
+		}
+		else
+		{
+			f.submit();
+			return true;
+		}
+	}
+	
+	function checkScheduleForm()
+	{
+		if (document.getElementsByName("Slot1")[0].value == "" && document.getElementsByName("Slot2")[0].value == "" && document.getElementsByName("Slot3")[0].value == "")
+		{
+			alert("Please post at least one schedule");
+			return false;
+		}
+		else
+		{
+			document.getElementById("submitButton").disabled = true;
+			document.getElementById("offset").value = ((new Date()).getTimezoneOffset())/60;
+			f.submit();
+			return true;
+		}
+	}
+	
+	function addQID(qID)
+	{
+		var doc = document.getElementById("qScheduleID");
+		doc.value= qID;
+	}
+</script>
+
+<div class="modal hide fade" id="schedule-modal">
+	<div class="modal-header">
+		<button class="close" data-dismiss="modal">&times;</button>
+		<h3>Times that work for you:</h3>
+	</div>
+	<div class="modal-body">
+		<form class="well" action="/tok/Schedule" name ="input" method= "GET" onSubmit="return checkScheduleForm();">
+		
+			<%(1..3).each do |i| %>
+		
+				<script text="text/javascript">
+					$(function() {
+					  $( "#<%=i%>" ).datetimepicker({minDate: 0});
+					});
+				</script>
+		
+				<input class="search-query" style="cursor: pointer;" id="<%=i%>" name="Slot<%=i%>" type="text" size="25" readonly="readonly" placeholder="Click here to select times..."/>
+		
+				<p>
+			<%end%>
+		
+			<input type="hidden" id="offset" name="timeOffset" value="" />
+			<input type="hidden" id="qScheduleID" name="qID" value="" />
+			<input class="btn btn-inverse" type="submit" id= "submitButton" value= "Submit"/>
+		</form>	
+	</div>
+</div>
 
 <div class="transparent-background">
 	<div class="body-wrapper">
@@ -92,11 +158,9 @@
 									
 									<input class="btn" type="submit" value="Confirm Schedule" />
 								</form>
-							
-								<form action="/tok/ScheduleAppointment" method= "get"> <!-- Ability to propose a schedule -->
-									<input type = "hidden" name = "qID" value = "<%= q.id %>" />
-									<input class="btn" type="submit" value="Propose Alternate Schedule" />
-								</form>
+								<button class="btn" data-toggle="modal" data-target="#schedule-modal" href = "#schedule-modal" onClick="addQID(<%=q.id%>)">
+										Propose Alternate Schedule
+								</button>
 							<%else%>
 								Waiting for conversation to be scheduled...
 							<%end%>	
@@ -145,10 +209,9 @@
 										<div class="margin-bottom-5"><input class="btn disabled enter-chatroom-tooltip" rel="tooltip" title="Please return 5 minutes prior to scheduled time" type="submit" value="Enter Room For Appointment" /></div>
 								<%end%>	
 								
-								<form action="/tok/ScheduleAppointment" method= "get"> <!-- Ability to propose a schedule -->
-									<input type = "hidden" name = "qID" value = "<%= q.id %>" />
-									<input class="btn" type="submit" value="Propose Alternate Schedule" />
-								</form>	
+								<button class="btn" data-toggle="modal" data-target="#schedule-modal" href = "#schedule-modal" onClick="addQID(<%=q.id%>)">
+										Propose Alternate Schedule
+								</button>
 							</li>
 							<li class="divider"></li>
 						<%end%>
