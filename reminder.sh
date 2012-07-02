@@ -1,2 +1,2 @@
 cd /home/vidactic/Vidactica
-script/rails runner Schedule.reminder
+script/rails runner -e production Schedule.reminder
