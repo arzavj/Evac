@@ -14,7 +14,7 @@ class Schedule < ActiveRecord::Base
 		schedules.each do |s|
 			q = s.question
 			asker = q.user
-			answer = Question.find(q.answer_id)
+			answer = User.find(q.answer_id)
 	
 			VidMail.Reminder(s.id, asker.id).deliver
 			VidMail.Reminder(s.id, answer.id).deliver
