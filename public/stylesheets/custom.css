@@ -537,7 +537,7 @@ h2 b.caret-myquestions
 
 #regWithVid-modal .modal-body
 {
-	background-image: url(/images/vidacticaVerification.png);
+	/*background-image: url(/images/vidacticaVerification.png);*/
 }
 
 .navbar-search .search-query
