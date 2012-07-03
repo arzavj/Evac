@@ -47,6 +47,11 @@
 				alert("Please submit a post or question");
 				return false;
 			}
+			if(document.getElementById("categoryPost").options[0].value === -1)
+			{
+				alert("Please select a category");
+				return false;
+			}
 			else
 			{
 				f.submit();
@@ -115,8 +120,8 @@
 					<ul>
 						<!-- Creates a form to submit a question with a given category -->
 						<li class="divider-vertical inline"></li>
-						<h4 class="inline">Category:</h4>
-						<select name="category" style="width:154px;">
+						<select name="category" id="categoryPost" style="width:154px;">
+							<option value="-1">Select a Category</option>
 							<%(0..@categories.length-1).each do |i|%>
 	  							<option value="<%=(i+1)%>"><%=@categories[i]%></option>
 							<%end%>
