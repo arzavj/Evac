@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
-	skip_before_filter :require_login, :only => "home"
+	skip_before_filter :require_login, :only => ["home", "privacypolicy", "feedback"]
 	@@categories = ["Politics", "Philosophy", "Entertainment", "Business", "Social Justice", "Science", "Tutoring", "Sports", "Miscellaneous"]
+
 	
   def home
     @title = "Vidactica"
@@ -51,23 +52,6 @@ class PagesController < ApplicationController
 	@profile = @user.profile
   end
   
-  def ask
-    @title = "Ask For Advice"
-  end
-  
-  def give
-	  @categories = @@categories  
-	  @cat = Integer(params[:category])
-	  @questions = Question.where(:category => @cat)
-	  @title = "Provide Words of Wisdom"
-	  
-	  redirect_to :action => "home", :category => params[:category]
-  end
-  
-  def watch
-    @title = "View Top Video Sessions"
-  end
-	
 	def myquestions
 		user = User.where({:email => cookies[:email], :password => cookies[:pass]})
 		user = user[0]
