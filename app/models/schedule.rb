@@ -9,7 +9,7 @@ class Schedule < ActiveRecord::Base
 	def self.reminder 
 		future = Time.now
 		future = future + 1.day
-		questions = Question.where("schedule_id > 0 AND EXISTS (Select * from schedules where questions.schedule_id = Schedules.id AND Schedules.appointment >= ? AND Schedules.appointment < ?)", Time.now, future)
+		questions = Question.where("schedule_id > 0 AND EXISTS (Select * from schedules where questions.schedule_id = schedules.id AND schedules.appointment >= ? AND schedules.appointment < ?)", Time.now, future)
 	
 		questions.each do |q|
 			VidMail.Reminder(q.id, q.user_id).deliver
