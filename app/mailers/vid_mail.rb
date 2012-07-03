@@ -79,11 +79,12 @@ class VidMail < ActionMailer::Base
 	end
 
 
-    def Reminder (schedule_id, uID)
+    def Reminder (qID, uID)
 		user = User.find(uID)
 		@name = user.firstName + " " + user.lastName
-		@appointment = Schedule.find(schedule_id)
-		mail(:to => User.find(uID).email, :subject => "Reminder").deliver
+		@question = Question.find(qID)
+		@appointment = Schedule.find(@question.schedule_id)
+		mail(:to => user.email, :subject => "Reminder").deliver
     end
 
 

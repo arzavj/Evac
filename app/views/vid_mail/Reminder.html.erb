@@ -1,0 +1,11 @@
+<%url = "http://vidactica.com"%>
+Dear <%= @name %>,
+<br /><br />
+This is a reminder that you are scheduled to talk about <b><%=@question.question%></b>
+<br /><br />
+at	<%= @appointment.appointment.localtime.strftime("%A %B %d %I:%M %p %Z")%>
+<br />	<br />
+You will be able to enter the chatroom through your <a href="<%=url+"/myquestions"%>">‘My Conversations’</a> tab 5 minutes before the scheduled time.
+<br /><br /> 
+Have fun!
+	
