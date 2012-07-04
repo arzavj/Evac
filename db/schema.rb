@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20120704201204) do
     t.boolean  "delete_past_question_ask",                    :default => false
     t.boolean  "delete_past_question_answerer",               :default => false
     t.boolean  "deleted",                                     :default => false
+    t.boolean  "reposted",                                    :default => false
   end
 
   add_index "questions", ["user_id"], :name => "index_questions_on_user_id"
