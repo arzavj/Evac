@@ -47,7 +47,7 @@
 				alert("Please submit a post or question");
 				return false;
 			}
-			if(document.getElementById("categoryPost").options[0].value === -1)
+			if(document.categoryPost.category.value === "nothing")
 			{
 				alert("Please select a category");
 				return false;
@@ -116,12 +116,12 @@
 	  	<div class="navbar-inner">		
 	    	<div class="container">		
 				<span class="brand">Spark a Conversation</span>
-				<form name="input" action="/pages/submitQuestion?method=post" method="post" class="navbar-search pull-left" onSubmit="return checkPostForm();">
+				<form name="categoryPost" action="/pages/submitQuestion?method=post" method="post" class="navbar-search pull-left" onSubmit="return checkPostForm();">
 					<ul>
 						<!-- Creates a form to submit a question with a given category -->
 						<li class="divider-vertical inline"></li>
-						<select name="category" id="categoryPost" style="width:154px;">
-							<option value="-1">Select a Category</option>
+						<select name="category" style="width:154px;">
+							<option value="nothing">Select a Category</option>
 							<%(0..@categories.length-1).each do |i|%>
 	  							<option value="<%=(i+1)%>"><%=@categories[i]%></option>
 							<%end%>
