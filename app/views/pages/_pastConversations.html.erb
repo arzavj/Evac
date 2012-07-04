@@ -1,0 +1,54 @@
+<div class="tab-pane fade" id="past">
+	<ul class="nav nav-list">
+		<%if @qPrev.length == 0 && @qPrevAnswer.length == 0%>
+			No past conversations...
+		<%end%>
+		<% @qPrev.each do |q| %>
+			<li>
+				<span class="questions"><%=q.question%></span>
+				<%user = User.find(q.answer_id)%>
+				<%name = user.firstName + " " + user.lastName%>
+				with <a class="question-username" href="/bio?id=<%=q.answer_id%>"><%=name%></a><br>
+				<div class="notes-exp">
+					<div class="wd-expando notes-collapse">
+						<h2>Notes<b class="caret" style="position: relative; top: 17px; left: 6px;"></b></h2>
+						<ul>
+							<%if !q.notes.nil?%>
+								<li><p style="word-wrap:break-word;"><%=q.notes.html_safe%></p></li>
+							<%end%>
+						</ul>
+					</div>
+				</div>
+				<form action="/tok/delete" method= "get">
+					<input type = "hidden" name = "qID" value = "<%= q.id %>" />
+					<input class="btn" type="submit" value="Delete Question" />
+				</form>	
+			</li>
+			<li class="divider"></li>
+		<%end%>
+	</ul>
+
+	<ul class="nav nav-list">
+		<% @qPrevAnswer.each do |q| %>
+		<li>
+			<span class="questions"><%=q.question%></span>
+			<%user = q.user%>
+			<%name = user.firstName + " " + user.lastName%>
+			with <a class="question-username" href="/bio?id=<%=q.user.id%>"><%=name%></a><br>
+			<div class="wd-expando notes-collapse">
+				<h2>Notes<b class="caret" style="position: relative; top: 17px; left: 6px;"></b></h2>
+				<ul>
+					<%if !q.answerer_notes.nil?%>
+						<li><p style="word-wrap:break-word;"><%=q.answerer_notes.html_safe%></p></li>
+					<%end%>
+				</ul>
+			</div>
+			<form action="/tok/delete" method= "get">
+				<input type = "hidden" name = "qID" value = "<%= q.id %>" />
+				<input class="btn" type="submit" value="Delete Question" />
+			</form>	
+		</li>
+		<li class="divider"></li>
+		<%end%>
+	</ul>
+</div>

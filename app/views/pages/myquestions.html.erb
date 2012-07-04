@@ -42,72 +42,8 @@
 		}
 	}
 </script>
-<script>
-	function checkPostForm()
-	{
-		var question = document.getElementsByName("question")[0];
-		if (question.value == "" )
-		{
-			alert("Please submit a post or question");
-			return false;
-		}
-		else
-		{
-			f.submit();
-			return true;
-		}
-	}
-	
-	function checkScheduleForm()
-	{
-		if (document.getElementsByName("Slot1")[0].value == "" && document.getElementsByName("Slot2")[0].value == "" && document.getElementsByName("Slot3")[0].value == "")
-		{
-			alert("Please post at least one schedule");
-			return false;
-		}
-		else
-		{
-			document.getElementById("submitButton").disabled = true;
-			document.getElementById("offset").value = ((new Date()).getTimezoneOffset())/60;
-			f.submit();
-			return true;
-		}
-	}
-	
-	function addQID(qID)
-	{
-		var doc = document.getElementById("qScheduleID");
-		doc.value= qID;
-	}
-</script>
 
-<div class="modal hide fade" id="schedule-modal">
-	<div class="modal-header">
-		<button class="close" data-dismiss="modal">&times;</button>
-		<h3>Times that work for you:</h3>
-	</div>
-	<div class="modal-body">
-		<form class="well" action="/tok/Schedule" name ="input" method= "GET" onSubmit="return checkScheduleForm();">
-		
-			<%(1..3).each do |i| %>
-		
-				<script text="text/javascript">
-					$(function() {
-					  $( "#<%=i%>" ).datetimepicker({minDate: 0});
-					});
-				</script>
-		
-				<input class="search-query" style="cursor: pointer;" id="<%=i%>" name="Slot<%=i%>" type="text" size="25" readonly="readonly" placeholder="Click here to select times..."/>
-		
-				<p>
-			<%end%>
-		
-			<input type="hidden" id="offset" name="timeOffset" value="" />
-			<input type="hidden" id="qScheduleID" name="qID" value="" />
-			<input class="btn btn-inverse" type="submit" id= "submitButton" value= "Submit"/>
-		</form>	
-	</div>
-</div>
+<%= render :partial => "schedule"%>
 
 <div class="transparent-background">
 	<div class="body-wrapper">
@@ -172,110 +108,11 @@
 						</div>
 						
 						<!-- DIVIDE OCCURS HERE -->
-						
-						<div class="span6">
-							<ul class="nav nav-list">
-								<li><h3 class="SmallFont">Confirmed Conversations</h3></li>
-								<li class="divider"></li>
-						
-						<%@qConfirmed.each do |q|%>
-							<li><span class="questions"><%=q.question%></span>
-									<%if @user.id == q.user_id%>
-										<%id = q.answer_id%>
-									<%else%>
-										<%id = q.user_id%>
-									<%end%>
-									<%user = User.find(id)%>
-									<%name = user.firstName + " " + user.lastName%>
-									with <a class="question-username" href="/bio?id=<%=id%>"><%=name%></a><br>
-							
-							
-								<%s = Schedule.find(q.schedule_id)%>
-								<br>You are scheduled to meet at <div name="timeDiv" ><%=s.appointment.strftime("%B %d, %Y %H:%M:%S UTC")%> </div>
-								<%schedule = s.appointment - (5.minutes)%> <!--5 minutes before hand-->
-								<%if schedule.past?%>
-									<%if q.in_session == false%>
-										<%str = "Enter Room For Appointment"%>
-									<%else%>
-										<%str = "Your Conversation is Ready"%>
-									<%end%>
-									
-									<form class="margin-bottom-5" action="/tok/EnterSession" method= "get">
-										<input type = "hidden" name = "qID" value = "<%= q.id %>" />
-										<input type = "hidden" name = "uID" value = "<%= @user.id %>" />
-										<input class="btn" type="submit" value="Enter Room For Appointment" />
-									</form>			
-								<%else%>
-										<div class="margin-bottom-5"><input class="btn disabled enter-chatroom-tooltip" rel="tooltip" title="Please return 5 minutes prior to scheduled time" type="submit" value="Enter Room For Appointment" /></div>
-								<%end%>	
-								
-								<button class="btn" data-toggle="modal" data-target="#schedule-modal" href = "#schedule-modal" onClick="addQID(<%=q.id%>)">
-										Propose Alternate Schedule
-								</button>
-							</li>
-							<li class="divider"></li>
-						<%end%>
-						
-								
-						</ul>
-						</div>
+						<%= render :partial => "confirmedQuestions"%>
 					</div>
-
-	</div>
-	<div class="tab-pane fade" id="past">
-		<ul class="nav nav-list">
-					<%if @qPrev.length == 0 && @qPrevAnswer.length == 0%>
-						No past conversations...
-					<%end%>
-					<% @qPrev.each do |q| %>
-					<span class="questions"><%=q.question%></span>
-						<%user = User.find(q.answer_id)%>
-						<%name = user.firstName + " " + user.lastName%>
-						with <a class="question-username" href="/bio?id=<%=q.answer_id%>"><%=name%></a><br>
-						<div class="notes-exp">
-							<div class="wd-expando notes-collapse">
-								<h2>Notes<b class="caret" style="position: relative; top: 17px; left: 6px;"></b></h2>
-								<ul>
-									<%if !q.notes.nil?%>
-										<li><p style="word-wrap:break-word;"><%=q.notes.html_safe%></p></li>
-									<%end%>
-								</ul>
-							</div>
-						</div>
-						<form action="/tok/delete" method= "get">
-							<input type = "hidden" name = "qID" value = "<%= q.id %>" />
-							<input class="btn" type="submit" value="Delete Question" />
-						</form>	
-					</li>
-					<li class="divider"></li>
-					<%end%>
-				</ul>
-
-				<ul class="nav nav-list">
-					<% @qPrevAnswer.each do |q| %>
-					<li><span class="questions"><%=q.question%></span>
-						<%user = q.user%>
-						<%name = user.firstName + " " + user.lastName%>
-						with <a class="question-username" href="/bio?id=<%=q.user.id%>"><%=name%></a><br>
-						<div class="wd-expando notes-collapse">
-							<h2>Notes<b class="caret" style="position: relative; top: 17px; left: 6px;"></b></h2>
-							<ul>
-								<%if !q.answerer_notes.nil?%>
-									<li><p style="word-wrap:break-word;"><%=q.answerer_notes.html_safe%></p></li>
-								<%end%>
-							</ul>
-						</div>
-						<form action="/tok/delete" method= "get">
-							<input type = "hidden" name = "qID" value = "<%= q.id %>" />
-							<input class="btn" type="submit" value="Delete Question" />
-						</form>	
-					</li>
-					<li class="divider"></li>
-					<%end%>
-				</ul>
+				</div>
+				<%= render :partial => "pastConversations"%>
 			</div>
-		</div>
-
 	</div>
 </div>
 
