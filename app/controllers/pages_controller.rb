@@ -47,52 +47,51 @@ class PagesController < ApplicationController
       
   def editBio
     @title = "Edit"
-	u = User.where({:email => cookies[:email], :password => cookies[:pass]})
-	@user = u[0]
+	@user = current_account
 	@profile = @user.profile
   end
   
-	def myquestions
-		user = User.where({:email => cookies[:email], :password => cookies[:pass]})
-		user = user[0]
-		user.new_questions = 0
-		user.save
-		
-		@qAsked = Question.where({:user_id => user.id, :was_answered => false})
-		@qAnswer = Question.where({:answer_id => user.id, :was_answered => false})
-			
-		qPendAnswer = []
-		qPendNoAnswer = []
-		@qConfirmed = []
-		@qAsked.each do |q|
-			if q.schedule_id == -1
-				if q.answer_id == nil
-					qPendNoAnswer << q
-				else
-					qPendAnswer << q
-				end
+	def sortQuestion q
+		if q.schedule_id == -1
+			if q.answer_id == nil
+				@qPendNoAnswer << q
 			else
-				@qConfirmed << q
+				if q.schedules.any? && q.schedules[0].user_id != @user.id
+					@qPendConfirmable << q
+				else
+					@qPendAnswer << q
+				end
 			end
+		else
+			@qConfirmed << q
+		end
+	end
+	
+	def myquestions
+		@user = current_account
+		@user.new_questions = 0
+		@user.save
+		
+		@qAsked = Question.where({:user_id => @user.id, :was_answered => false})
+		@qAnswer = Question.where({:answer_id => @user.id, :was_answered => false})
+			
+		@qPendAnswer = []
+		@qPendConfirmable = []
+		@qPendNoAnswer = []
+		@qConfirmed = []
+		
+		@qAsked.each do |q|
+			sortQuestion q
 		end
 		
 		@qAnswer.each do |q|
-			if q.schedule_id == -1
-				if q.answer_id == nil
-					qPendNoAnswer << q
-				else
-					qPendAnswer << q
-				end
-			else
-				@qConfirmed << q
-			end
+			sortQuestion q
 		end
 		
-		@qPending = qPendAnswer + qPendNoAnswer
+		@length = @qPendConfirmable.length + @qPendAnswer.length + @qPendNoAnswer.length + @qPendConfirmable.length 
 		
-		@qPrev = Question.where({:user_id => user.id, :was_answered => true, :delete_past_question_ask => false})
-		@qPrevAnswer = Question.where({:answer_id => user.id, :was_answered => true, :delete_past_question_answerer => false})
-		@user = user
+		@qPrev = Question.where({:user_id => @user.id, :was_answered => true, :delete_past_question_ask => false})
+		@qPrevAnswer = Question.where({:answer_id => @user.id, :was_answered => true, :delete_past_question_answerer => false})
 	end
 	
 	def feedback

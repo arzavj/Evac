@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  include ApplicationHelper
 	
   before_filter :require_login	
 	
@@ -8,4 +9,5 @@ class ApplicationController < ActionController::Base
 		  redirect_to "/"
 	  end
   end
+	
 end
