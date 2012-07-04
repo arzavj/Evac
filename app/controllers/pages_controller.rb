@@ -124,6 +124,8 @@ class PagesController < ApplicationController
 	
 	def repost
 		q = Question.find_by_id(params["qID"])
+		q.reposted = true
+		q.save
 		repost = Question.new
 		repost.user_id = current_account.id
 		repost.question = q.question

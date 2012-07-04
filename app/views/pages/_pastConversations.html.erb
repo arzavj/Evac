@@ -19,9 +19,15 @@
 						</ul>
 					</div>
 				</div>
-				<button class="btn" onClick = "location.href='/pages/repost?qID=<%=q.id%>'" >
-					Repost Question
-				</button>
+				<%if q.reposted == false%>
+					<button class="btn" onClick = "location.href='/pages/repost?qID=<%=q.id%>'" >
+						Repost Question
+					</button>
+				<%else%>
+					<button class="btn" disabled="disabled">
+						Repost Question
+					</button>
+				<%end%>
 				<button class="btn" onClick = "location.href='/tok/delete?qID=<%=q.id%>'" >
 					Delete Question
 				</button>
@@ -45,9 +51,15 @@
 					<%end%>
 				</ul>
 			</div>
-			<button class="btn" onClick = "location.href='/pages/repost?qID=<%=q.id%>'" >
-				Repost Question
-			</button>
+			<%if q.reposted == false%>
+				<button class="btn" onClick = "location.href='/pages/repost?qID=<%=q.id%>'" >
+					Repost Question
+				</button>
+			<%else%>
+				<button class="btn" disabled="disabled">
+					Repost Question
+				</button>
+			<%end%>
 			<button class="btn" onClick = "location.href='/tok/delete?qID=<%=q.id%>'" >
 				Delete Question
 			</button>
