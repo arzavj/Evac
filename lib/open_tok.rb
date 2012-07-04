@@ -21,9 +21,9 @@ require 'cgi'
 Net::HTTP.version_1_2 # to make sure version 1.2 is used
 
 module OpenTok
-  API_URL = "http://staging.tokbox.com/hl"
-  #Uncomment this line when you launch your app
-  #API_URL = "https://api.opentok.com/hl";
+	#API_URL = "http://staging.tokbox.com/hl"
+	#Uncomment this line when you launch your app
+  API_URL = "https://api.opentok.com/hl";
 end
 
 require 'OpenTok/Exceptions'
