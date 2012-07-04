@@ -111,26 +111,27 @@ class PagesController < ApplicationController
 
 	def submitQuestion
 		q = Question.new
-		u = User.where({:email => cookies[:email], :password => cookies[:pass]})
+		u = current_account
 
-		if u.length == 0
-			q.user_id = -1
-		else
-			u = u[0]
-			q.user_id = u.id
-		end
+		q.user_id = u.id
 		q.question = params[:question]
 		q.category = Integer(params[:category])
+		q.in_session = false
 		q.save
 		
-		if params["sType"].eql?("Submit Post") #TODO to what the actual value becomes
-			q.in_session = false
-			q.save
-			redirect_to "/"
-			return
-		end
+		redirect_to "/"
+	end
+	
+	def repost
+		q = Question.find_by_id(params["qID"])
+		repost = Question.new
+		repost.user_id = current_account.id
+		repost.question = q.question
+		repost.category = q.category
+		repost.in_session = false
+		repost.save
 		
-		redirect_to :controller => :tok, :action => :AskChatRoom, :qID => q.id
+		redirect_to "/"
 	end
 
 	def submitProfile

@@ -19,10 +19,12 @@
 						</ul>
 					</div>
 				</div>
-				<form action="/tok/delete" method= "get">
-					<input type = "hidden" name = "qID" value = "<%= q.id %>" />
-					<input class="btn" type="submit" value="Delete Question" />
-				</form>	
+				<button class="btn" onClick = "location.href='/pages/repost?qID=<%=q.id%>'" >
+					Repost Question
+				</button>
+				<button class="btn" onClick = "location.href='/tok/delete?qID=<%=q.id%>'" >
+					Delete Question
+				</button>
 			</li>
 			<li class="divider"></li>
 		<%end%>
@@ -43,10 +45,12 @@
 					<%end%>
 				</ul>
 			</div>
-			<form action="/tok/delete" method= "get">
-				<input type = "hidden" name = "qID" value = "<%= q.id %>" />
-				<input class="btn" type="submit" value="Delete Question" />
-			</form>	
+			<button class="btn" onClick = "location.href='/pages/repost?qID=<%=q.id%>'" >
+				Repost Question
+			</button>
+			<button class="btn" onClick = "location.href='/tok/delete?qID=<%=q.id%>'" >
+				Delete Question
+			</button>
 		</li>
 		<li class="divider"></li>
 		<%end%>
