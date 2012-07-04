@@ -219,9 +219,12 @@ footer
 #introLines
 {
 	float: left;
-	margin-top: 3%;
+	margin-top: 2%;
+	margin-bottom:10px;
+	padding-bottom:18px;
   text-align: center;
   width: 100%;
+  background: url("/images/partition.png") no-repeat scroll center bottom transparent;
 }
 
 #introLines p
