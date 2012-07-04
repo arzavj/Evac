@@ -1,26 +1,34 @@
 <footer>
-	<div class="body-wrapper">
+	<div class="body-wrapper" style="width:960px;">
 	<div class="row-fluid">	
-		<div class="span4">
-	    	<h2 class="fredoka">Post a Conversation Topic</h2>
-				<a data-toggle="modal" data-target="#login-modal" href = "#login-modal">
-					<%= image_tag("AskForAdvice.png", :alt => "ASK FOR ADVICE", :class => "round", :height => "80px", :width => "200px") %>
-				</a>
-			<p>Submit a topic you want to talk about</p>
+		<div class="span4 row-fluid rightBorder">
+			<div class="span3">
+				<!--<a data-toggle="modal" data-target="#login-modal" href = "#login-modal">-->
+				<%= image_tag("vidactica - landing page lightbulb.png", :alt => "PROVIDE WORDS OF WISDOM", :height => "95px", :width => "65px") %>
+				<!--</a>-->
 			</div>
-		<div class="span4">
-	    	<h2 class="fredoka">Browse Interesting Posts</h2>
-				<a data-toggle="modal" data-target="#login-modal" href = "#login-modal">
-	           		<%= image_tag("ProvideWordsOfWisodm.png", :alt => "PROVIDE WORDS OF WISDOM", :class => "round", :height => "80px", :width => "200px") %>
-				</a>
-			<p>Search for posts that spark your interest</p>
+			<div class="span9">
+	    		<h2 class="nunito700"><span class="lightblue">Spark </span><span class="darkblue">a Conversation</span></h2>	
+				<p class="nunito400"><span class="darkblue">Submit a topic you want to talk about</span></p>
+			</div>
 		</div>
-		<div class="span4">
-	    	<h2 class="fredoka">Schedule Video-Chat Sessions</h2>
-				<a data-toggle="modal" data-target="#login-modal" href = "#login-modal">
-	           		<%= image_tag("schedule.png", :alt => "WATCH TOP VIDEO SESSIONS", :class => "round", :height => "260px", :width => "200px") %>
-				</a>
-			<p>Easily find a time that works for both users</p>
+		<div class="span4 row-fluid rightBorder" style="height:97px;">
+			<div class="span3">
+	           	<%= image_tag("vidactica - landing page question.png", :alt => "ASK FOR ADVICE", :height => "106px", :width => "106px") %>
+			</div>
+			<div class="span9">
+	    		<h2 class="nunito700" style="line-height:25px;"><span class="lightblue">Browse </span><span class="darkblue">Interesting Posts</span></h2>
+				<p class="nunito400"><span class="darkblue">Search for posts that spark your interest</span></p>
+			</div>
+		</div>
+		<div class="span4 row-fluid">
+			<div class="span3">
+	           <%= image_tag("vidactica - landing page calendar.png", :alt => "WATCH TOP VIDEO SESSIONS", :height => "90px", :width => "114px") %>
+			</div>
+			<div class="span9" style="position:relative;left:19px;">
+		    	<h2 class="nunito700"><span class="lightblue">Schedule </span><span class="darkblue">Sessions</span></h2>
+				<p class="nunito400"><span class="darkblue">Easily find a time that works for both users</span></p>
+			</div>
 		</div>
 	</div>
 	</div>
