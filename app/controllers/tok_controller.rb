@@ -52,7 +52,7 @@ class TokController < ApplicationController
 	end
 	
   def AskChatRoom
-	
+	@room = 1
 	@q = Question.find(params["qID"])  
 	
 	@sessionID = @q.current_session
@@ -63,6 +63,7 @@ class TokController < ApplicationController
   end
 	
 	def GiveChatRoom
+		@room = 0
 		@q = Question.find(params["qID"])
 			
 		@user = User.where({:email => cookies[:email], :password => cookies[:pass]})[0]	
