@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120619204500) do
+ActiveRecord::Schema.define(:version => 20120704201204) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(:version => 20120619204500) do
     t.string   "current_session"
     t.boolean  "delete_past_question_ask",                    :default => false
     t.boolean  "delete_past_question_answerer",               :default => false
+    t.boolean  "deleted",                                     :default => false
   end
 
   add_index "questions", ["user_id"], :name => "index_questions_on_user_id"

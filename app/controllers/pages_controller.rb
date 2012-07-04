@@ -67,6 +67,16 @@ class PagesController < ApplicationController
 		end
 	end
 	
+	def deleteQ
+		user = current_account
+		q = Question.find_by_id(params["qID"])
+		if user.questions.include?(q)
+			q.deleted = true
+			q.save
+		end
+		redirect_to "/myquestions"
+	end
+	
 	def myquestions
 		@user = current_account
 		@user.new_questions = 0

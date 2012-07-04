@@ -24,14 +24,14 @@
 				<form class="margin-bottom-5" action="/tok/AcceptSchedule" method= "get" onSubmit="return checkForm(<%=count.to_s%>);">
 					<input type = "hidden" name = "qID" value = "<%= q.id %>" />
 					<input type = "hidden" name = "count" value = "<%=count.to_s%>">
-						<% q.schedules.each do |appointment|%> <!-- Set up form -->
+					<% q.schedules.each do |appointment|%> <!-- Set up form -->
 						<input type="radio" name="appointment<%=count%>" value="<%=appointment.id%>" /> 
 						<div name="timeDiv"><%=appointment.appointment.strftime("%B %d, %Y %H:%M:%S UTC")%></div>
 						<br />
-						<%end%>
+					<%end%>
 						
-						<input class="btn" type="submit" value="Confirm Schedule" />
-						</form>
+					<input class="btn" type="submit" value="Confirm Schedule" />
+				</form>
 				<button class="btn" data-toggle="modal" data-target="#schedule-modal" href = "#schedule-modal" onClick="addQID(<%=q.id%>)">
 					Propose Alternate Schedule
 				</button>
@@ -56,14 +56,17 @@
 			</li>
 			<li class="divider"></li>
 		<%end%>
-				
-		<% @qPendAnswer.each do |q|%>
+		
+		<% @qPendNoAnswer.each do |q|%>
 			<%count = count + 1%>
 			<li>
 				<span class="questions"><%=q.question%></span>
 				<br />
 				<i>Please wait for a conversation partner...</i>
 			</li>
+			<button class="btn" onClick = "location.href='/pages/deleteQ?qID=<%=q.id%>'" >
+				Delete Question
+			</button>
 			<li class="divider"></li>
 		<%end%>
 	</ul>
