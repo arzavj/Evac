@@ -1,0 +1,127 @@
+<script src="http://static.opentok.com/v0.91/js/TB.min.js"></script>
+
+<script type="text/javascript">
+	
+    var apiKey = '<%= $apiKey %>';
+    var sessionId = '<%= @sessionID %>';
+    var token = '<%= @token %>';        
+	
+    TB.setLogLevel(TB.DEBUG); // Set this for helpful debugging messages in console
+	
+    var session = TB.initSession(sessionId);      
+    session.addEventListener('sessionConnected', sessionConnectedHandler);
+    session.addEventListener('streamCreated', streamCreatedHandler);       
+    session.connect(apiKey, token);
+	
+	window.onbeforeunload = function (){
+		jQuery.noConflict();
+		
+		var notes = document.getElementById("notes").value;
+		notes = notes.replace(/\n/g, '<br />');
+		var query = "notes=" + notes + "&qID=" + <%=params["qID"]%>;
+		
+		jQuery.ajax({
+					type: 'GET',
+					url: '/tok/answerPastQuestion',
+					data: query
+					});
+		return "Thank You For Answering";
+	}
+	
+	
+    var publisher;
+	
+    function sessionConnectedHandler(event) {
+		alert('Connecting');
+		publisher = session.publish("<%= me %>");
+		subscribeToStreams(event.streams);
+    } 
+	
+	function streamCreatedHandler(event) {
+		// Subscribe to any new streams that are created
+		subscribeToStreams(event.streams);
+    }
+	
+    function subscribeToStreams(streams) {
+		for (var i = 0; i < streams.length; i++) {
+			// Make sure we don't subscribe to ourself
+			if (streams[i].connection.connectionId == session.connection.connectionId) {
+				continue;
+			}
+			
+			// Subscribe to the stream
+			session.subscribe(streams[i], "<%= other %>");
+			var leaveButton = document.getElementById("leaveButton");
+			leaveButton.setAttribute("data-toggle", "modal");
+			leaveButton.setAttribute("data-target", "#rank-modal");
+			leaveButton.setAttribute("href", "#rank-modal");
+			var aTags = document.getElementsByTagName("a");
+			for(var i = 0; i<aTags.length;i++)
+			{
+				aTags[i].setAttribute("data-toggle", "modal");
+				aTags[i].setAttribute("data-target", "#rank-modal");
+				aTags[i].setAttribute("href", "#rank-modal");
+			}
+			return;
+		}
+    }    
+	</script>
+
+<script language="javascript">
+function rate(amnt){
+	document.forms["input"].rating.value = amnt;
+	document.forms["input"].submit();
+	return false;
+}
+</script>
+
+<div class="transparent-background">
+	<div class="body-wrapper">
+		<%if @user.id == @q.user_id%>
+			<%id = @q.answer_id%>
+		<%else%>
+			<%id = @q.user_id%>
+		<%end%>
+		<%user = User.find(id)%>
+		<%name = user.firstName + " " + user.lastName%>
+		<h3 class="SmallFont" style="padding-top:10px;">With <a href="/bio?id=<%=id%>"><%=name%></a>: <%=@q.question%></h3>
+		<center>
+  			<div id="asker"></div>
+  			<div id="answer"></div>
+		</center>
+
+		<center>
+			<a id="leaveButton" href="/">
+				<button class="btn">Leave Session</button> 
+			</a>
+		</center>
+
+		<center>
+			<div class="SmallFont">Notes:</div>
+			<textarea id="notes" COLS=100 ROWS=10></textarea>
+		</center>
+	</div>
+</div>
+
+<div class="modal hide fade" id="rank-modal">
+	<div class="modal-header">
+		<button class="close" data-dismiss="modal">&times;</button>
+		<h3>Rate Your Conversation Partner</h3>
+	</div>
+	<div class="modal-body">
+		<form name="input" action="/tok/submitRank" method="post">
+			<input type="hidden" name = "rating" />
+			<ul class='star-rating'>
+				<!--the width determines how many stars are already highlighted-->
+				<li><a href="#" onclick="return rate(1);" title='Horrible' class='one-star'>1</a></li>
+				<li><a href="#" onclick="return rate(2);" title='OK' class='two-stars'>2</a></li>
+				<li><a href="#" onclick="return rate(3);" title='Good' class='three-stars'>3</a></li>
+				<li><a href="#" onclick="return rate(4);" title='Very Good' class='four-stars'>4</a></li>
+				<li><a href="#" onclick="return rate(5);" title='Excellent' class='five-stars'>5</a></li>
+			</ul>
+			
+			<input type="hidden" name = "qID" value=<%=params["qID"]%> />
+			<input type="hidden" name = "user" value="<%=room%>"/>
+		</form>
+	</div>
+</div>
