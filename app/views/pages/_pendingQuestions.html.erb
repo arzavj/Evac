@@ -1,0 +1,50 @@
+<div class="span6">
+	<ul class="nav nav-list right-border">
+		<!-- Questions that have been proposed to discuss -->
+		<li><h3 class="SmallFont">Pending Conversations</h3></li>
+		<li class="divider"></li>
+		<%if @qPending.length == 0 && @qConfirmed.length==0%> 
+			No upcoming conversations...
+		<%end%>
+
+		<%count = 0%>
+		<% @qPending.each do |q| %>
+			<%count = count + 1%>
+			<li>
+				<span class="questions"><%=q.question%></span> 
+				<%if q.answer_id != nil%>
+					<%if @user.id == q.user_id%>
+						<%id = q.answer_id%>
+					<%else%>
+						<%id = q.user_id%>
+					<%end%>
+					<%user = User.find(id)%>
+					<%name = user.firstName + " " + user.lastName%>
+					with <a class="question-username" href="/bio?id=<%=id%>"><%=name%></a>
+				<%end%>
+				<br />
+								
+				<%if q.schedules.any? && q.schedules[0].user_id != @user.id %>
+					<form class="margin-bottom-5" action="/tok/AcceptSchedule" method= "get" onSubmit="return checkForm(<%=count.to_s%>);">
+						<input type = "hidden" name = "qID" value = "<%= q.id %>" />
+						<input type = "hidden" name = "count" value = "<%=count.to_s%>">
+						<% q.schedules.each do |appointment|%> <!-- Set up form -->
+							<input type="radio" name="appointment<%=count%>" value="<%=appointment.id%>" /> 
+							<div name="timeDiv"><%=appointment.appointment.strftime("%B %d, %Y %H:%M:%S UTC")%></div>
+							<br />
+						<%end%>
+									
+						<input class="btn" type="submit" value="Confirm Schedule" />
+					</form>
+					<button class="btn" data-toggle="modal" data-target="#schedule-modal" href = "#schedule-modal" onClick="addQID(<%=q.id%>)">
+						Propose Alternate Schedule
+					</button>
+				<%else%>
+					Waiting for conversation to be scheduled...
+				<%end%>	
+			</li>
+			<li class="divider"></li>
+							
+		<%end%>
+	</ul>
+</div>
