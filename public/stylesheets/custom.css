@@ -75,7 +75,7 @@ section {
 
 .border-padding
 {
-	padding-bottom:239px;
+	padding-bottom:90px;
 }
 
 section h1 {
@@ -206,8 +206,8 @@ header .nav ul li a:hover {
 footer 
 {
   /*background: #4A5C5C repeat-x url(/images/footer_strip.png);*/
-	position:absolute;
-	bottom:65px;
+	/*position:absolute;
+	bottom:65px;*/
 	width:100%;
 }
 
@@ -226,7 +226,7 @@ footer
 
 #introLines p
 {
-	font-size:100%;
+	font-size:120%;
 }
 
 .fb-login-button
