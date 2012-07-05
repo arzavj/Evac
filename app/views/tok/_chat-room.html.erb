@@ -20,12 +20,20 @@
 		notes = notes.replace(/\n/g, '<br />');
 		var query = "notes=" + notes + "&qID=" + <%=params["qID"]%>;
 		
-		jQuery.ajax({
+		<%if room == 1%>
+			jQuery.ajax({
+					type: 'GET',
+					url: '/tok/pastQuestion',
+					data: query
+				});
+		<%else%>
+			jQuery.ajax({
 					type: 'GET',
 					url: '/tok/answerPastQuestion',
 					data: query
-					});
-		return "Thank You For Answering";
+				});
+		<%end%>
+		return "Hope you enjoyed your conversation";
 	}
 	
 	
