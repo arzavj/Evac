@@ -6,6 +6,8 @@ Hi <%=answerName%>,
 <a href="<%=url+"/bio?id="+@asker.id.to_s%>"><%=askName%></a> has confirmed the following time to vidact about “<%= @question.question %>:”
 <br /><br /> 
 <%= @appointment.appointment.localtime.strftime("%A %B %d %I:%M %p %Z")%>
+<br />
+<b>Please be on time</b>
 <br /><br /> 
 You will be able to enter the chatroom through your <a href="<%=url+"/myquestions"%>">‘My Conversations’</a> tab 5 minutes before the scheduled time.
 <br /><br /> 
