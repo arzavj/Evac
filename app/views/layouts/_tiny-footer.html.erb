@@ -1,6 +1,7 @@
 <div id="tiny-footer">
 	<a href="/privacypolicy">PRIVACY POLICY</a>
 </div>
+<%if cookies[:name]  %>
 <div id="feedback">
 				<a data-toggle="modal" data-target="#feedback-modal" href = "#feedback-modal">
 					<img src="/images/feedback.png" />
@@ -41,3 +42,4 @@
 					</div>
 				</div>
 </div>
+<%end%>

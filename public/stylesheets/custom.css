@@ -50,7 +50,7 @@ body {
 
 
 header {
-	height: 92px;
+	height: 80px;
 	background: #4A5C5C 0px 30px repeat-x url(/images/bg_header.jpg);
 }
 
@@ -235,7 +235,7 @@ footer
 .fb-login-button
 {
 	float: left;
-	margin-top:10%;
+	margin-top:4%;
 	margin-left: 0%;
 }
 header .fb-like
@@ -259,6 +259,12 @@ header .fb-like
 footer .row-fluid .span4
 {
 	text-align:center;
+}
+
+#landingPageHorDivider
+{
+		background: url("/images/partition.png") no-repeat scroll center bottom transparent;
+		height:28px;
 }
 
 .nunito700
@@ -412,6 +418,15 @@ h1.uppercase
 	background-color:	rgb(225,234,239);
 	width:100%;
 	min-height:330px;
+	border-bottom: 11px solid #C6BBCD;
+	border-top: 11px solid #C6BBCD;
+	margin-top:20px;
+}
+
+#landingPageBlueTop
+{
+	background: url("/images/navbar.png") repeat-x ;
+	height:20px;
 }
 
 .body-wrapper
@@ -715,7 +730,7 @@ li a.question-username
 #home-header
 {
 	margin-left:2%;
-	font-size:180%;
+	font-size:160%;
 	line-height:130%;
 }
 
@@ -745,7 +760,7 @@ li a.question-username
 #vidactica-logo
 {
 	position:relative;
-	bottom:5px;
+	bottom:15px;
 }
 
 .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
