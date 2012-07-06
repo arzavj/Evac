@@ -178,18 +178,5 @@ class TokController < ApplicationController
 		
 		redirect_to "/"
 	end
-	
-	def leaveQuestion(qID)
-		question = Question.find(qID)
-		
-		question.in_session = false
-		
-		question.save
-	end
-	
-	def submitStatus
-		leaveQuestion(params["qID"])
-		render :content_type => 'text/javascript'
-	end
 
 end

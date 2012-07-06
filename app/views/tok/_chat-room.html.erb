@@ -1,6 +1,7 @@
 <script src="http://static.opentok.com/v0.91/js/TB.min.js"></script>
 
 <script type="text/javascript">
+	alert('Loading'); 
 	
     var apiKey = '<%= $apiKey %>';
     var sessionId = '<%= @sessionID %>';
@@ -10,8 +11,10 @@
 	
     var session = TB.initSession(sessionId);      
     session.addEventListener('sessionConnected', sessionConnectedHandler);
-    session.addEventListener('streamCreated', streamCreatedHandler);       
+    session.addEventListener('streamCreated', streamCreatedHandler);
     session.connect(apiKey, token);
+	
+	var inSession = false;
 	
 	window.onbeforeunload = function (){
 		jQuery.noConflict();
@@ -20,27 +23,32 @@
 		notes = notes.replace(/\n/g, '<br />');
 		var query = "notes=" + notes + "&qID=" + <%=params["qID"]%>;
 		
-		<%if room == 1%>
-			jQuery.ajax({
+		if (inSession){
+			<%if room == 1%>
+				jQuery.ajax({
 					type: 'GET',
 					url: '/tok/pastQuestion',
 					data: query
 				});
-		<%else%>
-			jQuery.ajax({
+			<%else%>
+				jQuery.ajax({
 					type: 'GET',
 					url: '/tok/answerPastQuestion',
 					data: query
 				});
-		<%end%>
+			<%end%>
+		}
 		return "Hope you enjoyed your conversation";
 	}
 	
 	
     var publisher;
 	
+	function onConversation(){
+		inSession = true;
+	}
+	
     function sessionConnectedHandler(event) {
-		alert('Connecting');
 		publisher = session.publish("<%= me %>");
 		subscribeToStreams(event.streams);
     } 
@@ -70,6 +78,7 @@
 				aTags[i].setAttribute("data-target", "#rank-modal");
 				aTags[i].setAttribute("href", "#rank-modal");
 			}
+			onConversation();
 			return;
 		}
     }    
