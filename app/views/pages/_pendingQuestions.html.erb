@@ -1,3 +1,43 @@
+<script type ="text/javascript">
+	function checkForm(formNumber)
+	{
+		var radios = document.getElementsByName("appointment" + formNumber);
+		var value = true;
+		for (var i = 0; i < radios.length; i++) {
+			if (radios[i].type === 'radio' && radios[i].checked) {
+				var hasInnerText = (document.getElementsByTagName("body")[0].innerText != undefined) ? true : false;
+				var appointment = radios[i].parentNode.getElementsByTagName("div")[0];
+				var date;
+				if(!hasInnerText){
+					date = new Date(appointment.textContent);
+				}else{
+					date = new Date(appointment.innerText);
+				}
+				var today = new Date().getTime();
+				if(date < today){
+					alert("This time is in the past...");
+					return false;
+				}else{
+					value = false;
+					break;
+				}
+			}
+		}
+
+		
+		if (value)
+		{
+			alert("Please select one schedule");
+			return false;
+		}
+		else
+		{
+			f.submit();
+			return true;
+		}
+	}
+</script>
+
 <div class="span6">
 	<ul class="nav nav-list right-border">
 		<!-- Questions that have been proposed to discuss -->
@@ -25,8 +65,10 @@
 					<input type = "hidden" name = "qID" value = "<%= q.id %>" />
 					<input type = "hidden" name = "count" value = "<%=count.to_s%>">
 					<% q.schedules.each do |appointment|%> <!-- Set up form -->
-						<input type="radio" name="appointment<%=count%>" value="<%=appointment.id%>" /> 
-						<div name="timeDiv"><%=appointment.appointment.strftime("%B %d, %Y %H:%M:%S UTC")%></div>
+						<div name="wrapper">
+							<input type="radio" name="appointment<%=count%>" value="<%=appointment.id%>" />
+							<div name="timeDiv"><%=appointment.appointment.strftime("%B %d, %Y %H:%M:%S UTC")%></div>
+						</div>
 						<br />
 					<%end%>
 						

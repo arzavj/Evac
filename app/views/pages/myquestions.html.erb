@@ -17,32 +17,6 @@
 <%end%>
 
 
-<script type ="text/javascript">
-	function checkForm(formNumber)
-	{
-		var radios = document.getElementsByName("appointment" + formNumber);
-		var value = true;
-		for (var i = 0; i < radios.length; i++) {
-			if (radios[i].type === 'radio' && radios[i].checked) {
-				value = false;
-				break;
-			}
-		}
-
-		
-		if (value)
-		{
-			alert("Please select one schedule");
-			return false;
-		}
-		else
-		{
-			f.submit();
-			return true;
-		}
-	}
-</script>
-
 <%= render :partial => "schedule"%>
 
 <div class="transparent-background">
