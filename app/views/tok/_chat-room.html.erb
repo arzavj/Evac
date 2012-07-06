@@ -46,6 +46,17 @@
 	
 	function onConversation(){
 		inSession = true;
+		var leaveButton = document.getElementById("leaveButton");
+		leaveButton.setAttribute("data-toggle", "modal");
+		leaveButton.setAttribute("data-target", "#rank-modal");
+		leaveButton.setAttribute("href", "#rank-modal");
+		var aTags = document.getElementsByTagName("a");
+		for(var i = 0; i<aTags.length;i++)
+		{
+			aTags[i].setAttribute("data-toggle", "modal");
+			aTags[i].setAttribute("data-target", "#rank-modal");
+			aTags[i].setAttribute("href", "#rank-modal");
+		}
 	}
 	
     function sessionConnectedHandler(event) {
@@ -67,17 +78,6 @@
 			
 			// Subscribe to the stream
 			session.subscribe(streams[i], "<%= other %>");
-			var leaveButton = document.getElementById("leaveButton");
-			leaveButton.setAttribute("data-toggle", "modal");
-			leaveButton.setAttribute("data-target", "#rank-modal");
-			leaveButton.setAttribute("href", "#rank-modal");
-			var aTags = document.getElementsByTagName("a");
-			for(var i = 0; i<aTags.length;i++)
-			{
-				aTags[i].setAttribute("data-toggle", "modal");
-				aTags[i].setAttribute("data-target", "#rank-modal");
-				aTags[i].setAttribute("href", "#rank-modal");
-			}
 			onConversation();
 			return;
 		}

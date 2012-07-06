@@ -25,7 +25,7 @@ class TokController < ApplicationController
 		
 		updateNewQuestion(question)
 		
-		u = User.where({:email => cookies[:email], :password => cookies[:pass]})[0]
+		u = current_account
 		
 		VidMail.AppointmentConfirmed(params["qID"], u.id).deliver #send email
 		VidMail.ConfirmAppointmentConfirmed(params["qID"], u.id).deliver #send email
@@ -59,14 +59,14 @@ class TokController < ApplicationController
 
 	@token = $opentok.generate_token :session_id => @sessionID
 	  
-	@user = User.where({:email => cookies[:email], :password => cookies[:pass]})[0]
+	@user = current_account
   end
 	
 	def GiveChatRoom
 		@room = 0
 		@q = Question.find(params["qID"])
 			
-		@user = User.where({:email => cookies[:email], :password => cookies[:pass]})[0]	
+		@user = current_account
 		@sessionID = @q.current_session
 			
 		@token = $opentok.generate_token :session_id => @sessionID
@@ -92,7 +92,7 @@ class TokController < ApplicationController
 	end
 	
 	def delete
-		user = User.where({:email => cookies[:email], :password => cookies[:pass]})[0]
+		user = current_account
 		question = Question.find(params["qID"])
 		
 		if question.user_id == user.id
@@ -107,10 +107,9 @@ class TokController < ApplicationController
 	end
 	
 	def Schedule
-			
 		question = Question.find(params["qID"])
 		
-		user = User.where({:email => cookies[:email], :password => cookies[:pass]})[0]
+		user = current_account
 		
 		if question.answer_id == nil
 			question.answer_id = user.id
@@ -144,9 +143,6 @@ class TokController < ApplicationController
 		VidMail.ConfirmAppointmentScheduled(params["qID"], user.id).deliver
 		
 		redirect_to :controller => "pages", :action => "myquestions", :schedule => "1"
-	end
-	
-	def ScheduleAppointment
 	end
     
     def SetRank
