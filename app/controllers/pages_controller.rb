@@ -23,18 +23,12 @@ class PagesController < ApplicationController
   def bio
     @title = "Bio"
 	if params[:id] != nil
-		u = User.where({:id => params[:id]})
+		@user = User.find_by_id(params[:id])
 	else
-		u = User.where({:email => cookies[:email], :password => cookies[:pass]})
+		@user = current_account
 	end
-    @user = u[0]
-	@rank = @user.rank*@user.sessions + @user.ask_rank*@user.ask_sessions 
-	@sessions = @user.sessions + @user.ask_sessions
-	if @sessions == 0
-		@rank = 0
-	else
-		@rank = @rank/@sessions
-	end
+	@rank = @user.rating
+	@sessions = @user.completed_conversations + @user.missed_conversations
     @profile = @user.profile
       #send_data @profile.data, :type => 'image/png', :disposition => 'inline'
   end

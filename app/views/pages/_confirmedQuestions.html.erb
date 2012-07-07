@@ -18,12 +18,6 @@
 				<br>You are scheduled to meet at <div name="timeDiv" ><%=s.appointment.strftime("%B %d, %Y %H:%M:%S UTC")%> </div>
 				<%schedule = s.appointment - (5.minutes)%> <!--5 minutes before hand-->
 				<%if schedule.past?%>
-					<%if q.in_session == false%>
-						<%str = "Enter Room For Appointment"%>
-					<%else%>
-						<%str = "Your Conversation is Ready"%>
-					<%end%>
-									
 					<form class="margin-bottom-5" action="/tok/EnterSession" method= "get">
 						<input type = "hidden" name = "qID" value = "<%= q.id %>" />
 						<input type = "hidden" name = "uID" value = "<%= @user.id %>" />

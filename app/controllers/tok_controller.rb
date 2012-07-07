@@ -42,6 +42,7 @@ class TokController < ApplicationController
 		end
 		
 		question.in_session = true
+		question.first_entry = DateTime.now
 		question.save
 	
 		if params["uID"].to_i == question.user_id
@@ -152,23 +153,21 @@ class TokController < ApplicationController
 	def submitRank
 		q = Question.find(params["qID"])
 		
-		
+		user = nil
+		rating
 		if params["user"].to_i == 1 #rank the answerer 
-		q.rank = params["rating"]
-		answerer = User.find(q.answer_id)
-		answerer.rank = ((answerer.rank*answerer.sessions) + q.rank)/(answerer.sessions+1)
-		answerer.sessions = answerer.sessions+1
-		
-		answerer.save
+			q.rank = params["rating"]
+			rating = q.rank
+			user = User.find(q.answer_id)
 		else #ranks the asker
-			
-		q.ask_rank = params["rating"]	
-		asker = q.user
-		asker.ask_rank = ((asker.ask_rank*asker.ask_sessions) + q.ask_rank)/(asker.ask_sessions+1)
-		asker.ask_sessions = asker.ask_sessions+1
-		
-		asker.save
+			q.ask_rank = params["rating"]
+			rating = q.ask_rank
+			user = q.user
 		end
+		
+		user.rating = ((user.rating*user.completed_conversations) + rating)/(user.completed_conversations+1)
+		user.completed_conversations = user.completed_conversations + 1
+		user.save
 		
 		q.save
 		

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120704201204) do
+ActiveRecord::Schema.define(:version => 20120707034751) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(:version => 20120704201204) do
     t.boolean  "delete_past_question_answerer",               :default => false
     t.boolean  "deleted",                                     :default => false
     t.boolean  "reposted",                                    :default => false
+    t.datetime "first_entry"
   end
 
   add_index "questions", ["user_id"], :name => "index_questions_on_user_id"
@@ -79,16 +80,15 @@ ActiveRecord::Schema.define(:version => 20120704201204) do
     t.string   "password"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.float    "rank",                       :default => 0.0
-    t.integer  "sessions",                   :default => 0
     t.integer  "profile_id"
-    t.integer  "ask_rank",      :limit => 8, :default => 0
-    t.integer  "ask_sessions",               :default => 0
+    t.integer  "completed_conversations", :default => 0
     t.string   "verify"
-    t.string   "firstName",                  :default => ""
-    t.string   "lastName",                   :default => ""
-    t.integer  "age",                        :default => 0
-    t.integer  "new_questions",              :default => 0
+    t.string   "firstName",               :default => ""
+    t.string   "lastName",                :default => ""
+    t.integer  "age",                     :default => 0
+    t.integer  "new_questions",           :default => 0
+    t.float    "rating",                  :default => 0.0
+    t.integer  "missed_conversations",    :default => 0
   end
 
   add_index "users", ["profile_id"], :name => "index_users_on_profile_id"
