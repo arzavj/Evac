@@ -235,7 +235,7 @@ footer
 .fb-login-button
 {
 	float: left;
-	margin-top:4%;
+	margin-top:6%;
 	margin-left: 0%;
 }
 header .fb-like
@@ -282,8 +282,12 @@ footer .row-fluid .span4
 footer .row-fluid .span4 h2
 {
 	/*font-family: 'Macondo Swash Caps', cursive;*/
-	font-size:130%;
+	font-size:124%;
 	color: #FFFFFF;
+	border: 5px solid rgb(198, 187, 205); 
+	background-color: rgb(225, 234, 239);
+	border-radius: 20px;
+	
 }
 
 /*footer .row-fluid .span4 h2 a:hover {
@@ -730,7 +734,7 @@ li a.question-username
 #home-header
 {
 	margin-left:2%;
-	font-size:160%;
+	font-size:150%;
 	line-height:130%;
 }
 
