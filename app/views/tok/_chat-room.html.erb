@@ -1,4 +1,5 @@
 <script src="http://static.opentok.com/v0.91/js/TB.min.js"></script>
+<script src="http://localhost:9292/faye.js"></script>
 
 <script type="text/javascript">
 	alert('Loading'); 
@@ -91,35 +92,43 @@ function rate(amnt){
 	return false;
 }
 </script>
+<table border = "1" width = "100%">
+    <tr><td width = "25%"></td><td width = "50%">
+        <div class="transparent-background">
+            <div class="body-wrapper">
+                <%if @user.id == @q.user_id%>
+                    <%id = @q.answer_id%>
+                <%else%>
+                    <%id = @q.user_id%>
+                <%end%>
+                <%user = User.find(id)%>
+                <%name = user.firstName + " " + user.lastName%>
+                <h3 class="SmallFont" style="padding-top:10px;">With <a href="/bio?id=<%=id%>"><%=name%></a>: <%=@q.question%></h3>
+                <center>
+                    <div id="asker"></div>
+                    <div id="answer"></div>
+                </center>
 
-<div class="transparent-background">
-	<div class="body-wrapper">
-		<%if @user.id == @q.user_id%>
-			<%id = @q.answer_id%>
-		<%else%>
-			<%id = @q.user_id%>
-		<%end%>
-		<%user = User.find(id)%>
-		<%name = user.firstName + " " + user.lastName%>
-		<h3 class="SmallFont" style="padding-top:10px;">With <a href="/bio?id=<%=id%>"><%=name%></a>: <%=@q.question%></h3>
-		<center>
-  			<div id="asker"></div>
-  			<div id="answer"></div>
-		</center>
+                <center>
+                    <a id="leaveButton" href="/">
+                        <button class="btn">Leave Session</button> 
+                    </a>
+                </center>
 
-		<center>
-			<a id="leaveButton" href="/">
-				<button class="btn">Leave Session</button> 
-			</a>
-		</center>
-
-		<center>
-			<div class="SmallFont">Notes:</div>
-			<textarea id="notes" COLS=100 ROWS=10></textarea>
-		</center>
-	</div>
-</div>
-
+                <center>
+                    <div class="SmallFont">Notes:</div>
+                    <textarea id="notes" COLS=100 ROWS=10></textarea>
+                </center>
+            </div>
+        </div>
+    </td><td width = "25%">
+        <div class="chatHeaderFont">Chat:</div>
+        <div id="chatWrapper">
+            <ul id="messages"></ul>
+            <textarea id="message" name="message">Type your message here and hit enter...</textarea>
+        </div> 
+    </td></tr>
+</table>
 <div class="modal hide fade" id="rank-modal">
 	<div class="modal-header">
 		<button class="close" data-dismiss="modal">&times;</button>
