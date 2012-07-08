@@ -284,9 +284,9 @@ footer .row-fluid .span4 h2
 	/*font-family: 'Macondo Swash Caps', cursive;*/
 	font-size:124%;
 	color: #FFFFFF;
-	border: 5px solid rgb(198, 187, 205); 
+	/*border: 5px solid rgb(198, 187, 205); 
 	background-color: rgb(225, 234, 239);
-	border-radius: 20px;
+	border-radius: 20px;*/
 	
 }
 
@@ -422,9 +422,9 @@ h1.uppercase
 	background-color:	rgb(225,234,239);
 	width:100%;
 	min-height:330px;
-	border-bottom: 11px solid #C6BBCD;
-	border-top: 11px solid #C6BBCD;
-	margin-top:20px;
+	/*border-bottom: 11px solid #C6BBCD;
+	border-top: 11px solid #C6BBCD;*/
+	margin-top:2%;
 }
 
 #landingPageBlueTop
@@ -734,7 +734,7 @@ li a.question-username
 #home-header
 {
 	margin-left:2%;
-	font-size:150%;
+	font-size:200%;
 	line-height:130%;
 }
 
