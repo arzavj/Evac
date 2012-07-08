@@ -83,14 +83,6 @@
 			return;
 		}
     }    
-    
-    var stateManager = session.getStateManager();
-    stateManager.set("chat", "bar");
-    stateManager.addEventListener("changed:chat", chatStateChangedHandler);
-    
-    function chatStateChangedHandler(event){
-        alert("state changed");
-    }
 </script>
 
 <script language="javascript">
@@ -102,11 +94,27 @@ function rate(amnt){
 </script>
 
 <script language = "javascript">
+    
+    var stateManager = session.getStateManager();
+    stateManager.addEventListener("changed:chat", chatStateChangedHandler);
+
+    function chatStateChangedHandler(event){
+        var list = document.getElementById("messages");
+        var new_msg = document.createElement("li");
+        new_msg.value = event.value;
+        container.insertAfter(new_msg, container.firstChild);
+    }
+    
     function checkSubmit(e){
         if(e && e.keyCode == 13){
-            document.forms["textChat"].
-            document.forms["textChat"].submit();
+            if(document.getElementById("message").value != ''){
+                /*stateManager.set("chat", document.getElementById("message").value);*/
+                alert(document.getElementById("message").value);
+                document.getElementById("message").value='';
+            }
+            return false;
         }
+        return true;
     }
 </script>
 
@@ -144,9 +152,8 @@ function rate(amnt){
         <div id="chatWrapper">
             <ul id="messages"></ul>
             <form name = "textChat" action = "" method = "post">
-                <input type = "text" onclick = "this.value=''" name = "message" 
-                    value = "Type your message here and hit enter..."  id = "message">
-                <input type = "submit" style = "display:none">
+                <input type = "text" onclick = "this.value=''" id = "message"
+                    value = "Type your message here and hit enter..." onKeyPress = "return checkSubmit(event)"/>
             </form>
         </div> 
     </td></tr>
