@@ -83,7 +83,15 @@
 			return;
 		}
     }    
-	</script>
+    
+    var stateManager = session.getStateManager();
+    stateManager.set("chat", "bar");
+    stateManager.addEventListener("changed:chat", chatStateChangedHandler);
+    
+    function chatStateChangedHandler(event){
+        alert("state changed");
+    }
+</script>
 
 <script language="javascript">
 function rate(amnt){
@@ -92,6 +100,16 @@ function rate(amnt){
 	return false;
 }
 </script>
+
+<script language = "javascript">
+    function checkSubmit(e){
+        if(e && e.keyCode == 13){
+            document.forms["textChat"].
+            document.forms["textChat"].submit();
+        }
+    }
+</script>
+
 <table border = "1" width = "100%">
     <tr><td width = "25%"></td><td width = "50%">
         <div class="transparent-background">
@@ -125,10 +143,15 @@ function rate(amnt){
         <div class="chatHeaderFont">Chat:</div>
         <div id="chatWrapper">
             <ul id="messages"></ul>
-            <textarea id="message" name="message">Type your message here and hit enter...</textarea>
+            <form name = "textChat" action = "" method = "post">
+                <input type = "text" onclick = "this.value=''" name = "message" 
+                    value = "Type your message here and hit enter..."  id = "message">
+                <input type
+            </form>
         </div> 
     </td></tr>
 </table>
+
 <div class="modal hide fade" id="rank-modal">
 	<div class="modal-header">
 		<button class="close" data-dismiss="modal">&times;</button>
