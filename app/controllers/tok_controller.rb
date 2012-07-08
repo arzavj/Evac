@@ -154,7 +154,7 @@ class TokController < ApplicationController
 		q = Question.find(params["qID"])
 		
 		user = nil
-		rating
+		rating = nil
 		if params["user"].to_i == 1 #rank the answerer 
 			q.rank = params["rating"]
 			rating = q.rank

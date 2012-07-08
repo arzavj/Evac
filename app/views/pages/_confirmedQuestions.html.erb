@@ -17,7 +17,23 @@
 				<%s = Schedule.find(q.schedule_id)%>
 				<br>You are scheduled to meet at <div name="timeDiv" ><%=s.appointment.strftime("%B %d, %Y %H:%M:%S UTC")%> </div>
 				<%schedule = s.appointment - (5.minutes)%> <!--5 minutes before hand-->
-				<%if schedule.past?%>
+				
+				<%future = nil%>
+				<%if q.first_entry.nil?%>
+					<%future = s.appointment%>
+				<%else%>
+					<%if q.first_entry > s.appointment%>
+						<%future = q.first_entry%>
+					<%else%>
+						<%future = s.appointment%>
+					<%end%>
+				<%end%>
+				<%future = future + (10.minutes)%>
+				<%if future.past?%>
+					<div class="margin-bottom-5">
+						<input class="btn disabled enter-chatroom-tooltip" rel="tooltip" title="Please propose a new time" type="submit" value="Enter Room For Appointment" />
+					</div>
+				<%elsif schedule.past?%>
 					<form class="margin-bottom-5" action="/tok/EnterSession" method= "get">
 						<input type = "hidden" name = "qID" value = "<%= q.id %>" />
 						<input type = "hidden" name = "uID" value = "<%= @user.id %>" />
