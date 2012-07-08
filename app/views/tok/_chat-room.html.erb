@@ -1,5 +1,7 @@
 <script src="http://static.opentok.com/v0.91/js/TB.min.js"></script>
 
+<%= render :partial => "missed_conversation", :locals => {:qID => params["qID"]}%>
+
 <script type="text/javascript">
 	alert('Loading'); 
 	
@@ -15,6 +17,7 @@
     session.connect(apiKey, token);
 	
 	var inSession = false;
+	var timeout = setTimeout(declareMissed, 60000); 
 	
 	window.onbeforeunload = function (){
 		jQuery.noConflict();
@@ -46,6 +49,7 @@
 	
 	function onConversation(){
 		inSession = true;
+		clearTimeout(timeout);
 		var leaveButton = document.getElementById("leaveButton");
 		leaveButton.setAttribute("data-toggle", "modal");
 		leaveButton.setAttribute("data-target", "#rank-modal");
