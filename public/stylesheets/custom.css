@@ -420,6 +420,11 @@ h1.uppercase
 .blue-banner
 {
 	background-color:	rgb(225,234,239);
+	/*background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#E1EAEF), to(#ECEEF0));
+  background-image: -webkit-linear-gradient(top, #E1EAEF, #ECEEF0); 
+  background-image:    -moz-linear-gradient(top, #E1EAEF, #ECEEF0);
+  background-image:     -ms-linear-gradient(top, #E1EAEF, #ECEEF0);
+  background-image:      -o-linear-gradient(top, #E1EAEF, #ECEEF0);*/
 	width:100%;
 	min-height:330px;
 	/*border-bottom: 11px solid #C6BBCD;
