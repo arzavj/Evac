@@ -214,6 +214,37 @@ class TokController < ApplicationController
 	end
 	
 	def missedSchedule
+		q = Question.find(params["qID"])
+		asker = q.user
+		answer = User.find(q.answer_id)
 		
+		if asker.id == current_account.id
+			q.answer_missed = true
+			answer.missed_conversations = answer.missed_conversations + 1
+			asker.rating = ((asker.rating*asker.completed_conversations) + 5.0)/(asker.completed_conversations+1)
+			asker.completed_conversations = asker.completed_conversations + 1
+		else
+			q.ask_missed = true
+			asker.missed_conversations = asker.missed_conversations + 1
+			answer.rating = ((answer.rating*answer.completed_conversations) + 5.0)/(answer.completed_conversations+1)
+			answer.completed_conversations = answer.completed_conversations + 1
+		end
+		
+		q.was_answered = true
+		
+		asker.save
+		answer.save
+		q.save
+		
+		repost = Question.new
+		repost.user_id = q.user_id
+		repost.answer_id = q.answer_id
+		repost.question = q.question
+		repost.category = q.category
+		repost.in_session = false
+		repost.save
+		
+		makeSchedules repost
+		redirect_to "/myquestions"
 	end
 end
