@@ -67,7 +67,7 @@
 					<% q.schedules.each do |appointment|%> <!-- Set up form -->
 						<div name="wrapper">
 							<input type="radio" name="appointment<%=count%>" value="<%=appointment.id%>" />
-							<div name="timeDiv"><%=appointment.appointment.strftime("%B %d, %Y %H:%M:%S UTC")%></div>
+							<span name="timeDiv"><%=appointment.appointment.strftime("%B %d, %Y %H:%M:%S UTC")%></span>
 						</div>
 						<br />
 					<%end%>

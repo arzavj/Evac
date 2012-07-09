@@ -12,10 +12,10 @@
 				<%end%>
 				<%user = User.find(id)%>
 				<%name = user.firstName + " " + user.lastName%>
-				with <a class="question-username" href="/bio?id=<%=id%>"><%=name%></a><br>
+				with <a class="question-username" href="/bio?id=<%=id%>"><%=name%></a><br />
 							
 				<%s = Schedule.find(q.schedule_id)%>
-				<br>You are scheduled to meet at <div name="timeDiv" ><%=s.appointment.strftime("%B %d, %Y %H:%M:%S UTC")%> </div>
+				<br />You are scheduled to meet at <span name="timeDiv" ><%=s.appointment.strftime("%B %d, %Y %H:%M:%S UTC")%> </span>
 				<%schedule = s.appointment - (5.minutes)%> <!--5 minutes before hand-->
 				<%if schedule.past?%>
 					<%if q.in_session == false%>
