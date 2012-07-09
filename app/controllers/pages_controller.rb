@@ -28,7 +28,8 @@ class PagesController < ApplicationController
 		@user = current_account
 	end
 	@rank = @user.rating
-	@sessions = @user.completed_conversations + @user.missed_conversations
+	@sessions = @user.completed_conversations 
+	@missed = @user.missed_conversations
     @profile = @user.profile
       #send_data @profile.data, :type => 'image/png', :disposition => 'inline'
   end
