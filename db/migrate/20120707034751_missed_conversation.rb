@@ -7,6 +7,8 @@ class MissedConversation < ActiveRecord::Migration
 	remove_column :users, :sessions
 	add_column :users, :missed_conversations, :integer, :default => 0
 	add_column :questions, :first_entry, :datetime
+	add_column :questions, :ask_missed, :boolean, :default => false
+	add_column :questions, :answer_missed, :boolean, :default => false
   end
 
   def self.down
@@ -16,5 +18,7 @@ class MissedConversation < ActiveRecord::Migration
 	add_column :users, :sessions, :integer, :default => 0.0
 	remove_column :users, :missed_conversations
 	remove_column :questions, :first_entry
+	remove_column :questions, :ask_missed
+	remove_column :questions, :answer_missed
   end
 end

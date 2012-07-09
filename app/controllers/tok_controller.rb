@@ -107,9 +107,7 @@ class TokController < ApplicationController
 		redirect_to "/pages/myquestions"
 	end
 	
-	def Schedule
-		question = Question.find(params["qID"])
-		
+	def makeSchedules question
 		user = current_account
 		
 		if question.answer_id == nil
@@ -132,13 +130,20 @@ class TokController < ApplicationController
 				split = params["Slot"+i.to_s].split(' ')
 				date = Date.strptime(split[0], '%m/%d/%Y')
 				time = Time.parse(split[1])
-
+				
 				s.appointment = DateTime.new(date.year, date.month, date.day, time.hour, time.min, time.sec)
 				s.appointment = s.appointment.new_offset(params["timeOffset"].to_i/24.0)
 				s.user_id = user.id #proposer
 				s.save
 			end
 		end
+		
+	end
+	
+	def Schedule
+		question = Question.find(params["qID"])
+		
+		makeSchedules question
 		
 		VidMail.AppointmentScheduled(params["qID"], user.id).deliver
 		VidMail.ConfirmAppointmentScheduled(params["qID"], user.id).deliver
@@ -174,4 +179,41 @@ class TokController < ApplicationController
 		redirect_to "/"
 	end
 
+	def missedRepost
+		q = Question.find(params["qID"])
+		asker = q.user
+		answer = User.find(q.answer_id)
+		
+		if asker.id == current_account.id
+			q.answer_missed = true
+			answer.missed_conversations = answer.missed_conversations + 1
+			asker.rating = ((asker.rating*asker.completed_conversations) + 5.0)/(asker.completed_conversations+1)
+			asker.completed_conversations = asker.completed_conversations + 1
+		else
+			q.ask_missed = true
+			asker.missed_conversations = asker.missed_conversations + 1
+			answer.rating = ((answer.rating*answer.completed_conversations) + 5.0)/(answer.completed_conversations+1)
+			answer.completed_conversations = answer.completed_conversations + 1
+		end
+		
+		q.was_answered = true
+		q.reposted = true
+		
+		asker.save
+		answer.save
+		q.save
+		
+		repost = Question.new
+		repost.user_id = current_account.id
+		repost.question = q.question
+		repost.category = q.category
+		repost.in_session = false
+		repost.save
+		
+		redirect_to "/myquestions"
+	end
+	
+	def missedSchedule
+		
+	end
 end

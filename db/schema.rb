@@ -60,6 +60,8 @@ ActiveRecord::Schema.define(:version => 20120707034751) do
     t.boolean  "deleted",                                     :default => false
     t.boolean  "reposted",                                    :default => false
     t.datetime "first_entry"
+    t.boolean  "ask_missed",                                  :default => false
+    t.boolean  "answer_missed",                               :default => false
   end
 
   add_index "questions", ["user_id"], :name => "index_questions_on_user_id"
