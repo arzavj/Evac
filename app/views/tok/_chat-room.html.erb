@@ -16,6 +16,8 @@
     session.connect(apiKey, token);
 	
 	var inSession = false;
+    
+    <%name = User.find(@q.user_id).firstName%>;
 	
 	window.onbeforeunload = function (){
 		jQuery.noConflict();
@@ -60,9 +62,13 @@
 		}
 	}
 	
+    var stateManager;
+    
     function sessionConnectedHandler(event) {
 		publisher = session.publish("<%= me %>");
 		subscribeToStreams(event.streams);
+        stateManager = session.getStateManager();
+        stateManager.addEventListener("changed:chat", chatStateChangedHandler);
     } 
 	
 	function streamCreatedHandler(event) {
@@ -95,22 +101,19 @@ function rate(amnt){
 
 <script language = "javascript">
     
-    var stateManager = session.getStateManager();
-    stateManager.addEventListener("changed:chat", chatStateChangedHandler);
-
+    var name = "<%=@user.firstName%> <%=@user.lastName%>";
+    
     function chatStateChangedHandler(event){
-        var list = document.getElementById("messages");
-        var new_msg = document.createElement("li");
-        new_msg.value = event.value;
-        container.insertAfter(new_msg, container.firstChild);
+        var new_msg = event.changedValues["chat"];
+        document.getElementById("messages").value += " " + name + ": " + new_msg + "\n";
     }
     
     function checkSubmit(e){
-        if(e && e.keyCode == 13){
-            if(document.getElementById("message").value != ''){
-                /*stateManager.set("chat", document.getElementById("message").value);*/
-                alert(document.getElementById("message").value);
-                document.getElementById("message").value='';
+        if(e && e.keyCode == 13 && e != null){
+            if(document.getElementById("message").value != '' || document.getElementById("message").value != null){
+                var msg = document.getElementById("message").value;
+                    document.getElementById("message").value='';
+                    stateManager.set("chat", msg);
             }
             return false;
         }
@@ -150,7 +153,7 @@ function rate(amnt){
     </td><td width = "25%">
         <div class="chatHeaderFont">Chat:</div>
         <div id="chatWrapper">
-            <ul id="messages"></ul>
+            <textarea disabled = "" id = "messages" style = "background-color: white"></textarea>
             <form name = "textChat" action = "" method = "post">
                 <input type = "text" onclick = "this.value=''" id = "message"
                     value = "Type your message here and hit enter..." onKeyPress = "return checkSubmit(event)"/>
