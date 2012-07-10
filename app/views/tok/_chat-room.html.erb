@@ -105,7 +105,7 @@ function rate(amnt){
     
     function chatStateChangedHandler(event){
         var new_msg = event.changedValues["chat"];
-        if(new_msg != null){
+        if(new_msg != null  ){
             document.getElementById("messages").value += " " + name + ": " + new_msg + "\n";
         }
     }
