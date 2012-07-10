@@ -1,4 +1,5 @@
 <script src="http://static.opentok.com/v0.91/js/TB.min.js"></script>
+<script src="http://localhost:9292/faye.js"></script>
 
 <script type="text/javascript">
 	alert('Loading'); 
@@ -15,6 +16,8 @@
     session.connect(apiKey, token);
 	
 	var inSession = false;
+    
+    <%name = User.find(@q.user_id).firstName%>;
 	
 	window.onbeforeunload = function (){
 		jQuery.noConflict();
@@ -59,9 +62,13 @@
 		}
 	}
 	
+    var stateManager;
+    
     function sessionConnectedHandler(event) {
 		publisher = session.publish("<%= me %>");
 		subscribeToStreams(event.streams);
+        stateManager = session.getStateManager();
+        stateManager.addEventListener("changed:chat", chatStateChangedHandler);
     } 
 	
 	function streamCreatedHandler(event) {
@@ -82,7 +89,7 @@
 			return;
 		}
     }    
-	</script>
+</script>
 
 <script language="javascript">
 function rate(amnt){
@@ -92,33 +99,70 @@ function rate(amnt){
 }
 </script>
 
-<div class="transparent-background">
-	<div class="body-wrapper">
-		<%if @user.id == @q.user_id%>
-			<%id = @q.answer_id%>
-		<%else%>
-			<%id = @q.user_id%>
-		<%end%>
-		<%user = User.find(id)%>
-		<%name = user.firstName + " " + user.lastName%>
-		<h3 class="SmallFont" style="padding-top:10px;">With <a href="/bio?id=<%=id%>"><%=name%></a>: <%=@q.question%></h3>
-		<center>
-  			<div id="asker"></div>
-  			<div id="answer"></div>
-		</center>
+<script language = "javascript">
+    
+    var name = "<%=@user.firstName%> <%=@user.lastName%>";
+    
+    function chatStateChangedHandler(event){
+        var new_msg = event.changedValues["chat"];
+        if(new_msg != null  ){
+            document.getElementById("messages").value += " " + name + ": " + new_msg + "\n";
+        }
+    }
+    
+    function checkSubmit(e){
+        if(e && e.keyCode == 13){
+            if(document.getElementById("message").value != ''){
+                var msg = document.getElementById("message").value;
+                    document.getElementById("message").value='';
+                    stateManager.set("chat", msg);
+            }
+            return false;
+        }
+        return true;
+    }
+</script>
 
-		<center>
-			<a id="leaveButton" href="/">
-				<button class="btn">Leave Session</button> 
-			</a>
-		</center>
+<table border = "1" width = "100%">
+    <tr><td width = "25%"></td><td width = "50%">
+        <div class="transparent-background">
+            <div class="body-wrapper">
+                <%if @user.id == @q.user_id%>
+                    <%id = @q.answer_id%>
+                <%else%>
+                    <%id = @q.user_id%>
+                <%end%>
+                <%user = User.find(id)%>
+                <%name = user.firstName + " " + user.lastName%>
+                <h3 class="SmallFont" style="padding-top:10px;">With <a href="/bio?id=<%=id%>"><%=name%></a>: <%=@q.question%></h3>
+                <center>
+                    <div id="asker"></div>
+                    <div id="answer"></div>
+                </center>
 
-		<center>
-			<div class="SmallFont">Notes:</div>
-			<textarea id="notes" COLS=100 ROWS=10></textarea>
-		</center>
-	</div>
-</div>
+                <center>
+                    <a id="leaveButton" href="/">
+                        <button class="btn">Leave Session</button> 
+                    </a>
+                </center>
+
+                <center>
+                    <div class="SmallFont">Notes:</div>
+                    <textarea id="notes" COLS=100 ROWS=10></textarea>
+                </center>
+            </div>
+        </div>
+    </td><td width = "25%">
+        <div class="chatHeaderFont">Chat:</div>
+        <div id="chatWrapper">
+            <textarea disabled = "" id = "messages" style = "background-color: white"></textarea>
+            <form name = "textChat" action = "" method = "post">
+                <input type = "text" onclick = "this.value=''" id = "message"
+                    value = "Type your message here and hit enter..." onKeyPress = "return checkSubmit(event)"/>
+            </form>
+        </div> 
+    </td></tr>
+</table>
 
 <div class="modal hide fade" id="rank-modal">
 	<div class="modal-header">
