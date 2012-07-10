@@ -105,12 +105,14 @@ function rate(amnt){
     
     function chatStateChangedHandler(event){
         var new_msg = event.changedValues["chat"];
-        document.getElementById("messages").value += " " + name + ": " + new_msg + "\n";
+        if(new_msg != null){
+            document.getElementById("messages").value += " " + name + ": " + new_msg + "\n";
+        }
     }
     
     function checkSubmit(e){
-        if(e && e.keyCode == 13 && e != null){
-            if(document.getElementById("message").value != '' || document.getElementById("message").value != null){
+        if(e && e.keyCode == 13){
+            if(document.getElementById("message").value != ''){
                 var msg = document.getElementById("message").value;
                     document.getElementById("message").value='';
                     stateManager.set("chat", msg);
