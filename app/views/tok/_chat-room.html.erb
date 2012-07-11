@@ -101,19 +101,24 @@ function rate(amnt){
 
 <script language = "javascript">
     
-    var name = "<%=@user.firstName%> <%=@user.lastName%>";
+    
     
     function chatStateChangedHandler(event){
         var new_msg = event.changedValues["chat"];
         if(new_msg != null  ){
-            document.getElementById("messages").value += " " + name + ": " + new_msg + "\n";
+            document.getElementById("messages").value += new_msg;
         }
     }
+</script>
+
+<script language = "javascript">
+    
+    var name = "<%=@user.firstName%> <%=@user.lastName%>";
     
     function checkSubmit(e){
         if(e && e.keyCode == 13){
             if(document.getElementById("message").value != ''){
-                var msg = document.getElementById("message").value;
+                var msg = " " + name + ": " + document.getElementById("message").value + "\n";
                     document.getElementById("message").value='';
                     stateManager.set("chat", msg);
             }
