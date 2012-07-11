@@ -1,13 +1,7 @@
 require 'date'
 
 class TokController < ApplicationController
-
-	def ResetQuestion
-		question = Question.find(params["qID"])
-		question.in_session = true
-		question.save
-		redirect_to :action => "AskChatRoom", :qID => params["qID"]
-	end
+	include TokHelper
 	
 	def updateNewQuestion(question)
 		asker = question.user
@@ -78,6 +72,7 @@ class TokController < ApplicationController
 		q = Question.find(params["qID"])
 
 		q.notes = params["notes"]
+		q.in_session = false
 		q.was_answered = true
 		
 		q.save
@@ -87,6 +82,7 @@ class TokController < ApplicationController
 		q = Question.find(params["qID"])
 		
 		q.answerer_notes = params["notes"]
+		q.in_session = false
 		q.was_answered = true
 		
 		q.save
@@ -138,6 +134,9 @@ class TokController < ApplicationController
 			end
 		end
 		
+		VidMail.AppointmentScheduled(params["qID"], user.id).deliver
+		VidMail.ConfirmAppointmentScheduled(params["qID"], user.id).deliver
+		
 	end
 	
 	def Schedule
@@ -145,15 +144,8 @@ class TokController < ApplicationController
 		
 		makeSchedules question
 		
-		VidMail.AppointmentScheduled(params["qID"], user.id).deliver
-		VidMail.ConfirmAppointmentScheduled(params["qID"], user.id).deliver
-		
 		redirect_to :controller => "pages", :action => "myquestions", :schedule => "1"
 	end
-    
-    def SetRank
-		@numValues = 5
-    end
 	
 	def submitRank
 		q = Question.find(params["qID"])
@@ -203,12 +195,7 @@ class TokController < ApplicationController
 		answer.save
 		q.save
 		
-		repost = Question.new
-		repost.user_id = current_account.id
-		repost.question = q.question
-		repost.category = q.category
-		repost.in_session = false
-		repost.save
+		repost q
 		
 		redirect_to "/myquestions"
 	end
@@ -236,15 +223,11 @@ class TokController < ApplicationController
 		answer.save
 		q.save
 		
-		repost = Question.new
-		repost.user_id = q.user_id
-		repost.answer_id = q.answer_id
-		repost.question = q.question
-		repost.category = q.category
-		repost.in_session = false
-		repost.save
+		newPost = repost q
+		newpost.answer_id = q.answer_id
 		
-		makeSchedules repost
+		makeSchedules newPost
+		newPost.save
 		redirect_to "/myquestions"
 	end
 end
