@@ -128,8 +128,6 @@ function rate(amnt){
     }
 </script>
 
-<table border = "1" width = "100%">
-    <tr><td width = "25%"></td><td width = "50%">
         <div id="landingPageBlueTop"></div>
         <div class="transparent-background">
             <div class="body-wrapper">
@@ -151,24 +149,24 @@ function rate(amnt){
                         <button class="btn">Leave Session</button> 
                     </a>
                 </center>
-
-                <center>
-                    <div class="SmallFont">Notes:</div>
-                    <textarea id="notes" COLS=100 ROWS=10></textarea>
-                </center>
+				<div class="row-fluid">
+					<div class="span6">
+		                <div class="SmallFont center" style="width:15%;">Notes:</div>
+	                    <textarea id="notes" ROWS=10></textarea>
+					</div>
+					<div class="span6">
+						<div class="SmallFont center" style="width:11%;">Chat:</div>
+				        <div id="chatWrapper">
+				            <textarea disabled = "" id = "messages" style = "background-color: white"></textarea>
+				            <form name = "textChat" action = "" method = "post">
+				                <input type = "text" onclick = "this.value=''" id = "message"
+				                    value = "Type your message here and hit enter..." onKeyPress = "return checkSubmit(event)"/>
+				            </form>
+				        </div>
+					</div>
+				</div>
             </div>
         </div>
-    </td><td width = "25%">
-        <div class="chatHeaderFont">Chat:</div>
-        <div id="chatWrapper">
-            <textarea disabled = "" id = "messages" style = "background-color: white"></textarea>
-            <form name = "textChat" action = "" method = "post">
-                <input type = "text" onclick = "this.value=''" id = "message"
-                    value = "Type your message here and hit enter..." onKeyPress = "return checkSubmit(event)"/>
-            </form>
-        </div> 
-    </td></tr>
-</table>
 
 <div class="modal hide fade" id="rank-modal">
 	<div class="modal-header">

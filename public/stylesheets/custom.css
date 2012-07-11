@@ -480,7 +480,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu{
 
 #notes
 {
-	width:800px;
+	width:98%;
 	height:300px;
 }
 
@@ -800,41 +800,43 @@ li a.question-username
 	border-right: 1px solid #D1D5DA;
 }
 
-.chatHeaderFont
-{
-    color: rgb(100,149,237);
-}
-
 #chatWrapper {
-    width: 500px;
+    width: 100%;
     background: white;
-    padding: 0;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+    margin-left:3%;
+    height:413px;
     -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
     -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-    margin: 5px auto 25px auto;
 }
 
 #messages 
 {
-    width: 500px;
-    height: 330px;
-    margin: 0 0 0 0;
+    width: 102%;
+    height: 307px;
+    margin: 0;
     padding: 0;
     overflow-y: scroll;
     overflow-x: hidden;
     border-bottom: 1px #E4E4E4 solid;
     list-style: none;
+		box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
 }
 
 #message 
 {
+		box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
     margin: 0;
-    padding: 10px;
+    padding-left: 5px;
     height: 50px;
     border: none;
-    width: 480px;
+    width: 100%;
     resize: none;
     font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
     font-size: 12px;
+}
+
+.center
+{
+	margin-left:auto;
+	margin-right:auto;
 }
