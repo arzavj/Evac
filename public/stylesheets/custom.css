@@ -482,6 +482,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu{
 {
 	width:98%;
 	height:300px;
+	background-color:rgb(225,234,239);
 }
 
 .nivoSlider img
@@ -820,6 +821,7 @@ li a.question-username
     border-bottom: 1px #E4E4E4 solid;
     list-style: none;
 		box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+		background-color:rgb(225,234,239);
 }
 
 #message 
@@ -837,6 +839,5 @@ li a.question-username
 
 .center
 {
-	margin-left:auto;
-	margin-right:auto;
+	text-align:center;
 }
