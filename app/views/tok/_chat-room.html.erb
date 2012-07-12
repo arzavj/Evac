@@ -1,5 +1,4 @@
 <script src="http://static.opentok.com/v0.91/js/TB.min.js"></script>
-<script src="http://localhost:9292/faye.js"></script>
 
 <%= render :partial => "missed_conversation", :locals => {:qID => params["qID"]}%>
 
@@ -18,7 +17,7 @@
     session.connect(apiKey, token);
 	
 	var inSession = false;
-	var timeout = setTimeout(declareMissed, 60000); //TODO set appropraite time based on when appointement
+	var timeout = setTimeout(declareMissed, 600000 + <%= secondsBefore(qID).to_s%>);
 
     <%name = User.find(@q.user_id).firstName%>;
 

@@ -25,4 +25,16 @@ module TokHelper
 			answer.save
 		end
 	end
+	
+	def secondsBefore(qID)
+		question = Question.find(qID)
+		appointment = Schedule.find(question.schedule_id).appointment
+		enter = question.firstEntry
+		seconds = ((appointment - enter)*1.day).to_i
+		if seconds < 0
+			return 0
+		else
+			return seconds
+		end
+	end
 end
