@@ -108,7 +108,7 @@ class PagesController < ApplicationController
 		q = Question.new
 		u = current_account
 
-		q.user_id = u.id
+		q.ask_id = u.id
 		q.question = params[:question]
 		q.category = Integer(params[:category])
 		q.in_session = false
@@ -122,7 +122,7 @@ class PagesController < ApplicationController
 		q.reposted = true
 		q.save
 		repost = Question.new
-		repost.user_id = current_account.id
+		repost.ask_id = current_account.id
 		repost.question = q.question
 		repost.category = q.category
 		repost.in_session = false

@@ -52,10 +52,10 @@
 			<%count = count + 1%>
 			<li>
 				<span class="questions"><%=q.question%></span>
-				<%if @user.id == q.user_id%>
+				<%if @user.id == q.ask_id%>
 					<%id = q.answer_id%>
 				<%else%>
-					<%id = q.user_id%>
+					<%id = q.ask_id%>
 				<%end%>
 				<%user = User.find(id)%>
 				<%name = user.firstName + " " + user.lastName%>
@@ -85,10 +85,10 @@
 			<%count = count + 1%>
 			<li>
 				<span class="questions"><%=q.question%></span>
-				<%if @user.id == q.user_id%>
+				<%if @user.id == q.ask_id%>
 					<%id = q.answer_id%>
 				<%else%>
-					<%id = q.user_id%>
+					<%id = q.ask_id%>
 				<%end%>
 				<%user = User.find(id)%>
 				<%name = user.firstName + " " + user.lastName%>

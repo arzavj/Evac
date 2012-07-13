@@ -7,8 +7,11 @@
 			<li>
 				<span class="questions"><%=q.question%></span>
 				<%user = User.find(q.answer_id)%>
-				<%name = user.firstName + " " + user.lastName%>
-				with <a class="question-username" href="/bio?id=<%=q.answer_id%>"><%=name%></a><br>
+				<%name = user.fullName%>
+				with <a class="question-username" href="/bio?id=<%=q.answer_id%>"><%=name%></a><br />
+				<%if user.hasMissedQuestion?(q)%>
+					<b>MISSED CONVERSATION</b><br />
+				<%end%>
 				<div class="notes-exp">
 					<div class="wd-expando notes-collapse">
 						<h2>Notes<b class="caret" style="position: relative; top: 17px; left: 6px;"></b></h2>
@@ -40,9 +43,12 @@
 		<% @qPrevAnswer.each do |q| %>
 		<li>
 			<span class="questions"><%=q.question%></span>
-			<%user = q.user%>
-			<%name = user.firstName + " " + user.lastName%>
-			with <a class="question-username" href="/bio?id=<%=q.user.id%>"><%=name%></a><br>
+			<%user = q.asker%>
+			<%name = user.fullName%>
+			with <a class="question-username" href="/bio?id=<%=q.ask_id%>"><%=name%></a><br>
+			<%if user.hasMissedQuestion?(q)%>
+				<b>MISSED CONVERSATION</b><br />
+			<%end%>
 			<div class="wd-expando notes-collapse">
 				<h2>Notes<b class="caret" style="position: relative; top: 17px; left: 6px;"></b></h2>
 				<ul>

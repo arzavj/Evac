@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120707034751) do
+ActiveRecord::Schema.define(:version => 20120713034719) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(:version => 20120707034751) do
   end
 
   create_table "questions", :force => true do |t|
-    t.integer  "user_id"
+    t.integer  "ask_id"
     t.text     "question",                                                       :null => false
     t.string   "tag",                           :limit => 50
     t.integer  "category"
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(:version => 20120707034751) do
     t.boolean  "answer_missed",                               :default => false
   end
 
-  add_index "questions", ["user_id"], :name => "index_questions_on_user_id"
+  add_index "questions", ["ask_id"], :name => "index_questions_on_user_id"
 
   create_table "schedules", :force => true do |t|
     t.datetime "appointment", :null => false

@@ -4,7 +4,7 @@ class TokController < ApplicationController
 	include TokHelper
 	
 	def updateNewQuestion(question)
-		asker = question.user
+		asker = question.asker
 		answer = User.find(question.answer_id)
 		asker.new_questions = asker.new_questions + 1
 		answer.new_questions = answer.new_questions + 1
@@ -39,7 +39,7 @@ class TokController < ApplicationController
 		question.first_entry = DateTime.now
 		question.save
 	
-		if params["uID"].to_i == question.user_id
+		if params["uID"].to_i == question.ask_id
 			redirect_to :action => "AskChatRoom", :qID => params["qID"]
 		else
 			redirect_to :action => "GiveChatRoom", :qID => params["qID"]
@@ -92,7 +92,7 @@ class TokController < ApplicationController
 		user = current_account
 		question = Question.find(params["qID"])
 		
-		if question.user_id == user.id
+		if question.ask_id == user.id
 			question.delete_past_question_ask = true
 		else
 			question.delete_past_question_answerer = true
@@ -159,7 +159,7 @@ class TokController < ApplicationController
 		else #ranks the asker
 			q.ask_rank = params["rating"]
 			rating = q.ask_rank
-			user = q.user
+			user = q.asker
 		end
 		
 		user.rating = ((user.rating*user.completed_conversations) + rating)/(user.completed_conversations+1)
@@ -173,7 +173,7 @@ class TokController < ApplicationController
 
 	def missedRepost
 		q = Question.find(params["qID"])
-		asker = q.user
+		asker = q.asker
 		answer = User.find(q.answer_id)
 		
 		if asker.id == current_account.id
@@ -202,7 +202,7 @@ class TokController < ApplicationController
 	
 	def missedSchedule
 		q = Question.find(params["qID"])
-		asker = q.user
+		asker = q.asker
 		answer = User.find(q.answer_id)
 		
 		if asker.id == current_account.id

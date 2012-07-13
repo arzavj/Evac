@@ -17,7 +17,7 @@
 	var inSession = false;
 	var timeout = setTimeout(declareMissed, /*600000 +*/ <%= secondsBefore(params["qID"]).to_s%>*1000);
 
-    <%name = User.find(@q.user_id).firstName%>;
+    <%name = @q.asker.firstName%>;
 
 	
 	window.onbeforeunload = function (){
@@ -134,10 +134,10 @@ function rate(amnt){
         <div id="landingPageBlueTop"></div>
         <div class="transparent-background">
             <div class="body-wrapper">
-                <%if @user.id == @q.user_id%>
+                <%if @user.id == @q.ask_id%>
                     <%id = @q.answer_id%>
                 <%else%>
-                    <%id = @q.user_id%>
+                    <%id = @q.ask_id%>
                 <%end%>
                 <%user = User.find(id)%>
                 <%name = user.firstName + " " + user.lastName%>
