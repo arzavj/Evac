@@ -77,7 +77,7 @@ class PagesController < ApplicationController
 		@user.new_questions = 0
 		@user.save
 		
-		@qAsked = Question.where({:user_id => @user.id, :was_answered => false})
+		@qAsked = Question.where({:ask_id => @user.id, :was_answered => false})
 		@qAnswer = Question.where({:answer_id => @user.id, :was_answered => false})
 			
 		@qPendAnswer = []
@@ -95,7 +95,7 @@ class PagesController < ApplicationController
 		
 		@length = @qPendConfirmable.length + @qPendAnswer.length + @qPendNoAnswer.length + @qPendConfirmable.length 
 		
-		@qPrev = Question.where({:user_id => @user.id, :was_answered => true, :delete_past_question_ask => false})
+		@qPrev = Question.where({:ask_id => @user.id, :was_answered => true, :delete_past_question_ask => false})
 		@qPrevAnswer = Question.where({:answer_id => @user.id, :was_answered => true, :delete_past_question_answerer => false})
 	end
 	

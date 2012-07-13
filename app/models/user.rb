@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 	has_many :schedules
 	
 	def hasMissedQuestion?(question)
-		if question.user_id == self.id
+		if question.ask_id == self.id
 			return question.ask_missed
 		else
 			return question.answer_missed

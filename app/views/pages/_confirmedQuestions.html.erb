@@ -17,18 +17,8 @@
 				<%s = Schedule.find(q.schedule_id)%>
 				<br />You are scheduled to meet at <span name="timeDiv" ><%=s.appointment.strftime("%B %d, %Y %H:%M:%S UTC")%> </span>
 				<%schedule = s.appointment - (5.minutes)%> <!--5 minutes before hand-->
-				
-				<%future = nil%>
-				<%if q.first_entry.nil?%>
-					<%future = s.appointment%>
-				<%else%>
-					<%if q.first_entry > s.appointment%>
-						<%future = q.first_entry%>
-					<%else%>
-						<%future = s.appointment%>
-					<%end%>
-				<%end%>
-				<%future = future + (1.minutes)%>
+
+				<%future = calculateFutureDateForQuestion(q) + (10.minutes)%>
 				<%if future.past? && !q.in_session%>
 					<%markMissed q%>
 					<div class="margin-bottom-5">
@@ -40,7 +30,7 @@
 						<input type = "hidden" name = "uID" value = "<%= @user.id %>" />
 						<input class="btn" type="submit" value="Enter Room For Appointment" />
 					</form>	
-					<button class="btn" data-toggle="modal" data-target="#schedule-modal" href = "#schedule-modal" onClick="addQID(<%=q.id%>)">
+					<button class="btn disabled enter-chatroom-tooltip" data-toggle="modal" data-target="#schedule-modal" href = "#schedule-modal" onClick="addQID(<%=q.id%>)">
 						Propose Alternate Schedule
 					</button>
 				<%else%>

@@ -15,7 +15,7 @@
     session.connect(apiKey, token);
 	
 	var inSession = false;
-	var timeout = setTimeout(declareMissed, /*600000 +*/ <%= secondsBefore(params["qID"]).to_s%>*1000);
+	var timeout = setTimeout(declareMissed, 600000 + <%= secondsBefore(params["qID"]).to_s%>*1000);
 
     <%name = @q.asker.firstName%>;
 
@@ -26,20 +26,21 @@
 		var notes = document.getElementById("notes").value;
 		notes = notes.replace(/\n/g, '<br />');
 		var query = "notes=" + notes + "&qID=" + <%=params["qID"]%>;
-		<%if room == 1%>
-		jQuery.ajax({
-					type: 'GET',
-					url: '/tok/pastQuestion',
-					data: query
-					});
-		<%else%>
-		jQuery.ajax({
-					type: 'GET',
-					url: '/tok/answerPastQuestion',
-					data: query
-					});
-		<%end%>
+
 		if (inSession){
+			<%if room == 1%>
+			jQuery.ajax({
+						type: 'GET',
+						url: '/tok/pastQuestion',
+						data: query
+						});
+			<%else%>
+			jQuery.ajax({
+						type: 'GET',
+						url: '/tok/answerPastQuestion',
+						data: query
+						});
+			<%end%>
 			return "Hope you enjoyed your conversation";
 		}else{
 			return "Sorry that your partner did not show up.";
