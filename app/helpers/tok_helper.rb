@@ -3,8 +3,8 @@ module TokHelper
 	def repost question
 		repost = Question.new
 		repost.user_id = current_account.id
-		repost.question = q.question
-		repost.category = q.category
+		repost.question = question.question
+		repost.category = question.category
 		repost.in_session = false
 		repost.save
 		
@@ -29,8 +29,8 @@ module TokHelper
 	def secondsBefore(qID)
 		question = Question.find(qID)
 		appointment = Schedule.find(question.schedule_id).appointment
-		enter = question.firstEntry
-		seconds = ((appointment - enter)*1.day).to_i
+		enter = question.first_entry
+		seconds = (appointment - enter).to_i
 		if seconds < 0
 			return 0
 		else

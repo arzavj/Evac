@@ -3,8 +3,6 @@
 <%= render :partial => "missed_conversation", :locals => {:qID => params["qID"]}%>
 
 <script type="text/javascript">
-	alert('Loading'); 
-	
     var apiKey = '<%= $apiKey %>';
     var sessionId = '<%= @sessionID %>';
     var token = '<%= @token %>';        
@@ -17,7 +15,7 @@
     session.connect(apiKey, token);
 	
 	var inSession = false;
-	var timeout = setTimeout(declareMissed, 600000 + <%= secondsBefore(qID).to_s%>);
+	var timeout = setTimeout(declareMissed, /*600000 +*/ <%= secondsBefore(params["qID"]).to_s%>*1000);
 
     <%name = User.find(@q.user_id).firstName%>;
 
