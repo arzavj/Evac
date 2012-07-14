@@ -17,7 +17,10 @@
 	
 </script>
 
-<div id="schedule">
+<div class="modal hide fade" id="schedule">
+	<div class="modal-header">
+		<h3>Reschedule</h3>
+	</div>
 	<div class="modal-body">
 		<form class="well" action="/tok/missedSchedule" name ="appointments" method= "GET" onSubmit="return checkScheduleForm();">
 		
@@ -41,7 +44,7 @@
 			<input type="hidden" id="qScheduleID" name="qID" value="<%=qID%>" />
 			<input class="btn btn-inverse" type="submit" id= "submitButton" value= "Submit"/>
 		</form>	
-		<button class="btn" onclick="$('#schedule').hide();$('#missedOptions').show();">Back</button>
+		<button class="btn" onclick="$('#missed-modal').modal('show');$('#schedule').modal('hide');">Back</button>
 	</div>
 </div>
 

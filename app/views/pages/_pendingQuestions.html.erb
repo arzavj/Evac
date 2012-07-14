@@ -95,6 +95,9 @@
 				with <a class="question-username" href="/bio?id=<%=id%>"><%=name%></a>
 				<br />
 				<i>Please wait for a time to be confirmed...</i>
+				<button class="btn" data-toggle="modal" data-target="#schedule-modal" href = "#schedule-modal" onClick="addQID(<%=q.id%>)">
+					Propose Alternate Schedule
+				</button>
 			</li>
 			<li class="divider"></li>
 		<%end%>

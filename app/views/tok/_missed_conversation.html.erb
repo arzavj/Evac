@@ -18,14 +18,15 @@
 	}	
 </script>
 
+<%= render :partial => "schedule", :locals => {:qID => qID}%>
+
 <div class="modal hide fade" id="missed-modal">
 	<div class="modal-header">
 		<h3>Your partner missed the conversation</h3>
 	</div>
-	<%= render :partial => "schedule", :locals => {:qID => qID}%>
 	<div class="modal-body" id="missedOptions">
 		<p style="margin-bottom:0px;"> What would you like to do? </p>
-		<button class="btn inline" onclick="$('#schedule').show();$('#missedOptions').hide();">Reschedule</button>
+		<button class="btn inline" onclick="$('#missed-modal').modal('hide');$('#schedule').modal('show');">Reschedule</button>
 		<form class="margin-bottom-5 inline" action="/tok/missedRepost" method= "get">
 			<input type = "hidden" name = "qID" value = "<%= qID %>" />
 			<input class="btn" type="submit" value="Repost" />
