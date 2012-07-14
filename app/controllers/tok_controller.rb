@@ -1,16 +1,10 @@
 require 'date'
 
 class TokController < ApplicationController
-
-	def ResetQuestion
-		question = Question.find(params["qID"])
-		question.in_session = true
-		question.save
-		redirect_to :action => "AskChatRoom", :qID => params["qID"]
-	end
+	include TokHelper
 	
 	def updateNewQuestion(question)
-		asker = question.user
+		asker = question.asker
 		answer = User.find(question.answer_id)
 		asker.new_questions = asker.new_questions + 1
 		answer.new_questions = answer.new_questions + 1
@@ -42,9 +36,10 @@ class TokController < ApplicationController
 		end
 		
 		question.in_session = true
+		question.first_entry = DateTime.now
 		question.save
 	
-		if params["uID"].to_i == question.user_id
+		if params["uID"].to_i == question.ask_id
 			redirect_to :action => "AskChatRoom", :qID => params["qID"]
 		else
 			redirect_to :action => "GiveChatRoom", :qID => params["qID"]
@@ -77,6 +72,7 @@ class TokController < ApplicationController
 		q = Question.find(params["qID"])
 
 		q.notes = params["notes"]
+		q.in_session = false
 		q.was_answered = true
 		
 		q.save
@@ -86,6 +82,7 @@ class TokController < ApplicationController
 		q = Question.find(params["qID"])
 		
 		q.answerer_notes = params["notes"]
+		q.in_session = false
 		q.was_answered = true
 		
 		q.save
@@ -95,7 +92,7 @@ class TokController < ApplicationController
 		user = current_account
 		question = Question.find(params["qID"])
 		
-		if question.user_id == user.id
+		if question.ask_id == user.id
 			question.delete_past_question_ask = true
 		else
 			question.delete_past_question_answerer = true
@@ -106,9 +103,7 @@ class TokController < ApplicationController
 		redirect_to "/pages/myquestions"
 	end
 	
-	def Schedule
-		question = Question.find(params["qID"])
-		
+	def makeSchedules question
 		user = current_account
 		
 		if question.answer_id == nil
@@ -131,7 +126,7 @@ class TokController < ApplicationController
 				split = params["Slot"+i.to_s].split(' ')
 				date = Date.strptime(split[0], '%m/%d/%Y')
 				time = Time.parse(split[1])
-
+				
 				s.appointment = DateTime.new(date.year, date.month, date.day, time.hour, time.min, time.sec)
 				s.appointment = s.appointment.new_offset(params["timeOffset"].to_i/24.0)
 				s.user_id = user.id #proposer
@@ -142,37 +137,97 @@ class TokController < ApplicationController
 		VidMail.AppointmentScheduled(params["qID"], user.id).deliver
 		VidMail.ConfirmAppointmentScheduled(params["qID"], user.id).deliver
 		
+	end
+	
+	def Schedule
+		question = Question.find(params["qID"])
+		
+		makeSchedules question
+		
 		redirect_to :controller => "pages", :action => "myquestions", :schedule => "1"
 	end
-    
-    def SetRank
-		@numValues = 5
-    end
 	
 	def submitRank
 		q = Question.find(params["qID"])
 		
-		
+		user = nil
+		rating = nil
 		if params["user"].to_i == 1 #rank the answerer 
-		q.rank = params["rating"]
-		answerer = User.find(q.answer_id)
-		answerer.rank = ((answerer.rank*answerer.sessions) + q.rank)/(answerer.sessions+1)
-		answerer.sessions = answerer.sessions+1
-		
-		answerer.save
+			q.rank = params["rating"]
+			rating = q.rank
+			user = User.find(q.answer_id)
 		else #ranks the asker
-			
-		q.ask_rank = params["rating"]	
-		asker = q.user
-		asker.ask_rank = ((asker.ask_rank*asker.ask_sessions) + q.ask_rank)/(asker.ask_sessions+1)
-		asker.ask_sessions = asker.ask_sessions+1
-		
-		asker.save
+			q.ask_rank = params["rating"]
+			rating = q.ask_rank
+			user = q.asker
 		end
+		
+		user.rating = ((user.rating*user.completed_conversations) + rating)/(user.completed_conversations+1)
+		user.completed_conversations = user.completed_conversations + 1
+		user.save
 		
 		q.save
 		
 		redirect_to "/"
 	end
 
+	def missedRepost
+		q = Question.find(params["qID"])
+		asker = q.asker
+		answer = User.find(q.answer_id)
+		
+		if asker.id == current_account.id
+			q.answer_missed = true
+			answer.missed_conversations = answer.missed_conversations + 1
+			asker.rating = ((asker.rating*asker.completed_conversations) + 5.0)/(asker.completed_conversations+1)
+			asker.completed_conversations = asker.completed_conversations + 1
+		else
+			q.ask_missed = true
+			asker.missed_conversations = asker.missed_conversations + 1
+			answer.rating = ((answer.rating*answer.completed_conversations) + 5.0)/(answer.completed_conversations+1)
+			answer.completed_conversations = answer.completed_conversations + 1
+		end
+		
+		q.was_answered = true
+		q.reposted = true
+		
+		asker.save
+		answer.save
+		q.save
+		
+		repost q
+		
+		redirect_to "/myquestions"
+	end
+	
+	def missedSchedule
+		q = Question.find(params["qID"])
+		asker = q.asker
+		answer = User.find(q.answer_id)
+		
+		if asker.id == current_account.id
+			q.answer_missed = true
+			answer.missed_conversations = answer.missed_conversations + 1
+			asker.rating = ((asker.rating*asker.completed_conversations) + 5.0)/(asker.completed_conversations+1)
+			asker.completed_conversations = asker.completed_conversations + 1
+		else
+			q.ask_missed = true
+			asker.missed_conversations = asker.missed_conversations + 1
+			answer.rating = ((answer.rating*answer.completed_conversations) + 5.0)/(answer.completed_conversations+1)
+			answer.completed_conversations = answer.completed_conversations + 1
+		end
+		
+		q.was_answered = true
+		
+		asker.save
+		answer.save
+		q.save
+		
+		newPost = repost q
+		newpost.answer_id = q.answer_id
+		
+		makeSchedules newPost
+		newPost.save
+		redirect_to "/myquestions"
+	end
 end

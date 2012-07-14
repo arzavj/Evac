@@ -23,18 +23,13 @@ class PagesController < ApplicationController
   def bio
     @title = "Bio"
 	if params[:id] != nil
-		u = User.where({:id => params[:id]})
+		@user = User.find_by_id(params[:id])
 	else
-		u = User.where({:email => cookies[:email], :password => cookies[:pass]})
+		@user = current_account
 	end
-    @user = u[0]
-	@rank = @user.rank*@user.sessions + @user.ask_rank*@user.ask_sessions 
-	@sessions = @user.sessions + @user.ask_sessions
-	if @sessions == 0
-		@rank = 0
-	else
-		@rank = @rank/@sessions
-	end
+	@rank = @user.rating
+	@sessions = @user.completed_conversations 
+	@missed = @user.missed_conversations
     @profile = @user.profile
       #send_data @profile.data, :type => 'image/png', :disposition => 'inline'
   end
@@ -82,7 +77,7 @@ class PagesController < ApplicationController
 		@user.new_questions = 0
 		@user.save
 		
-		@qAsked = Question.where({:user_id => @user.id, :was_answered => false})
+		@qAsked = Question.where({:ask_id => @user.id, :was_answered => false})
 		@qAnswer = Question.where({:answer_id => @user.id, :was_answered => false})
 			
 		@qPendAnswer = []
@@ -100,7 +95,7 @@ class PagesController < ApplicationController
 		
 		@length = @qPendConfirmable.length + @qPendAnswer.length + @qPendNoAnswer.length + @qPendConfirmable.length 
 		
-		@qPrev = Question.where({:user_id => @user.id, :was_answered => true, :delete_past_question_ask => false})
+		@qPrev = Question.where({:ask_id => @user.id, :was_answered => true, :delete_past_question_ask => false})
 		@qPrevAnswer = Question.where({:answer_id => @user.id, :was_answered => true, :delete_past_question_answerer => false})
 	end
 	
@@ -113,7 +108,7 @@ class PagesController < ApplicationController
 		q = Question.new
 		u = current_account
 
-		q.user_id = u.id
+		q.ask_id = u.id
 		q.question = params[:question]
 		q.category = Integer(params[:category])
 		q.in_session = false
@@ -127,7 +122,7 @@ class PagesController < ApplicationController
 		q.reposted = true
 		q.save
 		repost = Question.new
-		repost.user_id = current_account.id
+		repost.ask_id = current_account.id
 		repost.question = q.question
 		repost.category = q.category
 		repost.in_session = false
