@@ -167,5 +167,8 @@ class PagesController < ApplicationController
   def privacyPolicy
     @title = "Privacy Policy"
   end
-
+  
+  def about
+    @title = "Vidactica | Tour"
+  end
 end

@@ -18,7 +18,7 @@ Vidactica::Application.routes.draw do
   match '/give', :to => 'pages#give'
   match '/watch', :to => 'pages#watch'
   match '/privacypolicy', :to => 'pages#privacypolicy'
-  
+  match '/about', :to => 'pages#about'
   root :to => 'pages#home'
 
   # The priority is based upon order of creation:
