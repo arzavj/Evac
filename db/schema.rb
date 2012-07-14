@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(:version => 20120713034719) do
     t.string   "password"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "rating",                  :default => 0.0
     t.integer  "profile_id"
     t.integer  "completed_conversations", :default => 0
     t.string   "verify"
@@ -89,7 +90,6 @@ ActiveRecord::Schema.define(:version => 20120713034719) do
     t.string   "lastName",                :default => ""
     t.integer  "age",                     :default => 0
     t.integer  "new_questions",           :default => 0
-    t.float    "rating",                  :default => 0.0
     t.integer  "missed_conversations",    :default => 0
   end
 

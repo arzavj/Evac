@@ -845,4 +845,5 @@ li a.question-username
 .theme-default .nivo-controlNav
 {
 	left:41%;
+	display:none;
 }
