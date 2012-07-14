@@ -1,6 +1,6 @@
 module PagesHelper
 	
-	def calculateFutureDateForQuestion(q)
+	def calculateFutureDateForQuestion(q, s)
 		if q.first_entry.nil?
 			return s.appointment
 		else
