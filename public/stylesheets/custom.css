@@ -841,3 +841,8 @@ li a.question-username
 {
 	text-align:center;
 }
+
+.theme-default .nivo-controlNav
+{
+	left:41%;
+}
