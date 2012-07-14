@@ -4,9 +4,11 @@
 	}
 
 	function setWait(){
+		clearTimeout(timeout);
 		var selectedIndex = document.getElementById("timeToWait").selectedIndex;
 		var optionsTag =document.getElementById("timeToWait").options;
-		setTimeout(declareMissed, optionsTag[selectedIndex].value*60*1000); 
+		timeout = setTimeout(declareMissed, optionsTag[selectedIndex].value*60*1000); 
+		$('#missed-modal').modal('hide');
 	}
 	
 	function updateWait(){
@@ -18,7 +20,6 @@
 
 <div class="modal hide fade" id="missed-modal">
 	<div class="modal-header">
-		<button class="close" data-dismiss="modal">&times;</button>
 		<h3>Your partner missed the conversation</h3>
 	</div>
 	<%= render :partial => "schedule", :locals => {:qID => qID}%>
