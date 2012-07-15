@@ -144,8 +144,13 @@ function rate(amnt){
                 <%name = user.firstName + " " + user.lastName%>
                 <h3 class="SmallFont" style="padding-top:10px;">With <a href="/bio?id=<%=id%>"><%=name%></a>: <%=@q.question%></h3>
                 <center>
-                    <div id="other"></div>
-                    <div id="me"></div>
+                    <table border = "0" width = "100%">
+                        <tr><td width = "50%">
+                            <div id="other"></div>
+                        </td><td width = "50%">
+                            <div id="me"></div>
+                        </td></tr>
+                    </table>
                 </center>
 
                 <center>
