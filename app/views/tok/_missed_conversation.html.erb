@@ -7,7 +7,7 @@
 		clearTimeout(timeout);
 		var selectedIndex = document.getElementById("timeToWait").selectedIndex;
 		var optionsTag =document.getElementById("timeToWait").options;
-		timeout = setTimeout(declareMissed, 0);//optionsTag[selectedIndex].value*60*1000); 
+		timeout = setTimeout(declareMissed, optionsTag[selectedIndex].value*60*1000);
 		$('#missed-modal').modal('hide');
 	}
 	
