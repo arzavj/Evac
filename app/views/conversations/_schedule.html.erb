@@ -1,0 +1,55 @@
+
+<script>
+	function checkScheduleForm()
+	{
+		if (document.getElementsByName("Slot1")[0].value == "" && document.getElementsByName("Slot2")[0].value == "" && document.getElementsByName("Slot3")[0].value == "")
+		{
+			alert("Please post at least one schedule");
+			return false;
+		}
+		else
+		{
+			document.getElementById("submitButton").disabled = true;
+			document.getElementById("offset").value = ((new Date()).getTimezoneOffset())/60;
+			f.submit();
+			return true;
+		}
+	}
+	
+	function addQID(qID)
+	{
+		var doc = document.getElementById("qScheduleID");
+		doc.value= qID;
+	}
+</script>
+
+<div class="modal hide fade" id="schedule-modal">
+	<div class="modal-header">
+		<button class="close" data-dismiss="modal">&times;</button>
+		<h3>Times that work for you:</h3>
+	</div>
+	<div class="modal-body">
+		<form class="well" action="/tok/Schedule" name ="input" method= "GET" onSubmit="return checkScheduleForm();">
+		
+			<%(1..3).each do |i| %>
+		
+				<script text="text/javascript">
+					$(function() {
+					  $( "#<%=i%>" ).datetimepicker({
+						minDate: 0,
+						ampm: true
+					  });
+					});
+				</script>
+		
+				<input class="search-query" style="cursor: pointer;" id="<%=i%>" name="Slot<%=i%>" type="text" size="25" readonly="readonly" placeholder="Click here to select times..."/>
+		
+				<p>
+			<%end%>
+		
+			<input type="hidden" id="offset" name="timeOffset" value="" />
+			<input type="hidden" id="qScheduleID" name="qID" value="" />
+			<input class="btn btn-inverse" type="submit" id= "submitButton" value= "Submit"/>
+		</form>	
+	</div>
+</div>
