@@ -1,5 +1,4 @@
 class VidMail < ActionMailer::Base
-	#default :from => "	" 
     default :from => "noreply@vidactica.com" 
 	
 	def Welcome(uID)
@@ -16,11 +15,11 @@ class VidMail < ActionMailer::Base
 	
 	def AppointmentScheduled (qID, uID)
 		@question = Question.find(qID)
-		if @question.user.id == uID
+		if @question.ask_id == uID
 			@asker = User.find(@question.answer_id)
-			@answer = User.find(@question.user.id)
+			@answer = User.find(@question.ask_id)
 		else
-			@asker = User.find(@question.user.id)
+			@asker = User.find(@question.ask_id)
 			@answer = User.find(@question.answer_id)
 		end
 		
@@ -31,11 +30,11 @@ class VidMail < ActionMailer::Base
 	
 	def AppointmentConfirmed (qID, uID)
 		@question = Question.find(qID)
-		if @question.user.id == uID
+		if @question.ask_id == uID
 			@answerer = User.find(@question.answer_id)
-			@asker = User.find(@question.user.id)
+			@asker = User.find(@question.ask_id)
 		else
-			@answerer = User.find(@question.user.id)
+			@answerer = User.find(@question.ask_id)
 			@asker = User.find(@question.answer_id)
 		end
 		@appointment = Schedule.find(@question.schedule_id)
@@ -51,11 +50,11 @@ class VidMail < ActionMailer::Base
 	
 	def ConfirmAppointmentScheduled (qID, uID)
 		@question = Question.find(qID)
-		if @question.user.id == uID
+		if @question.ask_id == uID
 			@asker = User.find(@question.answer_id)
-			@answer = User.find(@question.user.id)
+			@answer = User.find(@question.ask_id)
 			else
-			@asker = User.find(@question.user.id)
+			@asker = User.find(@question.ask_id)
 			@answer = User.find(@question.answer_id)
 		end
 		
@@ -66,11 +65,11 @@ class VidMail < ActionMailer::Base
 	
 	def ConfirmAppointmentConfirmed (qID, uID)
 		@question = Question.find(qID)
-		if @question.user.id == uID
+		if @question.ask_id == uID
 			@answerer = User.find(@question.answer_id)
-			@asker = User.find(@question.user.id)
+			@asker = User.find(@question.ask_id)
 			else
-			@answerer = User.find(@question.user.id)
+			@answerer = User.find(@question.ask_id)
 			@asker = User.find(@question.answer_id)
 		end
 		@appointment = Schedule.find(@question.schedule_id)

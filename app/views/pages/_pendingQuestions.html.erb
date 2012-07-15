@@ -52,10 +52,10 @@
 			<%count = count + 1%>
 			<li>
 				<span class="questions"><%=q.question%></span>
-				<%if @user.id == q.user_id%>
+				<%if @user.id == q.ask_id%>
 					<%id = q.answer_id%>
 				<%else%>
-					<%id = q.user_id%>
+					<%id = q.ask_id%>
 				<%end%>
 				<%user = User.find(id)%>
 				<%name = user.firstName + " " + user.lastName%>
@@ -85,16 +85,19 @@
 			<%count = count + 1%>
 			<li>
 				<span class="questions"><%=q.question%></span>
-				<%if @user.id == q.user_id%>
+				<%if @user.id == q.ask_id%>
 					<%id = q.answer_id%>
 				<%else%>
-					<%id = q.user_id%>
+					<%id = q.ask_id%>
 				<%end%>
 				<%user = User.find(id)%>
 				<%name = user.firstName + " " + user.lastName%>
 				with <a class="question-username" href="/bio?id=<%=id%>"><%=name%></a>
 				<br />
 				<i>Please wait for a time to be confirmed...</i>
+				<button class="btn" data-toggle="modal" data-target="#schedule-modal" href = "#schedule-modal" onClick="addQID(<%=q.id%>)">
+					Propose Alternate Schedule
+				</button>
 			</li>
 			<li class="divider"></li>
 		<%end%>
