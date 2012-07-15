@@ -5,9 +5,12 @@ class User < ActiveRecord::Base
 	has_many :schedules
 	
 	def hasMissedQuestion?(question)
+		puts self.id
 		if question.ask_id == self.id
 			return question.ask_missed
-		else
+		elsif question.answer_id == self.id
+			puts question.question
+			puts question.answer_missed
 			return question.answer_missed
 		end
 	end

@@ -9,7 +9,7 @@
 				<%user = User.find(q.answer_id)%>
 				<%name = user.fullName%>
 				with <a class="question-username" href="/bio?id=<%=q.answer_id%>"><%=name%></a><br />
-				<%if user.hasMissedQuestion?(q)%>
+				<%if @user.hasMissedQuestion?(q)%>
 					<b>MISSED CONVERSATION</b><br />
 				<%end%>
 				<div class="notes-exp">
@@ -46,7 +46,7 @@
 			<%user = q.asker%>
 			<%name = user.fullName%>
 			with <a class="question-username" href="/bio?id=<%=q.ask_id%>"><%=name%></a><br>
-			<%if user.hasMissedQuestion?(q)%>
+			<%if @user.hasMissedQuestion?(q)%>
 				<b>MISSED CONVERSATION</b><br />
 			<%end%>
 			<div class="wd-expando notes-collapse">
