@@ -29,15 +29,15 @@ class ConversationsController < ApplicationController
 	
 	def delete
 		user = current_account
-		q = Question.find_by_id(params[:id])
+		q = Question.find_by_id(params["qID"])
 		if user.questions.include?(q)
 			q.deleted = true
 			q.save
 		end
-		redirect_to "/myquestions"
+		redirect_to "/conversations"
 	end
 	
-	def create
+	def repost
 		q = Question.find_by_id(params["qID"])
 		q.reposted = true
 		q.save
@@ -49,5 +49,20 @@ class ConversationsController < ApplicationController
 		repost.save
 		
 		redirect_to "/"
+	end
+	
+	def deletePast
+		user = current_account
+		question = Question.find(params["qID"])
+		
+		if question.ask_id == user.id
+			question.delete_past_question_ask = true
+			else
+			question.delete_past_question_answerer = true
+		end
+		
+		question.save
+		
+		redirect_to "/conversations"
 	end
 end

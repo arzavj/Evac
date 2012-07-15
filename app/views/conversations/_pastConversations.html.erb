@@ -31,7 +31,7 @@
 						Repost Question
 					</button>
 				<%end%>
-				<button class="btn" onClick = "location.href='/tok/delete?qID=<%=q.id%>'" >
+				<button class="btn" onClick = "location.href='/conversations/deletePast?qID=<%=q.id%>'" >
 					Delete Question
 				</button>
 			</li>
@@ -58,7 +58,7 @@
 				</ul>
 			</div>
 			<%if q.reposted == false%>
-				<button class="btn" onClick = "location.href='/pages/repost?qID=<%=q.id%>'" >
+				<button class="btn" onClick = "location.href='/conversations/repost?qID=<%=q.id%>'" >
 					Repost Question
 				</button>
 			<%else%>
@@ -66,7 +66,7 @@
 					Repost Question
 				</button>
 			<%end%>
-			<button class="btn" onClick = "location.href='/tok/delete?qID=<%=q.id%>'" >
+			<button class="btn" onClick = "location.href='/conversations/deletePast?qID=<%=q.id%>'" >
 				Delete Question
 			</button>
 		</li>

@@ -88,21 +88,6 @@ class TokController < ApplicationController
 		q.save
 	end
 	
-	def delete
-		user = current_account
-		question = Question.find(params["qID"])
-		
-		if question.ask_id == user.id
-			question.delete_past_question_ask = true
-		else
-			question.delete_past_question_answerer = true
-		end
-		
-		question.save
-		
-		redirect_to "/pages/myquestions"
-	end
-	
 	def makeSchedules question
 		user = current_account
 		
