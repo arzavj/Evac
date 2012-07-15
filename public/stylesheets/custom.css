@@ -578,7 +578,7 @@ h2 b.caret-myquestions
 	background-color:#3C619A;
 }
 
-#login-modal .modal-header, #rank-modal .modal-header, #register-modal .modal-header, #feedback-modal .modal-header, #schedule-modal .modal-header, #missed-modal .modal-header
+#login-modal .modal-header, #rank-modal .modal-header, #register-modal .modal-header, #feedback-modal .modal-header, #schedule-modal .modal-header, #missed-modal .modal-header, #schedule .modal-header
 {
 	background-color:#4A5C5C;
 }
@@ -849,6 +849,7 @@ li a.question-username
 .theme-default .nivo-controlNav
 {
 	left:41%;
+	display:none;
 }
 
 #other
@@ -867,4 +868,9 @@ li a.question-username
     top: 5;
     left: 5;
     z-index: 4;
+}
+
+#timeToWait
+{
+	width:23%;
 }
