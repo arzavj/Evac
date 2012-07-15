@@ -2,7 +2,7 @@ require 'rake'
 require File.expand_path('../../../config/environment',  __FILE__)
 
 namespace :ratings do
-  desc "Migrate Old Notifications to new Schema"
+  desc "Using questions to update profiles"
   task :fromQuestions => :environment do
       puts "Starting to migrate"
 	  questions = Question.where(:was_answered => true)
@@ -23,4 +23,13 @@ namespace :ratings do
 		  end 
       end
   end
+	
+	desc "Reset ratings"
+	task :reset => :environment do
+		User.all.each do |u|
+			u.rating = 0
+			u.completed_conversations = 0
+			u.save
+		end
+	end
 end
