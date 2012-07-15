@@ -18,7 +18,7 @@
 				<br />You are scheduled to meet at <span name="timeDiv" ><%=s.appointment.strftime("%B %d, %Y %H:%M:%S UTC")%> </span>
 				<%schedule = s.appointment - (5.minutes)%> <!--5 minutes before hand-->
 
-				<%future = calculateFutureDateForQuestion(q,s) + (10.minutes)%>
+				<%future = calculateFutureDateForQuestion(q,s) + (5.minutes)%>
 				<%if future.past? && !q.in_session%>
 					<%markMissed q%>
 					<div class="margin-bottom-5">
