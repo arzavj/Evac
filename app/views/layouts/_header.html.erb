@@ -31,7 +31,7 @@
 			<li class="inline"><a href="/"><%= image_tag("home_icon.png", :alt => "Home", :height => "15px", :width => "14px") %><b class="home-nav">Home</b></a></li>
 			<%if cookies[:name]  %>
 			<li class="inline">
-				<a href="/myquestions"><%= image_tag("conversation_icon_white.png", :alt => "My Conversations", :height => "15px", :width => "14px") %><b class="home-nav">My Conversations</b></a></li>
+				<a href="/conversations"><%= image_tag("conversation_icon_white.png", :alt => "My Conversations", :height => "15px", :width => "14px") %><b class="home-nav">My Conversations</b></a></li>
 			<li class="dropdown inline">
 				    <a class="dropdown-toggle profile_icon" data-toggle="dropdown" data-target="#" href="/bio"><%= image_tag("profile_icon.png", :alt => "Profile", :height => "13px", :width => "15px") %> <b class="uppercase"><%= cookies[:name] %></b>
 				    <b class="caret"></b></a>

@@ -1,6 +1,6 @@
 Vidactica::Application.routes.draw do
 	
-  resources :conversations do
+	resources :conversations, :only => :index do
 	  get 'repost', :on => :collection
 	  get 'deletePast', :on => :collection
   end
@@ -19,7 +19,6 @@ Vidactica::Application.routes.draw do
 
   match '/about', :to => 'pages#about'
   match '/bio', :to => 'pages#bio'
-  match '/myquestions', :to => 'pages#myquestions'
   match '/editBio', :to => 'pages#editBio'
   match '/ask', :to => 'pages#ask'
   match '/give', :to => 'pages#give'

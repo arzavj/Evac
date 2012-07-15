@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 	belongs_to :profile
-	has_many :questions
+	has_many :questions, :class_name => 'Question', :foreign_key => 'ask_id'
+
 	has_many :schedules
 	
 	def hasMissedQuestion?(question)
