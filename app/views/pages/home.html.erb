@@ -126,8 +126,8 @@
 										<li style="margin-top:10px;">No posts currently in this category</li>
 									<%end%>
 									<%questions.each do |q|%>
-											<% u = q.user %>
-											<% name = u.firstName +  " " + u.lastName %>
+											<% u = q.asker %>
+											<% name = u.fullName %>
 					    					<li style="margin-top:1%;"><b><%= q.question%></b><br />
 											<% if q.in_session %> <!--Check if user is waiting -->
 												<% str = "Answer" %>

@@ -5,39 +5,43 @@
 		<%@qConfirmed.each do |q|%>
 			<li>
 				<span class="questions"><%=q.question%></span>
-				<%if @user.id == q.user_id%>
+				<%if @user.id == q.ask_id%>
 					<%id = q.answer_id%>
 				<%else%>
-					<%id = q.user_id%>
+					<%id = q.ask_id%>
 				<%end%>
 				<%user = User.find(id)%>
-				<%name = user.firstName + " " + user.lastName%>
+				<%name = user.fullName%>
 				with <a class="question-username" href="/bio?id=<%=id%>"><%=name%></a><br />
 							
 				<%s = Schedule.find(q.schedule_id)%>
 				<br />You are scheduled to meet at <span name="timeDiv" ><%=s.appointment.strftime("%B %d, %Y %H:%M:%S UTC")%> </span>
 				<%schedule = s.appointment - (5.minutes)%> <!--5 minutes before hand-->
-				<%if schedule.past?%>
-					<%if q.in_session == false%>
-						<%str = "Enter Room For Appointment"%>
-					<%else%>
-						<%str = "Your Conversation is Ready"%>
-					<%end%>
-									
+
+				<%future = calculateFutureDateForQuestion(q,s) + (10.minutes)%>
+				<%if future.past? && !q.in_session%>
+					<%markMissed q%>
+					<div class="margin-bottom-5">
+						<i>Both you and your conversation partner have missed your conversation...</i>
+					</div>
+				<%elsif schedule.past?%>
 					<form class="margin-bottom-5" action="/tok/EnterSession" method= "get">
 						<input type = "hidden" name = "qID" value = "<%= q.id %>" />
 						<input type = "hidden" name = "uID" value = "<%= @user.id %>" />
 						<input class="btn" type="submit" value="Enter Room For Appointment" />
-					</form>			
+					</form>	
+					<button class="btn disabled enter-chatroom-tooltip" data-toggle="modal" data-target="#schedule-modal" href = "#schedule-modal" onClick="addQID(<%=q.id%>)">
+						Propose Alternate Schedule
+					</button>
 				<%else%>
 					<div class="margin-bottom-5">
 						<input class="btn disabled enter-chatroom-tooltip" rel="tooltip" title="Please return 5 minutes prior to scheduled time" type="submit" value="Enter Room For Appointment" />
 					</div>
+					<button class="btn" data-toggle="modal" data-target="#schedule-modal" href = "#schedule-modal" onClick="addQID(<%=q.id%>)">
+						Propose Alternate Schedule
+					</button>
 				<%end%>	
 								
-				<button class="btn" data-toggle="modal" data-target="#schedule-modal" href = "#schedule-modal" onClick="addQID(<%=q.id%>)">
-					Propose Alternate Schedule
-				</button>
 			</li>
 			<li class="divider"></li>
 		<%end%>

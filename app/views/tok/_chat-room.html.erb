@@ -1,9 +1,8 @@
 <script src="http://static.opentok.com/v0.91/js/TB.min.js"></script>
-<script src="http://localhost:9292/faye.js"></script>
+
+<%= render :partial => "missed_conversation", :locals => {:qID => params["qID"]}%>
 
 <script type="text/javascript">
-	alert('Loading'); 
-	
     var apiKey = '<%= $apiKey %>';
     var sessionId = '<%= @sessionID %>';
     var token = '<%= @token %>';        
@@ -16,8 +15,9 @@
     session.connect(apiKey, token);
 	
 	var inSession = false;
-    
-    <%name = User.find(@q.user_id).firstName%>;
+	var timeout = setTimeout(declareMissed,  600000 + <%= secondsBefore(params["qID"]).to_s%>*1000);
+    <%name = @q.asker.firstName%>;
+
 	
 	window.onbeforeunload = function (){
 		jQuery.noConflict();
@@ -25,23 +25,25 @@
 		var notes = document.getElementById("notes").value;
 		notes = notes.replace(/\n/g, '<br />');
 		var query = "notes=" + notes + "&qID=" + <%=params["qID"]%>;
-		
+
 		if (inSession){
 			<%if room == 1%>
-				jQuery.ajax({
-					type: 'GET',
-					url: '/tok/pastQuestion',
-					data: query
-				});
+			jQuery.ajax({
+						type: 'GET',
+						url: '/tok/pastQuestion',
+						data: query
+						});
 			<%else%>
-				jQuery.ajax({
-					type: 'GET',
-					url: '/tok/answerPastQuestion',
-					data: query
-				});
+			jQuery.ajax({
+						type: 'GET',
+						url: '/tok/answerPastQuestion',
+						data: query
+						});
 			<%end%>
+			return "Hope you enjoyed your conversation";
+		}else{
+			return "Sorry that your partner did not show up.";
 		}
-		return "Hope you enjoyed your conversation";
 	}
 	
 	
@@ -49,6 +51,7 @@
 	
 	function onConversation(){
 		inSession = true;
+		clearTimeout(timeout);
 		var leaveButton = document.getElementById("leaveButton");
 		leaveButton.setAttribute("data-toggle", "modal");
 		leaveButton.setAttribute("data-target", "#rank-modal");
@@ -131,10 +134,10 @@ function rate(amnt){
         <div id="landingPageBlueTop"></div>
         <div class="transparent-background">
             <div class="body-wrapper">
-                <%if @user.id == @q.user_id%>
+                <%if @user.id == @q.ask_id%>
                     <%id = @q.answer_id%>
                 <%else%>
-                    <%id = @q.user_id%>
+                    <%id = @q.ask_id%>
                 <%end%>
                 <%user = User.find(id)%>
                 <%name = user.firstName + " " + user.lastName%>

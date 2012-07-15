@@ -1,0 +1,42 @@
+<script language="javascript">
+	function declareMissed(){
+		$('#missed-modal').modal('show');
+	}
+
+	function setWait(){
+		clearTimeout(timeout);
+		var selectedIndex = document.getElementById("timeToWait").selectedIndex;
+		var optionsTag =document.getElementById("timeToWait").options;
+		timeout = setTimeout(declareMissed, optionsTag[selectedIndex].value*60*1000); 
+		$('#missed-modal').modal('hide');
+	}
+	
+	function updateWait(){
+		var selectedIndex = document.getElementById("timeToWait").selectedIndex;
+		var optionsTag =document.getElementById("timeToWait").options;
+		document.getElementById("waitButton").textContent = "Wait " + optionsTag[selectedIndex].value + " minutes";
+	}	
+</script>
+
+<%= render :partial => "schedule", :locals => {:qID => qID}%>
+
+<div class="modal hide fade" id="missed-modal">
+	<div class="modal-header">
+		<h3>Your partner missed the conversation</h3>
+	</div>
+	<div class="modal-body" id="missedOptions">
+		<p style="margin-bottom:0px;"> What would you like to do? </p>
+		<button class="btn inline" onclick="$('#missed-modal').modal('hide');$('#schedule').modal('show');">Reschedule</button>
+		<form class="margin-bottom-5 inline" action="/tok/missedRepost" method= "get">
+			<input type = "hidden" name = "qID" value = "<%= qID %>" />
+			<input class="btn" type="submit" value="Repost" />
+		</form>
+		or	
+		<button class="btn inline" id="waitButton" onclick="setWait();">Wait 2 minutes</button>
+		<select id="timeToWait" onchange="updateWait();">
+			<option value="2">2 minutes</option>
+			<option value="5">5 minutes</option>
+			<option value="10">10 minutes</option>
+		</select> 
+	</div>
+</div>
