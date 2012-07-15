@@ -858,6 +858,12 @@ li a.question-username
 	text-align:center;
 }
 
+#tourList .caret
+{
+	margin-left:0.5%;
+	margin-top:1%;
+}
+
 #tourImageList a img
 {
 	width:900px;
