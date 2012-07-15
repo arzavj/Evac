@@ -6,7 +6,7 @@
 		for (var i = 0; i < radios.length; i++) {
 			if (radios[i].type === 'radio' && radios[i].checked) {
 				var hasInnerText = (document.getElementsByTagName("body")[0].innerText != undefined) ? true : false;
-				var appointment = radios[i].parentNode.getElementsByTagName("div")[0];
+				var appointment = radios[i].parentNode.getElementsByTagName("span")[0];
 				var date;
 				if(!hasInnerText){
 					date = new Date(appointment.textContent);

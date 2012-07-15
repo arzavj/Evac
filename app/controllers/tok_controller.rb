@@ -24,7 +24,7 @@ class TokController < ApplicationController
 		VidMail.AppointmentConfirmed(params["qID"], u.id).deliver #send email
 		VidMail.ConfirmAppointmentConfirmed(params["qID"], u.id).deliver #send email
 		
-		redirect_to "/myquestions?sent=1"
+		redirect_to "/conversations?sent=1"
 	end
 	
 	def EnterSession	
@@ -125,7 +125,7 @@ class TokController < ApplicationController
 		
 		makeSchedules question
 		
-		redirect_to :controller => "pages", :action => "myquestions", :schedule => "1"
+		redirect_to :controller => "conversations", :action => "index", :schedule => "1"
 	end
 	
 	def submitRank
@@ -178,7 +178,7 @@ class TokController < ApplicationController
 		
 		repost q
 		
-		redirect_to "/myquestions"
+		redirect_to "/conversations"
 	end
 	
 	def missedSchedule
@@ -209,7 +209,7 @@ class TokController < ApplicationController
 		
 		makeSchedules newPost
 		newPost.save
-		redirect_to "/myquestions"
+		redirect_to "/conversations"
 	end
 	
 	def withoutTimer
