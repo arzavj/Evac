@@ -846,3 +846,21 @@ li a.question-username
 {
 	left:41%;
 }
+
+#other
+{
+    width: 590px;
+    height: 472px;
+    position: relative;
+    z-index: 1;
+}
+
+#me
+{
+    width: 100px;
+    height: 80px;
+    position: absolute;
+    top: 5;
+    left: 5;
+    z-index: 4;
+}
