@@ -63,7 +63,7 @@
 	}
 	
     var stateManager;
-    var meSubscriberProps = {width: 100, height: 80, subscribeToAudio: true};
+    var meSubscriberProps = {width: 430, height: 323, subscribeToAudio: true};
     
     
     function sessionConnectedHandler(event) {
@@ -78,7 +78,7 @@
 		subscribeToStreams(event.streams);
     }
 	
-    var otherSubscriberProps = {width: 590, height: 472, subscribeToAudio: true};
+    var otherSubscriberProps = {width: 430, height: 323, subscribeToAudio: true};
     
     function subscribeToStreams(streams) {
 		for (var i = 0; i < streams.length; i++) {
@@ -141,9 +141,8 @@ function rate(amnt){
                 <%name = user.firstName + " " + user.lastName%>
                 <h3 class="SmallFont" style="padding-top:10px;">With <a href="/bio?id=<%=id%>"><%=name%></a>: <%=@q.question%></h3>
                 <center>
-                    <div id="other"> 
-                        <div id="me"></div>
-                    </div>
+                    <div id="other"></div>
+                    <div id="me"></div>
                 </center>
 
                 <center>
