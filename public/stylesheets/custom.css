@@ -851,3 +851,17 @@ li a.question-username
 	left:41%;
 	display:none;
 }
+
+#tourList
+{
+	list-style-type:upper-roman;
+	text-align:center;
+}
+
+#tourImageList a img
+{
+	width:900px;
+	margin: 1% 0 1% 0;
+	border-radius:25px;
+	box-shadow:7px 8px 8px #888888;
+}
