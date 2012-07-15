@@ -226,4 +226,10 @@ class TokController < ApplicationController
 		newPost.save
 		redirect_to "/myquestions"
 	end
+	
+	def withoutTimer
+		q = Question.find(params["qID"])
+		q.in_session = false
+		q.save
+	end
 end

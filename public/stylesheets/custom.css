@@ -852,6 +852,7 @@ li a.question-username
 	display:none;
 }
 
+<<<<<<< HEAD
 #tourList
 {
 	list-style-type:upper-roman;
@@ -877,10 +878,6 @@ li a.question-username
 	margin-left:2%;
 	font-size:16px;
 	margin-top:5%;
-
-#timeToWait
-{
-	width:23%;
 }
 
 #other
@@ -899,4 +896,9 @@ li a.question-username
     top: 5;
     left: 5;
     z-index: 4;
+}
+
+#timeToWait
+{
+	width:23%;
 }
