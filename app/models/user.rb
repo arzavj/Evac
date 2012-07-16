@@ -1,8 +1,14 @@
 class User < ActiveRecord::Base
 	belongs_to :profile
-	has_many :questions, :class_name => 'Question', :foreign_key => 'ask_id'
+	has_many :ask_questions, :class_name => 'Question', :foreign_key => 'ask_id'
+	has_many :answer_questions, :class_name => 'Question', :foreign_key => 'answer_id'
 
 	has_many :schedules
+
+	
+	def questions
+		return Question.where("ask_id = ? OR answer_id = ?", self.id, self.id)
+	end
 	
 	def hasMissedQuestion?(question)
 		puts self.id
