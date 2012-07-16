@@ -5,9 +5,7 @@ Vidactica::Application.routes.draw do
 	  get 'deletePast', :on => :collection
     end
 	
-	resource :profiles do
-
-    end
+	resource :profiles 
 	
   get "facebook_registration/Registration"
 
@@ -22,8 +20,8 @@ Vidactica::Application.routes.draw do
   get "pages/fb_login"
 
   match '/about', :to => 'pages#about'
-  match '/bio', :to => 'pages#bio'
-  match '/editBio', :to => 'pages#editBio'
+  match '/bio', :to => 'profiles#show'
+  match '/editBio', :to => 'profiles#edit'
   match '/ask', :to => 'pages#ask'
   match '/give', :to => 'pages#give'
   match '/watch', :to => 'pages#watch'
