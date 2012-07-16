@@ -1,5 +1,10 @@
 Vidactica::Application.routes.draw do
 	
+	devise_for :users, :controllers => {:registrations => "registrations"}, :path => '', :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "registration" }
+
+
+
+
 	resources :conversations, :only => :index do
 	  get 'repost', :on => :collection
 	  get 'deletePast', :on => :collection
