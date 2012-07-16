@@ -151,7 +151,7 @@ function rate(amnt){
         <%end%>
         <%user = User.find(id)%>
         <%name = user.firstName + " " + user.lastName%>
-        <h3 class="SmallFont" style="padding-top:10px;">With <a href="/bio?id=<%=id%>"><%=name%></a>: <%=@q.question%></h3>
+        <h3 class="SmallFont" style="padding-top:10px;">With <a href="/profiles?id=<%=id%>"><%=name%></a>: <%=@q.question%></h3>
         <center>
             <table border = "0" width = "100%">
                 <tr><td width = "50%">

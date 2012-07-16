@@ -3,7 +3,7 @@
 Hi <%=answerName%>, 
 <br /><br /> 
 <%url = "http://vidactica.com"%>
-You have sent the following times to vidact with <a href="<%=url+"/bio?id="+@asker.id.to_s%>"><%=askName%></a> about “<%=@question.question%>”:
+You have sent the following times to vidact with <a href="<%=url+"/profiles?id="+@asker.id.to_s%>"><%=askName%></a> about “<%=@question.question%>”:
 <br /><br /> 
 	<%@appointments.each do |appoint|%>
 		<%= appoint.appointment.localtime.strftime("%A %B %d %I:%M %p %Z")%>
@@ -11,5 +11,5 @@ You have sent the following times to vidact with <a href="<%=url+"/bio?id="+@ask
 	<%end%>
 <br /><br /> 
 
-Please wait as <a href="<%=url+"/bio?id="+@asker.id.to_s%>"><%=askName%></a> selects a time. 
+Please wait as <a href="<%=url+"/profiles?id="+@asker.id.to_s%>"><%=askName%></a> selects a time. 
 	
