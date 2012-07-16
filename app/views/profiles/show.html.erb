@@ -25,7 +25,7 @@
 			<div class="span6">
 				<div class="pull-right">
 					<%if params[:id] == nil%>
-						<div><h2 id="edit-profile-btn"><a class="btn" href = "/pages/editBio">Edit Profile</a></h2></div>
+						<div><h2 id="edit-profile-btn"><a class="btn" href = "<%= edit_profiles_path%>">Edit Profile</a></h2></div>
 					<%end%>
 					<ul class="nav nav-list">
 						<!--<div><strong>Rating:</strong> <%= "%0.2f" % @rank %> / 5</div>-->

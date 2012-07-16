@@ -3,7 +3,11 @@ Vidactica::Application.routes.draw do
 	resources :conversations, :only => :index do
 	  get 'repost', :on => :collection
 	  get 'deletePast', :on => :collection
-  end
+    end
+	
+	resource :profiles do
+
+    end
 	
   get "facebook_registration/Registration"
 

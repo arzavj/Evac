@@ -33,10 +33,10 @@
 			<li class="inline">
 				<a href="/conversations"><%= image_tag("conversation_icon_white.png", :alt => "My Conversations", :height => "15px", :width => "14px") %><b class="home-nav">My Conversations</b></a></li>
 			<li class="dropdown inline">
-				    <a class="dropdown-toggle profile_icon" data-toggle="dropdown" data-target="#" href="/bio"><%= image_tag("profile_icon.png", :alt => "Profile", :height => "13px", :width => "15px") %> <b class="uppercase"><%= cookies[:name] %></b>
+				    <a class="dropdown-toggle profile_icon" data-toggle="dropdown" data-target="#" href="/profiles"><%= image_tag("profile_icon.png", :alt => "Profile", :height => "13px", :width => "15px") %> <b class="uppercase"><%= cookies[:name] %></b>
 				    <b class="caret"></b></a>
 				    <ul class="dropdown-menu">
-					  <li><a href="/bio">Profile</a></li>
+					  <li><a href="/profiles">Profile</a></li>
 				      <li class="divider"></li>
 				      <li><a href= "/fb_registration/Logout">Logout</a></li>
 			    	</ul>

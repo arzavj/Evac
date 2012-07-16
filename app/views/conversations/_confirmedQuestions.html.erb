@@ -12,7 +12,7 @@
 				<%end%>
 				<%user = User.find(id)%>
 				<%name = user.fullName%>
-				with <a class="question-username" href="/bio?id=<%=id%>"><%=name%></a><br />
+				with <a class="question-username" href="/profiles?id=<%=id%>"><%=name%></a><br />
 							
 				<%s = Schedule.find(q.schedule_id)%>
 				<br />You are scheduled to meet at <span name="timeDiv" ><%=s.appointment.strftime("%B %d, %Y %H:%M:%S UTC")%> </span>
