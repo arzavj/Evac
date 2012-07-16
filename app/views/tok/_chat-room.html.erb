@@ -137,50 +137,53 @@ function rate(amnt){
     }
 </script>
 
-        <div id="landingPageBlueTop"></div>
-        <div class="transparent-background">
-            <div class="body-wrapper">
-                <%if @user.id == @q.ask_id%>
-                    <%id = @q.answer_id%>
-                <%else%>
-                    <%id = @q.ask_id%>
-                <%end%>
-                <%user = User.find(id)%>
-                <%name = user.firstName + " " + user.lastName%>
-                <h3 class="SmallFont" style="padding-top:10px;">With <a href="/bio?id=<%=id%>"><%=name%></a>: <%=@q.question%></h3>
-                <center>
-                    <table border = "0" width = "100%">
-                        <tr><td width = "50%">
-                            <div id="other"></div>
-                        </td><td width = "50%">
-                            <div id="me"></div>
-                        </td></tr>
-                    </table>
-                </center>
+<div id="landingPageBlueTop"></div>
+<div class="alert fade in" style="margin-bottom:0px;">
+	<button class="close" data-dismiss="alert" type="button">&times;</button>
+	Please give your conversation partner up to <strong>5 minutes</strong> to arrive.
+</div>
+<div class="transparent-background">
+    <div class="body-wrapper">
+        <%if @user.id == @q.ask_id%>
+            <%id = @q.answer_id%>
+        <%else%>
+            <%id = @q.ask_id%>
+        <%end%>
+        <%user = User.find(id)%>
+        <%name = user.firstName + " " + user.lastName%>
+        <h3 class="SmallFont" style="padding-top:10px;">With <a href="/bio?id=<%=id%>"><%=name%></a>: <%=@q.question%></h3>
+        <center>
+            <table border = "0" width = "100%">
+                <tr><td width = "50%">
+                    <div id="other"></div>
+                </td><td width = "50%">
+                    <div id="me"></div>
+                </td></tr>
+            </table>
+        </center>
 
-                <center>
-                    <a id="leaveButton" href="/">
-                        <button class="btn">Leave Session</button> 
-                    </a>
-                </center>
-				<div class="row-fluid">
-					<div class="span6">
-		                <div class="SmallFont center">Notes:</div>
-	                    <textarea id="notes" ROWS=10></textarea>
-					</div>
-					<div class="span6">
-						<div class="SmallFont center">Chat:</div>
-				        <div id="chatWrapper">
-				            <textarea disabled = "" id = "messages"></textarea>
-				            <form name = "textChat" action = "" method = "post">
-				                <input type = "text" onclick = "this.value=''" id = "message"
-				                    value = "Type your message here and hit enter..." onKeyPress = "return checkSubmit(event)"/>
-				            </form>
-				        </div>
-					</div>
-				</div>
-            </div>
-        </div>
+        <center>
+            <a id="leaveButton" href="/">
+                <button class="btn">Leave Session</button> 
+            </a>
+        </center>
+		<div class="row-fluid">
+			<div class="span6">
+          		<div class="SmallFont center">Notes:</div>
+             	<textarea id="notes" ROWS=10></textarea>
+			</div>
+			<div class="span6">
+				<div class="SmallFont center">Chat:</div>
+    			<div id="chatWrapper">
+        			<textarea disabled = "" id = "messages"></textarea>
+        			<form name = "textChat" action = "" method = "post">
+            			<input type = "text" onclick = "this.value=''" id = "message" value = "Type your message here and hit enter..." onKeyPress = "return checkSubmit(event)"/>
+        			</form>
+    			</div>
+			</div>
+		</div>
+    </div>
+</div>
 
 <div class="modal hide fade" id="rank-modal">
 	<div class="modal-header">

@@ -901,3 +901,15 @@ li a.question-username
 {
 	width:23%;
 }
+
+button.close
+{
+	border:0px;
+	background-color:transparent;
+}
+
+button.close:hover
+{
+	background-color:transparent;
+	
+}
