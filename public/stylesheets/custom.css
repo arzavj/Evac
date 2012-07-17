@@ -854,7 +854,7 @@ li a.question-username
 
 #tourList
 {
-	list-style-type:upper-roman;
+	list-style-type:none;/*upper-roman;*/
 	text-align:center;
 }
 
@@ -867,7 +867,7 @@ li a.question-username
 #tourImageList a img
 {
 	width:900px;
-	margin: 1% 0 1% 0;
+	margin: 3% 0 2% 0;
 	border-radius:25px;
 	box-shadow:7px 8px 8px #888888;
 }
