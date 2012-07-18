@@ -17,9 +17,7 @@
 						<div class="wd-expando notes-collapse">
 							<h2>Notes<b class="caret" style="position: relative; top: 17px; left: 6px;"></b></h2>
 							<ul>
-								<%if !q.notes.nil?%>
 									<li><p style="word-wrap:break-word;"><%=q.notes.html_safe%></p></li>
-								<%end%>
 							</ul>
 						</div>
 					</div>
@@ -55,9 +53,7 @@
 				<div class="wd-expando notes-collapse">
 					<h2>Notes<b class="caret" style="position: relative; top: 17px; left: 6px;"></b></h2>
 					<ul>
-						<%if !q.answerer_notes.nil?%>
 							<li><p style="word-wrap:break-word;"><%=q.answerer_notes.html_safe%></p></li>
-						<%end%>
 					</ul>
 				</div>
 			<%end%>
