@@ -1,6 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
 	def new
-		redirect_to "/"
+		super
 	end
 	
 	def create

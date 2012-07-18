@@ -1,7 +1,7 @@
 <div id="tiny-footer">
 	<a href="/privacypolicy">PRIVACY POLICY</a>
 </div>
-<%if cookies[:name]  %>
+<%if user_signed_in? %>
 <div id="feedback">
 				<a data-toggle="modal" data-target="#feedback-modal" href = "#feedback-modal">
 					<img src="/images/feedback.png" />
@@ -17,13 +17,13 @@
 								<div class="control-group">
 									<label class="control-label">Name: </label>
 									<div class="controls">
-										<input type="text" value= "<%=current_account.fullName%>" name="name" />
+										<input type="text" value= "<%=current_user.fullName%>" name="name" />
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label">Email: </label>
 									<div class="controls">
-										<input type="text" value= "<%=current_account.email%>" name="email" />
+										<input type="text" value= "<%=current_user.email%>" name="email" />
 									</div>
 								</div>
 								<div class="control-group">
