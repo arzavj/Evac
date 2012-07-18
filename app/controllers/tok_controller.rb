@@ -108,8 +108,14 @@ class TokController < ApplicationController
 			s = Schedule.new
 			s.question_id = question.id
 			if !params["Slot"+i.to_s].eql?("")
-				s.appointment = DateTime.parse(params["Slot"+i.to_s])
-				s.appointment = s.appointment.new_offset(params["timeOffset"].to_i/24.0)
+				begin
+					s.appointment = DateTime.parse(params["Slot"+i.to_s])
+					s.appointment = s.appointment.new_offset(params["timeOffset"].to_i/24.0)
+				rescue
+					#for heroku
+					s.appointment = DateTime.now.utc + 5.minutes
+				end
+				
 				s.user_id = user.id #proposer
 				s.save
 			end
@@ -205,7 +211,7 @@ class TokController < ApplicationController
 		q.save
 		
 		newPost = repost q
-		newpost.answer_id = q.answer_id
+		newPost.answer_id = q.answer_id
 		
 		makeSchedules newPost
 		newPost.save
