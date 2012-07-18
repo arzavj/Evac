@@ -12,7 +12,7 @@ class Schedule < ActiveRecord::Base
 		questions = Question.where("schedule_id > 0 AND EXISTS (Select * from schedules where questions.schedule_id = schedules.id AND schedules.appointment >= ? AND schedules.appointment < ?)", Time.now, future)
 	
 		questions.each do |q|
-			VidMail.Reminder(q.id, q.user_id).deliver
+			VidMail.Reminder(q.id, q.ask_id).deliver
 			VidMail.Reminder(q.id, q.answer_id).deliver
 		end
 	end

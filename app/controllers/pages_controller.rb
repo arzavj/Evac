@@ -1,6 +1,8 @@
 class PagesController < ApplicationController
+	
 	#skip_before_filter :require_login, :only => ["home", "privacypolicy", "about"]
-	@@categories = ["Politics", "Philosophy", "Entertainment", "Business", "Social Justice", "Science", "Tutoring", "Sports", "Miscellaneous"]
+	@@categories = ["Politics", "Philosophy", "Entertainment", "Business", "Social Justice", "Education", "Science", "Tutoring", "Sports", "Miscellaneous"]
+
 
 	
   def home
@@ -21,7 +23,7 @@ class PagesController < ApplicationController
   end
  	
 	def feedback
-		VidMail.Feedback(params["fname"], params["lname"], params["comment"]).deliver
+		VidMail.Feedback(params["name"], params["email"], params["comment"]).deliver
 		redirect_to "/"
 	end
 
