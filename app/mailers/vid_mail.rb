@@ -42,10 +42,10 @@ class VidMail < ActionMailer::Base
 		mail(:to => @answerer.email, :subject => "Schedule Confirmed")
 	end
 	
-	def Feedback(fname, lname, comment)
+	def Feedback(name, email, comment)
 		@comment = comment
-		puts "Got Here"
-		mail(:to => "feedback@vidactica.com", :subject => "Feedback from " + fname + " " + lname)
+		@email = email
+		mail(:to => "feedback@vidactica.com", :subject => "Feedback from " + fname)
 	end
 	
 	def ConfirmAppointmentScheduled (qID, uID)
