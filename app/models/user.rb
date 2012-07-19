@@ -5,7 +5,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+	attr_accessible :email, :password, :password_confirmation, :remember_me, :firstName, :lastName
+	
+	:validates_length_of :firstName,, :is => 1
+	:validates_length_of :lastName, , :is => 1
 	belongs_to :profile
 	has_many :ask_questions, :class_name => 'Question', :foreign_key => 'ask_id'
 	has_many :answer_questions, :class_name => 'Question', :foreign_key => 'answer_id'
