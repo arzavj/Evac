@@ -39,11 +39,7 @@
 					  <li><a href="/profiles">Profile</a></li>
 					  <li><a href="/about">Help</a></li>
 				      <li class="divider"></li>
-				      <li>
-						<%= form_tag("/logout", :id => 'out', :method => "delete") do%>
-							<a href="javascript:document.getElementById('out').submit()">Logout</a>
-						<%end%>
-					  </li>
+					  <li><%= link_to "Logout", "/logout"%></li>
 			    	</ul>
 			</li>
 			
@@ -84,6 +80,8 @@
 	</div>
 	</div>
 </header>
+<%= notice %>
+<%= alert %>
 <%user = current_user%>
 <%if user_signed_in? && user.new_questions != 0%>
 <div class="alert-wrapper">

@@ -1,7 +1,11 @@
 Vidactica::Application.routes.draw do
 	
-	devise_for :users, :path => '', :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "registration" }
-
+	devise_for :users, :skip => [:registrations]do
+		post '/login' => 'devise/sessions#create', :as => :user_session
+		get '/logout' => 'devise/sessions#destroy', :as => :destroy_user_session
+		post '/register' => 'devise/registrations#create', :as => :user_registration
+		resources :confirmation
+	end
 	resources :conversations, :only => :index do
 	  get 'repost', :on => :collection
 	  get 'deletePast', :on => :collection
