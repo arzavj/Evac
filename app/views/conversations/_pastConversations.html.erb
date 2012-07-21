@@ -10,7 +10,10 @@
 				<%name = user.fullName%>
 				with <a class="question-username" href="/profiles?id=<%=q.answer_id%>"><%=name%></a><br />
 				<%if @user.hasMissedQuestion?(q)%>
-					<b>MISSED CONVERSATION</b><br />
+					<b>YOU MISSED THIS CONVERSATION</b><br />
+				<%end%>
+				<%if q.conversationPartner(@user).hasMissedQuestion?(q)%>
+					<b>Your partner missed this conversation</b><br />
 				<%end%>
 				<%if !q.notes.nil?%>
 					<div class="notes-exp">
@@ -48,6 +51,9 @@
 			with <a class="question-username" href="/profiles?id=<%=q.ask_id%>"><%=name%></a><br>
 			<%if @user.hasMissedQuestion?(q)%>
 				<b>MISSED CONVERSATION</b><br />
+			<%end%>
+			<%if q.conversationPartner(@user).hasMissedQuestion?(q)%>
+				<b>Your partner missed this conversation</b><br />
 			<%end%>
 			<%if !q.answerer_notes.nil?%>
 				<div class="wd-expando notes-collapse">

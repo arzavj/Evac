@@ -11,22 +11,6 @@ module TokHelper
 		return repost
 	end
 	
-	def markMissed question
-		if question.first_entry.nil?
-			question.ask_missed = true
-			question.answer_missed = true
-			asker = question.asker
-			answer = User.find(question.answer_id)
-			answer.missed_conversations = answer.missed_conversations + 1
-			asker.missed_conversations = asker.missed_conversations + 1
-			asker.save
-			answer.save
-		end
-		
-		question.was_answered = true
-		question.save
-	end
-	
 	def secondsBefore(qID)
 		question = Question.find(qID)
 		appointment = Schedule.find(question.schedule_id).appointment
