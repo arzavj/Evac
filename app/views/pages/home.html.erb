@@ -58,7 +58,18 @@
 				return true;
 			}
 		}
-		
+		$(document).ready(function(){
+			var updateCategory = function()
+			{
+				var JSONurl = "pages/ajaxQuestion";
+				var categoryID = $("li.active > a").attr("href").replace(/#tab/, "");
+				$.getJSON(JSONurl, {"category": categoryID}, function(JSON){
+					
+				});
+			}
+			//updateCategory();
+			setInterval(updateCategory, 1000);
+		});
 	</script>
 
 	<%= render :partial => "schedule"%>

@@ -1,0 +1,886 @@
+.container-fluid {
+	padding-left: 0px;
+	padding-right: 0px;
+	min-height:100%;
+	width:100%;
+	padding-bottom:0px;
+	margin-bottom:0px;
+}
+
+.darkblue
+{
+	color:rgb(0,102,153);
+}
+
+.lightblue
+{
+	color:rgb(15,187,237);
+}
+
+@font-face 
+{ 
+	font-family: Harlow; 
+	src: url('/fonts/HARLOWSI.ttf'); 
+} 
+
+html, body 
+{
+	height:100%; 
+	margin:0; 
+	padding:0;
+	min-height:500px;
+	min-width:500px;
+}
+
+body {
+	/*background: #ECEEF0 url(/images/grey_background.png);*/
+	background: #ECEEF0 url(/images/redox_01.png);
+	border: 0;
+}
+
+
+.wrapper 
+{
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto;
+	position:relative;
+}
+
+
+header {
+	height: 80px;
+	background: #4A5C5C 0px 30px repeat-x url(/images/bg_header.jpg);
+}
+
+header h1
+{
+	float: left;
+	font-family: 'Shadows Into Light Two', cursive;
+	font-weight: bold;
+	color:#FFFFFF;
+}
+
+header .row-fluid
+{
+	position:relative;
+	top: 45px;
+}
+
+section {
+  font-size: 120%;
+  display:block; 
+}
+
+.border-padding
+{
+	padding-bottom:90px;
+}
+
+section h1 {
+  font-size: 200%;
+  font-family: 'Shadows Into Light Two', cursive;
+  display:block;
+}
+
+#lowHeaderPos
+{
+	float: left;
+	margin-top: 12%;
+	width:100%;
+	/*margin-left: 11%;*/
+}
+
+#highHeaderPos
+{
+	float: left;
+	margin-left: 3cm;
+	margin-top: 1cm;
+}
+
+section .post-questions .drop-down
+{
+	margin-top:2%;
+}
+
+section .answer-questions .drop-down
+{
+	margin-top:4.5%;
+}
+
+section h1, section .drop-down
+{
+	margin-left:2%;
+}
+
+/* Links */
+
+a {
+  color: #09c;;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #069;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #069;
+}
+/*
+header .h_navigation {
+  	position: absolute;
+		right: 10px;
+		top: 46px;
+		width: 760px;
+		height: 100px;
+		/*float: right;*/
+}
+/*
+header .h_navigation ul{
+  float: right;
+	margin:0;
+	margin-top: 1%;
+	width:50%;
+  /*padding: 0 0.7em;*/
+  /*white-space: nowrap;
+}
+
+header .h_navigation ul li {
+	float: left;
+	list-style-type: none;
+	padding-right:6%;
+	/*list-style-type: none;
+	  display: inline-block;
+	  padding: 0.2em 0;
+}
+
+header .h_navigation ul li a 
+{
+  		display: inline;
+		padding: 10px 5px 10px 5px;
+		margin: 0 2px 0 0px;
+		color: #fff;
+		font-weight: normal;
+		line-height: 14px;
+		text-transform: uppercase;
+		text-decoration: none;
+		text-shadow: 0px -1px 3px #162F43;
+		text-align: left;
+		font-size: 112%;
+}*/
+/*
+header .h_navigation ul li a img
+{
+	float:left;
+}
+
+header .h_navigation ul li a b
+{
+	float:center;
+}*/
+
+header .nav ul li a:hover {
+  color:#F0E68C;
+}
+
+.round {
+  -moz-border-radius:    10px;
+  -webkit-border-radius: 10px;
+  border-radius:         10px;
+  background: #4A5C5C;
+}
+
+#tiny-footer
+{
+	position:absolute;
+	bottom:0;
+	width:100%;
+	height:30px;
+	background: #4A5C5C repeat-x;
+	text-align: center;
+}
+
+footer 
+{
+  /*background: #4A5C5C repeat-x url(/images/footer_strip.png);*/
+	/*position:absolute;
+	bottom:65px;*/
+	width:100%;
+}
+
+.SmallFont
+{
+	font-family: 'Oldenburg', cursive;
+}
+
+#introLines
+{
+	float: left;
+	margin-top: 2%;
+	margin-bottom:10px;
+	padding-bottom:18px;
+  text-align: center;
+  width: 100%;
+  background: url("/images/partition.png") no-repeat scroll center bottom transparent;
+}
+
+#introLines p
+{
+	font-size:120%;
+}
+
+.fb-login-button
+{
+	float: left;
+	margin-top:6%;
+	margin-left: 0%;
+}
+header .fb-like
+{
+	position: absolute;
+	right: 0px;
+	top: 4px;
+}
+
+.videos
+{
+	margin-top:1%;
+	margin-left:1%;
+}
+
+#slider
+{
+	float:left;
+}
+
+footer .row-fluid .span4
+{
+	text-align:center;
+}
+
+#landingPageHorDivider
+{
+		background: url("/images/partition.png") no-repeat scroll center bottom transparent;
+		height:28px;
+}
+
+.nunito700
+{
+	font-family: 'Nunito', sans-serif;
+	font-weight:700;
+}
+
+.nunito400
+{
+	font-family: 'Nunito', sans-serif;
+	font-weight:400;
+}
+
+footer .row-fluid .span4 h2
+{
+	/*font-family: 'Macondo Swash Caps', cursive;*/
+	font-size:124%;
+	color: #FFFFFF;
+	/*border: 5px solid rgb(198, 187, 205); 
+	background-color: rgb(225, 234, 239);
+	border-radius: 20px;*/
+	
+}
+
+/*footer .row-fluid .span4 h2 a:hover {
+  	color:#F0E68C;
+    text-decoration: none;
+}*/
+
+footer .row-fluid .span4 p
+{
+	/*font-family: 'Oldenburg', cursive;*/
+	font-family: 'Nunito', sans-serif;
+	font-weight:400;
+	font-size:100%;
+	width:80%;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+footer .row-fluid .span4, footer .row-fluid .span4 .span9
+{
+	margin-left:0px;
+}
+
+.inline
+{
+	display:inline;
+}
+
+/*ul.nav.pull-right
+{
+	position: relative;
+	right: 10%;
+}*/
+
+.nav > li > a
+{
+	display:inline;
+	background-color:transparent;
+	font-size:117%;
+}
+
+.nav > li > a b
+{
+	position: relative;
+	top: 3px;
+	left: 2px;
+}
+
+.span8 ul.nav
+{
+	width:60%;
+}
+
+.home-nav
+{
+	margin-right:3%;
+}
+.nav > li > a:hover
+{
+	background-color:transparent;
+}
+
+.nav > li > a:hover b
+{
+	color:#F0E68C;
+}
+
+.nav > li > a b
+{
+	color: #fff;
+}
+
+b.uppercase
+{
+	text-tranform:uppercase;
+}
+
+h1.uppercase
+{
+	text-tranform:uppercase;
+}
+.partition-line
+{
+	margin-left:2%;
+	margin-right:2%;
+	margin-top:3%;
+	height:20px;
+	background: center bottom no-repeat url(/images/partition.png);
+}
+
+.row-fluid .span6
+{
+	margin-left:0%;
+}
+
+.navbar-inner 
+{
+	background-image: url(/images/navbar.png);
+	background-repeat:repeat-x;
+	border-radius:0px;
+}
+
+.navbar .brand
+{
+	font-family: 'Shadows Into Light Two', cursive;
+	font-size:131%;
+	padding-top:15px;
+}
+
+.transparent-background
+{
+	width:950px;
+	/*min-height:15cm;*/
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:0px;
+	margin-bottom:auto;
+	background-color: rgb(255,255,255);
+	/* RGBa with 0.6 opacity */
+	background-color: rgba(255, 255, 255, 0.9);
+
+}
+
+.transparent-background h1
+{
+	padding-top:3%;
+	padding-bottom:2%;
+}
+
+.blue-banner
+{
+	background-color:	rgb(225,234,239);
+	/*background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#E1EAEF), to(#ECEEF0));
+  background-image: -webkit-linear-gradient(top, #E1EAEF, #ECEEF0); 
+  background-image:    -moz-linear-gradient(top, #E1EAEF, #ECEEF0);
+  background-image:     -ms-linear-gradient(top, #E1EAEF, #ECEEF0);
+  background-image:      -o-linear-gradient(top, #E1EAEF, #ECEEF0);*/
+	width:100%;
+	min-height:330px;
+	/*border-bottom: 11px solid #C6BBCD;
+	border-top: 11px solid #C6BBCD;*/
+	margin-top:2%;
+}
+
+#landingPageBlueTop
+{
+	background: url("/images/navbar.png") repeat-x ;
+	height:20px;
+}
+
+.body-wrapper
+{
+	width:900px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.profile-pic img
+{
+	height:190px;
+	width:200px;
+	margin-bottom:5%;
+	-moz-border-radius:    10px;
+	-webkit-border-radius: 10px;
+  	border-radius:         10px;
+}
+
+#profile-name
+{
+	margin-left:0;
+	padding-top:4%;
+	margin-top:0;
+}
+
+.navbar
+{
+	margin-bottom: 0px;
+
+	min-width:1000px; // suppose you want minimun width of 1000px
+   _width: expression( document.body.clientWidth > 1000 ? "1000px" : "auto" ); /* sets max-width for IE */
+}
+
+.navbar .dropdown-menu {
+ margin-top: 0px;
+}
+
+ul.nav li.dropdown:hover ul.dropdown-menu{
+    display: block;    
+}
+
+#notes
+{
+	width:98%;
+	height:300px;
+	background-color:rgb(225,234,239);
+}
+
+.nivoSlider img
+{
+	height:262px;
+	width:462px;
+}
+
+.body-wrapper #home-row
+{
+	padding-top:3%;
+}
+
+#edit-profile-btn
+{
+	padding-left:13px;
+	padding-bottom:11px;
+}
+
+footer .row-fluid .span4 p, footer .row-fluid .span4 img, footer .row-fluid .span4 h2
+{
+	margin-top:2%;
+}
+
+center object
+{
+	padding-top:4%;
+}
+
+#email-login
+{
+	position: relative;
+	left: 11px;
+}
+
+select
+{
+	margin-bottom:0.9px;
+}
+
+#username
+{
+	position:static;
+	margin:0px;
+	font-size:100%;
+	padding:0px;
+}
+
+h2 b.caret-myquestions
+{
+	position: relative;
+	left: 10px;
+	top: 17px;
+}
+
+.big-wrapper
+{
+	width:1200px;
+}
+
+.tabs-left .tab-content, .tabs-right .tab-content 
+{
+  	display: block;
+	width: auto;
+}
+
+.tabs-left .nav-tabs li > a
+{
+	display:block;
+	position:static;
+	font-size:100%;
+}
+
+.tabs-left .nav-tabs > li > a:hover 
+{
+	background-color:#eee;
+	font-size:100%;
+}
+
+.tabs-left .nav-tabs > li.active > a:hover 
+{
+	background-color:#fff;
+	font-size:100%;
+}
+
+.nav-tabs > .active > a, .nav-tabs > .active > a:hover 
+{
+	outline: 0;
+}
+
+.modal .modal-header
+{
+	background-color:#3C619A;
+}
+
+#login-modal .modal-header, #rank-modal .modal-header, #register-modal .modal-header, #feedback-modal .modal-header, #schedule-modal .modal-header, #missed-modal .modal-header, #schedule .modal-header
+{
+	background-color:#4A5C5C;
+}
+
+.modal .modal-header h3
+{
+	color:white;
+}
+
+.modal .modal-body
+{
+	height:290px;
+}
+
+#register-modal .modal-body
+{
+	height:340px;
+}
+
+#feedback-modal .modal-body
+{
+	height:370px;
+}
+
+#regWithVid-modal
+{
+	background-image: url(/images/vidacticaVerification.png);
+	height:391px;
+	width:547px;
+}
+
+#missed-modal .modal-body
+{
+	height:55px;
+}
+
+.navbar-search .search-query
+{
+	color: #999999;
+	width:415px;
+}
+
+.navbar .navbar-inner .container
+{
+	width:921px;
+}
+
+.container .brand 
+{
+	padding-right:0px;
+}
+
+.navbar-search ul
+{
+	margin-left:0px;
+}
+
+#myconversations .nav-tabs
+{
+	margin-top:20px;
+	height:26px;
+}
+
+#myconversations .tab-content
+{
+	padding-bottom:50px;
+}
+
+#myconversations .nav-tabs > li > a:hover 
+{
+	background-color:#eee;
+}
+
+#myconversations .nav-tabs > li.active > a:hover 
+{
+	background-color:#fff;
+}
+
+#myconversations .nav-tabs > li > a
+{
+	font-size:100%;
+}
+
+.ui-datepicker .ui-datepicker-header
+{
+	background-color:#4A5C5C;
+	border: 1px solid #4A5C5C;
+}
+
+.ui-state-hover a, .ui-state-hover a:hover
+{
+	color:#4A5C5C;
+}
+
+.right-border
+{
+	border-right: 1px solid #DFDFDF;
+}
+
+.nav-tabs > .active > a, .nav-tabs > .active > a:hover
+{
+	background-color: rgba(255, 255, 255, 0.9);
+}
+
+.ui-widget-header a:hover
+{
+	cursor: pointer;
+}
+
+#email-signup a
+{
+	float:left;
+	margin-left:2%;
+	font-size:75%;
+}
+
+#email-signup a:hover
+{
+	text-decoration:underline;
+}
+
+.form-horizontal .control-label
+{
+	padding-top:11px;
+}
+
+.questions
+{
+	font-weight:bold;
+}
+
+li a.question-username
+{
+	font-size:100%;
+}
+
+.margin-bottom-5
+{
+	margin-bottom:5px;
+}
+
+#feedback
+{
+	text-align:center;
+	right:31px;
+	bottom:3px;
+	position:fixed;
+}
+
+.fredoka
+{
+	font-family: 'Fredoka One', cursive;
+	font-size:180%;
+	line-height:135%;
+}
+
+#home-header
+{
+	margin-left:2%;
+	font-size:200%;
+	line-height:130%;
+}
+
+#tiny-footer a
+{
+	font-weight: bold;
+	position:relative;
+	top:5px;
+	font-size: 9px;
+	color: #DFE9E9;
+}
+
+.priv-pol-section
+{
+	padding-top:5px;
+	padding-bottom:5px;
+}
+
+.alert-wrapper
+{
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:0px;
+	margin-bottom:auto;
+}
+
+#vidactica-logo
+{
+	position:relative;
+	bottom:15px;
+}
+
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
+
+.ui-slider-horizontal .ui-slider-handle
+{
+	background: repeat-x scroll 50% 50% #C5C5C5;
+	border: 1px solid #4A5C5C;
+	color: #4A5C5C;
+	cursor:pointer;
+}
+
+.ui-slider-horizontal .ui-state-hover
+{
+	background: repeat-x scroll 50% 50% #4A5C5C;
+}
+
+.ui-slider-horizontal 
+{
+	border-color: black;
+}
+
+.navbar .divider-vertical
+{
+	border-right-color: gray;
+}
+
+.rightBorder
+{
+	border-right: 1px solid #D1D5DA;
+}
+
+#chatWrapper {
+    width: 100%;
+    background: white;
+    margin-left:3%;
+    height:413px;
+    -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+#messages 
+{
+    width: 102%;
+    height: 307px;
+    margin: 0;
+    padding: 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    border-bottom: 1px #E4E4E4 solid;
+    list-style: none;
+		box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+		background-color:rgb(225,234,239);
+}
+
+#message 
+{
+		box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+    margin: 0;
+    padding-left: 5px;
+    height: 50px;
+    border: none;
+    width: 100%;
+    resize: none;
+    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    font-size: 12px;
+}
+
+.center
+{
+	text-align:center;
+}
+
+.theme-default .nivo-controlNav
+{
+	left:41%;
+	display:none;
+}
+
+<<<<<<< HEAD
+#tourList
+{
+	list-style-type:upper-roman;
+	text-align:center;
+}
+
+#tourList .caret
+{
+	margin-left:0.5%;
+	margin-top:1%;
+}
+
+#tourImageList a img
+{
+	width:900px;
+	margin: 1% 0 1% 0;
+	border-radius:25px;
+	box-shadow:7px 8px 8px #888888;
+}
+
+#linkToTour
+{
+	margin-left:2%;
+	font-size:16px;
+	margin-top:5%;
+=======
+#timeToWait
+{
+	width:23%;
+>>>>>>> missedConversation
+}
