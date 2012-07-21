@@ -1,9 +1,8 @@
 Vidactica::Application.routes.draw do
 	
-	devise_for :users, :skip => [:registrations]do
+	devise_for :users, :controllers => {:registrations => "registrations"}, :skip => [:sessions] do
 		post '/login' => 'devise/sessions#create', :as => :user_session
 		get '/logout' => 'devise/sessions#destroy', :as => :destroy_user_session
-		post '/register' => 'devise/registrations#create', :as => :user_registration
 		resources :confirmation
 	end
 	resources :conversations, :only => :index do
@@ -28,9 +27,6 @@ Vidactica::Application.routes.draw do
   match '/about', :to => 'pages#about'
   match '/bio', :to => 'profiles#show'
   match '/editBio', :to => 'profiles#edit'
-  match '/ask', :to => 'pages#ask'
-  match '/give', :to => 'pages#give'
-  match '/watch', :to => 'pages#watch'
   match '/myquestions', :to => 'conversations#index'
   match '/privacypolicy', :to => 'pages#privacypolicy'
 
