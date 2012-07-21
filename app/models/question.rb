@@ -4,4 +4,5 @@ class Question < ActiveRecord::Base
 	has_many :schedules, :dependent => :delete_all
 	
 	default_scope where(:deleted => false)
+
 end

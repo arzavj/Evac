@@ -4,7 +4,7 @@ class PagesController < ApplicationController
 
 	def ajaxQuestion
 		@questions = Question.where("category = ? AND was_answered = ? AND answer_id IS NULL", params["category"].to_i + 1, false)
-		render :json => @questions
+		render :json => @questions.to_json(:include => {:asker => {:methods => [:fullName]}}, :only => [:question, :id])
 	end
 	
 	
