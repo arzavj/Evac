@@ -1,7 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
 
 	def create
-		build_resource
+		build_resource({:profile_id => profile_id})
 		
 		if resource.save
 			if resource.active_for_authentication?
@@ -20,4 +20,28 @@ class RegistrationsController < Devise::RegistrationsController
 		end
 	end
 
+protected	
+	
+	def after_inactive_sign_up_path_for(resource)
+		flash[:email] = "set"
+		return "/"
+	end
+	
+private
+	
+	def profile_id
+		profile = Profile.new
+		
+		File.open(Rails.root.join('public/images/default-profile-pic.png')) do |pic|
+			profile.file_name = "Default Pic"
+            profile.file_type = nil
+            profile.size = nil
+			
+            profile.data = pic.read
+			#profile.School = GetSchool(fields["email"]) #test
+			profile.save
+		end
+		
+		return profile.id
+	end
 end 

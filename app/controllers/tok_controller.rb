@@ -3,15 +3,6 @@ require 'date'
 class TokController < ApplicationController
 	include TokHelper
 	
-	def updateNewQuestion(question)
-		asker = question.asker
-		answer = User.find(question.answer_id)
-		asker.new_questions = asker.new_questions + 1
-		answer.new_questions = answer.new_questions + 1
-		asker.save
-		answer.save
-	end
-	
 	def AcceptSchedule
 		question = Question.find(params["qID"])
 		question.schedule_id = params["appointment" + params["count"]]
@@ -86,44 +77,6 @@ class TokController < ApplicationController
 		q.was_answered = true
 		
 		q.save
-	end
-	
-	def makeSchedules question
-		user = current_account
-		
-		if question.answer_id == nil
-			question.answer_id = user.id
-		end
-		
-		question.schedule_id = -1
-		question.save
-		
-		updateNewQuestion(question)
-		
-		question.schedules.each do |appointment|
-			appointment.destroy
-		end
-		
-		(1..3).each do |i|
-			s = Schedule.new
-			s.question_id = question.id
-			if !params["Slot"+i.to_s].eql?("")
-				begin
-					s.appointment = DateTime.parse(params["Slot"+i.to_s])
-					s.appointment = s.appointment.new_offset(params["timeOffset"].to_i/24.0)
-				rescue
-					#for heroku
-					s.appointment = DateTime.now.utc + 5.minutes
-				end
-				
-				s.user_id = user.id #proposer
-				s.save
-			end
-		end
-		
-		VidMail.AppointmentScheduled(params["qID"], user.id).deliver
-		VidMail.ConfirmAppointmentScheduled(params["qID"], user.id).deliver
-		
 	end
 	
 	def Schedule
@@ -222,5 +175,45 @@ class TokController < ApplicationController
 		q = Question.find(params["qID"])
 		q.in_session = false
 		q.save
+	end
+
+private
+	
+	def makeSchedules question
+		user = current_account
+		
+		if question.answer_id == nil
+			question.answer_id = user.id
+		end
+		
+		question.schedule_id = -1
+		question.save
+		
+		updateNewQuestion(question)
+		
+		question.schedules.each do |appointment|
+			appointment.destroy
+		end
+		
+		(1..3).each do |i|
+			s = Schedule.new
+			s.question_id = question.id
+			if !params["Slot"+i.to_s].eql?("")
+				begin
+					s.appointment = DateTime.parse(params["Slot"+i.to_s])
+					s.appointment = s.appointment.new_offset(params["timeOffset"].to_i/24.0)
+					rescue
+					#for heroku
+					s.appointment = DateTime.now.utc + 5.minutes
+				end
+				
+				s.user_id = user.id #proposer
+				s.save
+			end
+		end
+		
+		VidMail.AppointmentScheduled(params["qID"], user.id).deliver
+		VidMail.ConfirmAppointmentScheduled(params["qID"], user.id).deliver
+		
 	end
 end

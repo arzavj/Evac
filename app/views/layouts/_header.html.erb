@@ -81,8 +81,11 @@
 	</div>
 </header>
 <% flash.each do |name, msg| %>
-    <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
-  <% end %>  
+	<%if name == :notice || name == :warning || name == :error%>
+		<%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+	<%end%>
+<% end %>  
+<%puts "second"%>
 <%user = current_user%>
 <%if user_signed_in? && user.new_questions != 0%>
 <div class="alert-wrapper">
