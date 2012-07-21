@@ -2,6 +2,11 @@ class PagesController < ApplicationController
 	skip_before_filter :require_login, :only => ["home", "privacypolicy", "about"]
 	@@categories = ["Politics", "Philosophy", "Entertainment", "Business", "Social Justice", "Education", "Science", "Tutoring", "Sports", "Miscellaneous"]
 
+	def ajaxQuestion
+		@questions = Question.where("category = ? AND was_answered = ? AND answer_id IS NULL", params["category"].to_i + 1, false)
+		render :json => @questions
+	end
+	
 	
   def home
     @title = "Vidactica"
