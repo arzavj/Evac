@@ -10,7 +10,11 @@ gem 'mysql2' , '0.2.7'
 #gem 'pg'
 gem 'facebook_registration'
 gem 'whenever'
+
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'oauth2'
 
 # gem "paperclip", "~> 3.0"
 gem 'tzinfo', '0.3.33'

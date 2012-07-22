@@ -28,6 +28,7 @@ GEM
       activemodel (= 3.0.11)
       activesupport (= 3.0.11)
     activesupport (3.0.11)
+    addressable (2.2.8)
     arel (2.0.10)
     bcrypt-ruby (3.0.1)
     builder (2.1.2)
@@ -40,6 +41,11 @@ GEM
       abstract (>= 1.0.0)
     facebook_registration (1.0.4)
       yajl-ruby (>= 0.7.6)
+    faraday (0.7.6)
+      addressable (~> 2.2)
+      multipart-post (~> 1.1)
+      rack (~> 1.1)
+    hashie (1.2.0)
     i18n (0.5.0)
     json (1.6.6)
     mail (2.2.19)
@@ -48,7 +54,20 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.18)
+    multi_json (1.2.0)
+    multipart-post (1.1.5)
     mysql2 (0.2.7)
+    oauth2 (0.5.2)
+      faraday (~> 0.7)
+      multi_json (~> 1.0)
+    omniauth (1.0.3)
+      hashie (~> 1.2)
+      rack
+    omniauth-facebook (1.2.0)
+      omniauth-oauth2 (~> 1.0.0)
+    omniauth-oauth2 (1.0.0)
+      oauth2 (~> 0.5.0)
+      omniauth (~> 1.0)
     orm_adapter (0.0.7)
     polyglot (0.3.3)
     rack (1.2.5)
@@ -94,6 +113,9 @@ DEPENDENCIES
   devise
   facebook_registration
   mysql2 (= 0.2.7)
+  oauth2
+  omniauth
+  omniauth-facebook
   rails (= 3.0.11)
   rake (= 0.8.7)
   tzinfo (= 0.3.33)
