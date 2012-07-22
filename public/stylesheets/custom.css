@@ -523,7 +523,7 @@ select
 	margin-bottom:0.9px;
 }
 
-#username
+.username
 {
 	position:static;
 	margin:0px;
