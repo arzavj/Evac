@@ -1,17 +1,19 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
-# Many of these configuration options can be set straight in your model.
+# Many of these configuration options can be set straight in your model
 Devise.setup do |config|
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.
-  config.mailer_sender = "noreply@vidactica.com"
+	config.mailer_sender = "noreply@vidactica.com"
 	
-  config.warden do |manager|
-	manager.failure_app = CustomFailure
-  end
-
+	config.warden do |manager|
+		manager.failure_app = CustomFailure
+	end
 	
-  config.sign_out_via = :get
+	require "omniauth-facebook"
+	config.omniauth :facebook, "448981068445455", "c1576820bcca019f62bc630e457b0713"
+	
+	config.sign_out_via = :get
 
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"

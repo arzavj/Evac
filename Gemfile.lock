@@ -113,8 +113,6 @@ DEPENDENCIES
   devise
   facebook_registration
   mysql2 (= 0.2.7)
-  oauth2
-  omniauth
   omniauth-facebook
   rails (= 3.0.11)
   rake (= 0.8.7)
