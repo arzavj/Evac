@@ -1,9 +1,9 @@
 Vidactica::Application.routes.draw do
 	
-	devise_for :users, :controllers => {:registrations => "registrations"}, :skip => [:sessions] do
+	devise_for :users, :controllers => {:registrations => "registrations"} do
 		post '/login' => 'devise/sessions#create', :as => :user_session
 		get '/logout' => 'devise/sessions#destroy', :as => :destroy_user_session
-		resources :confirmation
+		resources :confirmations
 	end
 	resources :conversations, :only => :index do
 	  get 'repost', :on => :collection

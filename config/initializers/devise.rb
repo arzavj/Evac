@@ -6,6 +6,11 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.
   config.mailer_sender = "noreply@vidactica.com"
 	
+  config.warden do |manager|
+	manager.failure_app = CustomFailure
+  end
+
+	
   config.sign_out_via = :get
 
   # Configure the class responsible to send e-mails.

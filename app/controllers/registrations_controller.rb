@@ -1,7 +1,9 @@
 class RegistrationsController < Devise::RegistrationsController
 
 	def create
-		build_resource({:profile_id => profile_id})
+		build_resource
+		
+		self.resource.profile_id = new_profile
 		
 		if resource.save
 			if resource.active_for_authentication?
@@ -15,7 +17,7 @@ class RegistrationsController < Devise::RegistrationsController
 			end
 		else
 			clean_up_passwords resource
-			flash[:error] = "Invalid input"
+			flash[:error] = "Invalid email or password"
 			redirect_to "/"
 		end
 	end
@@ -27,9 +29,7 @@ protected
 		return "/"
 	end
 	
-private
-	
-	def profile_id
+	def new_profile
 		profile = Profile.new
 		
 		File.open(Rails.root.join('public/images/default-profile-pic.png')) do |pic|
@@ -41,7 +41,7 @@ private
 			#profile.School = GetSchool(fields["email"]) #test
 			profile.save
 		end
-		
+
 		return profile.id
 	end
 end 
