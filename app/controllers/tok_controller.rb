@@ -221,12 +221,12 @@ class TokController < ApplicationController
 		if asker.id == current_account.id
 			q.answer_missed = true
 			answer.missed_conversations = answer.missed_conversations + 1
-			asker.rating = ((asker.rating*asker.completed_conversations) + 5.0)/(asker.completed_conversations+1)
+			asker.rating = ((asker.rating*asker.completed_conversations) + 5.0)/(asker.completed_conversations + 1)
 			asker.completed_conversations = asker.completed_conversations + 1
 		else
 			q.ask_missed = true
 			asker.missed_conversations = asker.missed_conversations + 1
-			answer.rating = ((answer.rating*answer.completed_conversations) + 5.0)/(answer.completed_conversations+1)
+			answer.rating = ((answer.rating*answer.completed_conversations) + 5.0)/(answer.completed_conversations + 1)
 			answer.completed_conversations = answer.completed_conversations + 1
 		end
 		
