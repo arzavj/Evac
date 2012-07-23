@@ -56,8 +56,7 @@
 				</div>
 				<div class="fb-login-button">
 					<a data-toggle="modal" data-target="#facebook-modal" href = "#facebook-modal">
-						<%= link_to image_tag("signup-facebook-md.png", :width => "250"), user_omniauth_authorize_path(:facebook) %>
-						<%#=  %>
+						<%= link_to image_tag("signup-facebook-md.png", :width => "250"), user_omniauth_authorize_path(:facebook) %>	
 					</a>
 				</div>
 				<div class="modal hide fade" id="register-modal">
@@ -66,7 +65,6 @@
 						<h3>Register With Vidactica</h3>
 					</div>
 					<div class="modal-body">
-						<%= devise_error_messages! %>
 						<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => "well form-horizontal"}) do |f| %>
 							<fieldset>
 								<div class="control-group">
