@@ -10,7 +10,7 @@ class TokController < ApplicationController
 		
 		updateNewQuestion(question)
 		
-		u = current_account
+		u = current_user
 		
 		VidMail.AppointmentConfirmed(params["qID"], u.id).deliver #send email
 		VidMail.ConfirmAppointmentConfirmed(params["qID"], u.id).deliver #send email
@@ -45,14 +45,14 @@ class TokController < ApplicationController
 
 	@token = $opentok.generate_token :session_id => @sessionID
 	  
-	@user = current_account
+	@user = current_user
   end
 	
 	def GiveChatRoom
 		@room = 0
 		@q = Question.find(params["qID"])
 			
-		@user = current_account
+		@user = current_user
 		@sessionID = @q.current_session
 			
 		@token = $opentok.generate_token :session_id => @sessionID
@@ -116,7 +116,7 @@ class TokController < ApplicationController
 		asker = q.asker
 		answer = User.find(q.answer_id)
 		
-		if asker.id == current_account.id
+		if asker.id == current_user.id
 			q.answer_missed = true
 			answer.missed_conversations = answer.missed_conversations + 1
 			asker.rating = ((asker.rating*asker.completed_conversations) + 5.0)/(asker.completed_conversations+1)
@@ -142,7 +142,7 @@ class TokController < ApplicationController
 		asker = q.asker
 		answer = User.find(q.answer_id)
 		
-		if asker.id == current_account.id
+		if asker.id == current_user.id
 			q.answer_missed = true
 			answer.missed_conversations = answer.missed_conversations + 1
 			asker.rating = ((asker.rating*asker.completed_conversations) + 5.0)/(asker.completed_conversations+1)
@@ -171,7 +171,7 @@ class TokController < ApplicationController
 		asker = q.asker
 		answer = User.find(q.answer_id)
 		
-		if asker.id == current_account.id
+		if asker.id == current_user.id
 			q.answer_missed = true
 			answer.missed_conversations = answer.missed_conversations + 1
 			asker.rating = ((asker.rating*asker.completed_conversations) + 5.0)/(asker.completed_conversations + 1)
@@ -206,7 +206,7 @@ class TokController < ApplicationController
 private
 	
 	def makeSchedules question
-		user = current_account
+		user = current_user
 		
 		if question.answer_id == nil
 			question.answer_id = user.id

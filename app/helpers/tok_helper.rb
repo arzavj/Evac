@@ -11,7 +11,7 @@ module TokHelper
 	
 	def repost question
 		repost = Question.new
-		repost.asker = current_account
+		repost.asker = current_user
 		repost.question = question.question
 		repost.category = question.category
 		repost.in_session = false

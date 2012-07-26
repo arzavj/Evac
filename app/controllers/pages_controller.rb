@@ -16,10 +16,7 @@ class PagesController < ApplicationController
 	  end
 	  
 	  @questions = Question.where(:category => @cat)
-	  @user = User.where({:email => cookies[:email], :password => cookies[:pass]})
-	  if @user.length > 0
-		  @user = @user[0]
-	  end
+	  @user = current_user
   end
  	
 	def feedback
@@ -29,7 +26,7 @@ class PagesController < ApplicationController
 
 	def submitQuestion
 		q = Question.new
-		u = current_account
+		u = current_user
 
 		q.ask_id = u.id
 		q.question = params[:question]

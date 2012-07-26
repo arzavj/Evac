@@ -4,7 +4,7 @@ class ProfilesController < ApplicationController
 		if params[:id] != nil
 			@user = User.find_by_id(params[:id])
 		else
-			@user = current_account
+			@user = current_user
 		end
 		@rank = @user.rating
 		@sessions = @user.completed_conversations 
@@ -20,12 +20,12 @@ class ProfilesController < ApplicationController
 	
 	def edit
 		@title = "Edit"
-		@user = current_account
+		@user = current_user
 		@profile = @user.profile
 	end
 	
 	def update
-		u = current_account
+		u = current_user
 		profile = u.profile
 		
         pic = params[:profile][:picture]
