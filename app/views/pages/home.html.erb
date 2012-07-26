@@ -28,17 +28,17 @@
 	</script>
 <%end%>
 
-<script type ="text/javascript">
-	function regWithVidPopup()
-	{
-		$('#register-modal').modal('hide');
-		$('#regWithVidPopup').click();
-		return true;
-	}
-</script>
-
 <%if cookies[:name]  %>
-	<script type="text/javascript" src="/javascripts/questionsAjax.js"></script>
+	<!-- <script type="text/javascript" src="/javascripts/questionAjax.js.erb"></script> -->
+
+	<script type ="text/javascript">
+		function regWithVidPopup()
+		{
+			$('#register-modal').modal('hide');
+			$('#regWithVidPopup').click();
+			return true;
+		}
+	</script>
 
 	<%= render :partial => "schedule"%>
 
