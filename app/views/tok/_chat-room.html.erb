@@ -15,7 +15,7 @@
     session.connect(apiKey, token);
 	
 	var inSession = false;
-	var timeout = setTimeout(declareMissed,  /*300000 + <%= secondsBefore(params["qID"]).to_s%>*1000*/0);
+	var timeout = setTimeout(declareMissed,  300000 + <%= secondsBefore(params["qID"]).to_s%>*1000);
     <%name = @q.asker.firstName%>;
 
 	
