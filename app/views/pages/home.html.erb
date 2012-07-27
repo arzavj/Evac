@@ -29,7 +29,6 @@
 <%end%>
 
 <%if cookies[:name]  %>
-	<!-- <script type="text/javascript" src="/javascripts/questionAjax.js.erb"></script> -->
 
 	<script type ="text/javascript">
 		function regWithVidPopup()
@@ -38,8 +37,28 @@
 			$('#regWithVidPopup').click();
 			return true;
 		}
+		function checkPostForm()
+		{
+			var question = document.getElementsByName("question")[0];
+			if (question.value == "" )
+			{
+				alert("Please submit a post or question");
+				return false;
+			}
+			if(document.categoryPost.category.value === "nothing")
+			{
+				alert("Please select a category");
+				return false;
+			}
+			else
+			{
+				f.submit();
+				return true;
+			}
+		}
 	</script>
 
+	<%= render :partial => "questionsAjax"%>
 	<%= render :partial => "schedule"%>
 
 	<div class="navbar">
