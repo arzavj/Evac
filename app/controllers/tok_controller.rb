@@ -15,7 +15,8 @@ class TokController < ApplicationController
 		VidMail.AppointmentConfirmed(params["qID"], u.id).deliver #send email
 		VidMail.ConfirmAppointmentConfirmed(params["qID"], u.id).deliver #send email
 		
-		redirect_to "/conversations?sent=1"
+		flash[:notice] = "Your preference has been saved."
+		redirect_to "/conversations"
 	end
 	
 	def EnterSession	
@@ -84,7 +85,8 @@ class TokController < ApplicationController
 		
 		makeSchedules question
 		
-		redirect_to :controller => "conversations", :action => "index", :schedule => "1"
+		flash[:notice] = "Your choices were sent."
+		redirect_to "/conversations"
 	end
 	
 	def submitRank

@@ -50,9 +50,7 @@
 						<li class="divider-vertical inline"></li>
 						<li class="inline"><input type="text" name="question" class="search-query" placeholder="Post a conversation topic"></li>	
 						<li class="divider-vertical inline"></li>
-						<!--
-						<li class="inline"><input class="btn btn-info" type="submit" name="sType" value="Post and Enter Room" /></li> 
-						 -->
+
 						 <!--For entering chat room-->
 						<li class="inline" style="position: relative; bottom: 3px;"><input class="btn btn-info" type="submit" name="sType" value="Submit Post" /></li> <!--For just posting-->
 					</ul>
@@ -81,7 +79,7 @@
 							<%end%>
 			  			</ul>
 			  			<div class="tab-content">
-						<!-- Preloads the top 5 questions for each category -->
+						<!-- Preloads the all questions for each category -->
 						<%(0..@categories.length-1).each do |i|%>
 							<%if i == 0%>
 								<div class="tab-pane fade in active" id="tab<%=i%>">
