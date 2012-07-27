@@ -4,17 +4,24 @@
 			//[{"question":{"id":26,"question":"testing schedule popup","asker":{"fullName":"Arzav Jain","id":1}}}
 			//,{"question":{"id":31,"question":"asdfasdf","asker":{"fullName":"Arzav Jain","id":1}}}]
 			var oldTabHeight = $(document).height() - $("header").height() - $("#tiny-footer").height();
+			var li = $("div.tabs-left > ul.nav-tabs > li");
+			var minTabHeight = ((li.first().height())*(li.length))*1.07;
 			var categoryID;
 			var updateListHeight = function()
 			{
 					var newTabHeight = $("div.tab-content").height();
 					//alert(tabPaneHeight+" vs "+ defaultHeight);
-					if(newTabHeight>oldTabHeight-200)
+					if((newTabHeight>oldTabHeight-200) || (newTabHeight<oldTabHeight && newTabHeight>minTabHeight))
 					{
 						console.log("updated height");
 						$(".tabs-left .nav-tabs").animate({height: (1.07*newTabHeight)+"px"}, 300);
 						oldTabHeight = newTabHeight;
 					}
+					// else if(newTabHeight<oldTabHeight && newTabHeight<minTabHeight)
+					// {
+					// 	console.log("height set to min possible");
+					// 	$(".tabs-left .nav-tabs").animate({height: minTabHeight+"px"}, 300);
+					// }
 						
 			}
 
@@ -31,6 +38,7 @@
 							var asker = obj.question.asker;
 							if(questionIsNew(obj.question.question))
 							{
+									console.log("added a new question");
 									var newDiv = $("<div />").css("font-weight", "bold");
 									newDiv.text(obj.question.question);
 									var li = newDiv.wrap("<li />").parent();
