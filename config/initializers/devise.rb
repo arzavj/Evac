@@ -6,6 +6,8 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.
 	config.mailer_sender = "noreply@vidactica.com"
 	
+	config.assets.initialize_on_precompile = false
+	
 	config.warden do |manager|
 		manager.failure_app = CustomFailure
 	end
