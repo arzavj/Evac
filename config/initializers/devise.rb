@@ -1,7 +1,7 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model
 Devise.setup do |config|
-	config.assets.initialize_on_precompile = false
+	#config.assets.initialize_on_precompile = false
 	
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
