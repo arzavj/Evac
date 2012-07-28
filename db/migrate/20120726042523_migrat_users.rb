@@ -4,6 +4,8 @@ class MigratUsers < ActiveRecord::Migration
 	old_users.each do |old_user|
 		devise_old_user = User.find(old_user.id)
 		devise_old_user.update_attributes(:password => old_user.password, :password_confirmation => old_user.password)
+		devise_old_user.skip_confirmation!
+		devise_old_user.save
 	end
 
 	remove_column :users, :password
