@@ -523,7 +523,7 @@ select
 	margin-bottom:0.9px;
 }
 
-.username
+#username
 {
 	position:static;
 	margin:0px;
@@ -852,9 +852,10 @@ li a.question-username
 	display:none;
 }
 
+<<<<<<< HEAD
 #tourList
 {
-	list-style-type:none;/*upper-roman;*/
+	list-style-type:upper-roman;
 	text-align:center;
 }
 
@@ -867,7 +868,7 @@ li a.question-username
 #tourImageList a img
 {
 	width:900px;
-	margin: 3% 0 2% 0;
+	margin: 1% 0 1% 0;
 	border-radius:25px;
 	box-shadow:7px 8px 8px #888888;
 }
@@ -877,39 +878,9 @@ li a.question-username
 	margin-left:2%;
 	font-size:16px;
 	margin-top:5%;
-}
-
-#other
-{
-    width: 590px;
-    height: 472px;
-    position: relative;
-    z-index: 1;
-}
-
-#me
-{
-    width: 100px;
-    height: 80px;
-    position: absolute;
-    top: 5;
-    left: 5;
-    z-index: 4;
-}
-
+=======
 #timeToWait
 {
 	width:23%;
-}
-
-button.close
-{
-	border:0px;
-	background-color:transparent;
-}
-
-button.close:hover
-{
-	background-color:transparent;
-	
+>>>>>>> missedConversation
 }

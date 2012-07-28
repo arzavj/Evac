@@ -1,14 +1,12 @@
-<script type ="text/javascript">
-	function regWithVidPopup()
-	{
-		$('#register-modal').modal('hide');
-		$('#regWithVidPopup').click();
-		return true;
-	}
-</script>
-
 <%if user_signed_in? %>
-	<script>
+
+	<script type ="text/javascript">
+		function regWithVidPopup()
+		{
+			$('#register-modal').modal('hide');
+			$('#regWithVidPopup').click();
+			return true;
+			
 		function checkPostForm()
 		{
 			var question = document.getElementsByName("question")[0];
@@ -28,9 +26,9 @@
 				return true;
 			}
 		}
-		
 	</script>
 
+	<%= render :partial => "questionsAjax"%>
 	<%= render :partial => "schedule"%>
 
 	<div class="navbar">
@@ -96,7 +94,7 @@
 									<%questions.each do |q|%>
 											<% u = q.asker %>
 											<% name = u.fullName %>
-					    					<li style="margin-top:1%;"><b><%= q.question%></b><br />
+					    					<li style="margin-top:1%;"><div style="font-weight:bold;"><%= q.question%></div>
 											<% if q.in_session %> <!--Check if user is waiting -->
 												<% str = "Answer" %>
 											<% else %>
@@ -110,7 +108,7 @@
 															Schedule
 													</button>
 												<%end%>
-												a conversation with <a id="username" href = "/profiles?id=<%=u.id%>" ><%= name %></a>
+												a conversation with <a class="username" href = "/profiles?id=<%=u.id%>" ><%= name %></a>
 											<% end %>
 											
 											</li>
