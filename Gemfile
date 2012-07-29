@@ -17,6 +17,15 @@ gem 'omniauth-facebook'
 # gem "paperclip", "~> 3.0"
 gem 'tzinfo', '0.3.33'
 gem 'rake', '0.8.7'
+
+group :assets do
+  gem 'sass-rails', "  ~> 3.1.0"
+  gem 'coffee-rails', "~> 3.1.0"
+  gem 'uglifier'
+end
+
+gem 'jquery-rails'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 

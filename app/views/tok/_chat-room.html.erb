@@ -1,4 +1,5 @@
-<script src="http://static.opentok.com/v0.91/js/TB.min.js"></script>
+<!-- <script src="http://static.opentok.com/v0.91/js/TB.min.js"></script> -->
+<%= javascript_include_tag "http://static.opentok.com/v0.91/js/TB.min.js" %>
 
 <%= render :partial => "missed_conversation", :locals => {:qID => params["qID"]}%>
 
