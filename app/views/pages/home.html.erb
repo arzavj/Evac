@@ -93,7 +93,7 @@
 									<%end%>
 									<%questions.each do |q|%>
 											<% u = q.asker %>
-											<% name = u.fullName %>
+											<% name = u.nameWithPoints %>
 					    					<li style="margin-top:1%;"><div style="font-weight:bold;"><%= q.question%></div>
 											<% if q.in_session %> <!--Check if user is waiting -->
 												<% str = "Answer" %>

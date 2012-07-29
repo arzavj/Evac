@@ -2,7 +2,7 @@
 Hi <%=askName%>, 
 <br /><br /> 
 <%url = "http://vidactica.com"%>
-<%answerName = @answer.fullName%>
+<%answerName = @answer.nameWithPoints%>
 <a href="<%=url+"/profiles?id="+@answer.id.to_s%>"><%=answerName%></a> wants to vidact with you about “<%=@question.question%>” at the following times:
 <br /><br /> 
 	<%@appointments.each do |appoint|%>

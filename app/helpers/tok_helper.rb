@@ -2,7 +2,7 @@ module TokHelper
 	
 	def updateMissed q
 		asker = q.asker
-		answer = User.find(q.answer_id)
+		answer = q.answerer
 		
 		if asker.id == current_user.id
 			q.answer_missed = true
@@ -28,7 +28,7 @@ module TokHelper
 	
 	def updateNewQuestion(question)
 		asker = question.asker
-		answer = User.find(question.answer_id)
+		answer = question.answerer
 		asker.new_questions = asker.new_questions + 1
 		answer.new_questions = answer.new_questions + 1
 		asker.save
