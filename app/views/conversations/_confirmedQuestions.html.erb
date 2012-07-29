@@ -1,10 +1,22 @@
+<script type="text/javascript">
+	$(document).ready(function(){
+		var updateChatroomButton = function()
+		{
+			$("li.questionElement").each(function(key, value){
+				//Given the question
+			});
+		}
+		setInterval(updateChatroomButton, 3000);
+	});
+</script>
+
 <div class="span6">
 	<ul class="nav nav-list">
 		<li><h3 class="SmallFont">Confirmed Conversations</h3></li>
 		<li class="divider"></li>
 		<%@qConfirmed.each do |q|%>
-			<li>
-				<span class="questions"><%=q.question%></span>
+			<li class="questionElement">
+				<div><span class="questions"><%=q.question%></span>
 				<%if @user.id == q.ask_id%>
 					<%id = q.answer_id%>
 				<%else%>
@@ -12,12 +24,12 @@
 				<%end%>
 				<%user = User.find(id)%>
 				<%name = user.fullName%>
-				with <a class="question-username" href="/profiles?id=<%=id%>"><%=name%></a><br />
+				with <a class="question-username" href="/profiles?id=<%=id%>"><%=name%></a></div>
 							
 				<%s = Schedule.find(q.schedule_id)%>
 				<br />You are scheduled to meet at <span name="timeDiv" ><%=s.appointment.strftime("%B %d, %Y %H:%M:%S UTC")%> </span>
 				<%schedule = s.appointment - (5.minutes)%> <!--5 minutes before hand-->
-
+				<div>
 				<%future = calculateFutureDateForQuestion(q,s) + (5.minutes)%>
 				<%if future.past? && !q.in_session%>
 					<%markMissed q%>
@@ -40,7 +52,8 @@
 					<button class="btn" data-toggle="modal" data-target="#schedule-modal" href = "#schedule-modal" onClick="addQID(<%=q.id%>)">
 						Propose Alternate Schedule
 					</button>
-				<%end%>	
+				<%end%>
+				</div>
 								
 			</li>
 			<li class="divider"></li>
