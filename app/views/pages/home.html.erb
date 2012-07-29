@@ -1,34 +1,4 @@
-<%if params["fail"]%> <!-- If this alert needs to be presented to clarify to the user -->
-<script type ="text/javascript">
-	alert('Invalid email/password combination');
-	</script>
-<%end%>
-
-<%if params["verify"]%> <!-- If this alert needs to be presented to clarify to the user -->
-<script type ="text/javascript">
-	alert('Please verify your email');
-	</script>
-<%end%>
-
-<%if params["efail"]%>
-	<script type ="text/javascript">
-		alert("Invalid College E-mail Address");
-	</script>
-<%end%>
-
-<%if params["exist"]%>
-	<script type ="text/javascript">
-		alert("This email is already being used");
-	</script>
-<%end%>
-
-<%if params["pfail"]%>
-	<script type ="text/javascript">
-		alert("Passwords Do Not Match");
-	</script>
-<%end%>
-
-<%if cookies[:name]  %>
+<%if user_signed_in? %>
 
 	<script type ="text/javascript">
 		function regWithVidPopup()
@@ -36,7 +6,7 @@
 			$('#register-modal').modal('hide');
 			$('#regWithVidPopup').click();
 			return true;
-		}
+			
 		function checkPostForm()
 		{
 			var question = document.getElementsByName("question")[0];
@@ -78,9 +48,7 @@
 						<li class="divider-vertical inline"></li>
 						<li class="inline"><input type="text" name="question" class="search-query" placeholder="Post a conversation topic"></li>	
 						<li class="divider-vertical inline"></li>
-						<!--
-						<li class="inline"><input class="btn btn-info" type="submit" name="sType" value="Post and Enter Room" /></li> 
-						 -->
+
 						 <!--For entering chat room-->
 						<li class="inline" style="position: relative; bottom: 3px;"><input class="btn btn-info" type="submit" name="sType" value="Submit Post" /></li> <!--For just posting-->
 					</ul>
@@ -109,7 +77,7 @@
 							<%end%>
 			  			</ul>
 			  			<div class="tab-content">
-						<!-- Preloads the top 5 questions for each category -->
+						<!-- Preloads the all questions for each category -->
 						<%(0..@categories.length-1).each do |i|%>
 							<%if i == 0%>
 								<div class="tab-pane fade in active" id="tab<%=i%>">

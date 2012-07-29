@@ -11,6 +11,9 @@ gem 'mysql2' , '0.2.7'
 gem 'facebook_registration'
 gem 'whenever'
 
+gem 'devise'
+gem 'omniauth-facebook'
+
 # gem "paperclip", "~> 3.0"
 gem 'tzinfo', '0.3.33'
 gem 'rake', '0.8.7'

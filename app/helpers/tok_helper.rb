@@ -1,8 +1,17 @@
 module TokHelper
 	
+	def updateNewQuestion(question)
+		asker = question.asker
+		answer = User.find(question.answer_id)
+		asker.new_questions = asker.new_questions + 1
+		answer.new_questions = answer.new_questions + 1
+		asker.save
+		answer.save
+	end
+	
 	def repost question
 		repost = Question.new
-		repost.asker = current_account
+		repost.asker = current_user
 		repost.question = question.question
 		repost.category = question.category
 		repost.in_session = false

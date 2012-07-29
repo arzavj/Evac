@@ -1,5 +1,10 @@
 Vidactica::Application.routes.draw do
 	
+	devise_for :users, :controllers => {:registrations => "registrations", :omniauth_callbacks=> "user/omniauth_callbacks"	} do
+		post '/login' => 'devise/sessions#create', :as => :user_session
+		get '/logout' => 'devise/sessions#destroy', :as => :destroy_user_session
+		resources :confirmations
+	end
 	resources :conversations, :only => :index do
 	  get 'repost', :on => :collection
 	  get 'deletePast', :on => :collection
@@ -22,9 +27,6 @@ Vidactica::Application.routes.draw do
   match '/about', :to => 'pages#about'
   match '/bio', :to => 'profiles#show'
   match '/editBio', :to => 'profiles#edit'
-  match '/ask', :to => 'pages#ask'
-  match '/give', :to => 'pages#give'
-  match '/watch', :to => 'pages#watch'
   match '/myquestions', :to => 'conversations#index'
   match '/privacypolicy', :to => 'pages#privacypolicy'
 

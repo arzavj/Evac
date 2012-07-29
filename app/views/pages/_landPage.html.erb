@@ -56,7 +56,7 @@
 				</div>
 				<div class="fb-login-button">
 					<a data-toggle="modal" data-target="#facebook-modal" href = "#facebook-modal">
-						<%= image_tag("signup-facebook-md.png", :width => "250") %>
+						<%= link_to image_tag("signup-facebook-md.png", :width => "250"), user_omniauth_authorize_path(:facebook) %>	
 					</a>
 				</div>
 				<div class="modal hide fade" id="register-modal">
@@ -65,39 +65,39 @@
 						<h3>Register With Vidactica</h3>
 					</div>
 					<div class="modal-body">
-						<form class="well form-horizontal" action="/fb_registration/SaveUser" method="post">
+						<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => "well form-horizontal"}) do |f| %>
 							<fieldset>
 								<div class="control-group">
 									<label class="control-label">First Name: </label>
 									<div class="controls">
-										<input type="text" value= "<%=params["fname"]%>" name="fname" />
+										<%= f.text_field :firstName%>
 									</div>
 								</div>
 							
 								<div class="control-group">
 									<label class="control-label">Last Name: </label>
 									<div class="controls">
-										<input type="text" value= "<%=params["lname"]%>" name="lname" />
+										<%= f.text_field :lastName%>
 									</div>
 								</div>
 
 								<div class="control-group">
 									<label class="control-label">Email:</label>
 									<div class="controls">
-										<input class="input-xlarge" type="text" value= "<%=params["email"]%>" name="email" />
+										<%= f.email_field :email, :class => "input-xlarge" %>
 									</div>
 								</div>
 							
 								<div class="control-group">
 									<label class="control-label">Vidactica Password:</label>
 									<div class="controls">
-										<input class="input-xlarge" type="password" name="password" />
+										<%= f.password_field :password, :class => "input-xlarge"%>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label">Re-Enter Password:</label>
 									<div class="controls">
-										<input class="input-xlarge" type="password" name="passwordAgain" />
+										<%= f.password_field :password_confirmation, :class => "input-xlarge" %>
 									</div>
 								</div>
 								<div class="control-group">
@@ -107,7 +107,7 @@
 								</div>
 							
 							</fieldset>
-						</form>
+						<%end%>
 					</div>
 				</div>
 				<div id="email-signup">
@@ -126,10 +126,10 @@
 				<!-- <p id="linkToTour" class="pull-left nunito400">
 					<a href="/about">Take a look inside Vidactica now &raquo;</a>
 				</p> -->
-				<%if params["email"]%> <!-- If this alert needs to be presented to clarify to the user -->
-				<script type ="text/javascript">
-					$('#regWithVid-modal').modal('show');
-				</script>
+				<%if flash.has_key?(:email)%> <!-- If this alert needs to be presented to clarify to the user -->
+					<script type ="text/javascript">
+						$('#regWithVid-modal').modal('show');
+					</script>
 				<%end%>
 				</div>
 			</div>

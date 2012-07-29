@@ -1,12 +1,12 @@
 class PagesController < ApplicationController
-	skip_before_filter :require_login, :only => ["home", "privacypolicy", "about"]
+	
+	skip_before_filter :authenticate_user!	
 	@@categories = ["Politics", "Philosophy", "Entertainment", "Business", "Social Justice", "Education", "Science", "Tutoring", "Sports", "Miscellaneous"]
 
 	def ajaxQuestion
 		@questions = Question.where("category = ? AND was_answered = ? AND answer_id IS NULL", params["category"].to_i + 1, false)
 		render :json => @questions.to_json(:include => {:asker => {:methods => [:fullName]}}, :only => [:question, :id])
 	end
-	
 	
   def home
     @title = "Vidactica"
@@ -19,10 +19,7 @@ class PagesController < ApplicationController
 	  end
 	  
 	  @questions = Question.where(:category => @cat)
-	  @user = User.where({:email => cookies[:email], :password => cookies[:pass]})
-	  if @user.length > 0
-		  @user = @user[0]
-	  end
+	  @user = current_user
   end
  	
 	def feedback
@@ -32,7 +29,7 @@ class PagesController < ApplicationController
 
 	def submitQuestion
 		q = Question.new
-		u = current_account
+		u = current_user
 
 		q.ask_id = u.id
 		q.question = params[:question]

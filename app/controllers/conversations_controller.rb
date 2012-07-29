@@ -1,7 +1,7 @@
 class ConversationsController < ApplicationController
 	include ConversationsHelper
 	def index
-		@user = current_account
+		@user = current_user
 		@user.new_questions = 0
 		@user.save
 		
@@ -28,7 +28,7 @@ class ConversationsController < ApplicationController
 	end
 	
 	def delete
-		user = current_account
+		user = current_user
 		q = Question.find_by_id(params["qID"])
 		if user.questions.include?(q)
 			q.deleted = true
@@ -42,7 +42,7 @@ class ConversationsController < ApplicationController
 		q.reposted = true
 		q.save
 		repost = Question.new
-		repost.ask_id = current_account.id
+		repost.ask_id = current_user.id
 		repost.question = q.question
 		repost.category = q.category
 		repost.in_session = false
@@ -52,7 +52,7 @@ class ConversationsController < ApplicationController
 	end
 	
 	def deletePast
-		user = current_account
+		user = current_user
 		question = Question.find(params["qID"])
 		
 		if question.ask_id == user.id

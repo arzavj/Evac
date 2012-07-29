@@ -3,15 +3,6 @@ require 'date'
 class TokController < ApplicationController
 	include TokHelper
 	
-	def updateNewQuestion(question)
-		asker = question.asker
-		answer = User.find(question.answer_id)
-		asker.new_questions = asker.new_questions + 1
-		answer.new_questions = answer.new_questions + 1
-		asker.save
-		answer.save
-	end
-	
 	def AcceptSchedule
 		question = Question.find(params["qID"])
 		question.schedule_id = params["appointment" + params["count"]]
@@ -19,12 +10,13 @@ class TokController < ApplicationController
 		
 		updateNewQuestion(question)
 		
-		u = current_account
+		u = current_user
 		
 		VidMail.AppointmentConfirmed(params["qID"], u.id).deliver #send email
 		VidMail.ConfirmAppointmentConfirmed(params["qID"], u.id).deliver #send email
 		
-		redirect_to "/conversations?sent=1"
+		flash[:notice] = "Your preference has been saved."
+		redirect_to "/conversations"
 	end
 	
 	def EnterSession	
@@ -54,14 +46,14 @@ class TokController < ApplicationController
 
 	@token = $opentok.generate_token :session_id => @sessionID
 	  
-	@user = current_account
+	@user = current_user
   end
 	
 	def GiveChatRoom
 		@room = 0
 		@q = Question.find(params["qID"])
 			
-		@user = current_account
+		@user = current_user
 		@sessionID = @q.current_session
 			
 		@token = $opentok.generate_token :session_id => @sessionID
@@ -88,50 +80,13 @@ class TokController < ApplicationController
 		q.save
 	end
 	
-	def makeSchedules question
-		user = current_account
-		
-		if question.answer_id == nil
-			question.answer_id = user.id
-		end
-		
-		question.schedule_id = -1
-		question.save
-		
-		updateNewQuestion(question)
-		
-		question.schedules.each do |appointment|
-			appointment.destroy
-		end
-		
-		(1..3).each do |i|
-			s = Schedule.new
-			s.question_id = question.id
-			if !params["Slot"+i.to_s].eql?("")
-				begin
-					s.appointment = DateTime.parse(params["Slot"+i.to_s])
-					s.appointment = s.appointment.new_offset(params["timeOffset"].to_i/24.0)
-				rescue
-					#for heroku
-					s.appointment = DateTime.now.utc + 5.minutes
-				end
-				
-				s.user_id = user.id #proposer
-				s.save
-			end
-		end
-		
-		VidMail.AppointmentScheduled(params["qID"], user.id).deliver
-		VidMail.ConfirmAppointmentScheduled(params["qID"], user.id).deliver
-		
-	end
-	
 	def Schedule
 		question = Question.find(params["qID"])
 		
 		makeSchedules question
 		
-		redirect_to :controller => "conversations", :action => "index", :schedule => "1"
+		flash[:notice] = "Your choices were sent."
+		redirect_to "/conversations"
 	end
 	
 	def submitRank
@@ -163,7 +118,7 @@ class TokController < ApplicationController
 		asker = q.asker
 		answer = User.find(q.answer_id)
 		
-		if asker.id == current_account.id
+		if asker.id == current_user.id
 			q.answer_missed = true
 			answer.missed_conversations = answer.missed_conversations + 1
 			asker.rating = ((asker.rating*asker.completed_conversations) + 5.0)/(asker.completed_conversations+1)
@@ -189,7 +144,7 @@ class TokController < ApplicationController
 		asker = q.asker
 		answer = User.find(q.answer_id)
 		
-		if asker.id == current_account.id
+		if asker.id == current_user.id
 			q.answer_missed = true
 			answer.missed_conversations = answer.missed_conversations + 1
 			asker.rating = ((asker.rating*asker.completed_conversations) + 5.0)/(asker.completed_conversations+1)
@@ -218,7 +173,7 @@ class TokController < ApplicationController
 		asker = q.asker
 		answer = User.find(q.answer_id)
 		
-		if asker.id == current_account.id
+		if asker.id == current_user.id
 			q.answer_missed = true
 			answer.missed_conversations = answer.missed_conversations + 1
 			asker.rating = ((asker.rating*asker.completed_conversations) + 5.0)/(asker.completed_conversations + 1)
@@ -248,5 +203,45 @@ class TokController < ApplicationController
 		q = Question.find(params["qID"])
 		q.in_session = false
 		q.save
+	end
+
+private
+	
+	def makeSchedules question
+		user = current_user
+		
+		if question.answer_id == nil
+			question.answer_id = user.id
+		end
+		
+		question.schedule_id = -1
+		question.save
+		
+		updateNewQuestion(question)
+		
+		question.schedules.each do |appointment|
+			appointment.destroy
+		end
+		
+		(1..3).each do |i|
+			s = Schedule.new
+			s.question_id = question.id
+			if !params["Slot"+i.to_s].eql?("")
+				begin
+					s.appointment = DateTime.parse(params["Slot"+i.to_s])
+					s.appointment = s.appointment.new_offset(params["timeOffset"].to_i/24.0)
+					rescue
+					#for heroku
+					s.appointment = DateTime.now.utc + 5.minutes
+				end
+				
+				s.user_id = user.id #proposer
+				s.save
+			end
+		end
+		
+		VidMail.AppointmentScheduled(params["qID"], user.id).deliver
+		VidMail.ConfirmAppointmentScheduled(params["qID"], user.id).deliver
+		
 	end
 end

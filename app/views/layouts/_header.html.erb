@@ -29,17 +29,17 @@
   		<div class="span8">
 		<ul class="nav pull-right">
 			<li class="inline"><a href="/"><%= image_tag("home_icon.png", :alt => "Home", :height => "15px", :width => "14px") %><b class="home-nav">Home</b></a></li>
-			<%if cookies[:name]  %>
+			<%if user_signed_in?  %>
 			<li class="inline">
 				<a href="/conversations"><%= image_tag("conversation_icon_white.png", :alt => "My Conversations", :height => "15px", :width => "14px") %><b class="home-nav">My Conversations</b></a></li>
 			<li class="dropdown inline">
-				    <a class="dropdown-toggle profile_icon" data-toggle="dropdown" data-target="#" href="/profiles"><%= image_tag("profile_icon.png", :alt => "Profile", :height => "13px", :width => "15px") %> <b class="uppercase"><%= cookies[:name] %></b>
+				    <a class="dropdown-toggle profile_icon" data-toggle="dropdown" data-target="#" href="/profiles"><%= image_tag("profile_icon.png", :alt => "Profile", :height => "13px", :width => "15px") %> <b class="uppercase"><%= current_user.firstName %></b>
 				    <b class="caret"></b></a>
 				    <ul class="dropdown-menu">
 					  <li><a href="/profiles">Profile</a></li>
 					  <li><a href="/about">Help</a></li>
 				      <li class="divider"></li>
-				      <li><a href= "/fb_registration/Logout">Logout</a></li>
+					  <li><%= link_to "Logout", "/logout"%></li>
 			    	</ul>
 			</li>
 			
@@ -54,11 +54,13 @@
 						</div>
 						<div class="modal-body">
 							<center>
-								<form class="well" method="POST" action="/fb_registration/Remember">
-									<span id="email-login">E-mail: <input type="text" name="user" size="15" /><br /></span>
-									Password: <input type="password" name="pass" size="15" /><br />
-									<p><input class="btn btn-inverse" type="submit" value="Login" /></p>
-								</form>
+								<%= form_for(resource, :as => resource_name, :url => user_session_path, :html=>{:class => "well"}) do |f| %>
+									<span id="email-login">E-mail: <%= f.text_field :email %><br /></span>
+									Password: <%= f.password_field :password %><br />
+									<%= f.check_box :remember_me %>
+									<%= f.label :remember_me %>
+									<p><%= f.submit 'Login', :class => 'btn btn-inverse'%></p>
+								<%end%>
 								<div class="fb-login-button">
 									<a data-toggle="modal" data-target="#facebook-modal" data-dismiss="modal" href = "#facebook-modal">
 										<%= image_tag("signup-facebook-md.png", :width => "250") %>
@@ -78,8 +80,14 @@
 	</div>
 	</div>
 </header>
-<%user = User.where({:email => cookies[:email], :password => cookies[:pass]})[0]%>
-<%if cookies[:name] && user.new_questions != 0%>
+<% flash.each do |name, msg| %>
+	<%if name == :notice || name == :warning || name == :error%>
+		<%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+	<%end%>
+<% end %>  
+
+<%user = current_user%>
+<%if user_signed_in? && user.new_questions != 0%>
 <div class="alert-wrapper">
 		<div class="alert alert-block alert-error fade in" style="margin-bottom:0px;">
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
