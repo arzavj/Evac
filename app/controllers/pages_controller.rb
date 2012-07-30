@@ -37,7 +37,7 @@ class PagesController < ApplicationController
 		q.in_session = false
 		q.save
 		
-		u.points = u.points + 2
+		u.points = u.points + 5
 		u.save
 		
 		redirect_to "/"

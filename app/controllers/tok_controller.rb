@@ -111,7 +111,7 @@ class TokController < ApplicationController
 		q.save
 		
 		u = current_user
-		u.points = u.points + 2 + 5*(params["rating"].to_i - 3)
+		u.points = u.points + 5 + 5*(params["rating"].to_i - 3)
 		u.save
 		
 		redirect_to "/"
