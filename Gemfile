@@ -6,7 +6,7 @@ gem 'rails', '3.1.3'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 #gem 'mysql'
-gem 'mysql2' , '0.2.7'
+gem 'mysql2'
 #gem 'pg'
 gem 'facebook_registration'
 gem 'whenever'

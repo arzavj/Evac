@@ -70,7 +70,8 @@ GEM
     mime-types (1.19)
     multi_json (1.3.6)
     multipart-post (1.1.5)
-    mysql2 (0.2.7)
+    mysql2 (0.3.11)
+    mysql2 (0.3.11-x86-mingw32)
     oauth2 (0.8.0)
       faraday (~> 0.8)
       httpauth (~> 0.1)
@@ -150,7 +151,7 @@ DEPENDENCIES
   devise
   facebook_registration
   jquery-rails
-  mysql2 (= 0.2.7)
+  mysql2
   omniauth-facebook
   rails (= 3.1.3)
   rake (= 0.8.7)
