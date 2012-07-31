@@ -1,10 +1,15 @@
 Vidactica::Application.routes.draw do
 	
-	devise_for :users, :controllers => {:registrations => "registrations", :omniauth_callbacks=> "user/omniauth_callbacks"	} do
-		post '/login' => 'devise/sessions#create', :as => :user_session
-		get '/logout' => 'devise/sessions#destroy', :as => :destroy_user_session
-		resources :confirmations
-	end
+	begin
+    devise_for :users, :controllers => {:registrations => "registrations", :omniauth_callbacks=> "user/omniauth_callbacks"	} do
+  		post '/login' => 'devise/sessions#create', :as => :user_session
+  		get '/logout' => 'devise/sessions#destroy', :as => :destroy_user_session
+  		resources :confirmations
+  	end
+  rescue Exception => e
+    puts "Devise error: #{e.class}: #{e}"
+  end
+  
 	resources :conversations, :only => :index do
 	  get 'repost', :on => :collection
 	  get 'deletePast', :on => :collection
