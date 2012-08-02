@@ -79,6 +79,7 @@
   		</div>
 	</div>
 	</div>
+	<%= csrf_meta_tag %> 
 </header>
 
 <%if !user_signed_in? or (user_signed_in? and @blueBar.nil?) %>
