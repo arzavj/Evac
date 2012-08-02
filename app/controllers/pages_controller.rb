@@ -10,7 +10,7 @@ class PagesController < ApplicationController
 	
   def home
     @title = "Vidactica"
-	  
+	  @blueBar = true
 	  @categories = @@categories  
 	  if(params[:category])
 		  @cat = Integer(params[:category])
