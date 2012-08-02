@@ -11,7 +11,7 @@
 			{
 					var newTabHeight = $("div.tab-content").height();
 					//alert(tabPaneHeight+" vs "+ defaultHeight);
-					if((newTabHeight>oldTabHeight-200) || (newTabHeight<oldTabHeight && newTabHeight>minTabHeight))
+					if((newTabHeight>oldTabHeight-200))// || (newTabHeight<oldTabHeight && newTabHeight>minTabHeight))
 					{
 						console.log("updated height");
 						$(".tabs-left .nav-tabs").animate({height: (1.07*newTabHeight)+"px"}, 300);
@@ -86,7 +86,7 @@
 			{
 					var JSONurl = "pages/ajaxQuestion";
 					categoryID = $("li.active > a").attr("href").replace(/#tab/, "");
-					$.getJSON(JSONurl, {"category": categoryID}, function(json){
+					$.getJSON(JSONurl, {"category": (categoryID-1)}, function(json){
 								addNewQuestions(json);
 								removeOldQuestions(json);
 					});				
