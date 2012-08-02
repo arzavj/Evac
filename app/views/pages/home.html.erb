@@ -26,9 +26,12 @@
 				return true;
 			}
 		}
+		$(document).ready(function(){
+			setInterval(updateCategory, 4000);
+		});
 	</script>
 
-	<%= render :partial => "questionsAjax"%>
+	<%= #render :partial => "questionsAjax"%>
 	<%= render :partial => "schedule"%>
 
 	<div class="navbar">

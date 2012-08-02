@@ -1,38 +1,30 @@
-function checkPostForm()
-{
-	var question = document.getElementsByName("question")[0];
-	if (question.value == "" )
-	{
-		alert("Please submit a post or question");
-		return false;
-	}
-	if(document.categoryPost.category.value === "nothing")
-	{
-		alert("Please select a category");
-		return false;
-	}
-	else
-	{
-		f.submit();
-		return true;
-	}
-}
-$(document).ready(function(){
-	
 		//[{"question":{"id":26,"question":"testing schedule popup","asker":{"fullName":"Arzav Jain","id":1}}}
 		//,{"question":{"id":31,"question":"asdfasdf","asker":{"fullName":"Arzav Jain","id":1}}}]
-		var defaultHeight = $(document).height() - $("header").height() - $("#tiny-footer").height();
+		var oldTabHeight = $(document).height() - $("header").height() - $("#tiny-footer").height();
+		var li = $("div.tabs-left > ul.nav-tabs > li");
+		var minTabHeight = ((li.first().height())*(li.length))*1.07;
+		var categoryID;
 		var updateListHeight = function()
 		{
-				var tabPaneHeight = $("div.tab-content").height();
+				var newTabHeight = $("div.tab-content").height();
 				//alert(tabPaneHeight+" vs "+ defaultHeight);
-				if(tabPaneHeight>defaultHeight-200)
-					$(".tabs-left .nav-tabs").animate({height: (1.07*tabPaneHeight)+"px"}, 300);
+				if((newTabHeight>oldTabHeight-200) || (newTabHeight<oldTabHeight && newTabHeight>minTabHeight))
+				{
+					console.log("updated height");
+					$(".tabs-left .nav-tabs").animate({height: (1.07*newTabHeight)+"px"}, 300);
+					oldTabHeight = newTabHeight;
+				}
+				// else if(newTabHeight<oldTabHeight && newTabHeight<minTabHeight)
+				// {
+				// 	console.log("height set to min possible");
+				// 	$(".tabs-left .nav-tabs").animate({height: minTabHeight+"px"}, 300);
+				// }
+					
 		}
-	
+
 		var questionIsNew = function(question)
 		{
-				return ($("div:contains('" + question + "')").length()===0);
+				return ($("div:contains('" + question + "')").length===0);
 		}
 		var addNewQuestions = function(json)
 		{
@@ -43,6 +35,7 @@ $(document).ready(function(){
 						var asker = obj.question.asker;
 						if(questionIsNew(obj.question.question))
 						{
+								console.log("added a new question");
 								var newDiv = $("<div />").css("font-weight", "bold");
 								newDiv.text(obj.question.question);
 								var li = newDiv.wrap("<li />").parent();
@@ -52,7 +45,7 @@ $(document).ready(function(){
 									addQID(obj.question.id);
 								});
 								button.text("Schedule");
-								if(<%=current_account.id%> == asker.id)
+								if(<%=current_user.id%> == asker.id)
 									button.attr("disabled", "disabled");
 								var a = $("<a />", {href: "/profiles?id="+asker.id}).addClass("username").html(asker.fullName);
 								li.append(newDiv).append(button).append(textLines).append(a);
@@ -63,32 +56,35 @@ $(document).ready(function(){
 						}
 				}
 		}
-		
+
+		var questionIsOld = function(question, json)
+		{
+			for(var i in json)
+			{
+					if(json[i].question.question === question)
+						return false;
+			}
+			return true;
+		}
+
 		var removeOldQuestions = function(json)
 		{
 				$("ul.nav-list > li > div").each(function(){
-					for(var i in json)
+					if(questionIsOld($.trim($(this).text()), json))
 					{
-							var question = json[i].question.question;
-							if($.trim($(this).text()) === question)
-							{
-									($(this).parent()).next().fadeOut("fast");
-									$(this).parent().fadeOut("fast");
-									break;
-							}
+						($(this).parent()).next().fadeOut("fast"); //get rid of divider (sibling)
+						$(this).parent().fadeOut("fast"); //get rid of enclosing li element
+						//updateListHeight();
 					}
 				});
 		}
-		
+
 		var updateCategory = function()
 		{
 				var JSONurl = "pages/ajaxQuestion";
-				var categoryID = $("li.active > a").attr("href").replace(/#tab/, "");
+				categoryID = $("li.active > a").attr("href").replace(/#tab/, "");
 				$.getJSON(JSONurl, {"category": categoryID}, function(json){
-							//alert(JSON.stringify(json));
 							addNewQuestions(json);
 							removeOldQuestions(json);
 				});				
 		}
-		setInterval(updateCategory, 4000);
-});
