@@ -79,6 +79,7 @@
   		</div>
 	</div>
 	</div>
+	<%= csrf_meta_tag %> 
 </header>
 <% flash.each do |name, msg| %>
 	<%if name == :notice || name == :warning || name == :error%>

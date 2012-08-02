@@ -65,4 +65,5 @@ class ConversationsController < ApplicationController
 		
 		redirect_to "/conversations"
 	end
+	
 end
