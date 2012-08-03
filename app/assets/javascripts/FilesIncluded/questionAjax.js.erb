@@ -45,7 +45,7 @@
 									addQID(obj.question.id);
 								});
 								button.text("Schedule");
-								if(<%=current_user.id%> == asker.id)
+								if(<%=#current_user.id%> == asker.id)
 									button.attr("disabled", "disabled");
 								var a = $("<a />", {href: "/profiles?id="+asker.id}).addClass("username").html(asker.fullName);
 								li.append(newDiv).append(button).append(textLines).append(a);
