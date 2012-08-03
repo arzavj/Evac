@@ -5,6 +5,12 @@ class Question < ActiveRecord::Base
 	
 	default_scope where(:deleted => false)
 	
+	scope :unAnswered, where("was_answered = FALSE AND answer_id IS NULL")
+	
+	scope :category, lambda { |cat|
+		unAnswered.where(:category => cat)
+	}
+	
 	def conversationPartner(user)
 		return self.asker == user ? self.answerer : self.asker
 	end
