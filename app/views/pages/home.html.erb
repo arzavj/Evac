@@ -70,7 +70,7 @@
 					<div class="tabbable tabs-left">
 			  			<ul class="nav nav-tabs">
 							<!-- All categories tab -->
-							<li class="active"><a href="#tab0" data-toggle="tab">All</a></li>
+							<li class="active"><a href="#tab0" data-toggle="tab">All (<%=Question.unAnswered.length%>)</a></li>
 							<!-- Creates the banner on the left for the user to select a category -->
 							<%(0..@categories.length-1).each do |i|%>
 								<%questions = Question.where("category = ? AND was_answered = ? AND answer_id IS NULL", i+1, false)%>

@@ -7,6 +7,21 @@
 			var li = $("div.tabs-left > ul.nav-tabs > li");
 			var minTabHeight = ((li.first().height())*(li.length))*1.07;
 			var categoryID;
+			var changeInNoOfQuestions = 0;
+			
+			var updateCategoryCount = function()
+			{
+				if(categoryID===0)
+					return;
+				var tab = $("div.tabs-left > ul.nav > li > a").eq(categoryID);
+				var count = parseInt(tab.text().match(/\d+/)[0]);
+				//var increment = (toIncrement) ? (1):(-1);
+				console.log("Count: "+count);
+				console.log("Change: "+changeInNoOfQuestions);
+				$("div.tabs-left > ul.nav > li > a").eq(categoryID).text(tab.text().replace(/\d+/, count+changeInNoOfQuestions));
+				changeInNoOfQuestions = 0;
+			}
+			
 			var updateListHeight = function()
 			{
 					var newTabHeight = $("div.tab-content").height();
@@ -56,6 +71,7 @@
 									li.hide().appendTo($("div#tab"+categoryID+" > ul.nav")).fadeIn("fast");
 									$("<li class='divider' />").hide().appendTo($("div#tab"+categoryID+" > ul.nav")).fadeIn("fast");
 									updateListHeight();
+									changeInNoOfQuestions++;
 							}
 					}
 			}
@@ -72,14 +88,19 @@
 
 			var removeOldQuestions = function(json)
 			{
-					$("ul.nav-list > li > div").each(function(){
-						if(questionIsOld($.trim($(this).text()), json))
-						{
-							($(this).parent()).next().fadeOut("fast"); //get rid of divider (sibling)
-							$(this).parent().fadeOut("fast"); //get rid of enclosing li element
-							//updateListHeight();
-						}
-					});
+				var change = 0;	
+				$("ul.nav-list > li > div").each(function(key, value){
+					if(questionIsOld($.trim($(this).text()), json))
+					{
+						($(this).parent()).next().remove().fadeOut("fast"); //get rid of divider (sibling)
+						$(this).parent().remove().fadeOut("fast"); //get rid of enclosing li element
+						
+						//updateListHeight();
+						console.log("Question removed: "+$(this).text());
+						change--;
+					}
+				});
+				changeInNoOfQuestions = change/2;
 			}
 
 			var updateCategory = function()
@@ -89,8 +110,9 @@
 					$.getJSON(JSONurl, {"category": (categoryID-1)}, function(json){
 								addNewQuestions(json);
 								removeOldQuestions(json);
+								updateCategoryCount();
 					});				
 			}
-			setInterval(updateCategory, 4000);
+			setInterval(updateCategory, 5000);
 	});
 </script>
