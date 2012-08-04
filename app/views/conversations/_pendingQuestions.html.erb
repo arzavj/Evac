@@ -58,7 +58,7 @@
 					<%id = q.ask_id%>
 				<%end%>
 				<%user = User.find(id)%>
-				with <a class="question-username" href="/profiles?id=<%=id%>"><%=user.nameWithPoints%></a>
+				with <a class="question-username" href="/profiles?id=<%=id%>"><%=user.fullName %> <%= user.points%></a>
 				<br />
 				<form class="margin-bottom-5" action="/tok/AcceptSchedule" method= "get" onSubmit="return checkForm(<%=count.to_s%>);">
 					<input type = "hidden" name = "qID" value = "<%= q.id %>" />
@@ -90,7 +90,7 @@
 					<%id = q.ask_id%>
 				<%end%>
 				<%user = User.find(id)%>
-				with <a class="question-username" href="/profiles?id=<%=id%>"><%=user.nameWithPoints%></a>
+				with <a class="question-username" href="/profiles?id=<%=id%>"><%=user.fullName %> <%= user.points%></a>
 				<br />
 				<i>Please wait for a time to be confirmed...</i>
 				<button class="btn" data-toggle="modal" data-target="#schedule-modal" href = "#schedule-modal" onClick="addQID(<%=q.id%>)">
