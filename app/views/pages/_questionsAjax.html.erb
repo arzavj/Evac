@@ -11,8 +11,6 @@
 			
 			var updateCategoryCount = function()
 			{
-				if(categoryID===0)
-					return;
 				var tab = $("div.tabs-left > ul.nav > li > a").eq(categoryID);
 				var count = parseInt(tab.text().match(/\d+/)[0]);
 				//var increment = (toIncrement) ? (1):(-1);
@@ -42,7 +40,7 @@
 
 			var questionIsNew = function(question)
 			{
-					return ($("div:contains('" + question + "')").length===0);
+					return ($("div#tab"+categoryID+" > ul.nav-list > li > div.ques:contains('" + question + "')").length===0);
 			}
 			var addNewQuestions = function(json)
 			{
@@ -51,11 +49,13 @@
 					{
 							var obj = json[i];
 							var asker = obj.question.asker;
+							//console.log("inside for loop: "+questionIsNew(obj.question.question));
 							if(questionIsNew(obj.question.question))
 							{
-									console.log("added a new question");
+									//console.log("added a new question");
 									var newDiv = $("<div />").css("font-weight", "bold");
 									newDiv.text(obj.question.question);
+									newDiv.addClass("ques");
 									var li = newDiv.wrap("<li />").parent();
 									li.css("margin-top", "1%");
 									var button = $("<button class='btn' data-toggle='modal' data-target='#schedule-modal' href = '#schedule-modal'/>");
@@ -88,31 +88,30 @@
 
 			var removeOldQuestions = function(json)
 			{
-				var change = 0;	
-				$("ul.nav-list > li > div").each(function(key, value){
+				$("div#tab"+categoryID+" > ul.nav-list > li > div").each(function(key, value){
 					if(questionIsOld($.trim($(this).text()), json))
 					{
 						($(this).parent()).next().remove().fadeOut("fast"); //get rid of divider (sibling)
-						$(this).parent().remove().fadeOut("fast"); //get rid of enclosing li element
+						$(this).parent().remove().fadeOut("slow"); //get rid of enclosing li element
 						
 						//updateListHeight();
-						console.log("Question removed: "+$(this).text());
-						change--;
+						//console.log("Question removed: "+$(this).text());
+						changeInNoOfQuestions--;
 					}
 				});
-				changeInNoOfQuestions = change/2;
 			}
 
 			var updateCategory = function()
 			{
 					var JSONurl = "pages/ajaxQuestion";
 					categoryID = $("li.active > a").attr("href").replace(/#tab/, "");
-					$.getJSON(JSONurl, {"category": (categoryID-1)}, function(json){
+					$.getJSON(JSONurl, {"category": (categoryID)}, function(json){
+								//console.log(JSON.stringify(json));
 								addNewQuestions(json);
 								removeOldQuestions(json);
 								updateCategoryCount();
 					});				
 			}
-			setInterval(updateCategory, 5000);
+			setInterval(updateCategory, 4000);
 	});
 </script>
