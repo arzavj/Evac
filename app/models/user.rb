@@ -26,6 +26,10 @@ class User < ActiveRecord::Base
 		end
 	end
 	
+	def nameWithPoints
+		return self.fullName + "(#{self.points})"
+	end
+	
 	def fullName
 		return self.firstName + " " + self.lastName
 	end

@@ -33,9 +33,12 @@ class PagesController < ApplicationController
 
 		q.ask_id = u.id
 		q.question = params[:question]
-		q.category = Integer(params[:category])
+		q.category = params[:category].to_i
 		q.in_session = false
 		q.save
+		
+		u.points = u.points + 5
+		u.save
 		
 		redirect_to "/"
 	end

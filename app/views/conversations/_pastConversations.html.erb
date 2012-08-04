@@ -7,8 +7,7 @@
 			<li>
 				<span class="questions"><%=q.question%></span>
 				<%user = User.find(q.answer_id)%>
-				<%name = user.fullName%>
-				with <a class="question-username" href="/profiles?id=<%=q.answer_id%>"><%=name%></a><br />
+				with <a class="question-username" href="/profiles?id=<%=q.answer_id%>"><%=user.nameWithPoints%></a><br />
 				<%if @user.hasMissedQuestion?(q)%>
 					<b>YOU MISSED THIS CONVERSATION</b><br />
 				<%end%>
@@ -47,8 +46,7 @@
 		<li>
 			<span class="questions"><%=q.question%></span>
 			<%user = q.asker%>
-			<%name = user.fullName%>
-			with <a class="question-username" href="/profiles?id=<%=q.ask_id%>"><%=name%></a><br>
+			with <a class="question-username" href="/profiles?id=<%=q.ask_id%>"><%=user.nameWithPoints%></a><br>
 			<%if @user.hasMissedQuestion?(q)%>
 				<b>MISSED CONVERSATION</b><br />
 			<%end%>

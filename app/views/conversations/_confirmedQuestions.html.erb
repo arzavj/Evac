@@ -23,8 +23,7 @@
 					<%id = q.ask_id%>
 				<%end%>
 				<%user = User.find(id)%>
-				<%name = user.fullName%>
-				with <a class="question-username" href="/profiles?id=<%=id%>"><%=name%></a></div>
+				with <a class="question-username" href="/profiles?id=<%=id%>"><%=user.nameWithPoints%></a><br />
 							
 				<%s = Schedule.find(q.schedule_id)%>
 				<br />You are scheduled to meet at <span name="timeDiv" ><%=s.appointment.strftime("%B %d, %Y %H:%M:%S UTC")%> </span>

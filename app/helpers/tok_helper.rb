@@ -1,8 +1,34 @@
 module TokHelper
 	
+	def updateMissed q
+		asker = q.asker
+		answer = q.answerer
+		
+		if asker.id == current_user.id
+			q.answer_missed = true
+			answer.missed_conversations = answer.missed_conversations + 1
+			asker.rating = ((asker.rating*asker.completed_conversations) + 5.0)/(asker.completed_conversations + 1)
+			asker.completed_conversations = asker.completed_conversations + 1
+			
+			answer.points = answer.points - 30
+			asker.points = asker.points + 2 + 10
+		else
+			q.ask_missed = true
+			asker.missed_conversations = asker.missed_conversations + 1
+			answer.rating = ((answer.rating*answer.completed_conversations) + 5.0)/(answer.completed_conversations + 1)
+			answer.completed_conversations = answer.completed_conversations + 1
+			
+			asker.points = asker.points - 30
+			answer.points = answer.points + 2 + 10
+		end
+		
+		asker.save
+		answer.save
+	end
+	
 	def updateNewQuestion(question)
 		asker = question.asker
-		answer = User.find(question.answer_id)
+		answer = question.answerer
 		asker.new_questions = asker.new_questions + 1
 		answer.new_questions = answer.new_questions + 1
 		asker.save

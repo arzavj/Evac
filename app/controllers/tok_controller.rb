@@ -110,30 +110,20 @@ class TokController < ApplicationController
 		
 		q.save
 		
+		u = current_user
+		u.points = u.points + 5 + 5*(params["rating"].to_i - 3)
+		u.save
+		
 		redirect_to "/"
 	end
 
 	def missedLeave
 		q = Question.find(params["qID"])
-		asker = q.asker
-		answer = User.find(q.answer_id)
 		
-		if asker.id == current_user.id
-			q.answer_missed = true
-			answer.missed_conversations = answer.missed_conversations + 1
-			asker.rating = ((asker.rating*asker.completed_conversations) + 5.0)/(asker.completed_conversations+1)
-			asker.completed_conversations = asker.completed_conversations + 1
-		else
-			q.ask_missed = true
-			asker.missed_conversations = asker.missed_conversations + 1
-			answer.rating = ((answer.rating*answer.completed_conversations) + 5.0)/(answer.completed_conversations+1)
-			answer.completed_conversations = answer.completed_conversations + 1
-		end
+		updateMissed q
 		
 		q.was_answered = true
-		
-		asker.save
-		answer.save
+
 		q.save
 		
 		redirect_to "/conversations"
@@ -141,26 +131,12 @@ class TokController < ApplicationController
 	
 	def missedRepost
 		q = Question.find(params["qID"])
-		asker = q.asker
-		answer = User.find(q.answer_id)
 		
-		if asker.id == current_user.id
-			q.answer_missed = true
-			answer.missed_conversations = answer.missed_conversations + 1
-			asker.rating = ((asker.rating*asker.completed_conversations) + 5.0)/(asker.completed_conversations+1)
-			asker.completed_conversations = asker.completed_conversations + 1
-		else
-			q.ask_missed = true
-			asker.missed_conversations = asker.missed_conversations + 1
-			answer.rating = ((answer.rating*answer.completed_conversations) + 5.0)/(answer.completed_conversations+1)
-			answer.completed_conversations = answer.completed_conversations + 1
-		end
+		updateMissed q
 		
 		q.was_answered = true
 		q.reposted = true
 		
-		asker.save
-		answer.save
 		q.save
 		
 		repost q
@@ -170,25 +146,10 @@ class TokController < ApplicationController
 	
 	def missedSchedule
 		q = Question.find(params["qID"])
-		asker = q.asker
-		answer = User.find(q.answer_id)
-		
-		if asker.id == current_user.id
-			q.answer_missed = true
-			answer.missed_conversations = answer.missed_conversations + 1
-			asker.rating = ((asker.rating*asker.completed_conversations) + 5.0)/(asker.completed_conversations + 1)
-			asker.completed_conversations = asker.completed_conversations + 1
-		else
-			q.ask_missed = true
-			asker.missed_conversations = asker.missed_conversations + 1
-			answer.rating = ((answer.rating*answer.completed_conversations) + 5.0)/(answer.completed_conversations + 1)
-			answer.completed_conversations = answer.completed_conversations + 1
-		end
+
+		updateMissed q
 		
 		q.was_answered = true
-		
-		asker.save
-		answer.save
 		q.save
 		
 		newPost = repost q
