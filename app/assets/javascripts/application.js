@@ -1,3 +1,11 @@
+//= require jquery
+//= require jquery_ujs
+//= require_self
+//= require_directory ./FilesIncluded
+
+// Place your application-specific JavaScript functions and classes here
+// This file is automatically included by javascript_include_tag :defaults
+
 window.fbAsyncInit = function() {
   FB.init({
     appId      : 'YOUR_APP_ID',
@@ -13,6 +21,3 @@ window.fbAsyncInit = function() {
    js.src = "//connect.facebook.net/en_US/all.js";
    d.getElementsByTagName('head')[0].appendChild(js);
  }(document));
-
-// Place your application-specific JavaScript functions and classes here
-// This file is automatically included by javascript_include_tag :defaults
