@@ -27,6 +27,45 @@
 				return true;
 			}
 		}
+		$(document).ready(function(){
+			var firstTime = true;
+			var badgeColors = {grey: "", green: "badge-success", orange: "badge-warning", red: "badge-important", blue: "badge-info", black: "badge-inverse"};
+			var getBadgeClass = function(coins)
+			{
+				if(coins<100)
+					return badgeColors.red;
+				else if(coins<300)
+					return badgeColors.blue;
+				else
+					return badgeColors.orange;
+			}
+			
+			//$spanBadge: jQuery object of the span element which is the badge
+			//coins (string): most up-to-date number of coins
+			var updateBadge = function($spanBadge, coins)
+			{
+				if(firstTime || $spanBadge.text()!==coins)
+				{
+					$spanBadge.text(coins+"");
+					$spanBadge.removeClass();
+					$spanBadge.addClass("badge");
+					$spanBadge.addClass(getBadgeClass(coins));
+				}
+			}
+			var updateVidactaCoins = function()
+			{
+				$(".username, .question-username").each(function(){
+					var userID = $(this).attr("href").match(/\d+/)[0];
+					var coins = 0;
+					if(firstTime)
+						updateBadge($(this).next("span"), $(this).next("span").text());
+					else
+						//make ajax call for coins and updateBadge		
+				});
+				firstTime = false;
+			}
+			setInterval(updateVidactaCoins, 4000);
+		});
 	</script>
 
 	<%= render :partial => "questionsAjax"%>
@@ -109,7 +148,7 @@
 															Schedule
 													</button>
 												<%end%>
-												a conversation with <a class="username" href = "/profiles?id=<%=u.id%>" ><%=user.fullName %> <%= user.points%></a>
+												a conversation with <a class="username" href = "/profiles?id=<%=u.id%>" ><%=user.fullName %></a><span class="badge"><%= user.points%></span>
 											<% end %>
 											
 											</li>
