@@ -6,7 +6,8 @@
 			$('#register-modal').modal('hide');
 			$('#regWithVidPopup').click();
 			return true;
-			
+		}
+		
 		function checkPostForm()
 		{
 			var question = document.getElementsByName("question")[0];
@@ -35,7 +36,8 @@
 	  	<div class="navbar-inner">		
 	    	<div class="container">		
 				<span class="brand">Spark a Conversation</span>
-				<form name="categoryPost" action="/pages/submitQuestion?method=post" method="post" class="navbar-search pull-left" onSubmit="return checkPostForm();">
+				<%= form_tag({:controller => :pages, :action => :submitQuestion}, {:name => "categoryPost", :method => "post", :class => "navbar-search pull-left", :onsubmit => "return checkPostForm();"}) do%>
+				<!-- <form name="categoryPost" action="/pages/submitQuestion?method=post" method="post" class="navbar-search pull-left" onSubmit="return checkPostForm();"> -->
 					<ul>
 						<!-- Creates a form to submit a question with a given category -->
 						<li class="divider-vertical inline"></li>
@@ -52,7 +54,7 @@
 						 <!--For entering chat room-->
 						<li class="inline" style="position: relative; bottom: 3px;"><input class="btn btn-info" type="submit" name="sType" value="Submit Post" /></li> <!--For just posting-->
 					</ul>
-				</form>
+				<%end%>
 			</div>
 		</div>
 	</div>
@@ -93,7 +95,6 @@
 									<%end%>
 									<%questions.each do |q|%>
 											<% u = q.asker %>
-											<% name = u.nameWithPoints %>
 					    					<li style="margin-top:1%;"><div style="font-weight:bold;"><%= q.question%></div>
 											<% if q.in_session %> <!--Check if user is waiting -->
 												<% str = "Answer" %>
@@ -108,7 +109,7 @@
 															Schedule
 													</button>
 												<%end%>
-												a conversation with <a class="username" href = "/profiles?id=<%=u.id%>" ><%= name %></a>
+												a conversation with <a class="username" href = "/profiles?id=<%=u.id%>" ><%=user.fullName %> <%= user.points%></a>
 											<% end %>
 											
 											</li>
