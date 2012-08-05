@@ -50,6 +50,7 @@
 					$spanBadge.removeClass();
 					$spanBadge.addClass("badge");
 					$spanBadge.addClass(getBadgeClass(coins));
+					$spanBadge.effect("highlight", {}, 3000);
 				}
 			}
 			var updateVidactaCoins = function()
@@ -60,10 +61,11 @@
 					if(firstTime)
 						updateBadge($(this).next("span"), $(this).next("span").text());
 					else
-						//make ajax call for coins and updateBadge		
+						;//make ajax call for coins and updateBadge		
 				});
 				firstTime = false;
 			}
+			updateVidactaCoins();
 			setInterval(updateVidactaCoins, 4000);
 		});
 	</script>
@@ -148,7 +150,7 @@
 															Schedule
 													</button>
 												<%end%>
-												a conversation with <a class="username" href = "/profiles?id=<%=u.id%>" ><%=user.fullName %></a><span class="badge"><%= user.points%></span>
+												a conversation with <a class="username" href = "/profiles?id=<%=u.id%>" ><%=u.fullName %> </a><span class="badge" rel="tooltip" title="VidactaPoints" style="cursor:default;"><%= u.points%></span>
 											<% end %>
 											
 											</li>
