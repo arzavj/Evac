@@ -1,3 +1,8 @@
+/*
+*= require_directory ./FilesIncluded
+*= require_self
+*/
+
 .container-fluid {
 	padding-left: 0px;
 	padding-right: 0px;
@@ -17,12 +22,6 @@
 	color:rgb(15,187,237);
 }
 
-@font-face 
-{ 
-	font-family: Harlow; 
-	src: url('/fonts/HARLOWSI.ttf'); 
-} 
-
 html, body 
 {
 	height:100%; 
@@ -34,7 +33,7 @@ html, body
 
 body {
 	/*background: #ECEEF0 url(/images/grey_background.png);*/
-	background: #ECEEF0 url(/images/redox_01.png);
+	background: #ECEEF0 url(<%= asset_path "redox_01.png" %>);
 	border: 0;
 }
 
@@ -51,7 +50,7 @@ body {
 
 header {
 	height: 80px;
-	background: #4A5C5C 0px 30px repeat-x url(/images/bg_header.jpg);
+	background: #4A5C5C 0px 30px repeat-x url(<%= asset_path "bg_header.jpg" %>);
 }
 
 header h1
@@ -224,7 +223,7 @@ footer
 	padding-bottom:18px;
   text-align: center;
   width: 100%;
-  background: url("/images/partition.png") no-repeat scroll center bottom transparent;
+  background: url(<%= asset_path "partition.png" %>) no-repeat scroll center bottom transparent;
 }
 
 #introLines p
@@ -263,7 +262,7 @@ footer .row-fluid .span4
 
 #landingPageHorDivider
 {
-		background: url("/images/partition.png") no-repeat scroll center bottom transparent;
+		background: url(<%= asset_path "partition.png" %>) no-repeat scroll center bottom transparent;
 		height:28px;
 }
 
@@ -375,7 +374,7 @@ h1.uppercase
 	margin-right:2%;
 	margin-top:3%;
 	height:20px;
-	background: center bottom no-repeat url(/images/partition.png);
+	background: center bottom no-repeat url(<%= asset_path "partition.png" %>);
 }
 
 .row-fluid .span6
@@ -385,7 +384,7 @@ h1.uppercase
 
 .navbar-inner 
 {
-	background-image: url(/images/navbar.png);
+	background-image: url(<%= asset_path "navbar.png" %>);
 	background-repeat:repeat-x;
 	border-radius:0px;
 }
@@ -434,7 +433,7 @@ h1.uppercase
 
 #landingPageBlueTop
 {
-	background: url("/images/navbar.png") repeat-x ;
+	background: url(<%=asset_path "navbar.png" %>) repeat-x ;
 	height:20px;
 }
 
@@ -605,7 +604,7 @@ h2 b.caret-myquestions
 
 #regWithVid-modal
 {
-	background-image: url(/images/vidacticaVerification.png);
+	background-image: url(<%= asset_path "vidacticaVerification.png" %>);
 	height:391px;
 	width:547px;
 }
