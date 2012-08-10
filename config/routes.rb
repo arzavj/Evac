@@ -16,18 +16,10 @@ Vidactica::Application.routes.draw do
     end
 	
 	resource :profiles 
-	
-  get "facebook_registration/Registration"
 
   get "tok/AskChatRoom"
 
   get "tok/GiveChatRoom"
-
-  get "fb_registration/FbLogin"
-
-  get "facebook_registration/FbLogin"
-
-  get "pages/fb_login"
 
   match '/about', :to => 'pages#about'
   match '/bio', :to => 'profiles#show'
