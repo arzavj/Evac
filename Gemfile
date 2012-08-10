@@ -10,6 +10,7 @@ gem 'mysql2'
 #gem 'pg'
 gem 'facebook_registration'
 gem 'whenever'
+gem 'therubyracer'
 
 gem 'devise'
 gem 'omniauth-facebook'
