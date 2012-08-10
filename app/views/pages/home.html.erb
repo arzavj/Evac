@@ -74,6 +74,7 @@
 			updateVidactaCoins();
 			setInterval(updateVidactaCoins, 4000);
 		});
+
 	</script>
 
 	<%= render :partial => "questionsAjax"%>
@@ -84,7 +85,6 @@
 	    	<div class="container">		
 				<span class="brand">Spark a Conversation</span>
 				<%= form_tag({:controller => :pages, :action => :submitQuestion}, {:name => "categoryPost", :method => "post", :class => "navbar-search pull-left", :onsubmit => "return checkPostForm();"}) do%>
-				<!-- <form name="categoryPost" action="/pages/submitQuestion?method=post" method="post" class="navbar-search pull-left" onSubmit="return checkPostForm();"> -->
 					<ul>
 						<!-- Creates a form to submit a question with a given category -->
 						<li class="divider-vertical inline"></li>
@@ -114,25 +114,57 @@
 				<div class="span12">
 					<div class="tabbable tabs-left">
 			  			<ul class="nav nav-tabs">
+							<!-- All categories tab -->
+							<li class="active"><a href="#tab0" data-toggle="tab">All (<%=Question.unAnswered.length%>)</a></li>
 							<!-- Creates the banner on the left for the user to select a category -->
 							<%(0..@categories.length-1).each do |i|%>
 								<%questions = Question.where("category = ? AND was_answered = ? AND answer_id IS NULL", i+1, false)%>
 								<%tabStr = @categories[i] + " (" + questions.length.to_s + ")"%>
-								<%if i==0 %>
-			    					<li class="active"><a href="#tab<%=i%>" data-toggle="tab"><%=tabStr%></a></li>
-								<%else%>
-			    					<li><a href="#tab<%=i%>" data-toggle="tab"><%=tabStr%></a></li>
-								<%end%>
+			    				<li><a href="#tab<%=i+1%>" data-toggle="tab"><%=tabStr%></a></li>
 							<%end%>
 			  			</ul>
 			  			<div class="tab-content">
+						
+						<!-- All categories tab -->
+						<div class="tab-pane fade in active" id="tab0">
+							<ul class="nav nav-list">
+								<%questions = Question.unAnswered%>
+								
+								<%counter = 0%>
+								<%if questions.length==0 %>
+									<li style="margin-top:10px;">No posts currently. Check back later!</li>
+								<%end%>
+								<%questions.each do |q|%>
+									<% u = q.asker %>
+									<% name = u.fullName %>
+					    			<li style="margin-top:1%;"><div class="ques" style="font-weight:bold;"><%= q.question%></div>
+									<% if q.in_session %> <!--Check if user is waiting -->
+										<% str = "Answer" %>
+									<% else %>
+										<% str = "Schedule Appointment" %>
+										<%if u.id != @user.id%>
+											<button class="btn" data-toggle="modal" data-target="#schedule-modal" href = "#schedule-modal" onClick="addQID(<%=q.id%>)">
+												Schedule
+											</button> 
+										<%else%>
+											<button class="btn" disabled="disabled" data-toggle="modal" data-target="#schedule-modal" href = "#schedule-modal" onClick="addQID(<%=q.id%>)">
+												Schedule
+											</button>
+										<%end%>
+										a conversation with <a class="username" href = "/profiles?id=<%=u.id%>" ><%= name %></a>
+									<%end%>
+										
+									</li>
+									<li class="divider"></li>
+									<%counter = counter + 1%>
+								<%end%>
+							</ul>
+						</div>
+						
+						
 						<!-- Preloads the all questions for each category -->
 						<%(0..@categories.length-1).each do |i|%>
-							<%if i == 0%>
-								<div class="tab-pane fade in active" id="tab<%=i%>">
-							<%else%>
-								<div class="tab-pane fade in" id="tab<%=i%>">
-							<%end%>
+								<div class="tab-pane fade in" id="tab<%=i+1%>">
 								<ul class="nav nav-list">
 									<!-- Creates the query to the database based on category, if the question was answered, and that nobody has choosen to answer -->
   									<%questions = Question.where("category = ? AND was_answered = ? AND answer_id IS NULL", i+1, false)%>
@@ -141,8 +173,8 @@
 										<li style="margin-top:10px;">No posts currently in this category</li>
 									<%end%>
 									<%questions.each do |q|%>
-											<% u = q.asker %>
-					    					<li style="margin-top:1%;"><div style="font-weight:bold;"><%= q.question%></div>
+										<% u = q.asker %>
+										<li style="margin-top:1%;"><div class="ques" style="font-weight:bold;"><%= q.question%></div>
 											<% if q.in_session %> <!--Check if user is waiting -->
 												<% str = "Answer" %>
 											<% else %>

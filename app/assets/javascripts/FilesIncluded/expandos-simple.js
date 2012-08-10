@@ -13,7 +13,7 @@ var toggleExpando = function() {
 
 // Get the expandos on the page, add initial CSS class and event listener
 
-var expandos = getElementsByClass('wd-expando');
+var expandos = document.getElementsByClassName('wd-expando');
 for (var i=0; i < expandos.length; i++) {
   addClass(expandos[i], 'wd-expando-on');
   var expandoTitle = expandos[i].getElementsByTagName('h2')[0];

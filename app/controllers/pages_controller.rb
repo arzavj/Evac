@@ -31,7 +31,11 @@ class PagesController < ApplicationController
   end
 	
 	def ajaxQuestion
-		@questions = Question.where("category = ? AND was_answered = ? AND answer_id IS NULL", params["category"].to_i + 1, false)
+		if params["category"].to_i.zero?
+			@questions = Question.unAnswered
+		else
+			@questions = Question.category(params["category"].to_i)
+		end
 		render :json => @questions.to_json(:include => {:asker => {:methods => [:fullName]}}, :only => [:question, :id])
 	end
 	
