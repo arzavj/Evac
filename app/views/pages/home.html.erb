@@ -34,8 +34,14 @@
 			{
 				if(coins<100)
 					return badgeColors.red;
-				else if(coins<300)
+				else if(coins>=100 && coins<=130)
 					return badgeColors.blue;
+				else if(coins>130 && coins<=200)
+					return badgeColors.green;
+				else if(coins>200 && coins<=300)
+					return badgeColors.black;
+				else if(coins>300 && coins<=450)
+					return badgeColors.grey;
 				else
 					return badgeColors.orange;
 			}
