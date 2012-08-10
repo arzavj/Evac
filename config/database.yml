@@ -19,6 +19,15 @@ test:
   pool: 5
   timeout: 5000
 
+#production:
+#  adapter: mysql2
+#  encoding: utf8
+#  reconnect: false
+#  database: vidactica
+#  pool: 5
+#  username: vidactica
+#  password: business
+
 production:
   adapter: mysql2
   encoding: utf8
