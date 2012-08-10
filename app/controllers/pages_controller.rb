@@ -39,6 +39,11 @@ class PagesController < ApplicationController
 		render :json => @questions.to_json(:include => {:asker => {:methods => [:fullName]}}, :only => [:question, :id])
 	end
 	
+	def ajaxUserScore
+		user = User.find_by_id(params[:id])
+		render :json => user.points
+	end
+	
 	def submitQuestion
 		q = Question.new
 		
