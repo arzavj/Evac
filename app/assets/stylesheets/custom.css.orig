@@ -852,7 +852,6 @@ li a.question-username
 	display:none;
 }
 
-<<<<<<< HEAD
 #tourList
 {
 	list-style-type:upper-roman;
@@ -878,9 +877,9 @@ li a.question-username
 	margin-left:2%;
 	font-size:16px;
 	margin-top:5%;
-=======
+}
+
 #timeToWait
 {
 	width:23%;
->>>>>>> missedConversation
 }
