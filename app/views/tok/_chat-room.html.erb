@@ -176,6 +176,7 @@ function rate(amnt){
 				<div class="SmallFont center">Chat:</div>
     			<div id="chatWrapper">
         			<textarea disabled = "" id = "messages"></textarea>
+					
         			<form name = "textChat" action = "" method = "post">
             			<input type = "text" onclick = "this.value=''" id = "message" value = "Type your message here and hit enter..." onKeyPress = "return checkSubmit(event)"/>
         			</form>
@@ -191,7 +192,7 @@ function rate(amnt){
 		<h3>Rate Your Conversation Partner</h3>
 	</div>
 	<div class="modal-body">
-		<form name="input" action="/tok/submitRank" method="post">
+		<%= form_tag({:controller => :tok, :action => :submitRank}, {:name => "input", :method => "post"}) do%>
 			<input type="hidden" name = "rating" />
 			<ul class='star-rating'>
 				<!--the width determines how many stars are already highlighted-->
@@ -204,6 +205,6 @@ function rate(amnt){
 			
 			<input type="hidden" name = "qID" value=<%=params["qID"]%> />
 			<input type="hidden" name = "user" value="<%=room%>"/>
-		</form>
+		<%end%>
 	</div>
 </div>

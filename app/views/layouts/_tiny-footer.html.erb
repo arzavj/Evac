@@ -12,7 +12,7 @@
 						<h3>Feedback</h3>
 					</div>
 					<div class="modal-body">
-						<form class="well form-horizontal" action="/pages/feedback" method="POST">
+						<%= form_tag({:controller => :pages, :action => :feedback}, {:name => "input", :method => "post", :class => "well form-horizontal"}) do%>
 							<fieldset>
 								<div class="control-group">
 									<label class="control-label">Name: </label>
@@ -38,7 +38,7 @@
 									</div>
 								</div>
 							</fieldset>
-						</form>
+						<%end%>
 					</div>
 				</div>
 </div>
