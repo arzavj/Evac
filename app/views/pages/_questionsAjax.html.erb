@@ -65,8 +65,10 @@
 									button.text("Schedule");
 									if(<%=current_user.id%> == asker.id)
 										button.attr("disabled", "disabled");
-									var a = $("<a />", {href: "/profiles?id="+asker.id}).addClass("username").html(asker.fullName);
-									li.append(newDiv).append(button).append(textLines).append(a);
+									var a = $("<a />", {href: "/profiles?id="+asker.id}).addClass("username").html(asker.fullName+" ");
+									var span = $("<span class='badge' rel='tooltip' title='VidactaPoints' style='cursor:default;' />").html(asker.points);
+									span.addClass(getBadgeClass(asker.points));
+									li.append(newDiv).append(button).append(textLines).append(a).append(span);
 									//$("div#tab"+categoryID+" > ul.nav").append(li).append($("<li class='divider' />"));
 									li.hide().appendTo($("div#tab"+categoryID+" > ul.nav")).fadeIn("fast");
 									$("<li class='divider' />").hide().appendTo($("div#tab"+categoryID+" > ul.nav")).fadeIn("fast");
@@ -106,7 +108,7 @@
 					var JSONurl = "pages/ajaxQuestion";
 					categoryID = $("li.active > a").attr("href").replace(/#tab/, "");
 					$.getJSON(JSONurl, {"category": (categoryID)}, function(json){
-								//console.log(JSON.stringify(json));
+								// console.log(JSON.stringify(json));
 								addNewQuestions(json);
 								removeOldQuestions(json);
 								updateCategoryCount();
