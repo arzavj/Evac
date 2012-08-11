@@ -36,11 +36,11 @@
 						<i>Both you and your conversation partner have missed your conversation...</i>
 					</div>
 				<%elsif schedule.past?%>
-					<form class="margin-bottom-5" action="/tok/EnterSession" method= "get">
+					<%= form_tag({:controller => :tok, :action => :EnterSession}, {:method => "post", :class => "margin-bottom-5"}) do%>
 						<input type = "hidden" name = "qID" value = "<%= q.id %>" />
 						<input type = "hidden" name = "uID" value = "<%= @user.id %>" />
 						<input class="btn" type="submit" value="Enter Room For Appointment" />
-					</form>	
+					<%end%>
 					<button class="btn disabled enter-chatroom-tooltip">
 						Propose Alternate Schedule
 					</button>

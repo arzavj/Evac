@@ -3,6 +3,8 @@
 //= require_self
 //= require ./jquery-ui.min.js
 //= require_directory ./FilesIncluded
+//= require_self
+
 
 // require jquery.ui.all
 // Place your application-specific JavaScript functions and classes here

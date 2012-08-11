@@ -60,9 +60,9 @@
 				<%user = User.find(id)%>
 				with <a class="question-username" href="/profiles?id=<%=id%>"><%=user.fullName %> </a><span class="badge" rel="tooltip" title="VidactaPoints" style="cursor:default;"><%= user.points%></span>
 				<br />
-				<form class="margin-bottom-5" action="/tok/AcceptSchedule" method= "get" onSubmit="return checkForm(<%=count.to_s%>);">
+				<%= form_tag({:controller => :tok, :action => :AcceptSchedule}, {:method => "post", :class => "margin-bottom-5", :onsubmit => "return checkForm(#{count.to_s});"}) do %>
 					<input type = "hidden" name = "qID" value = "<%= q.id %>" />
-					<input type = "hidden" name = "count" value = "<%=count.to_s%>">
+					<input type = "hidden" name = "count" value = "<%=count.to_s%>" />
 					<% q.schedules.each do |appointment|%> <!-- Set up form -->
 						<div name="wrapper">
 							<input type="radio" name="appointment<%=count%>" value="<%=appointment.id%>" />
@@ -72,7 +72,7 @@
 					<%end%>
 						
 					<input class="btn" type="submit" value="Confirm Schedule" />
-				</form>
+				<%end%>
 				<button class="btn" data-toggle="modal" data-target="#schedule-modal" href = "#schedule-modal" onClick="addQID(<%=q.id%>)">
 					Propose Alternate Schedule
 				</button>
