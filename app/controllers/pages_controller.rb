@@ -53,6 +53,7 @@ class PagesController < ApplicationController
 		q.in_session = false
 		q.save
 		
+		u = current_user
 		u.points = u.points + 5
 		u.save
 		
