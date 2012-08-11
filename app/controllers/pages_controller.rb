@@ -36,7 +36,7 @@ class PagesController < ApplicationController
 		else
 			@questions = Question.category(params["category"].to_i)
 		end
-		render :json => @questions.to_json(:include => {:asker => {:methods => [:fullName]}}, :only => [:question, :id])
+		render :json => @questions.to_json(:include => {:asker => {:only => [:id, :points], :methods => [:fullName]}}, :only => [:question, :id])
 	end
 	
 	def ajaxUserScore
