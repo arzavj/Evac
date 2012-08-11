@@ -52,7 +52,10 @@
 			{
 				if(firstTime || $spanBadge.text()!==coins)
 				{
+					if(!firstTime)
+						console.log("Update Badge to: "+coins);
 					$spanBadge.text(coins+"");
+					// console.log("Span: "+$spanBadge.html());
 					$spanBadge.removeClass();
 					$spanBadge.addClass("badge");
 					$spanBadge.addClass(getBadgeClass(coins));
@@ -63,6 +66,7 @@
 			{
 				$(".username, .question-username").each(function(){
 					var userID = $(this).attr("href").match(/\d+/)[0];
+					var $this = $(this);
 					var coins = 0;
 					if(firstTime)
 						updateBadge($(this).next("span"), $(this).next("span").text());
@@ -72,7 +76,8 @@
 						var JSONurl = "pages/ajaxUserScore";
 						$.getJSON(JSONurl, {id: userID}, function(json){
 							//console.log("coins: "+json);
-							updateBadge($(this).next("span"), JSON.stringify(json));		
+							// console.log("This object: "+$(this).parent().html());
+							updateBadge($this.next("span"), JSON.stringify(json));		
 						});
 					}		
 				});

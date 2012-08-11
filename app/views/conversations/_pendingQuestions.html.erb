@@ -58,7 +58,7 @@
 					<%id = q.ask_id%>
 				<%end%>
 				<%user = User.find(id)%>
-				with <a class="question-username" href="/profiles?id=<%=id%>"><%=user.fullName %> <%= user.points%></a>
+				with <a class="question-username" href="/profiles?id=<%=id%>"><%=user.fullName %> </a><span class="badge" rel="tooltip" title="VidactaPoints" style="cursor:default;"><%= user.points%></span>
 				<br />
 				<form class="margin-bottom-5" action="/tok/AcceptSchedule" method= "get" onSubmit="return checkForm(<%=count.to_s%>);">
 					<input type = "hidden" name = "qID" value = "<%= q.id %>" />
