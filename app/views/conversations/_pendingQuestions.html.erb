@@ -58,7 +58,7 @@
 					<%id = q.ask_id%>
 				<%end%>
 				<%user = User.find(id)%>
-				with <a class="question-username" href="/profiles?id=<%=id%>"><%=user.fullName %> </a><span class="badge" rel="tooltip" title="VidactaPoints" style="cursor:default;"><%= user.points%></span>
+				with <a class="question-username" href="/profiles?id=<%=id%>"><%=user.fullName %> </a><span class="badge" data-id="<%=user.id%>" rel="tooltip" title="VidactaPoints" style="cursor:default;"><%= user.points%></span>
 				<br />
 				<%= form_tag({:controller => :tok, :action => :AcceptSchedule}, {:method => "post", :class => "margin-bottom-5", :onsubmit => "return checkForm(#{count.to_s});"}) do %>
 					<input type = "hidden" name = "qID" value = "<%= q.id %>" />
@@ -90,7 +90,7 @@
 					<%id = q.ask_id%>
 				<%end%>
 				<%user = User.find(id)%>
-				with <a class="question-username" href="/profiles?id=<%=id%>"><%=user.fullName %> <%= user.points%></a>
+				with <a class="question-username" href="/profiles?id=<%=id%>"><%=user.fullName %> </a><span class="badge" data-id="<%=user.id%>" rel="tooltip" title="VidactaPoints" style="cursor:default;"><%= user.points%></span>
 				<br />
 				<i>Please wait for a time to be confirmed...</i>
 				<button class="btn" data-toggle="modal" data-target="#schedule-modal" href = "#schedule-modal" onClick="addQID(<%=q.id%>)">
