@@ -27,32 +27,6 @@
 				return true;
 			}
 		}
-		$(document).ready(function(){
-			var updateVidactaCoins = function()
-			{
-				$(".username, .question-username").each(function(){
-					var userID = $(this).attr("href").match(/\d+/)[0];
-					var $this = $(this);
-					var coins = 0;
-					if(firstTime)
-						updateBadge($(this).next("span"), $(this).next("span").text());
-					else
-					{
-						//make ajax call for coins and updateBadge
-						var JSONurl = "pages/ajaxUserScore";
-						$.getJSON(JSONurl, {id: userID}, function(json){
-							//console.log("coins: "+json);
-							// console.log("This object: "+$(this).parent().html());
-							updateBadge($this.next("span"), JSON.stringify(json));		
-						});
-					}		
-				});
-				firstTime = false;
-			}
-			updateVidactaCoins();
-			setInterval(updateVidactaCoins, 5000);
-		});
-
 	</script>
 
 	<%= render :partial => "questionsAjax"%>
@@ -129,7 +103,7 @@
 												Schedule
 											</button>
 										<%end%>
-										a conversation with <a class="username" href = "/profiles?id=<%=u.id%>" ><%=u.fullName %> </a><span class="badge" rel="tooltip" title="VidactaPoints" style="cursor:default;"><%= u.points%></span>
+										a conversation with <a class="username" href = "/profiles?id=<%=u.id%>" ><%=u.fullName %> </a><span class="badge" data-id="<%=u.id%>" rel="tooltip" title="VidactaPoints" style="cursor:default;"><%= u.points%></span>
 									<%end%>
 										
 									</li>
@@ -166,7 +140,7 @@
 															Schedule
 													</button>
 												<%end%>
-												a conversation with <a class="username" href = "/profiles?id=<%=u.id%>" ><%=u.fullName %> </a><span class="badge" rel="tooltip" title="VidactaPoints" style="cursor:default;"><%= u.points%></span>
+												a conversation with <a class="username" href = "/profiles?id=<%=u.id%>" ><%=u.fullName %> </a><span class="badge" data-id="<%=u.id%>" rel="tooltip" title="VidactaPoints" style="cursor:default;"><%= u.points%></span>
 											<% end %>
 											
 											</li>
