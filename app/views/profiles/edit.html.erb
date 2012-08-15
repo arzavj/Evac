@@ -5,7 +5,7 @@
 	<h4 style="padding-top:3%;">Profile Picture:</h4>
 	<%= form_for :profile, :url => "/profiles/update", :html => { :multipart => true } do |form| %>
 		<div><%= form.file_field (:picture) %></div>
-		<div><h4>Age:</h4> <select name="age">
+		<div style="margin-bottom: 15px;"><h4>Age:</h4> <select name="age">
 			<%(0..100).each do |i|%>
 				<%if i == @user.age%>
 					<option	value="<%=i.to_s%>" selected="selected"><%=i.to_s%></option>
@@ -15,7 +15,7 @@
 				
 			<%end%>
 		  </select></div>
-		<h4>Tell others about yourself:</h4>
+		<h4 style="margin-top:15px;">Tell others about yourself:</h4>
 		<div><%= form.text_area :blurb, :value => @profile.blurb %></div>
 		<div><%= submit_tag "Submit", :class => "btn btn-inverse" %></div>
 		<% end %>

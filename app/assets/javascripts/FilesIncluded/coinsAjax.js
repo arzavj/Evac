@@ -35,23 +35,6 @@ var updateBadge = function($spanBadge, coins)
 
 var updateVidactaCoins = function()
 {
-	// $(".username, .question-username").each(function(){
-	// 	var userID = $(this).attr("href").match(/\d+/)[0];
-	// 	var $this = $(this);
-	// 	var coins = 0;
-	// 	if(firstTime)
-	// 		updateBadge($(this).next("span"), $(this).next("span").text());
-	// 	else
-	// 	{
-	// 		//make ajax call for coins and updateBadge
-	// 		var JSONurl = "pages/ajaxUserScore";
-	// 		$.getJSON(JSONurl, {id: userID}, function(json){
-	// 			//console.log("coins: "+json);
-	// 			// console.log("This object: "+$(this).parent().html());
-	// 			updateBadge($this.next("span"), JSON.stringify(json));		
-	// 		});
-	// 	}		
-	// });
 	$(".badge").each(function(){
 		var $this = $(this);
 		var userID = $(this).data('id');

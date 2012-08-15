@@ -32,7 +32,7 @@ html, body
 }
 
 body {
-	/*background: #ECEEF0 url(/images/grey_background.png);*/
+	/*background: #ECEEF0 url(<%= asset_path "grey_background.png" %>);*/
 	background: #ECEEF0 url(<%= asset_path "redox_01.png" %>);
 	border: 0;
 }
@@ -204,7 +204,7 @@ header .nav ul li a:hover {
 
 footer 
 {
-  /*background: #4A5C5C repeat-x url(/images/footer_strip.png);*/
+  /*background: #4A5C5C repeat-x url(<%= asset_path "footer_strip.png" %>);*/
 	/*position:absolute;
 	bottom:65px;*/
 	width:100%;
@@ -917,4 +917,10 @@ button.close:hover
 {
 	position:relative;
 	bottom:1px;
+}
+
+#profile_blurb
+{
+	width: 500px;
+	height: 100px;
 }
