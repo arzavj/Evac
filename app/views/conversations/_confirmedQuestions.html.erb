@@ -1,13 +1,9 @@
 <script type="text/javascript">
-	$(document).ready(function(){
-		var updateChatroomButton = function()
-		{
-			$("li.questionElement").each(function(key, value){
-				//Given the question
-			});
-		}
-		setInterval(updateChatroomButton, 3000);
-	});
+	var updateChatRoomButton = function($input)
+	{
+		$input.removeClass("disabled");
+		$input.attr('title', 'You can now enter the chatroom. Hope you enjoy it!');
+	}
 </script>
 
 <div class="span6">
@@ -45,8 +41,16 @@
 						Propose Alternate Schedule
 					</button>
 				<%else%>
+					<script type="text/javascript">
+						setTimeout(function(){ updateChatRoomButton($("input#q<%=q.id%>")) }, <%=(s.appointment - DateTime.now).to_i - (5*60)%>);
+						// alert(<%=(s.appointment - DateTime.now).to_i.to_s%>);
+					</script>
 					<div class="margin-bottom-5">
-						<input class="btn disabled enter-chatroom-tooltip" rel="tooltip" title="Please return 5 minutes prior to scheduled time" type="submit" value="Enter Room For Appointment" />
+						<%= form_tag({:controller => :tok, :action => :EnterSession}, {:method => "post", :class => "margin-bottom-5"}) do%>
+							<input type = "hidden" name = "qID" value = "<%= q.id %>" />
+							<input type = "hidden" name = "uID" value = "<%= @user.id %>" />
+							<input id="q<%=q.id%>" class="btn disabled enter-chatroom-tooltip" rel="tooltip" title="Please return 5 minutes prior to scheduled time" type="submit" value="Enter Room For Appointment" />
+						<%end%>
 					</div>
 					<button class="btn" data-toggle="modal" data-target="#schedule-modal" href = "#schedule-modal" onClick="addQID(<%=q.id%>)">
 						Propose Alternate Schedule

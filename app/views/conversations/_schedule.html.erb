@@ -32,7 +32,7 @@
 		<%= form_tag({:controller => :tok, :action => :Schedule}, {:name => "input", :method => "post", :class => "well", :onsubmit => "return checkScheduleForm();"}) do%>
 	
 			<%(1..3).each do |i| %>
-		
+				<p>
 				<script text="text/javascript">
 					$(function() {
 					  $( "#<%=i%>" ).datetimepicker({
@@ -44,7 +44,7 @@
 		
 				<input class="search-query" style="cursor: pointer;" id="<%=i%>" name="Slot<%=i%>" type="text" size="25" readonly="readonly" placeholder="Click here to select times..."/>
 		
-				<p>
+				</p>
 			<%end%>
 		
 			<input type="hidden" id="offset" name="timeOffset" value="" />
