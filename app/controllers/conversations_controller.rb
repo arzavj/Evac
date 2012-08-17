@@ -32,6 +32,8 @@ class ConversationsController < ApplicationController
 		q = Question.find_by_id(params["qID"])
 		if user.questions.include?(q)
 			q.deleted = true
+			user.points = user.points - 5
+			user.save
 			q.save
 		end
 		redirect_to "/conversations"

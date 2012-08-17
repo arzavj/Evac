@@ -23,7 +23,9 @@ module ConversationsHelper
 			answer = User.find(question.answer_id)
 			answer.missed_conversations = answer.missed_conversations + 1
 			asker.missed_conversations = asker.missed_conversations + 1
-			asker.save
+			asker.points = asker.points - 50
+			answer.points = answer.points - 50
+			asker.save 
 			answer.save
 		end
 		
