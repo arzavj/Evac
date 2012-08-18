@@ -7,7 +7,7 @@ gem 'rails', '3.1.3'
 
 #gem 'mysql'
 gem 'mysql2'
-gem 'pg'
+#gem 'pg'
 gem 'facebook_registration'
 gem 'whenever'
 gem 'therubyracer'
