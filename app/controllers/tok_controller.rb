@@ -191,9 +191,9 @@ private
 				begin
 					s.appointment = DateTime.parse(params["Slot"+i.to_s])
 					s.appointment = s.appointment.new_offset(params["timeOffset"].to_i/24.0)
-					rescue
-					#for heroku
-					s.appointment = DateTime.now.utc + 5.minutes
+				rescue
+				#for heroku
+					s.appointment = DateTime.now.utc + 6.minutes
 				end
 				
 				s.user_id = user.id #proposer
