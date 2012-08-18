@@ -106,8 +106,8 @@
 
 <script language="javascript">
 function rate(amnt){
-	document.forms["input"].rating.value = amnt;
-	document.forms["input"].submit();
+	$('#rating_value').val(amnt);
+	$('#rate_end').submit();
 	return false;
 }
 </script>
@@ -191,8 +191,8 @@ function rate(amnt){
 		<h3>Rate Your Conversation Partner</h3>
 	</div>
 	<div class="modal-body">
-		<%= form_tag({:controller => :tok, :action => :submitRank}, {:name => "input", :method => "post"}) do%>
-			<input type="hidden" name = "rating" />
+		<%= form_tag({:controller => :tok, :action => :submitRank}, {:id => "rate_end", :name => "input", :method => "post"}) do%>
+			<input type="hidden" id="rating_value" name = "rating"/>
 			<ul class='star-rating'>
 				<!--the width determines how many stars are already highlighted-->
 				<li><a href="#" onclick="return rate(1);" title='Horrible' class='one-star'>1</a></li>
