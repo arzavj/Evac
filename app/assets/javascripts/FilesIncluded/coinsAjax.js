@@ -45,8 +45,8 @@ var updateVidactaCoins = function()
 		else
 		{
 			//make ajax call for coins and updateBadge
-			var JSONurl = "pages/ajaxUserScore";
-			$.getJSON(JSONurl, {id: userID}, function(json){
+			var JSONurl = "/pages/ajaxUserScore";
+			$.getJSON(window.location.protocol+"//"+window.location.host + JSONurl, {id: userID}, function(json){
 				console.log("coins: "+JSON.stringify(json));
 				// console.log("This object: "+$(this).parent().html());
 				updateBadge($this, JSON.stringify(json));		
