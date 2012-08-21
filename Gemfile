@@ -11,6 +11,8 @@ gem 'mysql2'
 gem 'facebook_registration'
 gem 'whenever'
 gem 'therubyracer'
+gem "paperclip", "~> 2.0"
+
 
 gem 'devise'
 gem 'omniauth-facebook'
