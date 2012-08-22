@@ -47,7 +47,7 @@
 					</button>
 				<%else%>
 					<script type="text/javascript">
-						setTimeout(function(){ updateChatRoomButton(<%=q.id%>); }, <%=(s.appointment - DateTime.now).to_i - (5*60)%>);
+						setTimeout(function(){ updateChatRoomButton(<%=q.id%>); }, <%=((s.appointment - DateTime.now).to_i - (5*60))*1000%>);
 						// alert(<%=(s.appointment - DateTime.now).to_i.to_s%>);
 					</script>
 					<div class="margin-bottom-5">
@@ -55,7 +55,7 @@
 							<input type = "hidden" name = "qID" value = "<%= q.id %>" />
 							<input type = "hidden" name = "uID" value = "<%= @user.id %>" />
 							<input id="q<%=q.id%>" class="btn enter-chatroom-tooltip" rel="tooltip" title="You can now enter the chatroom. Hope you enjoy it!" type="submit" value="Enter Room For Appointment" />
-							<button id="q<%=q.id%>" class="btn disabled enter-chatroom-tooltip" rel="tooltip" title="Please return 5 minutes prior to scheduled time" value="Enter Room For Appointment" />
+							<button id="q<%=q.id%>" class="btn disabled enter-chatroom-tooltip" rel="tooltip" title="Please return 5 minutes prior to scheduled time" value="Enter Room For Appointment">Enter Room For Appointment</button>
 						<%end%>
 					</div>
 					<button class="btn" data-toggle="modal" data-target="#schedule-modal" href = "#schedule-modal" onClick="addQID(<%=q.id%>)">
