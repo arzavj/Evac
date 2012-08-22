@@ -36,8 +36,9 @@ class User < ActiveRecord::Base
 	
 	def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
 		data = auth.extra.raw_info
-		if user = User.where(:email=>data.email).first
-			user
+		user = User.where(:email=>data.email).first
+		if user
+			return user
 		else
 			#Create a user with a stub password
 			name_array = data.name.split(" ")
@@ -47,7 +48,7 @@ class User < ActiveRecord::Base
 	
 			user.confirm!
 			user.save!
-			user
+			return user
 		end
 	end
 end

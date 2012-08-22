@@ -1,7 +1,7 @@
 Vidactica::Application.routes.draw do
 	
   # begin
-    devise_for :users, :controllers => {:registrations => "registrations", :omniauth_callbacks=> "user/omniauth_callbacks"	} do
+    devise_for :users, :controllers => {:registrations => "registrations", :omniauth_callbacks=> "users/omniauth_callbacks"	} do
   		post '/login' => 'devise/sessions#create', :as => :user_session
   		get '/logout' => 'devise/sessions#destroy', :as => :destroy_user_session
   		resources :confirmations
