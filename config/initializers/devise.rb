@@ -13,7 +13,8 @@ Devise.setup do |config|
 	end
 
 	require "omniauth-facebook"
-	config.omniauth :facebook, "448981068445455", "c1576820bcca019f62bc630e457b0713"
+	config.omniauth :facebook, "448981068445455", "c1576820bcca019f62bc630e457b0713",
+	:client_options => {:ssl => {:ca_path => '/etc/ssl/certs'}}
 
 	config.sign_out_via = :get
 
