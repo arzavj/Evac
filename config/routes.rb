@@ -5,10 +5,6 @@ Vidactica::Application.routes.draw do
   		get '/logout' => 'devise/sessions#destroy', :as => :destroy_user_session
   		resources :confirmations
     end
-	
-	devise_scope :user do
-		get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
-	end
 
  
 	resources :conversations, :only => :index do
