@@ -15,5 +15,11 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 	def failure
 		render :text => params.inspect
 	end
+	
+	def passthru
+		render :file => "#{Rails.root}/public/404.html", :status => 404, :layout => false
+		# Or alternatively,
+		# raise ActionController::RoutingError.new('Not Found')
+	end
 
 end
