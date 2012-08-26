@@ -13,6 +13,7 @@ gem 'whenever'
 gem 'therubyracer'
 
 gem 'devise'
+gem 'omniauth', "~>1.0"
 gem 'omniauth-facebook'
 
 # gem "paperclip", "~> 3.0"

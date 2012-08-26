@@ -13,7 +13,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 	end
 	
 	def failure
-		flash[:warning] = "Got here"
 		set_flash_message :error, :failure, :kind => OmniAuth::Utils.camelize(failed_strategy.name), :reason => failure_message
 		redirect_to root_url
 	end
