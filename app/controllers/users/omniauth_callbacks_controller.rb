@@ -13,8 +13,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 	end
 	
 	def failure
-		super
+		puts "Got here"
 		puts failure_message
+		super
 	end
 	
 	def passthru
