@@ -12,6 +12,11 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 		end
 	end
 	
+	def failure
+		super
+		puts failure_message
+	end
+	
 	def passthru
 		render :file => "#{Rails.root}/public/404.html", :status => 404, :layout => false
 		# Or alternatively,
