@@ -14,7 +14,7 @@ gem 'therubyracer'
 
 gem 'devise'
 gem 'omniauth', "~>1.0"
-gem 'omniauth-facebook', '0.2.6'
+gem 'omniauth-facebook', '~>0.2.6'
 
 # gem "paperclip", "~> 3.0"
 gem 'tzinfo', '0.3.33'
