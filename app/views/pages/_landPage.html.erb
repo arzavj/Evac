@@ -2,6 +2,30 @@
 	$(document).ready(function(){ $(".transparent-background").css('min-height',0); });
 </script>
 
+<div id="fb-root"></div>
+<script>
+	window.fbAsyncInit = function() {
+		FB.init({
+				appId      : '448981068445455', // App ID
+				status     : true, // check login status
+				cookie     : true, // enable cookies to allow the server to access the session
+				xfbml      : true  // parse XFBML
+				});
+		
+		// Additional initialization code here
+	};
+	
+	// Load the SDK Asynchronously
+	(function(d){
+     var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
+     js = d.createElement('script'); js.id = id; js.async = true;
+     js.src = "//connect.facebook.net/en_US/all.js";
+     d.getElementsByTagName('head')[0].appendChild(js);
+	 }(document));
+	
+</script>
+
+
 <div class="blue-banner">
 	<div class="transparent-background" style="background-color:transparent;">
 		<div id="home-row" class="row-fluid">
@@ -55,9 +79,20 @@
 					</div>
 				</div>
 				<div class="fb-login-button">
-					<a data-toggle="modal" data-target="#facebook-modal" href = "#facebook-modal">
-						<%= link_to image_tag("signup-facebook-md.png", :width => "250"), user_omniauth_authorize_path(:facebook) %>	
-					</a>
+					<%= image_tag("signup-facebook-md.png", :width => "250", :id => "facebook_popup") %>	
+					<script>
+						$('#facebook_popup').click(function(e) {
+											e.preventDefault();
+													   
+											FB.login(function(response) {
+												if (response.authResponse) { 
+													window.location = '/users/auth/facebook/callback';
+												}
+												}, { scope: 'email'});
+													   
+													   
+											});
+					</script>
 				</div>
 				<div class="modal hide fade" id="register-modal">
 					<div class="modal-header">

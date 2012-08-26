@@ -12,7 +12,7 @@ gem 'whenever'
 gem 'therubyracer'
 
 gem 'devise'
-gem 'omniauth-facebook', '~>1.4.0'
+gem 'omniauth-facebook'
 
 # gem "paperclip", "~> 3.0"
 gem 'tzinfo', '0.3.33'
