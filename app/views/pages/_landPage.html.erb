@@ -44,23 +44,31 @@
 					</div>
 				</div>
 			</div>
-
-			<div class="fb-login-button">
-				<%= image_tag("signup-facebook-md.png", :width => "250", :id => "facebook_popup") %>	
-				<script>
-					$('#facebook_popup').click(function(e) {
-										e.preventDefault();
-												   
-										FB.login(function(response) {
-											if (response.authResponse) { 
-												window.location = '/users/auth/facebook/callback';
-											}
-											}, { scope: 'email'});
+			<div class="span6">
+				<div id="landingRightContainer" style="padding-left:30px;">
+				<div id="lowHeaderPos">
+					<div class="nunito700" id="home-header">
+						<!--<span class="darkblue">A </span><span class="lightblue">community </span><span class="darkblue">to schedule </span><span class="lightblue">video-chat</span><span class="darkblue"> conversations about topics you are curious or passionate about</span>-->
+						<span class="darkblue">A </span><span class="lightblue">community </span><span class="darkblue">for interesting conversations!</span>
+					</div>
+				</div>
+				
+				<div class="fb-login-button">
+					<%= image_tag("signup-facebook-md.png", :width => "250", :id => "facebook_popup") %>	
+					<script>
+						$('#facebook_popup').click(function(e) {
+											e.preventDefault();
+													   
+											FB.login(function(response) {
+												if (response.authResponse) { 
+													window.location = '/users/auth/facebook/callback';
+												}
+												}, { scope: 'email'});
 													   
 													   
-										});
-				</script>
-			</div>
+											});
+					</script>
+				</div>
 				<div class="modal hide fade" id="register-modal">
 					<div class="modal-header">
 						<button class="close" data-dismiss="modal">&times;</button>
