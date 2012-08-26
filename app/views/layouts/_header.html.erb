@@ -12,7 +12,6 @@
 
 	
 	<div class="fb-like" data-href="http://www.facebook.com/Vidactica" data-send="true" data-width="450" data-show-faces="false" data-colorscheme="dark"></div>	
-	<!--<div class="fb-like" data-href="http://vidactica.com/" data-send="true" data-width="450" data-show-faces="false"></div>-->
 	<div class="body-wrapper">
 	<div class="row-fluid">
 		<!--change picture to original logo-->
@@ -70,7 +69,7 @@
   		</div>
 	</div>
 	</div>
-	<%= csrf_meta_tag %> 
+	<%=# csrf_meta_tag %> 
 </header>
 
 <%if !user_signed_in? or (user_signed_in? and @blueBar.nil?) %>
