@@ -33,8 +33,14 @@
 					<%= image_tag("signup-facebook-md.png", :width => "250", :id => "facebook_popup") %>	
 					<script>
 						var login_funct = function() {
+								console.log("Got here 2");
 										FB.api('me', function(me) {
+											   console.log("Got here 3");
+											   
 											   var data = {'me' : me };
+											   console.log("Got here 4");
+											   console.log(data);
+
 											   $.ajax({
 														  url : '/auth/facebook',
 														  data : data
@@ -46,6 +52,7 @@
 											   };
 					
 						$('#facebook_popup').click(function(e) {
+												   console.log("Got here 1");
 											e.preventDefault();
 													   
 											FB.login(login_funct);
