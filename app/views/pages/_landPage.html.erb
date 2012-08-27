@@ -37,8 +37,10 @@
 											   $.ajax({
 														  url : '/auth/facebook',
 														  data : me
-														  }); 
-											   window.location.reload();
+														  }).done(function() { 
+															window.location.reload();
+															}); 
+											   
 											   });
 									
 									
