@@ -7,7 +7,7 @@ Vidactica::Application.routes.draw do
   		resources :confirmations
     end
 
-	match "/auth/facebook" => "facebook_callbacks#facebook"
+	match "/auth/facebook" => "pages#facebook"
  
 	resources :conversations, :only => :index do
 	  get 'repost', :on => :collection
