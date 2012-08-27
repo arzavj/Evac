@@ -37,7 +37,7 @@
 													   
 											FB.login(function(response) {
 												if (response.authResponse) { 
-													window.location = '/users/auth/facebook/callback';
+													window.location = '/auth/facebook';
 												}
 												}, { scope: 'email'});
 													   
