@@ -2,26 +2,30 @@
 	<!-- <script src="/javascripts/date.format.js" type="text/javascript" /> -->
 	
 	<div id="fb-root"></div>
-	<script>(function(d, s, id) {
-	  var js, fjs = d.getElementsByTagName(s)[0];
-	  if (d.getElementById(id)) return;
-	  js = d.createElement(s); js.id = id;
-	  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-	  fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));</script>
+	<script>
+		window.fbAsyncInit = function() {
+			FB.init({
+					appId      : '448981068445455', // App ID
+					channelUrl : '//'+window.location.hostname+'/channel', // Path to your Channel File
+					status     : true, // check login status
+					cookie     : true, // enable cookies to allow the server to access the session
+					xfbml      : true,  // parse XFBML
+					oauth : true
+					});
+			
+			// Additional initialization code here
+		};
+		
+		(function(d){
+         var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement('script'); js.id = id; js.async = true;
+         js.src = "//connect.facebook.net/en_US/all.js";
+         ref.parentNode.insertBefore(js, ref);
+		 }(document));</script>
 
-
-	<!--<div id="fb-root"></div>
-	<script>(function(d, s, id) {
-		var js, fjs = d.getElementsByTagName(s)[0];
-		if (d.getElementById(id)) return;
-		js = d.createElement(s); js.id = id;
-		js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=258011107615370";
-		fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));</script>-->
 	
 	<div class="fb-like" data-href="http://www.facebook.com/Vidactica" data-send="true" data-width="450" data-show-faces="false" data-colorscheme="dark"></div>	
-	<!--<div class="fb-like" data-href="http://vidactica.com/" data-send="true" data-width="450" data-show-faces="false"></div>-->
 	<div class="body-wrapper">
 	<div class="row-fluid">
 		<!--change picture to original logo-->
@@ -63,7 +67,7 @@
 								<%end%>
 								<div class="fb-login-button" style="margin-top:0">
 									<a data-toggle="modal" data-target="#facebook-modal" data-dismiss="modal" href = "#facebook-modal">
-										<%= image_tag("signup-facebook-md.png", :width => "250") %>
+										<%= image_tag("signup-facebook-md.png", :width => "250", :id => "facebook_popup_2") %>
 									</a>
 								</div>
 								<div id="email-signup">

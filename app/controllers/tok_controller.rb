@@ -193,7 +193,7 @@ private
 					s.appointment = s.appointment.new_offset(params["timeOffset"].to_i/24.0)
 				rescue
 				#for heroku
-					s.appointment = DateTime.now.utc + 6.minutes
+					s.appointment = DateTime.now.utc + 9.minutes
 				end
 				
 				s.user_id = user.id #proposer

@@ -2,6 +2,7 @@
 	$(document).ready(function(){ $(".transparent-background").css('min-height',0); });
 </script>
 
+
 <div class="blue-banner">
 	<div class="transparent-background" style="background-color:transparent;">
 		<div id="home-row" class="row-fluid">
@@ -27,37 +28,37 @@
 						<span class="darkblue">A </span><span class="lightblue">community </span><span class="darkblue">for interesting conversations!</span>
 					</div>
 				</div>
-				<div class="modal hide fade" id="facebook-modal">
-					<div class="modal-header">
-						<button class="close" data-dismiss="modal">&times;</button>
-						<h3>Register With Facebook</h3>
-					</div>
-					<div class="modal-body">
-						<!-- {'name':'school', 'description':'College',  'type':'text'} IS IF I WANTED THE SCHOOL TYPED-->
-
-						<iframe src="https://www.facebook.com/plugins/registration.php?
-				             client_id=448981068445455&
-				             redirect_uri=http://vidactica.com/fb_registration/RegisterUser&
-				             fields=[
-								{'name':'name', 'view':'prefilled'},
-								{'name':'first_name'},
-								{'name':'last_name'},
-								{'name':'email', 'description':'Email',  'type':'text'},
-								{'name':'password'}
-								]"
-				        scrolling="auto"
-				        frameborder="no"
-				        style="border:none"
-				        allowTransparency="true"
-				        width="100%"
-				        height="330">
-						</iframe> 
-					</div>
-				</div>
+				
 				<div class="fb-login-button">
-					<a data-toggle="modal" data-target="#facebook-modal" href = "#facebook-modal">
-						<%= link_to image_tag("signup-facebook-md.png", :width => "250"), user_omniauth_authorize_path(:facebook) %>	
-					</a>
+					<%= image_tag("signup-facebook-md.png", :width => "250", :id => "facebook_popup") %>	
+					<script>
+						var login_funct = function() {
+										FB.api('me', function(me) {
+											   $.ajax({
+														  url : '/auth/facebook',
+														  data : me
+														  }).done(function() { 
+															window.location.reload();
+															}); 
+											   
+											   });
+									
+									
+											   };
+					
+						$('#facebook_popup').click(function(e) {
+											e.preventDefault();
+													   
+											FB.login(login_funct);
+												   });
+						
+						$('#facebook_popup_2').click(function(e) {
+												   e.preventDefault();
+												   
+												   FB.login(login_funct);
+												   });
+						
+					</script>
 				</div>
 				<div class="modal hide fade" id="register-modal">
 					<div class="modal-header">

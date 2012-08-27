@@ -1,15 +1,14 @@
 Vidactica::Application.routes.draw do
 	
-  # begin
-    devise_for :users, :controllers => {:registrations => "registrations", :omniauth_callbacks=> "user/omniauth_callbacks"	} do
+    devise_for :users, :controllers => {:registrations => "registrations", :omniauth_callbacks => "users/omniauth_callbacks" } do
+		get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
   		post '/login' => 'devise/sessions#create', :as => :user_session
   		get '/logout' => 'devise/sessions#destroy', :as => :destroy_user_session
   		resources :confirmations
     end
-  # rescue Exception => e
-  #   puts "Devise error: #{e.class}: #{e}"
-  # end
-  
+
+	match "/auth/facebook" => "pages#facebook"
+ 
 	resources :conversations, :only => :index do
 	  get 'repost', :on => :collection
 	  get 'deletePast', :on => :collection
@@ -84,5 +83,6 @@ Vidactica::Application.routes.draw do
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-  match ':controller(/:action(/:id(.:format)))'
+  
+	match ':controller(/:action(/:id(.:format)))'
 end

@@ -8,14 +8,14 @@ gem 'rails', '3.1.3'
 #gem 'mysql'
 gem 'mysql2'
 #gem 'pg'
-gem 'facebook_registration'
 gem 'whenever'
 gem 'therubyracer'
 gem "paperclip", "~> 2.0"
 
 
 gem 'devise'
-gem 'omniauth-facebook'
+gem 'omniauth', '1.0'
+gem 'omniauth-facebook', '1.4.0'
 
 # gem "paperclip", "~> 3.0"
 gem 'tzinfo', '0.3.33'

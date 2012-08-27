@@ -34,20 +34,18 @@ class User < ActiveRecord::Base
 		return self.firstName + " " + self.lastName
 	end
 	
-	def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
-		data = auth.extra.raw_info
-		if user = User.where(:email=>data.email).first
-			user
+	def self.find_for_facebook_oauth(data)
+		user = User.find_by_email(data[:email])
+		if user
+			return user
 		else
-			#Create a user with a stub password
-			name_array = data.name.split(" ")
-			firstName = name_array.first
-			lastName = name_array[1..name_array.length].join("")
-			user = User.new(:firstName => firstName, :lastName => lastName, :provider => auth.provider, :uid => auth.uid, :email => data.email,:password => Devise.friendly_token[0,20], :confirmed_at => DateTime.now)
+			p = Profile.create
+	
+			user = User.new(:firstName => data[:first_name], :lastName => data[:last_name], :provider => "facebook", :uid => data[:id], :email => data[:email],:password => Devise.friendly_token[0,20], :profile_id => p.id)
 	
 			user.confirm!
 			user.save!
-			user
+			return user
 		end
 	end
 end
