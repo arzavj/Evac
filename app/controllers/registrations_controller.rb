@@ -29,17 +29,8 @@ protected
 	end
 	
 	def new_profile
-		profile = Profile.new
-		
-		File.open(Rails.root.join('public/images/default-profile-pic.png')) do |pic|
-			profile.file_name = "Default Pic"
-            profile.file_type = nil
-            profile.size = nil
-			
-            profile.data = pic.read
-			#profile.School = GetSchool(fields["email"]) #test
-			profile.save
-		end
+		profile = Profile.create
+
 
 		return profile.id
 	end

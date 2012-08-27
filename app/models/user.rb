@@ -39,16 +39,7 @@ class User < ActiveRecord::Base
 		if user
 			return user
 		else
-			p = Profile.new
-			File.open(Rails.root.join('public/images/default-profile-pic.png')) do |pic|
-				profile.file_name = "Default Pic"
-				profile.file_type = nil
-				profile.size = nil
-	
-				profile.data = pic.read
-				#profile.School = GetSchool(fields["email"]) #test
-				profile.save
-			end
+			p = Profile.create
 	
 			user = User.new(:firstName => data[:first_name], :lastName => data[:last_name], :provider => "facebook", :uid => data[:id], :email => data[:email],:password => Devise.friendly_token[0,20], :profile_id => p.id)
 	
