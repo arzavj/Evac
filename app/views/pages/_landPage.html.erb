@@ -32,24 +32,17 @@
 				<div class="fb-login-button">
 					<%= image_tag("signup-facebook-md.png", :width => "250", :id => "facebook_popup") %>	
 					<script>
-						var login_funct = function() {
-										FB.api('me', function(me) {
-											   var data = {'me' : me };
-											   $.ajax({
-														  url : '/auth/facebook',
-														  data : data
-														  }); 
-											   //window.location.reload();
-											   });
-									
-									
-											   };
-					
 						$('#facebook_popup').click(function(e) {
 											e.preventDefault();
 													   
-											FB.login(login_funct);
-												   });
+											FB.login(function(response) {
+												if (response.authResponse) { 
+													window.location = '/auth/facebook';
+												}
+												}, { scope: 'email'});
+													   
+													   
+											});
 					</script>
 				</div>
 				<div class="modal hide fade" id="register-modal">

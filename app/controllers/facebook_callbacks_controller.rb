@@ -1,4 +1,6 @@
 class FacebookCallbacksController < ApplicationController
+	skip_before_filter :authenticate_user!
+	
 	def facebook
 	#You need to implement the method below in your model
 		@user= User.find_for_facebook_oauth(request.env["omniauth.auth"],current_user)
