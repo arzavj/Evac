@@ -49,13 +49,13 @@
 						$('#facebook_popup').click(function(e) {
 											e.preventDefault();
 													   
-											FB.login(login_funct);
+											FB.login(login_funct, {scope: 'email'});
 												   });
 						
 						$('#facebook_popup_2').click(function(e) {
 												   e.preventDefault();
 												   
-												   FB.login(login_funct);
+												   FB.login(login_funct, {scope: 'email'});
 												   });
 						
 					</script>
