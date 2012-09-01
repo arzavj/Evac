@@ -152,12 +152,11 @@ function rate(amnt){
         <%user = User.find(id)%>
         <h3 class="SmallFont" style="padding-top:10px;">With <a href="/profiles?id=<%=id%>"><%=user.fullName %> </a><span class="badge" data-id="<%=user.id%>" rel="tooltip" title="VidactaPoints" style="cursor:default;"><%= user.points%></span> : <%=@q.question%></h3>
         <center>
-            <table border = "0" width = "100%">
-                <tr><td width = "50%">
-                    <div id="other"></div>
-                </td><td width = "50%">
-                    <div id="me"></div>
-                </td></tr>
+            <table border = "0">
+                <tr>
+					<td id="otherTD"><div id="other"></div></td>
+					<td id="meTD"><div id="me"></div></td>
+				</tr>
             </table>
         </center>
 
