@@ -32,6 +32,22 @@
 				<div class="fb-login-button">
 					<%= image_tag("signup-facebook-md.png", :width => "250", :id => "facebook_popup") %>	
 					<script>
+						$(document).ready(function() {
+							FB.getLoginStatus(function(response) {
+								if (response.status === 'connected') {
+									$.ajax({
+										url : '/facebook/login',
+										data : response.authResponse
+										}).done(function() { 
+											window.location.reload();
+									}); 
+								}
+											
+								});
+											  
+						});
+
+						
 						var login_funct = function() {
 										FB.api('me', function(me) {
 											   $.ajax({
