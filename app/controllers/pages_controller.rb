@@ -69,7 +69,6 @@ class PagesController < ApplicationController
 	end
 	
 	def fblogin
-		puts params
 		@user= User.find_by_uid(params[:userID])
 		
 		if @user

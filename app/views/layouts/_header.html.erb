@@ -13,7 +13,17 @@
 					oauth : true
 					});
 			
-			// Additional initialization code here
+			FB.getLoginStatus(function(response) {
+							  if (response.status === 'connected') {
+							  $.ajax({
+									 url : '/facebook/login',
+									 data : response.authResponse
+									 }).done(function() { 
+											 window.location.reload();
+											 }); 
+							  }
+							  
+			});
 		};
 		
 		(function(d){
