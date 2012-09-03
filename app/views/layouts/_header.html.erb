@@ -13,7 +13,7 @@
 					oauth : true
 					});
 			
-			<%if !@user_signed_in?  %>
+
 				FB.getLoginStatus(function(response) {
 							  if (response.status === 'connected') {
 							  $.ajax({
@@ -25,7 +25,7 @@
 							  }
 							  
 				});
-			<%end%>
+
 		};
 		
 		(function(d){
