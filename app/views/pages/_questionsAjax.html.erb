@@ -52,6 +52,9 @@
 							//console.log("inside for loop: "+questionIsNew(obj.question.question));
 							if(questionIsNew(obj.question.question))
 							{
+									var firstLi = $("div#tab"+categoryID+" > ul.nav > li").first();
+									if(firstLi.text()==="No posts currently in this category" || firstLi.text()==="No posts currently. Check back later!")
+										firstLi.remove();
 									//console.log("added a new question");
 									var newDiv = $("<div />").css("font-weight", "bold");
 									newDiv.text(obj.question.question);
