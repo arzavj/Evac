@@ -10,6 +10,8 @@ class ProfilesController < ApplicationController
 		@sessions = @user.completed_conversations 
 		@missed = @user.missed_conversations
 		@description = @user.blurb
+		@askQuestions = @user.ask_questions.where(:was_answered => true) 
+		@answerQuestions = @user.answer_questions.where(:was_answered => true)
 	end
 	
 	def edit

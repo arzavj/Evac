@@ -11,6 +11,11 @@
 					</div>
 					<div class="span6">
 						<h1 class="uppercase inline" style="margin-left:0px;"><%=@user.fullName %></h1>
+						<%= @user.short_bio%> 
+						<br />
+						<%= "From "+ @user.location if @user.location%>
+						<br />
+						<%= "Most Avaliable at: " + @user.prefered_schedule if @user.prefered_schedule%>
                         <div style="padding-top:1%;"><strong>Age: </strong>
 							 <strong class="inline"><%= @user.age %></strong>
 						</div>
@@ -46,5 +51,21 @@
 				</div>
 			</div>
 		</div>
+		Conversations Started <br />
+		<%@askQuestions.each do |question|%>
+			<%= question.question%>
+			<%if question.ask_rank%>
+				<li class='current-rating' style="width: <%= question.ask_rank*25 %>px;"></li>
+			<%end%>
+			<br />
+		<%end%>
+		Conversations In <br />
+		<%@answerQuestions.each do |question|%>
+			<%= question.question%>
+			<%if question.rank%>
+				<li class='current-rating' style="width: <%= question.rank*25 %>px;"></li>
+			<%end%>
+			<br />
+		<%end%>
 	</div>
 </div>
