@@ -7,7 +7,6 @@ class User < ActiveRecord::Base
 	
 	validates_presence_of :firstName
 	validates_presence_of :lastName
-	belongs_to :profile
 	has_many :ask_questions, :class_name => 'Question', :foreign_key => 'ask_id'
 	has_many :answer_questions, :class_name => 'Question', :foreign_key => 'answer_id'
 
