@@ -3,21 +3,15 @@
 	<h1>Edit Profile</h1>
 
 	<h4 style="padding-top:3%;">Profile Picture:</h4>
-	<%= form_for :profile, :url => "/profiles/update", :html => { :multipart => true } do |form| %>
-		<div><%= form.file_field (:picture) %></div>
-		<div style="margin-bottom: 15px;"><h4>Age:</h4> <select name="age">
-			<%(0..100).each do |i|%>
-				<%if i == @user.age%>
-					<option	value="<%=i.to_s%>" selected="selected"><%=i.to_s%></option>
-				<%else%>
-					<option	value="<%=i.to_s%>"><%=i.to_s%></option>
-				<%end%>
-				
-			<%end%>
-		  </select></div>
+	<%= form_for @user, :url => profiles_path, :html => { :multipart => true } do |f| %>
+		<div><%= f.file_field (:picture) %></div>
+		<div style="margin-bottom: 15px;">
+			<h4>Age:</h4> 
+			<%= f.select :age, (0..100)%>
+		</div>
 		<h4 style="margin-top:15px;">Tell others about yourself:</h4>
-		<div><%= form.text_area :blurb, :value => @profile.blurb %></div>
-		<div><%= submit_tag "Submit", :class => "btn btn-inverse" %></div>
+		<div><%= f.text_area :blurb, :style => "width:100%" %></div>
+		<div><%= f.submit "Submit", :class => "btn btn-inverse" %></div>
 		<% end %>
 	</div>
 </div>

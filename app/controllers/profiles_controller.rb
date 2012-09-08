@@ -9,40 +9,18 @@ class ProfilesController < ApplicationController
 		@rank = @user.rating
 		@sessions = @user.completed_conversations 
 		@missed = @user.missed_conversations
-		@profile = @user.profile
-	end
-    
-	def show_image
-		user = User.find(params[:id])
-		profile = user.profile
-		send_data profile.data, :type => 'image/png' #, :disposition => 'inline'      
+		@description = @user.blurb
 	end
 	
 	def edit
+		
 		@title = "Edit"
 		@user = current_user
-		@profile = @user.profile
 	end
 	
 	def update
 		u = current_user
-		profile = u.profile
-		
-        pic = params[:profile][:picture]
-        
-        if(pic != nil)
-            profile.file_name = pic.original_filename
-            profile.file_type = pic.content_type
-            profile.size = pic.size
-			
-            profile.data = pic.read
-			
-        end
-		profile.blurb = params[:profile][:blurb]
-		profile.save
-		
-		u.age = params[:age].to_i
-		u.save
+		u.update_attributes(params[:user])
 		
 		redirect_to "/profiles"
 	end

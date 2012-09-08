@@ -6,7 +6,7 @@
 				<div class="row-fluid">
 					<div class="span6">
 						<div class="profile-pic">
-						<%= image_tag url_for(:action => 'show_image', :id => @user.id)  %>
+						<%= image_tag @user.picture.url(:medium) %>
 						</div>
 					</div>
 					<div class="span6">
@@ -21,7 +21,7 @@
 				</div>
 				<div class="alert alert-success">
 					<h4 class="alert-heading">Description:</h4>
-						<%= @profile.blurb %>
+						<%= @description %>
 				</div>
 			</div>
 			<div class="span6">
@@ -30,7 +30,6 @@
 						<div><h2 id="edit-profile-btn"><a class="btn" href = "<%= edit_profiles_path%>">Edit Profile</a></h2></div>
 					<%end%>
 					<ul class="nav nav-list">
-						<!--<div><strong>Rating:</strong> <%= "%0.2f" % @rank %> / 5</div>-->
 						<div class="row-fluid">
 							<div class="span6" style="width: 60px;"><strong>Rating: </strong></div>
 							<div class="span6"><ul class='star-rating'>
