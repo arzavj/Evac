@@ -22,7 +22,15 @@ class ProfilesController < ApplicationController
 	
 	def update
 		u = current_user
+		if !u.setUpProfile
+			u.points += 10
+		end
 		u.update_attributes(params[:user])
+		
+		if !u.setUpProfile
+			u.points -= 10
+			u.save
+		end
 		
 		redirect_to "/profiles"
 	end

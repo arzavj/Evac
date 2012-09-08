@@ -35,6 +35,10 @@ class User < ActiveRecord::Base
 		return self.firstName + " " + self.lastName
 	end
 	
+	def setUpProfile
+		return !self.picture_file_name.nil?
+	end
+	
 	def self.find_for_facebook_oauth(data)
 		user = User.find_by_email(data[:email])
 		if user
