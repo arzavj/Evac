@@ -8,6 +8,7 @@ Vidactica::Application.routes.draw do
     end
 
 	match "/auth/facebook" => "pages#facebook"
+	match '/facebook/login' => "pages#fblogin"
  
 	resources :conversations, :only => :index do
 	  get 'repost', :on => :collection

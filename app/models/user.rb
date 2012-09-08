@@ -37,6 +37,7 @@ class User < ActiveRecord::Base
 	def self.find_for_facebook_oauth(data)
 		user = User.find_by_email(data[:email])
 		if user
+			user.update_attributes({:provider => "facebook", :uid => data[:id]})
 			return user
 		else
 			p = Profile.create

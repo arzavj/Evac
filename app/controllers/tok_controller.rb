@@ -188,13 +188,8 @@ private
 			s = Schedule.new
 			s.question_id = question.id
 			if !params["Slot"+i.to_s].eql?("")
-				begin
-					s.appointment = DateTime.parse(params["Slot"+i.to_s])
-					s.appointment = s.appointment.new_offset(params["timeOffset"].to_i/24.0)
-				rescue
-				#for heroku
-					s.appointment = DateTime.now.utc + 9.minutes
-				end
+				s.appointment = DateTime.strptime(params["Slot"+i.to_s], "%m/%d/%Y %I:%M %p")
+				s.appointment = s.appointment.new_offset(params["timeOffset"].to_i/24.0)
 				
 				s.user_id = user.id #proposer
 				s.save

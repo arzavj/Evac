@@ -67,4 +67,17 @@ class PagesController < ApplicationController
 		sign_in_and_redirect @user, :event=>:authentication
 
 	end
+	
+	def fblogin
+		@user= User.find_by_uid(params[:userID])
+		
+		if @user
+			flash[:notice] = I18n.t"devise.omniauth_callbacks.success", :kind=>"Facebook"
+			sign_in_and_redirect @user, :event=>:authentication
+		else
+			flash[:error] = "You have not authenticated the app"
+			redirect_to root_url
+			return
+		end
+	end
 end
