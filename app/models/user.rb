@@ -3,15 +3,16 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable
 
   # Setup accessible (or protected) attributes for your model
-	attr_accessible :id, :email, :password, :password_confirmation, :remember_me, :firstName, :lastName, :profile_id, :provider, :uid
+	attr_accessible :id, :email, :password, :password_confirmation, :remember_me, :firstName, :lastName, :profile_id, :provider, :uid, :blurb, :picture, :age, :location, :short_bio, :prefered_schedule
 	
 	validates_presence_of :firstName
 	validates_presence_of :lastName
-	belongs_to :profile
 	has_many :ask_questions, :class_name => 'Question', :foreign_key => 'ask_id'
 	has_many :answer_questions, :class_name => 'Question', :foreign_key => 'answer_id'
 
 	has_many :schedules
+	
+	has_attached_file :picture, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "http://placehold.it/140x140"
 
 	
 	def questions
@@ -32,6 +33,10 @@ class User < ActiveRecord::Base
 	
 	def fullName
 		return self.firstName + " " + self.lastName
+	end
+	
+	def setUpProfile
+		return !self.picture_file_name.nil?
 	end
 	
 	def self.find_for_facebook_oauth(data)

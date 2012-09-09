@@ -10,6 +10,8 @@ gem 'mysql2'
 #gem 'pg'
 gem 'whenever'
 gem 'therubyracer'
+gem "paperclip", "~> 2.0"
+
 
 gem 'devise'
 gem 'omniauth', '1.0'

@@ -23,8 +23,8 @@ class ConversationsController < ApplicationController
 		
 		@length = @qPendConfirmable.length + @qPendAnswer.length + @qPendNoAnswer.length + @qPendConfirmable.length 
 		
-		@qPrev = Question.where({:ask_id => @user.id, :was_answered => true, :delete_past_question_ask => false})
-		@qPrevAnswer = Question.where({:answer_id => @user.id, :was_answered => true, :delete_past_question_answerer => false})
+		@qPrev = Question.where({:ask_id => @user.id, :was_answered => true})
+		@qPrevAnswer = Question.where({:answer_id => @user.id, :was_answered => true})
 	end
 	
 	def delete

@@ -14,7 +14,12 @@ class PagesController < ApplicationController
 	  end
 	  
 	  @questions = Question.where(:category => @cat)
-	  @user = current_user
+	  if current_user
+		  @user = current_user
+	  
+		  flash[:notice] = "You have been awarded 100 VidactaPoints." if @user.points == 100
+		  flash[:warning] = "Please fill in your profile." if !@user.setUpProfile
+	  end 
   end
  	
 	def feedback

@@ -3,8 +3,6 @@ class RegistrationsController < Devise::RegistrationsController
 	def create
 		build_resource
 		
-		self.resource.profile_id = new_profile
-		
 		if resource.save
 			if resource.active_for_authentication?
 				set_flash_message :notice, :signed_up if is_navigational_format?
@@ -24,14 +22,7 @@ class RegistrationsController < Devise::RegistrationsController
 protected	
 	
 	def after_inactive_sign_up_path_for(resource)
-		flash[:email] = "set"
 		return "/"
 	end
 	
-	def new_profile
-		profile = Profile.create
-
-
-		return profile.id
-	end
 end 
