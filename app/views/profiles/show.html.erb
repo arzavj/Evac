@@ -51,21 +51,33 @@
 				</div>
 			</div>
 		</div>
-		Conversations Started <br />
-		<%@askQuestions.each do |question|%>
-			<%= question.question%>
-			<%if question.ask_rank%>
-				<li class='current-rating' style="width: <%= question.ask_rank*25 %>px;"></li>
-			<%end%>
-			<br />
-		<%end%>
-		Conversations In <br />
-		<%@answerQuestions.each do |question|%>
-			<%= question.question%>
-			<%if question.rank%>
-				<li class='current-rating' style="width: <%= question.rank*25 %>px;"></li>
-			<%end%>
-			<br />
-		<%end%>
+		<div class="row-fluid">
+			<div class="span6 right-border">
+				<h3 class="center nunito700">Conversations Started</h3>
+				<ul class="nav nav-list" style="padding-bottom:50px;">
+					<li class="divider" />
+					<%@askQuestions.each do |question|%>
+						<li class="questions"><%= question.question%></li>
+						<%if question.ask_rank%>
+							<li class='current-rating' style="width: <%= question.ask_rank*25 %>px;"></li>
+						<%end%>
+						<li class="divider" />
+					<%end%>
+				</ul>
+			</div>
+			<div class="span6">
+				<h3 class="center nunito700">Conversations In</h3>
+				<ul class="nav nav-list" style="padding-bottom:50px;">
+					<li class="divider" />
+					<%@answerQuestions.each do |question|%>
+						<li class="questions"><%= question.question%></li>
+						<%if question.rank%>
+							<li class='current-rating' style="width: <%= question.rank*25 %>px;"></li>
+						<%end%>
+						<li class="divider" />
+					<%end%>
+				</ul>
+			</div>
+		</div>
 	</div>
 </div>

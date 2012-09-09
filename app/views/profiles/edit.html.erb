@@ -2,7 +2,7 @@
 	<div class="body-wrapper">
 	<h1>Edit Profile</h1>
 
-	<h4 style="padding-top:3%;">Profile Picture:</h4>
+	<h4 style="padding-top:1%;">Profile Picture:</h4>
 	<%= form_for @user, :url => profiles_path, :html => { :multipart => true } do |f| %>
 		<div><%= f.file_field (:picture) %></div>
 		<div><h4>Location:</h4> <%= f.text_field :location %></div>
@@ -13,8 +13,8 @@
 			<%= f.select :age, (0..100)%>
 		</div>
 		<h4 style="margin-top:15px;">Tell others about yourself:</h4>
-		<div><%= f.text_area :blurb, :style => "width:100%" %></div>
-		<div><%= f.submit "Submit", :class => "btn btn-inverse" %></div>
+		<div><%= f.text_area :blurb, :style => "width:50%;", :rows => "10" %></div>
+		<div style="padding-bottom:3%;"><%= f.submit "Submit", :class => "btn btn-inverse" %></div>
 		<% end %>
 	</div>
 </div>

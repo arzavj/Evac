@@ -4,8 +4,8 @@ class Question < ActiveRecord::Base
 	has_many :schedules, :dependent => :delete_all
 	
 	default_scope where(:deleted => false)
-	default_scope where (:delete_past_question_ask => false) 
-	default_scope where (:delete_past_question_answerer => false) 
+	default_scope where(:delete_past_question_ask => false) 
+	default_scope where(:delete_past_question_answerer => false) 
 	
 	scope :unAnswered, where("was_answered = FALSE AND answer_id IS NULL")
 	
