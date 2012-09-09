@@ -30,6 +30,22 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			
+			$.reject({  
+			        reject: {  
+			            msie: true, // Microsoft Internet Explorer
+			            konqueror: true, // Konqueror (Linux)  
+			            unknown: true // Everything else  
+			        },
+					display: ['chrome','firefox','opera','safari'],
+					closeCookie: true,
+					imagePath: '/assets/',
+					header: 'Incompatible Internet Browser',
+					paragraph1: 'Your browser is not compatible with our website. A list of the most popular web browsers can be found below.',
+					paragraph2: 'Click on the icons below to download any supported browser',
+					closeMessage: '*By closing this window you acknowledge that your experience on our website may be degraded',
+					closeLink: 'Close This Window*'
+			    }); // Customized Browsers
+			
 			jQuery('.dropdown-toggle').dropdown();
 			/*jQuery(".collapse").collapse();
 			jQuery('#ques-sched').collapse({

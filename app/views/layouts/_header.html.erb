@@ -102,6 +102,13 @@
 	<div id="landingPageBlueTop"></div>
 <%end%>
 
+<!-- <script id="msie-notice">
+	if($.browser.msie)
+	{
+		$("#msie-notice")
+	}
+</script> -->
+
 <% flash.each do |name, msg| %>
 	<%if name == :notice || name == :warning || name == :error%>
 		<%if msg.is_a?(String)%>
