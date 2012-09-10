@@ -11,6 +11,7 @@ gem 'mysql2'
 gem 'whenever'
 gem 'therubyracer'
 gem "paperclip", "~> 2.0"
+gem "mailboxer"
 
 
 gem 'devise'
