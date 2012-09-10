@@ -15,6 +15,8 @@ Vidactica::Application.routes.draw do
 	  get 'deletePast', :on => :collection
     end
 	
+	resource :messages, :except => :show
+	
 	resource :profiles 
 
   get "tok/AskChatRoom"

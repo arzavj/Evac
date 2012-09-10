@@ -56,4 +56,8 @@ class User < ActiveRecord::Base
 			return user
 		end
 	end
+
+	def mailboxer_email(object)
+		return nil
+	end
 end
