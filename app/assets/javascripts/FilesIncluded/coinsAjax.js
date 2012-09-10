@@ -38,7 +38,7 @@ var updateVidactaCoins = function()
 	$(".badge").each(function(){
 		var $this = $(this);
 		var userID = $(this).data('id');
-		console.log(userID);
+		//console.log(userID);
 		var coins = 0;
 		if(firstTime)
 			updateBadge($this, $this.text());
@@ -47,7 +47,7 @@ var updateVidactaCoins = function()
 			//make ajax call for coins and updateBadge
 			var JSONurl = "/pages/ajaxUserScore";
 			$.getJSON(window.location.protocol+"//"+window.location.host + JSONurl, {id: userID}, function(json){
-				console.log("coins: "+JSON.stringify(json));
+				//console.log("coins: "+JSON.stringify(json));
 				// console.log("This object: "+$(this).parent().html());
 				updateBadge($this, JSON.stringify(json));		
 			});
