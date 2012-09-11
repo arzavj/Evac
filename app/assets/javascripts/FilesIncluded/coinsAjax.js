@@ -24,6 +24,8 @@ var updateBadge = function($spanBadge, coins)
 	{
 		if(!firstTime)
 			console.log("Update Badge to: "+coins);
+		else
+			console.log("First Time: Coins: "+coins+" Badge Class: "+getBadgeClass(coins));
 		$spanBadge.text(coins+"");
 		// console.log("Span: "+$spanBadge.html());
 		$spanBadge.removeClass();
