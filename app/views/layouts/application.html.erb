@@ -40,11 +40,16 @@
 					display: ['chrome','firefox','opera','safari'],
 					//closeCookie: true,
 					imagePath: '/assets/',
+					close: false, //prevent closing of window
 					header: 'Unsupported Internet Browser',
 					paragraph1: 'Your browser is not compatible with our website. A list of the most popular web browsers can be found below.',
-					paragraph2: 'Click on the icons below to download any supported browser',
+					paragraph2: 'Click on an icon below to download a supported browser and enjoy your experience with Vidactica',
 					closeMessage: '*By closing this window you acknowledge that your experience on our website may be degraded',
-					closeLink: 'Close This Window*'
+					closeLink: 'Close This Window*',
+					beforeReject: function(){
+						if($.browser.msie)
+							$("body").empty();
+					}
 			    }); // Customized Browsers
 			
 			jQuery('.dropdown-toggle').dropdown();
