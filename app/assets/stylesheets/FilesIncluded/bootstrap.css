@@ -635,7 +635,7 @@ pre code {
   cursor: pointer;
 }
 .badge-important {
-  background-color: #b94a48;
+  background-color: #C00000;
 }
 .badge-important:hover {
   background-color: #953b39;

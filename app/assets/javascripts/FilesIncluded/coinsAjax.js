@@ -9,11 +9,11 @@ var getBadgeClass = function(coins)
 	else if(coins>130 && coins<=200)
 		return badgeColors.green;
 	else if(coins>200 && coins<=300)
-		return badgeColors.black;
+		return badgeColors.orange;
 	else if(coins>300 && coins<=450)
 		return badgeColors.grey;
 	else
-		return badgeColors.orange;
+		return badgeColors.black;
 }
 
 //$spanBadge: jQuery object of the span element which is the badge
