@@ -17,7 +17,7 @@ class PagesController < ApplicationController
 	  if current_user
 		  @user = current_user
 	  
-		  flash[:notice] = "You have been awarded 100 VidactaPoints." if @user.points == 100
+		  flash[:notice] = "You have been awarded 100 VidactiPoints." if @user.points == 100
 		  flash[:warning] = "Please fill in your profile." if !@user.setUpProfile
 	  end 
   end
