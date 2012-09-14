@@ -1,0 +1,8 @@
+<!--We should determine what else we want to display here like names or whatever-->
+<% if @conversations.length > 0%>
+	<%@conversations.each do |conversation|%>
+		<%= @conversations.last_message.body%>
+	<%end%>
+<%else%>
+	No conversations
+<%end%>
