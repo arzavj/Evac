@@ -1,3 +1,5 @@
+<%= render :partial => "message"%>
+
 <div class="transparent-background">
 	<div class="body-wrapper">
 		
@@ -31,9 +33,15 @@
 			</div>
 			<div class="span6">
 				<div class="pull-right">
+					<div>
 					<%if params[:id] == nil%>
-						<div><h2 id="edit-profile-btn"><a class="btn" href = "<%= edit_profiles_path%>">Edit Profile</a></h2></div>
+						<h2 id="edit-profile-btn"><a class="btn" href = "<%= edit_profiles_path%>">Edit Profile</a></h2>
+					<%else%>	
+						<h2 id="edit-profile-btn">
+							<button class="btn btn-info" data-toggle="modal" data-target="#message-modal" href = "#message-modal">Send <%= @user.firstName%> a message</button>
+						</h2>
 					<%end%>
+					</div>
 					<ul class="nav nav-list">
 						<div class="row-fluid">
 							<div class="span6" style="width: 60px;"><strong>Rating: </strong></div>
