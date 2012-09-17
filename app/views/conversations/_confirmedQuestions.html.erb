@@ -24,7 +24,7 @@
 					<%id = q.ask_id%>
 				<%end%>
 				<%user = User.find(id)%>
-				with <a class="question-username" href="/profiles?id=<%=id%>"><%=user.fullName %> </a><span class="badge" data-id="<%=user.id%>" rel="tooltip" title="VidactaPoints" style="cursor:default;"><%= user.points%></span></div>
+				with <a class="question-username" href="/profiles?id=<%=id%>"><%=user.fullName %> </a><span class="badge" data-id="<%=user.id%>" rel="tooltip" title="VidactiPoints" style="cursor:default;"><%= user.points%></span></div>
 							
 				<%s = Schedule.find(q.schedule_id)%>
 				<br />You are scheduled to meet at <span name="timeDiv" ><%=s.appointment.strftime("%B %d, %Y %H:%M:%S UTC")%> </span>

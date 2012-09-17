@@ -9,11 +9,11 @@ var getBadgeClass = function(coins)
 	else if(coins>130 && coins<=200)
 		return badgeColors.green;
 	else if(coins>200 && coins<=300)
-		return badgeColors.black;
+		return badgeColors.orange;
 	else if(coins>300 && coins<=450)
 		return badgeColors.grey;
 	else
-		return badgeColors.orange;
+		return badgeColors.black;
 }
 
 //$spanBadge: jQuery object of the span element which is the badge
@@ -24,6 +24,8 @@ var updateBadge = function($spanBadge, coins)
 	{
 		if(!firstTime)
 			console.log("Update Badge to: "+coins);
+		else
+			console.log("First Time: Coins: "+coins+" Badge Class: "+getBadgeClass(coins));
 		$spanBadge.text(coins+"");
 		// console.log("Span: "+$spanBadge.html());
 		$spanBadge.removeClass();
@@ -38,7 +40,7 @@ var updateVidactaCoins = function()
 	$(".badge").each(function(){
 		var $this = $(this);
 		var userID = $(this).data('id');
-		console.log(userID);
+		//console.log(userID);
 		var coins = 0;
 		if(firstTime)
 			updateBadge($this, $this.text());
@@ -47,7 +49,7 @@ var updateVidactaCoins = function()
 			//make ajax call for coins and updateBadge
 			var JSONurl = "/pages/ajaxUserScore";
 			$.getJSON(window.location.protocol+"//"+window.location.host + JSONurl, {id: userID}, function(json){
-				console.log("coins: "+JSON.stringify(json));
+				//console.log("coins: "+JSON.stringify(json));
 				// console.log("This object: "+$(this).parent().html());
 				updateBadge($this, JSON.stringify(json));		
 			});

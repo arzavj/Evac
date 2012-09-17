@@ -14,8 +14,8 @@
 				var tab = $("div.tabs-left > ul.nav > li > a").eq(categoryID);
 				var count = parseInt(tab.text().match(/\d+/)[0]);
 				//var increment = (toIncrement) ? (1):(-1);
-				console.log("Count: "+count);
-				console.log("Change: "+changeInNoOfQuestions);
+				//console.log("Count: "+count);
+				//console.log("Change: "+changeInNoOfQuestions);
 				$("div.tabs-left > ul.nav > li > a").eq(categoryID).text(tab.text().replace(/\d+/, count+changeInNoOfQuestions));
 				changeInNoOfQuestions = 0;
 			}
@@ -23,7 +23,7 @@
 			var updateListHeight = function()
 			{
 					var newTabHeight = $("div.tab-content").height();
-					//alert(tabPaneHeight+" vs "+ defaultHeight);
+					console.log(newTabHeight+" vs "+ oldTabHeight);
 					if((newTabHeight>oldTabHeight-200))// || (newTabHeight<oldTabHeight && newTabHeight>minTabHeight))
 					{
 						console.log("updated height");
@@ -69,7 +69,7 @@
 									if(<%=current_user.id%> == asker.id)
 										button.attr("disabled", "disabled");
 									var a = $("<a />", {href: "/profiles?id="+asker.id}).addClass("username").html(asker.fullName+" ");
-									var span = $("<span class='badge' rel='tooltip' title='VidactaPoints' style='cursor:default;' />").html(asker.points);
+									var span = $("<span class='badge' rel='tooltip' title='VidactiPoints' style='cursor:default;' />").html(asker.points);
 									span.addClass(getBadgeClass(asker.points));
 									li.append(newDiv).append(button).append(textLines).append(a).append(span);
 									//$("div#tab"+categoryID+" > ul.nav").append(li).append($("<li class='divider' />"));

@@ -634,6 +634,12 @@ pre code {
   text-decoration: none;
   cursor: pointer;
 }
+.badge-important {
+  background-color: #C00000;
+}
+.badge-important:hover {
+  background-color: #953b39;
+}
 .badge-error {
   background-color: #b94a48;
 }
