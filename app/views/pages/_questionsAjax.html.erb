@@ -69,7 +69,7 @@
 									if(<%=current_user.id%> == asker.id)
 										button.attr("disabled", "disabled");
 									var a = $("<a />", {href: "/profiles?id="+asker.id}).addClass("username").html(asker.fullName+" ");
-									var span = $("<span class='badge' rel='tooltip' title='VidactiPoints' style='cursor:default;' />").html(asker.points);
+									var span = $("<span class='badge' rel='tooltip' title='VidactiPoints' />").html(asker.points);
 									span.addClass(getBadgeClass(asker.points));
 									li.append(newDiv).append(button).append(textLines).append(a).append(span);
 									//$("div#tab"+categoryID+" > ul.nav").append(li).append($("<li class='divider' />"));
