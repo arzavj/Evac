@@ -13,15 +13,17 @@
 					</div>
 					<div class="span6">
 						<h1 class="uppercase inline" style="margin-left:0px;"><%=@user.fullName %></h1>
-						<%= @user.short_bio%> 
-						<br />
-						<%= "From "+ @user.location if @user.location%>
-						<br />
-						<%= "Most Avaliable at: " + @user.prefered_schedule if @user.prefered_schedule%>
-                        <div style="padding-top:1%;"><strong>Age: </strong>
+						<i><%= @user.short_bio%></i>
+						<%if @user.location%>
+							<div>From <strong><%= @user.location %></strong></div>
+						<%end%>
+						<%if @user.prefered_schedule%>
+							<div>Most Avaliable at: <strong><%= @user.prefered_schedule %></strong></div>
+						<%end%>
+                        <div style="padding-top:1%;"><span>Age: </span>
 							 <strong class="inline"><%= @user.age %></strong>
 						</div>
-						<div style="padding-top:1%;"><strong>VidactiPoints: </strong>
+						<div style="padding-top:1%;">VidactiPoints:
 							 <span class="badge" data-id="<%=@user.id%>" rel="tooltip" title="VidactiPoints" style="cursor:default;"><%= @user.points%></span>
 						</div>
 					</div>

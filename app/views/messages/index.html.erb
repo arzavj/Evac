@@ -1,11 +1,21 @@
-<!--We should determine what else we want to display here like names or whatever-->
-<% if @conversations.length > 0%>
-	<%@conversations.each do |conversation|%>
-		<%= conversation.last_message.body%>
-		<%= render :partial => "message", :locals => {:cID => conversation.id}%>
-		<button class="btn btn-info" data-toggle="modal" data-target="#message-modal-<%=conversation.id.to_s%>" href = "#message-modal">Reply</button>
-		<br />
-	<%end%>
-<%else%>
-	No conversations
-<%end%>
+<div class="transparent-background">
+	<div class="body-wrapper">
+		<h1 class="center nunito700 darkblue"> Messages </h1>
+		<!--We should determine what else we want to display here like names or whatever-->
+		<% if @conversations.length > 0%>
+			<ul class="nav nav-list">
+				<%@conversations.each do |conversation|%>
+					<li>
+					<%= conversation.last_message.body%>
+					<%= render :partial => "message", :locals => {:cID => conversation.id}%>
+					<div style="margin-top:1%"><button class="btn btn-info" data-toggle="modal" data-target="#message-modal-<%=conversation.id.to_s%>" href = "#message-modal-<%=conversation.id.to_s%>">Reply</button></div>
+					</li>
+					<li class="divider"></li>
+				<%end%>
+			</ul>
+		<%else%>
+			No messages. Visit the profile of the user and send him a message.
+		<%end%>
+		
+	</div>
+</div>

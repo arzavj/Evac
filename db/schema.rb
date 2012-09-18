@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -108,12 +109,12 @@ ActiveRecord::Schema.define(:version => 20120910031014) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "rating",                  :default => 0.0
     t.integer  "completed_conversations", :default => 0
     t.string   "firstName",               :default => ""
     t.string   "lastName",                :default => ""
     t.integer  "age",                     :default => 0
     t.integer  "new_questions",           :default => 0
-    t.float    "rating",                  :default => 0.0
     t.integer  "missed_conversations",    :default => 0
     t.string   "encrypted_password",      :default => "",  :null => false
     t.string   "reset_password_token"
@@ -127,15 +128,16 @@ ActiveRecord::Schema.define(:version => 20120910031014) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
     t.string   "provider"
     t.string   "uid"
     t.integer  "points",                  :default => 100
     t.text     "blurb"
     t.string   "school",                  :default => ""
     t.string   "picture_file_name"
-    t.datetime "picture_updated_at"
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
     t.string   "location"
     t.string   "prefered_schedule"
     t.string   "short_bio"

@@ -52,8 +52,8 @@
 				    <a class="dropdown-toggle profile_icon" data-toggle="dropdown" data-target="#" href="/profiles"><%= image_tag("profile_icon.png", :alt => "Profile", :height => "13px", :width => "15px") %> <b class="uppercase"><%= current_user.firstName%></b><span class="badge" data-id="<%=current_user.id%>" rel="tooltip" title="VidactiPoints" style="cursor: default; left: 6px;top: 1px;"><%=current_user.points%></span>
 				    <b class="caret"></b></a>
 				    <ul class="dropdown-menu">
-					  <li><a href="/profiles">Profile</a></li>
 					  <li><a href="/messages">Messages</a></li>
+					  <li><a href="/profiles">Profile</a></li>
 					  <li><a href="/about">Help</a></li>
 					  <li class="divider"></li>
 					  <li><%= link_to "Logout", "/logout"%></li>
