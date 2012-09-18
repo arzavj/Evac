@@ -43,24 +43,25 @@
 		<!--change picture to original logo-->
   		<div class="span4"><a id="vidactica-logo" href="/"><%= image_tag("vidactica logo beta.png", :alt => "Vidactica", :height => "36px", :width => "133px") %></a></div> <!--<h1> Vidactica</h1>-->
   		<div class="span8">
-		<ul class="nav pull-right">
-			<li class="inline"><a href="/"><%= image_tag("home_icon.png", :alt => "Home", :height => "15px", :width => "14px") %><b class="home-nav">Home</b></a></li>
 			<%if user_signed_in?  %>
-			<li class="inline">
-				<a href="/conversations"><%= image_tag("conversation_icon_white.png", :alt => "My Conversations", :height => "15px", :width => "14px") %><b class="home-nav">My Conversations</b></a></li>
-			<li class="dropdown inline">
-				    <a class="dropdown-toggle profile_icon" data-toggle="dropdown" data-target="#" href="/profiles"><%= image_tag("profile_icon.png", :alt => "Profile", :height => "13px", :width => "15px") %> <b class="uppercase"><%= current_user.firstName%></b><span class="badge" data-id="<%=current_user.id%>" rel="tooltip" title="VidactiPoints" style="cursor: default; left: 6px;top: 1px;"><%=current_user.points%></span>
-				    <b class="caret"></b></a>
-				    <ul class="dropdown-menu">
-					  <li><a href="/messages">Messages</a></li>
-					  <li><a href="/profiles">Profile</a></li>
-					  <li><a href="/about">Help</a></li>
-					  <li class="divider"></li>
-					  <li><%= link_to "Logout", "/logout"%></li>
-			    	</ul>
-			</li>
+			<ul class="nav pull-right">
+				<li class="inline"><a href="/"><%= image_tag("home_icon.png", :alt => "Home", :height => "15px", :width => "14px") %><b class="home-nav">Home</b></a></li>
+				<li class="inline">
+					<a href="/conversations"><%= image_tag("conversation_icon_white.png", :alt => "My Conversations", :height => "15px", :width => "14px") %><b class="home-nav">My Conversations</b></a></li>
+				<li class="dropdown inline">
+					    <a class="dropdown-toggle profile_icon" data-toggle="dropdown" data-target="#" href="/profiles"><%= image_tag("profile_icon.png", :alt => "Profile", :height => "13px", :width => "15px") %> <b class="uppercase"><%= current_user.firstName%></b><span class="badge" data-id="<%=current_user.id%>" rel="tooltip" title="VidactiPoints" style="cursor: default; left: 6px;top: 1px;"><%=current_user.points%></span>
+					    <b class="caret"></b></a>
+					    <ul class="dropdown-menu">
+						  <li><a href="/messages">Messages <i class="icon-envelope"></i></a></li>
+						  <li><a href="/profiles">Profile <i class="icon-user"></i></a></li>
+						  <li><a href="/about">Help <i class="icon-question-sign"></i></a></li>
+						  <li class="divider"></li>
+						  <li><a href="/logout">Logout <i class="icon-off"></i></a></li>
+				    	</ul>
+				</li>
 			
 			<%else%>
+			<ul class="nav pull-right" style="width:25%;">
 					<li class="inline">
 							<a data-toggle="modal" data-target="#login-modal" href = "#login-modal"><%= image_tag("profile_icon.png", :alt => "LOGIN", :height => "18px", :width => "18px") %><b>Login</b></a>
 					</li>

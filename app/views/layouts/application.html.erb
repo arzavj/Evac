@@ -29,6 +29,17 @@
 
 	<script type="text/javascript">
 		$(document).ready(function() {
+			$('i[class^="icon-"], i[class*="icon-"]').each(function(){
+				var _this = this;
+				$(this).parent().hover(
+			  	  function () {
+				    $(_this).addClass("icon-white");
+				  },
+				  function () {
+				    $(_this).removeClass("icon-white");
+				  }
+				);
+			});
 			
 			jQuery.reject({  
 			        reject: {  
