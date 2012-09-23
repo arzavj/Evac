@@ -6,7 +6,14 @@
 			<ul class="nav nav-list">
 				<%@conversations.each do |conversation|%>
 					<li>
-					<%= conversation.last_message.body%>
+					<%if conversation.last_message.sender == current_user%>
+						You
+					<%else%>
+						<%=conversation.last_message.sender.fullName%>
+					<%end%>
+					sent at <%=conversation.last_message.created_at.strftime("%I:%M %p")%>:
+					<br />
+					<b><%= conversation.last_message.body%></b>
 					<%= render :partial => "message", :locals => {:cID => conversation.id}%>
 					<div style="margin-top:1%"><button class="btn btn-info" data-toggle="modal" data-target="#message-modal-<%=conversation.id.to_s%>" href = "#message-modal-<%=conversation.id.to_s%>">Reply</button></div>
 					</li>
