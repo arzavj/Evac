@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
 	has_many :schedules
 	
 	has_attached_file :picture, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "http://placehold.it/140x140"
+	
+	acts_as_messageable
 
 	
 	def questions
@@ -53,5 +55,9 @@ class User < ActiveRecord::Base
 			user.save!
 			return user
 		end
+	end
+
+	def mailboxer_email(object)
+		return nil
 	end
 end

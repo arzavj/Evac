@@ -1,0 +1,23 @@
+<div class="modal hide fade" id="message-modal<%="-#{cID}" if cID%>">
+	<div class="modal-header" style="background-color:#4A5C5C;">
+		<button class="close" data-dismiss="modal">&times;</button>
+		<%if cID%>
+			<h3>Reply</h3>
+		<%else%>
+			<h3>Send <%=@user.firstName%> a message</h3>
+		<%end%>
+	</div>
+	<div class="modal-body">
+		<%=form_for Message.new, :html => { :style => 'margin-bottom:0px;' } do |f|%>
+			<%if cID%>
+				<%=f.hidden_field :conversation_id, :value => cID%>
+			<%elsif params[:id]%>
+				<%=f.hidden_field :notified_object_id, :value => params[:id]%>
+				<strong>Subject:</strong>
+				<%=f.text_field :subject, :style => "width:85%"%>
+			<%end%>
+			<%=f.text_area :body, :rows => "12", :style => "width:98%"%>
+			<div><%=f.submit "Send", :class => "btn btn-inverse"%></div>
+		<%end%>
+	</div>
+</div>
