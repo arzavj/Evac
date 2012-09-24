@@ -6,3 +6,5 @@ tmp/
 .sass-cache/
 /public/system/*
 .DS_Store
+public/assets/*
+vendor/bundle/*
