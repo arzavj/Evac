@@ -4,26 +4,27 @@
 	<div class="body-wrapper">
 		
 		<div class="row-fluid" style="padding-top:5%;">
-			<div class="span6 pull-left">
+			<div class="span8 pull-left">
 				<div class="row-fluid">
-					<div class="span6">
+					<div class="span4">
 						<div class="profile-pic">
 						<%= image_tag @user.picture.url(:medium) %>
 						</div>
 					</div>
-					<div class="span6">
-						<h1 class="uppercase inline" style="margin-left:0px;"><%=@user.fullName %></h1>
-						<i><%= @user.short_bio%></i>
+					<div class="span8">
+						<h1 class="uppercase inline nunito400" style="margin-left:2%;"><%=@user.fullName %></h1>
+						<div style="margin-left:2%;"><i><%= "\""+ @user.short_bio+"\""%></i></div>
+						<br />
 						<%if @user.location%>
-							<div>From <strong><%= @user.location %></strong></div>
+							<div style="margin-left:2%;"><span class="darkblue">From: </span><%= @user.location %></div>
 						<%end%>
 						<%if @user.prefered_schedule%>
-							<div>Most Avaliable at: <strong><%= @user.prefered_schedule %></strong></div>
+							<div style="margin-left:2%;"><span class="darkblue">Most Avaliable at: </span><%= @user.prefered_schedule %></div>
 						<%end%>
-                        <div style="padding-top:1%;"><span>Age: </span>
-							 <strong class="inline"><%= @user.age %></strong>
+                        <div style="padding-top:1%;margin-left:2%;"><span class="darkblue">Age: </span>
+							 <span class="inline"><%= @user.age %>
 						</div>
-						<div style="padding-top:1%;">VidactiPoints:
+						<div style="padding-top:1%;margin-left:2%;"><span class="darkblue">VidactiPoints: </span>
 							 <span class="badge" data-id="<%=@user.id%>" rel="tooltip" title="VidactiPoints"><%= @user.points%></span>
 						</div>
 					</div>
@@ -33,7 +34,7 @@
 						<%= @description %>
 				</div>
 			</div>
-			<div class="span6">
+			<div class="span4" style="margin-left:0px;">
 				<div class="pull-right">
 					<div>
 					<%if params[:id] == nil%>
@@ -54,8 +55,8 @@
 							</div>
 						</div>
 						<li class="divider"></li>
-						<div><strong>Number of Completed Sessions:</strong> <%= @sessions %></div>
-						<div><strong>Number of Missed Sessions:</strong> <%= @missed %></div>
+						<div><strong>Sessions Completed:</strong> <%= @sessions %></div>
+						<div><strong>Sessions Missed:</strong> <%= @missed %></div>
 						<li class="divider"></li>
 					</ul>
 				</div>
