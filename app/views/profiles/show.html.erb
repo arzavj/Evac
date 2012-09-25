@@ -13,7 +13,7 @@
 					</div>
 					<div class="span8">
 						<h1 class="uppercase inline nunito400" style="margin-left:2%;"><%=@user.fullName %></h1>
-						<div style="margin-left:2%;"><i><%= "\""+ @user.short_bio+"\""%></i></div>
+						<div style="margin-left:2%;"><i>"<%= @user.short_bio%>"</i></div>
 						<br />
 						<%if @user.location%>
 							<div style="margin-left:2%;"><span class="darkblue">From: </span><%= @user.location %></div>
