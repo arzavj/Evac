@@ -10,8 +10,8 @@ class ProfilesController < ApplicationController
 		@sessions = @user.completed_conversations 
 		@missed = @user.missed_conversations
 		@description = @user.blurb
-		@askQuestions = @user.ask_questions.where(:was_answered => true) 
-		@answerQuestions = @user.answer_questions.where(:was_answered => true)
+		@qPending = Question.where({:ask_id => @user.id, :was_answered => false, :schedule_id => -1, :answer_id => nil})
+		@qPast = Question.where("(ask_id = ? OR answer_id = ?) AND was_answered = TRUE", @user.id, @user.id)
 	end
 	
 	def edit
