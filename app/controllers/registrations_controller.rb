@@ -12,6 +12,7 @@ class RegistrationsController < Devise::RegistrationsController
 				expire_session_data_after_sign_in!
 				respond_with resource, :location => after_inactive_sign_up_path_for(resource)
 			end
+			flash[:notice] = "Please check your email."
 		else
 			clean_up_passwords resource
 			flash[:error] = "Please fill out your registration form properly"
