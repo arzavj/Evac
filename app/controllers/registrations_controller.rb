@@ -10,7 +10,7 @@ class RegistrationsController < Devise::RegistrationsController
 				respond_with resource, :location => after_sign_up_path_for(resource)
 				return
 			else
-				flash[:warning] = "Please check your email."
+				flash[:email] = "Please check your email."
 				expire_session_data_after_sign_in!
 				respond_with resource, :location => after_inactive_sign_up_path_for(resource)
 				return
