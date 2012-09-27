@@ -5,13 +5,12 @@ class RegistrationsController < Devise::RegistrationsController
 		
 		if resource.save
 			if resource.active_for_authentication?
-				flash[:notice] = "Please check your email."
 				set_flash_message :notice, :signed_up if is_navigational_format?
 				sign_in(resource_name, resource)
 				respond_with resource, :location => after_sign_up_path_for(resource)
 				return
 			else
-				flash[:notice] = "Please check your email 2."
+				flash[:warning] = "Please check your email."
 				expire_session_data_after_sign_in!
 				respond_with resource, :location => after_inactive_sign_up_path_for(resource)
 				return
