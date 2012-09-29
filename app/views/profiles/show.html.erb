@@ -16,13 +16,13 @@
 						<div style="margin-left:2%;"><i>"<%= @user.short_bio%>"</i></div>
 						<br />
 						<%if @user.location%>
-							<div style="margin-left:2%;"><span class="darkblue">From: </span><%= @user.location %></div>
+							<div style="margin-left:2%;"><span class="darkblue">From: </span><b><%= @user.location %></b></div>
 						<%end%>
 						<%if @user.prefered_schedule%>
-							<div style="margin-left:2%;"><span class="darkblue">Most Avaliable at: </span><%= @user.prefered_schedule %></div>
+							<div style="margin-left:2%;"><span class="darkblue">Most Avaliable at: </span><b><%= @user.prefered_schedule %></b></div>
 						<%end%>
                         <div style="padding-top:1%;margin-left:2%;"><span class="darkblue">Age: </span>
-							 <span class="inline"><%= @user.age %>
+							 <span class="inline"><b><%= @user.age %></b></span>
 						</div>
 						<div style="padding-top:1%;margin-left:2%;"><span class="darkblue">VidactiPoints: </span>
 							 <span class="badge" data-id="<%=@user.id%>" rel="tooltip" title="VidactiPoints"><%= @user.points%></span>
