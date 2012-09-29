@@ -5,17 +5,19 @@
 		<% if @conversations.length > 0%>
 			<ul class="nav nav-list">
 				<%@conversations.each do |conversation|%>
-					<%=conversation.subject%>
 					<%conversation.messages.each do |message|%>
 						<li>
+							<div>
 							<%if message.sender == current_user%>
 								You
 							<%else%>
 								<%=message.sender.fullName%>
 							<%end%>
-							sent at <%=message.created_at.strftime("%I:%M %p")%>:
-							<br />
-							<b><%= message.body%></b>
+							<span class="pull-right"><i>sent at <%=message.created_at.strftime("%I:%M %p")%></i></span>
+							</div>
+							<div>
+							<%=conversation.subject%>: <b><%= message.body%></b>
+							</div>
 						</li>
 					<%end%>
 					<%= render :partial => "message", :locals => {:cID => conversation.id}%>
