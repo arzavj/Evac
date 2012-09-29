@@ -7,7 +7,7 @@
 		<div><%= f.file_field (:picture) %></div>
 		<div><h4>Location:</h4> <%= f.text_field :location %></div>
 		<div><h4>Best Time to Have a Conversation:</h4> <%= f.text_field :prefered_schedule %></div>
-		<div><h4>Catch Phrase:</h4> <%= f.text_field :short_bio, :maxlength => "15" %></div>
+		<div><h4>Catch Phrase:</h4> <%= f.text_field :short_bio, :maxlength => "50" %></div>
 		<div style="margin-bottom: 15px;">
 			<h4>Age:</h4> 
 			<%= f.select :age, (0..100)%>

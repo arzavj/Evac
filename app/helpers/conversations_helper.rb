@@ -3,14 +3,14 @@ module ConversationsHelper
 		if q.schedule_id == -1
 			if q.answer_id == nil
 				@qPendNoAnswer << q
-				else
+			else
 				if q.schedules.any? && q.schedules[0].user_id != @user.id
 					@qPendConfirmable << q
-					else
+				else
 					@qPendAnswer << q
 				end
 			end
-			else
+		else
 			@qConfirmed << q
 		end
 	end

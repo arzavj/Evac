@@ -5,18 +5,21 @@
 		<% if @conversations.length > 0%>
 			<ul class="nav nav-list">
 				<%@conversations.each do |conversation|%>
-					<li>
-					<%if conversation.last_message.sender == current_user%>
-						You
-					<%else%>
-						<%=conversation.last_message.sender.fullName%>
+					<%=conversation.subject%>
+					<%conversation.messages.each do |message|%>
+						<li>
+							<%if message.sender == current_user%>
+								You
+							<%else%>
+								<%=message.sender.fullName%>
+							<%end%>
+							sent at <%=message.created_at.strftime("%I:%M %p")%>:
+							<br />
+							<b><%= message.body%></b>
+						</li>
 					<%end%>
-					sent at <%=conversation.last_message.created_at.strftime("%I:%M %p")%>:
-					<br />
-					<b><%= conversation.last_message.body%></b>
 					<%= render :partial => "message", :locals => {:cID => conversation.id}%>
 					<div style="margin-top:1%"><button class="btn btn-info" data-toggle="modal" data-target="#message-modal-<%=conversation.id.to_s%>" href = "#message-modal-<%=conversation.id.to_s%>">Reply</button></div>
-					</li>
 					<li class="divider"></li>
 				<%end%>
 			</ul>
