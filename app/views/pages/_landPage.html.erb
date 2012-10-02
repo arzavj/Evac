@@ -30,7 +30,7 @@
 				</div>
 				
 				<div class="fb-login-button">
-					<%= image_tag("FB sign in button.png", :width => "250", :id => "facebook_popup", :style => "cursor:pointer;") %>	
+					<%= image_tag("FB sign in button.png", :width => "250", :id => "facebook_popup", :style => "cursor:pointer;border-bottom:1px solid black;margin-bottom: 2%;") %>	
 					<script>
 						var login_funct = function() {
 										FB.api('me', function(me) {
@@ -112,9 +112,9 @@
 					</div>
 				</div>
 				<div id="email-signup">
-					<a data-toggle="modal" data-target="#register-modal" href = "#register-modal">
-						Don't have a Facebook account? Sign Up with Email instead
-					</a>
+					<button class="btn btn-warning btn-large" data-toggle="modal" data-target="#register-modal" href = "#register-modal">
+						Sign up with Email
+					</button>
 				</div>
 				<div class="modal hide fade" id="regWithVid-modal">
 					<div class="modal-body">
