@@ -693,6 +693,43 @@ h2 b.caret-myquestions
 	text-decoration:underline;
 }
 
+.btn-yellow
+{
+	background-color: #FFBE1C;
+  background-image: -moz-linear-gradient(top, #FFCF10, #FFBE1C);
+  background-image: -ms-linear-gradient(top, #FFCF10, #FFBE1C);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#FFCF10), to(#FFBE1C));
+  background-image: -webkit-linear-gradient(top, #FFCF10, #FFBE1C);
+  background-image: -o-linear-gradient(top, #FFCF10, #FFBE1C);
+  background-image: linear-gradient(top, #FFCF10, #FFBE1C);
+	font-weight: bold;
+}
+
+.btn-yellow:hover,
+.btn-yellow:active,
+.btn-yellow.active,
+.btn-yellow.disabled,
+.btn-yellow[disabled] {
+  background-color: #F7BC27;
+}
+
+.intermission 
+{
+	background: url(<%= asset_path "pinterest-divider.png"%>) no-repeat center center;
+	color: #888;
+	font-family: 'Georgia';
+	font-size: 18px;
+	text-align: center;
+	width:250px;
+}
+
+.intermission .text 
+{
+	display: inline-block;
+	padding: 0px;
+	font-weight: normal;
+}
+
 .form-horizontal .control-label
 {
 	padding-top:11px;
