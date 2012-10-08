@@ -84,6 +84,7 @@ class TokController < ApplicationController
 		question = Question.find(params["qID"])
 		
 		makeSchedules question
+		repost question
 		
 		flash[:notice] = "Your choices were sent."
 		redirect_to "/conversations"
