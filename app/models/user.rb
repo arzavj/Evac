@@ -47,9 +47,7 @@ class User < ActiveRecord::Base
 			user.update_attributes({:provider => "facebook", :uid => data[:id]})
 			return user
 		else
-			p = Profile.create
-	
-			user = User.new(:firstName => data[:first_name], :lastName => data[:last_name], :provider => "facebook", :uid => data[:id], :email => data[:email],:password => Devise.friendly_token[0,20], :profile_id => p.id)
+			user = User.new(:firstName => data[:first_name], :lastName => data[:last_name], :provider => "facebook", :uid => data[:id], :email => data[:email],:password => Devise.friendly_token[0,20])
 	
 			user.confirm!
 			user.save!
