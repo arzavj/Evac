@@ -105,6 +105,9 @@
 										<%end%>
 										a conversation with <a class="username" href = "/profiles?id=<%=u.id%>" ><%=u.fullName %> </a><span class="badge" data-id="<%=u.id%>" rel="tooltip" title="VidactiPoints"><%= u.points%></span>
 									<%end%>
+									<% if current_user.admin?%>
+										<%= link_to "Delete",  "/delete?qID=#{q.id}", :class => "btn"%>
+									<%end%>
 										
 									</li>
 									<li class="divider"></li>
