@@ -83,10 +83,14 @@ class TokController < ApplicationController
 	def Schedule
 		question = Question.find(params["qID"])
 		
+		if question.answer_id == nil
+			newQ = repost question
+			newQ.asker = question.asker
+			newQ.save
+		end
+		
 		makeSchedules question
-		newQ = repost question
-		newQ.asker = question.asker
-		newQ.save
+
 		
 		flash[:notice] = "Your choices were sent."
 		redirect_to "/conversations"
