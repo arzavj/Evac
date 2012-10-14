@@ -4,4 +4,8 @@ class ApplicationController < ActionController::Base
 	
 	before_filter :authenticate_user!
 	
+	def ADMIN!
+		return redirect_to root_url if !current_user.admin?
+	end
+	
 end

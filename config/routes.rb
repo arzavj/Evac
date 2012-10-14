@@ -9,6 +9,8 @@ Vidactica::Application.routes.draw do
 
 	match "/auth/facebook" => "pages#facebook"
 	match '/facebook/login' => "pages#fblogin"
+	
+	match "/delete" => "pages#deleteQuestion"
  
 	resources :conversations, :only => :index do
 	  get 'repost', :on => :collection

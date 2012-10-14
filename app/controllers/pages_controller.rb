@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
 	
 	skip_before_filter :authenticate_user!
+	before_filter :ADMIN!, :only => :deleteQuestion
 	@@categories = ["Politics", "Philosophy", "Entertainment", "Business", "Social Justice", "Education", "Science", "Tutoring", "Sports", "Miscellaneous"]
 	
   def home
@@ -84,5 +85,11 @@ class PagesController < ApplicationController
 			redirect_to root_url
 			return
 		end
+	end
+	
+	def deleteQuestion
+		q = Question.find_by_id(params[:qID])
+		q.update_attribute("deleted", true) if q
+		redirect_to root_url
 	end
 end

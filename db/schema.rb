@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120910031014) do
+ActiveRecord::Schema.define(:version => 20121013002201) do
 
   create_table "conversations", :force => true do |t|
     t.string   "subject",    :default => ""
@@ -108,14 +108,14 @@ ActiveRecord::Schema.define(:version => 20120910031014) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.float    "rating",                  :default => 0.0
     t.integer  "completed_conversations", :default => 0
     t.string   "firstName",               :default => ""
     t.string   "lastName",                :default => ""
     t.integer  "age",                     :default => 0
     t.integer  "new_questions",           :default => 0
+    t.float    "rating",                  :default => 0.0
     t.integer  "missed_conversations",    :default => 0
-    t.string   "encrypted_password",      :default => "",  :null => false
+    t.string   "encrypted_password",      :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -127,19 +127,19 @@ ActiveRecord::Schema.define(:version => 20120910031014) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
     t.string   "provider"
     t.string   "uid"
     t.integer  "points",                  :default => 100
     t.text     "blurb"
     t.string   "school",                  :default => ""
     t.string   "picture_file_name"
-    t.string   "picture_content_type"
     t.datetime "picture_updated_at"
+    t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.string   "location"
     t.string   "prefered_schedule"
     t.string   "short_bio"
+    t.boolean  "admin",                   :default => false
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

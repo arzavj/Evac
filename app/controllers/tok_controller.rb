@@ -83,7 +83,14 @@ class TokController < ApplicationController
 	def Schedule
 		question = Question.find(params["qID"])
 		
+		if question.answer_id == nil
+			newQ = repost question
+			newQ.asker = question.asker
+			newQ.save
+		end
+		
 		makeSchedules question
+
 		
 		flash[:notice] = "Your choices were sent."
 		redirect_to "/conversations"
@@ -189,7 +196,7 @@ private
 			s.question_id = question.id
 			if !params["Slot"+i.to_s].eql?("")
 				s.appointment = DateTime.strptime(params["Slot"+i.to_s], "%m/%d/%Y %I:%M %p")
-				s.appointment = s.appointment.new_offset(params["timeOffset"].to_i/24.0)
+				s.appointment = (s.appointment.new_offset(params["timeOffset"].to_i/24.0)) + 1.minute
 				
 				s.user_id = user.id #proposer
 				s.save
