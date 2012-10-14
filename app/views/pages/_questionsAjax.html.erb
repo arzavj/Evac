@@ -100,7 +100,7 @@
 						$(this).parent().remove().fadeOut("slow"); //get rid of enclosing li element
 						
 						//updateListHeight();
-						//console.log("Question removed: "+$(this).text());
+						console.log("Question removed: "+$(this).text());
 						changeInNoOfQuestions--;
 					}
 				});
@@ -111,7 +111,7 @@
 					var JSONurl = "pages/ajaxQuestion";
 					categoryID = $("li.active > a").attr("href").replace(/#tab/, "");
 					$.getJSON(JSONurl, {"category": (categoryID)}, function(json){
-								// console.log(JSON.stringify(json));
+								console.log(JSON.stringify(json));
 								addNewQuestions(json);
 								removeOldQuestions(json);
 								updateCategoryCount();
