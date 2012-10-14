@@ -8,6 +8,28 @@
 		<%end%>
 	</div>
 	<div class="modal-body">
+		<%if cID && conversation%>
+			<%conversation.messages.each do |message|%>
+				<ul class="nav nav-list">
+					<li>
+						<div class="row-fluid">
+							<span class="pull-left" style="font-weight:bold;">
+								<%if message.sender == current_user%>
+									me
+								<%else%>
+									<%=message.sender.fullName%>
+								<%end%>
+							</span>
+							<span class="pull-right"><i><%=message.created_at.strftime("%I:%M %p")%></i></span>
+						</div>
+						<div class="row-fluid" style="word-wrap: break-word;">
+							<%= message.body%>
+						</div>
+					</li>
+					<li class="divider"></li>
+				</ul>
+			<%end%>
+		<%end%>
 		<%=form_for Message.new, :html => { :style => 'margin-bottom:0px;' } do |f|%>
 			<%if cID%>
 				<%=f.hidden_field :conversation_id, :value => cID%>

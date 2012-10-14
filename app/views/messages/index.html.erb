@@ -2,21 +2,24 @@
 	<div class="body-wrapper">
 		<h1 class="center nunito700 darkblue"> Messages </h1>
 		<!--We should determine what else we want to display here like names or whatever-->
+		<!-- each conversation is made up of many messages -->
 		<% if @conversations.length > 0%>
 			<ul class="nav nav-list">
 				<%@conversations.each do |conversation|%>
-					<%conversation.messages.each do |message|%>
+					<div class="conversation" data-toggle="modal" data-target="#message-modal-<%=conversation.id.to_s%>" href = "#message-modal-<%=conversation.id.to_s%>">
+					<%#conversation.messages.each do |message|%>
+					<% message = conversation.messages.last%>
 						<li class="gmail-message">
 							<div class="row-fluid">
 								<div class="span3 overflow-ellipsis">
 									<%if message.sender == current_user%>
-										You
+										me
 									<%else%>
 										<%=message.sender.fullName%>
 									<%end%>
 								</div>
 								<div class="span9">
-									<span class="pull-right"><%=message.created_at.strftime("%I:%M %p")%></span>
+									<span class="pull-right"><i><%=message.created_at.strftime("%I:%M %p")%></i></span>
 									<div class="overflow-ellipsis">
 										<div class="inline"><b><%=conversation.subject%>: </b></div>
 										<div class="inline"><%= message.body%></div>
@@ -24,10 +27,11 @@
 								</div>
 							</div>
 						</li>
-					<%end%>
-					<%= render :partial => "message", :locals => {:cID => conversation.id}%>
-					<div style="margin-top:1%"><button class="btn btn-info" data-toggle="modal" data-target="#message-modal-<%=conversation.id.to_s%>" href = "#message-modal-<%=conversation.id.to_s%>">Reply</button></div>
-					<li class="divider"></li>
+					<%#end%>
+					</div>
+					<%= render :partial => "message", :locals => {:cID => conversation.id, :conversation => conversation}%>
+					<!-- <div style="margin-top:1%"><button class="btn btn-info" data-toggle="modal" data-target="#message-modal-<%=conversation.id.to_s%>" href = "#message-modal-<%=conversation.id.to_s%>">Reply</button></div> -->
+					<!-- <li class="divider"></li> -->
 				<%end%>
 			</ul>
 		<%else%>
