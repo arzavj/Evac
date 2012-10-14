@@ -85,9 +85,11 @@
 			{
 				for(var i in json)
 				{
-						if(json[i].question.question === question)
+						if(json[i].question.question.replace(/\s+$/, '') === question)
 							return false;
 				}
+				console.log("front end question last character is space: "+(question.charAt(question.length-1)===' '));
+				console.log("actual question last character is space: "+(json[i].question.question.charAt(json[i].question.question.length-1)===' '));
 				return true;
 			}
 
