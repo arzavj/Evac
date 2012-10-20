@@ -4,9 +4,11 @@ Hi <%=askName%>,
 <%url = "http://vidactica.com"%>
 YOU have confirmed the following time to vidact about “<%= @question.question %>:”
 <br /><br /> 
-<%= @appointment.appointment.localtime.strftime("%A %B %d %I:%M %p %Z")%> 
+<%= @appointment.appointment.localtime.strftime("%A %B %d %I:%M %p %Z")%> <br />
+<b><i> - notice this time is in Central Daylight Time and might not match your own time. Please check 'My Conversations' in your Vidactica account to see the time in your timezone. </i></b> 
 <br />
 <b>Please be on time</b>
+<i>If you miss a conversation you will lose 50 Vidactipoints</i>
 <br /><br /> 
 You will be able to enter the chatroom through your <a href="<%=url+"/conversations"%>">‘My Conversations’</a> tab 5 minutes before the scheduled time.
 <br /><br /> 
