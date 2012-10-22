@@ -3,8 +3,10 @@ Dear <%= @name %>,
 <br /><br />
 This is a reminder that you are scheduled to talk about <b><%=@question.question%></b>
 <br /><br />
-at	<%= @appointment.appointment.localtime.strftime("%A %B %d %I:%M %p %Z")%>
+at	<%= @appointment.appointment.localtime.strftime("%A %B %d %I:%M %p %Z")%> 	<b><i> - notice this time is in Central Daylight Time and might not match your own time. Please check 'My Conversations' in your Vidactica account to see the time in your timezone. </i></b>
 <br />	<br />
+<i>If you miss a conversation you will lose 50 Vidactipoints</i>
+<br /> <br />
 You will be able to enter the chatroom through your <a href="<%=url+"/conversations"%>">‘My Conversations’</a> tab 5 minutes before the scheduled time.
 <br /><br /> 
 If you can no longer make this scheduled time, please make sure to propose an alternate time as soon as possible so your fellow Vidactica user is made aware of your absence and not kept waiting in the chat-room. 
