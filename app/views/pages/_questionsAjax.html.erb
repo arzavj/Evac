@@ -88,8 +88,8 @@
 						if(json[i].question.question.replace(/\s+$/, '') === question)
 							return false;
 				}
-				console.log("front end question last character is space: "+(question.charAt(question.length-1)===' '));
-				console.log("actual question last character is space: "+(json[i].question.question.charAt(json[i].question.question.length-1)===' '));
+				// console.log("front end question last character is space: "+(question.charAt(question.length-1)===' '));
+				// console.log("actual question last character is space: "+(json[i].question.question.charAt(json[i].question.question.length-1)===' '));
 				return true;
 			}
 
@@ -102,7 +102,7 @@
 						$(this).parent().remove().fadeOut("slow"); //get rid of enclosing li element
 						
 						//updateListHeight();
-						console.log("Question removed: "+$(this).text());
+						// console.log("Question removed: "+$(this).text());
 						changeInNoOfQuestions--;
 					}
 				});
