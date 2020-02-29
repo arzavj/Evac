@@ -20,7 +20,7 @@ gem 'omniauth-facebook', '1.4.0'
 
 # gem "paperclip", "~> 3.0"
 gem 'tzinfo', '0.3.33'
-gem 'rake', '0.8.7'
+gem 'rake', '12.3.3'
 
 group :assets do
   gem 'sass-rails', "  ~> 3.1.0"
