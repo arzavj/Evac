@@ -15,7 +15,7 @@ gem "mailboxer"
 
 
 gem 'devise'
-gem 'omniauth', '1.0'
+gem 'omniauth', '1.4.2'
 gem 'omniauth-facebook', '1.4.0'
 
 # gem "paperclip", "~> 3.0"
