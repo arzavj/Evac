@@ -19,7 +19,7 @@ gem 'omniauth', '1.0'
 gem 'omniauth-facebook', '1.4.0'
 
 # gem "paperclip", "~> 3.0"
-gem 'tzinfo', '0.3.33'
+gem 'tzinfo', '0.3.61'
 gem 'rake', '0.8.7'
 
 group :assets do
